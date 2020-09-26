@@ -1,12 +1,13 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://WalkingPath.cs" type="Script" id=1]
-[ext_resource path="res://BaseMap.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Character.cs" type="Script" id=3]
+[ext_resource path="res://src/WalkingPath.cs" type="Script" id=1]
+[ext_resource path="res://scenes/BaseMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Character.cs" type="Script" id=3]
 [ext_resource path="res://art/player_1.png" type="Texture" id=4]
-[ext_resource path="res://InfoScreen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/InfoScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://art/white_background.png" type="Texture" id=6]
-[ext_resource path="res://main.cs" type="Script" id=7]
+[ext_resource path="res://src/main.cs" type="Script" id=7]
+
 
 [sub_resource type="ButtonGroup" id=1]
 resource_name = "Location"
