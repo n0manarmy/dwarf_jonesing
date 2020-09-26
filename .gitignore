@@ -1,0 +1,6 @@
+exports/
+.mono/
+.import/
+.DS_Store
+*~
+logs/

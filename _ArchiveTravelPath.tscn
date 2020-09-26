@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://FollowRoad.cs" type="Script" id=1]
+[ext_resource path="res://art/player_1.png" type="Texture" id=2]
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( -3.70812, 3.70812, 3.70812, -3.70812, 296.286, 215.573, -2.66466, -9.64132, 2.66466, 9.64132, 472.687, 217.162, 5.86226, -5.35629, -5.86226, 5.35629, 472.687, 358.601, 2.13173, 11.2482, -2.13173, -11.2482, 296.286, 358.601, -5.32932, 24.3313, 5.32932, -24.3313, 296.286, 215.573 )
+}
+
+[node name="Path2D" type="Path2D"]
+position = Vector2( 2.30923, 13.0732 )
+scale = Vector2( 0.993994, 0.95795 )
+curve = SubResource( 2 )
+script = ExtResource( 1 )
+
+[node name="FollowRoad" type="PathFollow2D" parent="."]
+position = Vector2( 296.286, 215.573 )
+rotation = -0.213447
+rotate = false
+
+[node name="Sprite" type="Sprite" parent="FollowRoad"]
+position = Vector2( 4.13022, -2.46918 )
+rotation = 0.191986
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
