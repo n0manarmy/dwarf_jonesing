@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class main : Node2D
+public class RootScene : Node2D
 {
     // Declare member variables here. Examples:
     // private int a = 2;

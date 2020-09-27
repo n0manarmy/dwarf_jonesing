@@ -12,6 +12,7 @@ public class InfoScreen : CanvasLayer
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        GD.Print("InfoScreen._Ready()");
         GetNode<Label>("TotalTimeValue").Text = totalTime.ToString();
         GetNode<Label>("TimeUsedValue").Text = currentTime.ToString();
     }
