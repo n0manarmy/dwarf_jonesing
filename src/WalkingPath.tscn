@@ -349,26 +349,6 @@ texture = ExtResource( 4 )
 script = ExtResource( 3 )
 
 [node name="InfoScreen" parent="." instance=ExtResource( 5 )]
-
-[node name="TimeLabel" type="Label" parent="InfoScreen"]
-margin_left = 280.0
-margin_top = 232.0
-margin_right = 320.0
-margin_bottom = 246.0
-text = "Time:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TimeValue" type="Label" parent="InfoScreen"]
-margin_left = 320.0
-margin_top = 232.0
-margin_right = 360.0
-margin_bottom = 246.0
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 [connection signal="pressed" from="TravelPath/ButtonNode/LeSecurityButton" to="TravelPath" method="OnButtonMovePressed"]
 [connection signal="pressed" from="TravelPath/ButtonNode/MarketButton" to="TravelPath" method="OnButtonMovePressed"]
 [connection signal="pressed" from="TravelPath/ButtonNode/BankButton" to="TravelPath" method="OnButtonMovePressed"]

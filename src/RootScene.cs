@@ -8,7 +8,7 @@ public class main : Node2D
     // private int a = 2;
     // private string b = "text";
 
-    private Vector2 START_POS = new Vector2(31, 19);
+    private Vector2 START_POS = new Vector2(31, 9);
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
