@@ -59,9 +59,9 @@
   <ItemGroup>
     <Compile Include="src\Character.cs" />
     <Compile Include="src\FollowRoad.cs" />
-    <Compile Include="src\main.cs" />
+    <Compile Include="src\RootScene.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\WalkingPath.cs" />
+    <Compile Include="src\TravelPath.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

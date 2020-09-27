@@ -13,7 +13,8 @@ public class main : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        GetNode<Character>("TravelPath/Character").Position = START_POS;
+        // GetNode<Character>("TravelPath/Character").Position = START_POS;
+        GetNode<TravelPath>("TravelPath").SetPlayerPosition(START_POS);
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

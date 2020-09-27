@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class WalkingPath : Node
+public class TravelPath : Node
 {
     [Export]
     public PackedScene Character;
@@ -22,7 +22,6 @@ public class WalkingPath : Node
         var travelPath = GetNode<TileMap>("WalkingPath/TravelPath");
 
         player.Position = travelPath.MapToWorld(pos);
-        player.Update();
     }
 
     public void OnButtonMovePressed() {
