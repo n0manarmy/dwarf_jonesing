@@ -6,8 +6,8 @@ public class InfoScreen : CanvasLayer
     // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
-    private int totalTime = 50;
-    private int currentTime = 0;
+    public int totalTime = 500;
+    public int currentTime = 0;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -23,7 +23,13 @@ public class InfoScreen : CanvasLayer
 
     // }
 
-    public void updateCurrentTimeValue(int value) {
-        GetNode<Label>("TimeUsedValue").Text = (currentTime + value).ToString();
+    public void updateCurrentTimeValue(int val) {
+        GD.Print("InfoScreen.updateCurrentTimeValue()");
+        currentTime += val;
+        GetNode<Label>("TimeUsedValue").Text = (currentTime).ToString();
+    }
+
+    public void setStatusText(String val) {
+        GetNode<Label>("StatusValue").Text = val.ToString();
     }
 }

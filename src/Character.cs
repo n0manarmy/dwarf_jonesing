@@ -8,7 +8,8 @@ public class Character : Sprite
     // private int a = 2;
     // private string b = "text";
 
-    private List<Vector2> characterPath;
+    private List<Vector2> characterPath; //list of pathing points
+    private Vector2 START_POS = new Vector2(31, 9);
 
     [Export]
     private int speed = 200;
@@ -19,8 +20,6 @@ public class Character : Sprite
         SetProcess(false);
     }
 
-
-
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
@@ -28,14 +27,27 @@ public class Character : Sprite
         MoveAlongPath(distance);
     }
 
+    public void ResetPlayerPosition() {
+        characterPath.Clear();
+        var player = GetNode<Character>("/root/RootScene/TravelPath/Character");
+        var travelPath = GetNode<TileMap>("/root/RootScene/TravelPath/WalkingPath/TravelPathTileMap");
+        player.Position = travelPath.MapToWorld(START_POS);
+    }
+
     public void MoveAlongPath(float distance) {
         GD.Print("MoveAlongPath");
         var start = Position;
+        var infoScreen = GetNode<InfoScreen>("/root/RootScene/InfoScreen");
         // GD.Print(start);
         // foreach(var i in characterPath) {
         for (int i = 0; i < characterPath.Count; i++) {
-            // GD.Print("foreach i:", characterPath[i]);
             var distToNext = start.DistanceTo(characterPath[i]);
+            infoScreen.updateCurrentTimeValue(1);
+            if (infoScreen.currentTime >= infoScreen.totalTime) {
+                infoScreen.setStatusText("Your time is up!");
+                GetNode<Character>("/root/RootScene/TravelPath/Character").ResetPlayerPosition();
+                break;
+            }
             if (distance <= distToNext && distance >= 0.0) {
                 Position = start.LinearInterpolate(characterPath[i], distance / distToNext);
                 break;

@@ -17,18 +17,11 @@ public class TravelPath : Node
         tween.Start();
     }
 
-    public void SetPlayerPosition(Vector2 pos) {
-        var player = GetNode<Character>("Character");
-        var travelPath = GetNode<TileMap>("WalkingPath/TravelPath");
-
-        player.Position = travelPath.MapToWorld(pos);
-    }
-
     public void OnButtonMovePressed() {
         GD.Print("OnButtonMovePressed()");
 
         var player = GetNode<Character>("Character");
-        var travelPath = GetNode<TileMap>("WalkingPath/TravelPath");
+        var travelPath = GetNode<TileMap>("WalkingPath/TravelPathTileMap");
         var pos = player.GlobalPosition;
 
         var buttons = GetNode<Node>("ButtonNode");

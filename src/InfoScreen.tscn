@@ -4,8 +4,6 @@
 [ext_resource path="res://art/info_layer_background.png" type="Texture" id=2]
 [ext_resource path="res://src/InfoScreen.cs" type="Script" id=3]
 
-
-
 [sub_resource type="TileSet" id=1]
 0/name = "info_layer_background.png 0"
 0/texture = ExtResource( 2 )
@@ -73,6 +71,25 @@ margin_top = 232.0
 margin_right = 400.0
 margin_bottom = 246.0
 text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatusLabel" type="Label" parent="."]
+margin_left = 280.0
+margin_top = 264.0
+margin_right = 320.0
+margin_bottom = 278.0
+text = "Status:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatusValue" type="Label" parent="."]
+margin_left = 328.0
+margin_top = 264.0
+margin_right = 371.0
+margin_bottom = 278.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
