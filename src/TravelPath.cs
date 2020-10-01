@@ -20,7 +20,7 @@ public class TravelPath : Node
     public void OnButtonMovePressed() {
         GD.Print("OnButtonMovePressed()");
 
-        var player = GetNode<Character>("Character");
+        var player = GetNode<Character>("/root/RootScene/Character");
         var travelPath = GetNode<TileMap>("WalkingPath/TravelPathTileMap");
         var pos = player.GlobalPosition;
 

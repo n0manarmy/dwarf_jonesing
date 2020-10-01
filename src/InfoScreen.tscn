@@ -35,7 +35,9 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 917521, 0, 0, 917525, 0, 0, 917529, 0, 0, 917533, 0, 0, 917537, 0, 0, 917541, 0, 0, 917545, 0, 0, 1179665, 0, 0, 1179669, 0, 0, 1179673, 0, 0, 1179677, 0, 0, 1179681, 0, 0, 1179685, 0, 0, 1179689, 0, 0, 1441809, 0, 0, 1441813, 0, 0, 1441817, 0, 0, 1441821, 0, 0, 1441825, 0, 0, 1441829, 0, 0, 1441833, 0, 0, 1703953, 0, 0, 1703957, 0, 0, 1703961, 0, 0, 1703965, 0, 0, 1703969, 0, 0, 1703973, 0, 0, 1703977, 0, 0, 1835025, 0, 0, 1835029, 0, 0, 1835033, 0, 0, 1835037, 0, 0, 1835041, 0, 0, 1835045, 0, 0, 1835049, 0, 0 )
 
-[node name="TimeUsedLabel" type="Label" parent="."]
+[node name="DebugScreen" type="CanvasLayer" parent="."]
+
+[node name="TimeUsedLabel" type="Label" parent="DebugScreen"]
 margin_left = 280.0
 margin_top = 248.0
 margin_right = 353.0
@@ -45,7 +47,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TimeUsedValue" type="Label" parent="."]
+[node name="TimeUsedValue" type="Label" parent="DebugScreen"]
 margin_left = 360.0
 margin_top = 248.0
 margin_right = 400.0
@@ -55,7 +57,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TotalTimeLabel" type="Label" parent="."]
+[node name="TotalTimeLabel" type="Label" parent="DebugScreen"]
 margin_left = 280.0
 margin_top = 232.0
 margin_right = 353.0
@@ -65,7 +67,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TotalTimeValue" type="Label" parent="."]
+[node name="TotalTimeValue" type="Label" parent="DebugScreen"]
 margin_left = 360.0
 margin_top = 232.0
 margin_right = 400.0
@@ -75,21 +77,40 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StatusLabel" type="Label" parent="."]
+[node name="StatusLabel" type="Label" parent="DebugScreen"]
 margin_left = 280.0
 margin_top = 264.0
-margin_right = 320.0
+margin_right = 323.0
 margin_bottom = 278.0
 text = "Status:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StatusValue" type="Label" parent="."]
+[node name="StatusValue" type="Label" parent="DebugScreen"]
 margin_left = 328.0
 margin_top = 264.0
 margin_right = 371.0
 margin_bottom = 278.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EatenLabel" type="Label" parent="DebugScreen"]
+margin_left = 280.0
+margin_top = 280.0
+margin_right = 323.0
+margin_bottom = 294.0
+text = "Eaten:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EatenValue" type="Label" parent="DebugScreen"]
+margin_left = 328.0
+margin_top = 280.0
+margin_right = 371.0
+margin_bottom = 294.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -12,7 +12,10 @@ public class Character : Sprite
     private Vector2 START_POS = new Vector2(31, 9);
 
     [Export]
-    private int speed = 200;
+    private int speed = 300;
+
+    [Export]
+    public bool eaten = false;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -28,14 +31,13 @@ public class Character : Sprite
     }
 
     public void ResetPlayerPosition() {
-        characterPath.Clear();
-        var player = GetNode<Character>("/root/RootScene/TravelPath/Character");
+        var player = GetNode<Character>("/root/RootScene/Character");
         var travelPath = GetNode<TileMap>("/root/RootScene/TravelPath/WalkingPath/TravelPathTileMap");
         player.Position = travelPath.MapToWorld(START_POS);
     }
 
     public void MoveAlongPath(float distance) {
-        GD.Print("MoveAlongPath");
+        // GD.Print("MoveAlongPath");
         var start = Position;
         var infoScreen = GetNode<InfoScreen>("/root/RootScene/InfoScreen");
         // GD.Print(start);
@@ -43,9 +45,15 @@ public class Character : Sprite
         for (int i = 0; i < characterPath.Count; i++) {
             var distToNext = start.DistanceTo(characterPath[i]);
             infoScreen.updateCurrentTimeValue(1);
+            if (characterPath.Count == 1) {
+                infoScreen.updateCurrentTimeValue(10);
+                GD.Print("Pop Menu for location");
+
+            }
             if (infoScreen.currentTime >= infoScreen.totalTime) {
                 infoScreen.setStatusText("Your time is up!");
-                GetNode<Character>("/root/RootScene/TravelPath/Character").ResetPlayerPosition();
+                characterPath.Clear();
+                GetNode<Character>("/root/RootScene/Character").ResetPlayerPosition();
                 break;
             }
             if (distance <= distToNext && distance >= 0.0) {
@@ -66,8 +74,11 @@ public class Character : Sprite
         GD.Print("SetCharacterPath");
         characterPath = path;
         if (path.Count == 0) {
+            GD.Print("path.Count == 0");
+            SetProcess(false);
             return;
         } else {
+            GD.Print("path.Count != 0");
             SetProcess(true);
         }
     }
