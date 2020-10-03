@@ -13,7 +13,7 @@ public class RootScene : Node2D
     public override void _Ready()
     {
         // GetNode<Character>("TravelPath/Character").Position = START_POS;
-        GetNode<Character>("/root/RootScene/Character").ResetPlayerPosition();
+        GetNode<Character>("/root/RootScene/TravelPath/Character").ResetPlayerPosition();
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

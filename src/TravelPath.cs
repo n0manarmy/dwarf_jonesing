@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using Dwarf.GameDataObjects;
 
 public class TravelPath : Node
 {
@@ -20,56 +21,24 @@ public class TravelPath : Node
     public void OnButtonMovePressed() {
         GD.Print("OnButtonMovePressed()");
 
-        var player = GetNode<Character>("/root/RootScene/Character");
+        var player = GetNode<Character>("/root/RootScene/TravelPath/Character");
         var travelPath = GetNode<TileMap>("WalkingPath/TravelPathTileMap");
         var pos = player.GlobalPosition;
+
+        var gameData = (GameData)GetNode("/root/GameData");
 
         var buttons = GetNode<Node>("ButtonNode");
 
         foreach (Button button in buttons.GetChildren()) {
             if (button.Pressed == true) {
-                switch (button.Name) {
-                    case "LeSecurityButton":
-                        pos = new Vector2(7,9);
+                foreach (GameData.Location location in GameData.locations) {
+                    if (button.Name == location.buttonName) {
+                        GD.Print(location.buttonName);
+                        GD.Print(location.labelName);
+                        GD.Print(location.tileMapPos);
+                        pos = location.tileMapPos;
                         break;
-                    case "MarketButton":
-                        pos = new Vector2(10, 20);
-                        break;
-                    case "BankButton":
-                        pos = new Vector2(7, 31);
-                        break;
-                    case "FactoryButton":
-                        pos = new Vector2(16, 41);
-                        break;
-                    case "EmploymentButton":
-                        pos = new Vector2(27, 41);
-                        break;
-                    case "UniversityButton":
-                        pos = new Vector2(42, 44);
-                        break;
-                    case "StoneAndCarpentryButton":
-                        pos = new Vector2(52, 42);
-                        break;
-                    case "ClothingButton":
-                        pos = new Vector2(50, 30);
-                        break;
-                    case "KitchenButton":
-                        pos = new Vector2(58, 19);
-                        break;
-                    case "CraftsButton":
-                        pos = new Vector2(52, 9);
-                        break;
-                    case "PawnShopButton":
-                        pos = new Vector2(42, 10);
-                        break;
-                    case "DormitoryButton":
-                        pos = new Vector2(31, 9);
-                        break;
-                    case "RentalOfficeButton":
-                        pos = new Vector2(20, 10);
-                        break;
-                    default:
-                        break;
+                    }
                 }
             }
         }

@@ -16,8 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Dwarf_Jonesing"
-run/main_scene="res://src/WalkingPath.tscn"
+run/main_scene="res://src/RootScene.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+GameData="*res://data_objects/GameData.cs"
 
 [display]
 

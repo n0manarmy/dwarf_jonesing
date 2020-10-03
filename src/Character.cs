@@ -10,6 +10,7 @@ public class Character : Sprite
 
     private List<Vector2> characterPath; //list of pathing points
     private Vector2 START_POS = new Vector2(31, 9);
+    private static String characterNodePath = "/root/RootScene/TravelPath/Character";
 
     [Export]
     private int speed = 300;
@@ -31,9 +32,10 @@ public class Character : Sprite
     }
 
     public void ResetPlayerPosition() {
-        var player = GetNode<Character>("/root/RootScene/Character");
+        var player = GetNode<Character>(characterNodePath);
         var travelPath = GetNode<TileMap>("/root/RootScene/TravelPath/WalkingPath/TravelPathTileMap");
         player.Position = travelPath.MapToWorld(START_POS);
+        
     }
 
     public void MoveAlongPath(float distance) {
@@ -53,7 +55,7 @@ public class Character : Sprite
             if (infoScreen.currentTime >= infoScreen.totalTime) {
                 infoScreen.setStatusText("Your time is up!");
                 characterPath.Clear();
-                GetNode<Character>("/root/RootScene/Character").ResetPlayerPosition();
+                GetNode<Character>(characterNodePath).ResetPlayerPosition();
                 break;
             }
             if (distance <= distToNext && distance >= 0.0) {

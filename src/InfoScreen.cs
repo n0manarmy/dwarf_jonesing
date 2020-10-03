@@ -20,7 +20,7 @@ public class InfoScreen : CanvasLayer
         GD.Print("InfoScreen._Ready()");
         GetNode<Label>(totalTimeValueNode).Text = totalTime.ToString();
         GetNode<Label>(timeUsedValueNode).Text = currentTime.ToString();
-        GetNode<Label>(eatenValueNode).Text = GetNode<Character>("/root/RootScene/Character").eaten.ToString();
+        GetNode<Label>(eatenValueNode).Text = GetNode<Character>("/root/RootScene/TravelPath/Character").eaten.ToString();
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="src\Character.cs" />
     <Compile Include="src\FollowRoad.cs" />
+    <Compile Include="data_objects\GameData.cs" />
     <Compile Include="src\RootScene.cs" />
     <Compile Include="src\InfoScreen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
