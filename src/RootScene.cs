@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using Dwarf.GameDataObjects;
 
 public class RootScene : Node2D
 {
@@ -13,7 +14,8 @@ public class RootScene : Node2D
     public override void _Ready()
     {
         // GetNode<Character>("TravelPath/Character").Position = START_POS;
-        GetNode<Character>("/root/RootScene/TravelPath/Character").ResetPlayerPosition();
+        GetNode<Character>(GameData.characterNodePath).ResetPlayerPosition();
+        GetNode<InfoScreen>("/root/RootScene/InfoScreen").IncrementRounds();
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -21,7 +21,7 @@ public class TravelPath : Node
     public void OnButtonMovePressed() {
         GD.Print("OnButtonMovePressed()");
 
-        var player = GetNode<Character>("/root/RootScene/TravelPath/Character");
+        var player = GetNode<Character>(GameData.characterNodePath);
         var travelPath = GetNode<TileMap>("WalkingPath/TravelPathTileMap");
         var pos = player.GlobalPosition;
 

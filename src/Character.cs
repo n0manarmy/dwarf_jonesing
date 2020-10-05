@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using Dwarf.GameDataObjects;
 
 public class Character : Sprite
 {
@@ -10,13 +11,9 @@ public class Character : Sprite
 
     private List<Vector2> characterPath; //list of pathing points
     private Vector2 START_POS = new Vector2(31, 9);
-    private static String characterNodePath = "/root/RootScene/TravelPath/Character";
 
     [Export]
     private int speed = 300;
-
-    [Export]
-    public bool eaten = false;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -32,7 +29,7 @@ public class Character : Sprite
     }
 
     public void ResetPlayerPosition() {
-        var player = GetNode<Character>(characterNodePath);
+        var player = GetNode<Character>(GameData.characterNodePath);
         var travelPath = GetNode<TileMap>("/root/RootScene/TravelPath/WalkingPath/TravelPathTileMap");
         player.Position = travelPath.MapToWorld(START_POS);
         
@@ -46,16 +43,14 @@ public class Character : Sprite
         // foreach(var i in characterPath) {
         for (int i = 0; i < characterPath.Count; i++) {
             var distToNext = start.DistanceTo(characterPath[i]);
-            infoScreen.updateCurrentTimeValue(1);
+            infoScreen.IncrementTimeValue(1);
             if (characterPath.Count == 1) {
-                infoScreen.updateCurrentTimeValue(10);
+                infoScreen.IncrementTimeValue(10);
                 GD.Print("Pop Menu for location");
 
             }
-            if (infoScreen.currentTime >= infoScreen.totalTime) {
-                infoScreen.setStatusText("Your time is up!");
-                characterPath.Clear();
-                GetNode<Character>(characterNodePath).ResetPlayerPosition();
+            if (GameData.currentTime >= GameData.totalTime) {
+                EndPlayerturn();
                 break;
             }
             if (distance <= distToNext && distance >= 0.0) {
@@ -70,6 +65,14 @@ public class Character : Sprite
             start = characterPath[i];
             characterPath.RemoveAt(i);
         }
+    }
+
+    public void EndPlayerturn() {
+        characterPath.Clear();
+        GetNode<Character>(GameData.characterNodePath).ResetPlayerPosition();
+        GetNode<InfoScreen>("/root/RootScene/InfoScreen").SetStatusText("Your time is up!");
+        GetNode<InfoScreen>("/root/RootScene/InfoScreen").IncrementRounds();
+        GetNode<InfoScreen>("/root/RootScene/InfoScreen").ResetTimeUsed();
     }
 
     public void SetCharacterPath(List<Vector2> path) {

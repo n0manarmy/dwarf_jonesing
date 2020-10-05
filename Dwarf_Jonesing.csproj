@@ -63,6 +63,7 @@
     <Compile Include="src\RootScene.cs" />
     <Compile Include="src\InfoScreen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\StartingValuesNode.cs" />
     <Compile Include="src\TravelPath.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

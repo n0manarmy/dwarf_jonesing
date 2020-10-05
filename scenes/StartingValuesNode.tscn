@@ -1,0 +1,160 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://art/info_layer_background.png" type="Texture" id=1]
+[ext_resource path="res://src/StartingValuesNode.cs" type="Script" id=2]
+
+[sub_resource type="TileSet" id=1]
+0/name = "info_layer_background.png 0"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 64, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[node name="StartingValuesNode" type="Node"]
+script = ExtResource( 2 )
+
+[node name="TextBackground" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 917521, 0, 0, 917525, 0, 0, 917529, 0, 0, 917533, 0, 0, 917537, 0, 0, 917541, 0, 0, 917545, 0, 0, 1179665, 0, 0, 1179669, 0, 0, 1179673, 0, 0, 1179677, 0, 0, 1179681, 0, 0, 1179685, 0, 0, 1179689, 0, 0, 1441809, 0, 0, 1441813, 0, 0, 1441817, 0, 0, 1441821, 0, 0, 1441825, 0, 0, 1441829, 0, 0, 1441833, 0, 0, 1703953, 0, 0, 1703957, 0, 0, 1703961, 0, 0, 1703965, 0, 0, 1703969, 0, 0, 1703973, 0, 0, 1703977, 0, 0, 1835025, 0, 0, 1835029, 0, 0, 1835033, 0, 0, 1835037, 0, 0, 1835041, 0, 0, 1835045, 0, 0, 1835049, 0, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.266
+anchor_top = 0.292
+anchor_right = 0.703
+anchor_bottom = 0.667
+margin_left = -0.384003
+margin_top = -0.255997
+margin_right = 0.127991
+margin_bottom = -0.255981
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxGoalsLabelContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 448.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+alignment = 1
+
+[node name="GoalsLabel" type="Label" parent="VBoxContainer/HBoxGoalsLabelContainer"]
+margin_left = 200.0
+margin_top = 8.0
+margin_right = 236.0
+margin_bottom = 22.0
+text = "Goals"
+align = 1
+
+[node name="GoalsValue" type="Label" parent="VBoxContainer/HBoxGoalsLabelContainer"]
+margin_left = 240.0
+margin_top = 8.0
+margin_right = 248.0
+margin_bottom = 22.0
+text = "0"
+align = 1
+
+[node name="HBoxSliderContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 34.0
+margin_right = 448.0
+margin_bottom = 234.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxWealthContainer" type="HBoxContainer" parent="VBoxContainer/HBoxSliderContainer"]
+margin_right = 109.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="WealthSlider" type="VSlider" parent="VBoxContainer/HBoxSliderContainer/HBoxWealthContainer"]
+margin_left = 46.0
+margin_right = 62.0
+margin_bottom = 200.0
+min_value = 10.0
+step = 10.0
+value = 50.0
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxHappinessContainer" type="HBoxContainer" parent="VBoxContainer/HBoxSliderContainer"]
+margin_left = 113.0
+margin_right = 222.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="HappinessSlider" type="VSlider" parent="VBoxContainer/HBoxSliderContainer/HBoxHappinessContainer"]
+margin_left = 46.0
+margin_right = 62.0
+margin_bottom = 200.0
+min_value = 10.0
+step = 10.0
+value = 50.0
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxEducationContainer" type="HBoxContainer" parent="VBoxContainer/HBoxSliderContainer"]
+margin_left = 226.0
+margin_right = 335.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="EducationSlider" type="VSlider" parent="VBoxContainer/HBoxSliderContainer/HBoxEducationContainer"]
+margin_left = 46.0
+margin_right = 62.0
+margin_bottom = 200.0
+min_value = 10.0
+step = 10.0
+value = 50.0
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxJobContainer" type="HBoxContainer" parent="VBoxContainer/HBoxSliderContainer"]
+margin_left = 339.0
+margin_right = 448.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="JobSlider" type="VSlider" parent="VBoxContainer/HBoxSliderContainer/HBoxJobContainer"]
+margin_left = 46.0
+margin_right = 62.0
+margin_bottom = 200.0
+min_value = 10.0
+step = 10.0
+value = 50.0
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxIconsContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 238.0
+margin_right = 448.0
+margin_bottom = 288.0
+rect_min_size = Vector2( 0, 50 )
+[connection signal="value_changed" from="VBoxContainer/HBoxSliderContainer/HBoxWealthContainer/WealthSlider" to="." method="CallUpdateGoalsValue"]
+[connection signal="value_changed" from="VBoxContainer/HBoxSliderContainer/HBoxHappinessContainer/HappinessSlider" to="." method="CallUpdateGoalsValue"]
+[connection signal="value_changed" from="VBoxContainer/HBoxSliderContainer/HBoxEducationContainer/EducationSlider" to="." method="CallUpdateGoalsValue"]
+[connection signal="value_changed" from="VBoxContainer/HBoxSliderContainer/HBoxJobContainer/JobSlider" to="." method="CallUpdateGoalsValue"]
