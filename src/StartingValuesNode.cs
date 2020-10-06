@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Dwarf.GameDataObjects;
 
 public class StartingValuesNode : Node
 {
@@ -43,6 +44,20 @@ public class StartingValuesNode : Node
         var _jobSlider = GetNode<Slider>(jobSlider);
         GetNode<Label>(goalsValue).Text = (_wealthSlider.Value + _happinessSlider.Value + _educationSlider.Value + _jobSlider.Value).ToString();
 
+    }
+
+    public void OnDoneClicked() {
+        // var gameData = GetNode<GameData>("/root/GameData");
+        GameData.players[0].maxWealthScore = (int) GetNode<Slider>(wealthSlider).Value;
+        GameData.players[0].maxHappinessScore = (int) GetNode<Slider>(happinessSlider).Value;
+        GameData.players[0].maxJobScore = (int) GetNode<Slider>(jobSlider).Value;
+        GameData.players[0].maxEducationScore = (int) GetNode<Slider>(educationSlider).Value;
+
+        GetNode<Label>("/root/RootScene/InfoScreen/DebugNode/HBoxContainer/VBoxValues/MaxWealthScoreValue").Text = GameData.players[0].maxWealthScore.ToString();
+        GetNode<Label>("/root/RootScene/InfoScreen/DebugNode/HBoxContainer/VBoxValues/MaxHappinessScoreValue").Text = GameData.players[0].maxHappinessScore.ToString();
+        GetNode<Label>("/root/RootScene/InfoScreen/DebugNode/HBoxContainer/VBoxValues/MaxEducationScoreValue").Text = GameData.players[0].maxEducationScore.ToString();
+        GetNode<Label>("/root/RootScene/InfoScreen/DebugNode/HBoxContainer/VBoxValues/MaxJobScoreValue").Text = GameData.players[0].maxJobScore.ToString();
+        QueueFree();
     }
 
     // Called when the node enters the scene tree for the first time.

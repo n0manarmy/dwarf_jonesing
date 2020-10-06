@@ -25,7 +25,7 @@ public class TravelPath : Node
         var travelPath = GetNode<TileMap>("WalkingPath/TravelPathTileMap");
         var pos = player.GlobalPosition;
 
-        var gameData = (GameData)GetNode("/root/GameData");
+        // var gameData = (GameData)GetNode("/root/GameData");
 
         var buttons = GetNode<Node>("ButtonNode");
 

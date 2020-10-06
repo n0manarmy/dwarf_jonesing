@@ -13,7 +13,7 @@ public class RootScene : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        // GetNode<Character>("TravelPath/Character").Position = START_POS;
+        // GetNode<InfoScreen>("InfoScreen").GetChild(0).Hide();
         GetNode<Character>(GameData.characterNodePath).ResetPlayerPosition();
         GetNode<InfoScreen>("/root/RootScene/InfoScreen").IncrementRounds();
     }

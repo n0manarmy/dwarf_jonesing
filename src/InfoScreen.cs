@@ -8,12 +8,12 @@ public class InfoScreen : CanvasLayer
     // private int a = 2;
     // private string b = "text";
 
-    private static String totalTimeValueNode =     "DebugNode/VBoxValues/TotalTimeValue";
-    private static String timeUsedValueNode =      "DebugNode/VBoxValues/TimeUsedValue";
-    private static String statusValueNode =        "DebugNode/VBoxValues/StatusValue";
-    private static String eatenValueNode =         "DebugNode/VBoxValues/EatenValue";
-    private static String roundsValue =            "DebugNode/VBoxValues/RoundsValue";
-    private static String jobValue =               "DebugNode/VBoxValues/JobNameValue";
+    private static String totalTimeValueNode =     "DebugNode/HBoxContainer/VBoxValues/TotalTimeValue";
+    private static String timeUsedValueNode =      "DebugNode/HBoxContainer/VBoxValues/TimeUsedValue";
+    private static String statusValueNode =        "DebugNode/HBoxContainer/VBoxValues/StatusValue";
+    private static String eatenValueNode =         "DebugNode/HBoxContainer/VBoxValues/EatenValue";
+    private static String roundsValue =            "DebugNode/HBoxContainer/VBoxValues/RoundsValue";
+    private static String jobValue =               "DebugNode/HBoxContainer/VBoxValues/JobNameValue";
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()

@@ -66,13 +66,13 @@ align = 1
 [node name="HBoxSliderContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 34.0
 margin_right = 448.0
-margin_bottom = 234.0
+margin_bottom = 210.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxWealthContainer" type="HBoxContainer" parent="VBoxContainer/HBoxSliderContainer"]
 margin_right = 109.0
-margin_bottom = 200.0
+margin_bottom = 176.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
@@ -80,7 +80,7 @@ alignment = 1
 [node name="WealthSlider" type="VSlider" parent="VBoxContainer/HBoxSliderContainer/HBoxWealthContainer"]
 margin_left = 46.0
 margin_right = 62.0
-margin_bottom = 200.0
+margin_bottom = 176.0
 min_value = 10.0
 step = 10.0
 value = 50.0
@@ -92,7 +92,7 @@ __meta__ = {
 [node name="HBoxHappinessContainer" type="HBoxContainer" parent="VBoxContainer/HBoxSliderContainer"]
 margin_left = 113.0
 margin_right = 222.0
-margin_bottom = 200.0
+margin_bottom = 176.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
@@ -100,7 +100,7 @@ alignment = 1
 [node name="HappinessSlider" type="VSlider" parent="VBoxContainer/HBoxSliderContainer/HBoxHappinessContainer"]
 margin_left = 46.0
 margin_right = 62.0
-margin_bottom = 200.0
+margin_bottom = 176.0
 min_value = 10.0
 step = 10.0
 value = 50.0
@@ -112,7 +112,7 @@ __meta__ = {
 [node name="HBoxEducationContainer" type="HBoxContainer" parent="VBoxContainer/HBoxSliderContainer"]
 margin_left = 226.0
 margin_right = 335.0
-margin_bottom = 200.0
+margin_bottom = 176.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
@@ -120,7 +120,7 @@ alignment = 1
 [node name="EducationSlider" type="VSlider" parent="VBoxContainer/HBoxSliderContainer/HBoxEducationContainer"]
 margin_left = 46.0
 margin_right = 62.0
-margin_bottom = 200.0
+margin_bottom = 176.0
 min_value = 10.0
 step = 10.0
 value = 50.0
@@ -132,7 +132,7 @@ __meta__ = {
 [node name="HBoxJobContainer" type="HBoxContainer" parent="VBoxContainer/HBoxSliderContainer"]
 margin_left = 339.0
 margin_right = 448.0
-margin_bottom = 200.0
+margin_bottom = 176.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
@@ -140,7 +140,7 @@ alignment = 1
 [node name="JobSlider" type="VSlider" parent="VBoxContainer/HBoxSliderContainer/HBoxJobContainer"]
 margin_left = 46.0
 margin_right = 62.0
-margin_bottom = 200.0
+margin_bottom = 176.0
 min_value = 10.0
 step = 10.0
 value = 50.0
@@ -150,11 +150,79 @@ __meta__ = {
 }
 
 [node name="HBoxIconsContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 238.0
+margin_top = 214.0
+margin_right = 448.0
+margin_bottom = 264.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxIconsContainer"]
+margin_right = 109.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="WealthLabel" type="Label" parent="VBoxContainer/HBoxIconsContainer/HBoxContainer"]
+margin_left = 32.0
+margin_top = 18.0
+margin_right = 77.0
+margin_bottom = 32.0
+text = "Wealth"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxIconsContainer"]
+margin_left = 113.0
+margin_right = 222.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HappinessLabel" type="Label" parent="VBoxContainer/HBoxIconsContainer/HBoxContainer2"]
+margin_left = 21.0
+margin_top = 18.0
+margin_right = 88.0
+margin_bottom = 32.0
+text = "Happiness"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/HBoxIconsContainer"]
+margin_left = 226.0
+margin_right = 335.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="EducationLabel" type="Label" parent="VBoxContainer/HBoxIconsContainer/HBoxContainer3"]
+margin_left = 23.0
+margin_top = 18.0
+margin_right = 85.0
+margin_bottom = 32.0
+text = "Education"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/HBoxIconsContainer"]
+margin_left = 339.0
+margin_right = 448.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="JobLabel" type="Label" parent="VBoxContainer/HBoxIconsContainer/HBoxContainer4"]
+margin_left = 45.0
+margin_top = 18.0
+margin_right = 64.0
+margin_bottom = 32.0
+text = "Job"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 268.0
 margin_right = 448.0
 margin_bottom = 288.0
-rect_min_size = Vector2( 0, 50 )
+alignment = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 402.0
+margin_right = 448.0
+margin_bottom = 20.0
+text = "Done"
 [connection signal="value_changed" from="VBoxContainer/HBoxSliderContainer/HBoxWealthContainer/WealthSlider" to="." method="CallUpdateGoalsValue"]
 [connection signal="value_changed" from="VBoxContainer/HBoxSliderContainer/HBoxHappinessContainer/HappinessSlider" to="." method="CallUpdateGoalsValue"]
 [connection signal="value_changed" from="VBoxContainer/HBoxSliderContainer/HBoxEducationContainer/EducationSlider" to="." method="CallUpdateGoalsValue"]
 [connection signal="value_changed" from="VBoxContainer/HBoxSliderContainer/HBoxJobContainer/JobSlider" to="." method="CallUpdateGoalsValue"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="OnDoneClicked"]
