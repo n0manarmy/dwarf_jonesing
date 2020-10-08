@@ -57,6 +57,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="scenes\JobsScene.cs" />
     <Compile Include="src\Character.cs" />
     <Compile Include="src\FollowRoad.cs" />
     <Compile Include="data_objects\GameData.cs" />

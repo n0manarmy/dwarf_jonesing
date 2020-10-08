@@ -10,12 +10,12 @@ public class TravelPath : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        var tween = GetNode<Tween>("WalkingEffect");
-        tween.Repeat = true;
-        var player = GetNode<Character>("Character");
-        tween.InterpolateProperty(player, "position", 0, 1, 6, Tween.TransitionType.Linear, Tween.EaseType.InOut);
-        GD.Print("WalkingPath._Ready()");
-        tween.Start();
+        // var tween = GetNode<Tween>("WalkingEffect");
+        // tween.Repeat = true;
+        // var player = GetNode<Character>("Character");
+        // tween.InterpolateProperty(player, "position", 0, 1, 6, Tween.TransitionType.Linear, Tween.EaseType.InOut);
+        // GD.Print("WalkingPath._Ready()");
+        // tween.Start();
     }
 
     public void OnButtonMovePressed() {

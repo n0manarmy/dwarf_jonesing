@@ -8,3 +8,8 @@
       * build base qualifications for jobs
         * 
 * Build a clock to show time
+* Location
+  * [CURRENT] Build the employment office menu
+    * Add degrees required for crafts job.
+    * show crafts job menu
+    * add back button to restore previous screen

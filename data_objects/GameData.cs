@@ -40,6 +40,13 @@ namespace Dwarf.GameDataObjects
             }
         }
 
+        private static List<Player> CreatePlayers() {
+            return new List<Player>()
+            {
+                new Player(1, 100, 100, 100, 100),
+            };
+        }
+
         public class Location 
         {
             public String labelName;
@@ -51,13 +58,6 @@ namespace Dwarf.GameDataObjects
                 this.buttonName = buttonName;
                 this.tileMapPos = pos;
             }
-        }
-
-        private static List<Player> CreatePlayers() {
-            return new List<Player>()
-            {
-                new Player(1, 100, 100, 100, 100),
-            };
         }
 
         private static List<Location> CreateLocations() {
@@ -78,6 +78,39 @@ namespace Dwarf.GameDataObjects
                 new Location("Rental Office", "RentalOfficeButton", new Vector2(20, 10))
             };
         }
+
+        public class Job {
+            public String jobName;
+            public double baseWage;
+            public Degree requiredDegree;
+            public int experienceLevel;
+            public bool available;
+
+            public Job(String name, double baseWage, Degree requiredDegree, int experienceLevel, bool available) {
+                this.jobName = name;
+                this.baseWage = baseWage;
+                this.requiredDegree = requiredDegree;
+                this.experienceLevel = experienceLevel;
+                this.available = available;
+            }
+        }
+
+        private static List<Job> CreateJobs() {
+            return new List<Job>() {
+                new Job("Clerk", 3.0, null, 0, false),
+                new Job("Assistant Manager", 4.0, null, 0, false),
+                new Job("Manager", 5.0, null, 0, false),
+            };
+        }
+
+        public class Degree {
+            public String degreeName;
+            public int classCount;
+        }
+
+
+
+        
 
 
 
