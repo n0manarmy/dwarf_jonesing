@@ -24,6 +24,7 @@ public class Character : Sprite
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
+        // GD.Print("_Process");
         var distance = speed * delta;
         MoveAlongPath(distance);
     }
@@ -31,38 +32,50 @@ public class Character : Sprite
     public void ResetPlayerPosition() {
         var player = GetNode<Character>(GameData.characterNodePath);
         var travelPath = GetNode<TileMap>("/root/RootScene/TravelPath/WalkingPath/TravelPathTileMap");
-        player.Position = travelPath.MapToWorld(START_POS);
-        
+
+        player.Position = travelPath.MapToWorld(START_POS);        
     }
 
+    //iterates through characterPath coordinates, calculating distances between the points.
     public void MoveAlongPath(float distance) {
-        // GD.Print("MoveAlongPath");
+        GD.Print("Character.MoveAlongPath()");
+        var infoScene = GetNode<InfoScene>("/root/RootScene/InfoScene");
+        var debugScene = GetNode<DebugScene>("/root/RootScene/InfoScene/Background/DebugScene");
+
         var start = Position;
-        var infoScreen = GetNode<InfoScreen>("/root/RootScene/InfoScreen");
-        // GD.Print(start);
-        // foreach(var i in characterPath) {
+        foreach(var val in characterPath) {
+            GD.Print("characterPath: " + val);
+        }
         for (int i = 0; i < characterPath.Count; i++) {
             var distToNext = start.DistanceTo(characterPath[i]);
-            infoScreen.IncrementTimeValue(1);
+            debugScene.IncrementTimeValue(1);
             if (characterPath.Count == 1) {
-                infoScreen.IncrementTimeValue(10);
                 GD.Print("Pop Menu for location");
-
+                debugScene.IncrementTimeValue(10);
+                infoScene.PresentLocationScene(GetNode<Character>(GameData.characterNodePath).Position);
+                SetProcess(false);
             }
             if (GameData.currentTime >= GameData.totalTime) {
                 EndPlayerturn();
                 break;
             }
             if (distance <= distToNext && distance >= 0.0) {
+                GD.Print("distance <= distToNext && distance >= 0.0");
+                GD.Print("distToNext: " + distToNext);
+                GD.Print("distance: " + distance);
                 Position = start.LinearInterpolate(characterPath[i], distance / distToNext);
                 break;
             } else if (distance < 0.0) {
+                GD.Print("else if (distance < 0.0)");
+                GD.Print("distance: " + distance);
                 Position = characterPath[i];
                 SetProcess(false);
                 break;
             }
+
             distance -= distToNext;
             start = characterPath[i];
+            GD.Print("end for loop distance: " + distance);
             characterPath.RemoveAt(i);
         }
     }
@@ -70,21 +83,29 @@ public class Character : Sprite
     public void EndPlayerturn() {
         characterPath.Clear();
         GetNode<Character>(GameData.characterNodePath).ResetPlayerPosition();
-        GetNode<InfoScreen>("/root/RootScene/InfoScreen").SetStatusText("Your time is up!");
-        GetNode<InfoScreen>("/root/RootScene/InfoScreen").IncrementRounds();
-        GetNode<InfoScreen>("/root/RootScene/InfoScreen").ResetTimeUsed();
+        var debugScene = GetNode<Node>("/root/RootScene/InfoScene/Background").GetNode<DebugScene>("DebugScene");
+
+        debugScene.SetStatusText("Your time is up!");
+        debugScene.IncrementRounds();
+        debugScene.ResetTimeUsed();
+        SetProcess(false);
     }
 
     public void SetCharacterPath(List<Vector2> path) {
-        GD.Print("SetCharacterPath");
+        GD.Print("Character.SetCharacterPath()");
+        GD.Print("path.count: " + path.Count);
+
         characterPath = path;
-        if (path.Count == 0) {
-            GD.Print("path.Count == 0");
-            SetProcess(false);
-            return;
-        } else {
-            GD.Print("path.Count != 0");
-            SetProcess(true);
-        }
+        // if (path.Count == 0) {
+        //     GD.Print("path.Count == 0");
+        //     playerStopped = true;
+        //     SetProcess(false);
+        //     return;
+        // } else {
+        //     GD.Print("path.Count != 0");
+        //     playerStopped = false;
+        //     SetProcess(true);
+        // }
+        SetProcess(true);
     }
 }

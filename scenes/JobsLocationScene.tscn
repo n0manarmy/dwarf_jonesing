@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://art/info_layer_background.png" type="Texture" id=1]
-[ext_resource path="res://scenes/JobsScene.cs" type="Script" id=2]
+[ext_resource path="res://src/JobsLocationScene.cs" type="Script" id=2]
 
 [sub_resource type="TileSet" id=1]
 0/name = "info_layer_background.png 0"
@@ -19,7 +19,7 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[node name="Node2D" type="Node2D"]
+[node name="JobsLocationScene" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="TextBackground" type="TileMap" parent="."]
@@ -48,62 +48,67 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CraftsButton" type="Button" parent="TextBackground/JobsButtonContainer"]
+[node name="JobsButtons" type="Node2D" parent="TextBackground/JobsButtonContainer"]
+
+[node name="CraftsButton" type="Button" parent="TextBackground/JobsButtonContainer/JobsButtons"]
 margin_right = 176.0
 margin_bottom = 20.0
 text = "Crafts"
 flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="KitchenButton" type="Button" parent="TextBackground/JobsButtonContainer"]
+[node name="KitchenButton" type="Button" parent="TextBackground/JobsButtonContainer/JobsButtons"]
 margin_top = 24.0
 margin_right = 176.0
 margin_bottom = 44.0
 text = "Kitchen"
 flat = true
 
-[node name="ClothingButton" type="Button" parent="TextBackground/JobsButtonContainer"]
+[node name="ClothingButton" type="Button" parent="TextBackground/JobsButtonContainer/JobsButtons"]
 margin_top = 48.0
 margin_right = 176.0
 margin_bottom = 68.0
 text = "Clothing"
 flat = true
 
-[node name="StoneAndCarpentryButton" type="Button" parent="TextBackground/JobsButtonContainer"]
+[node name="StoneAndCarpentryButton" type="Button" parent="TextBackground/JobsButtonContainer/JobsButtons"]
 margin_top = 72.0
 margin_right = 176.0
 margin_bottom = 92.0
 text = "Stone and Carpentry"
 flat = true
 
-[node name="UniversityButton" type="Button" parent="TextBackground/JobsButtonContainer"]
+[node name="UniversityButton" type="Button" parent="TextBackground/JobsButtonContainer/JobsButtons"]
 margin_top = 96.0
 margin_right = 176.0
 margin_bottom = 116.0
 text = "University"
 flat = true
 
-[node name="FactoryButton" type="Button" parent="TextBackground/JobsButtonContainer"]
+[node name="FactoryButton" type="Button" parent="TextBackground/JobsButtonContainer/JobsButtons"]
 margin_top = 120.0
 margin_right = 176.0
 margin_bottom = 140.0
 text = "Factory"
 flat = true
 
-[node name="BankButton" type="Button" parent="TextBackground/JobsButtonContainer"]
+[node name="BankButton" type="Button" parent="TextBackground/JobsButtonContainer/JobsButtons"]
 margin_top = 144.0
 margin_right = 176.0
 margin_bottom = 164.0
 text = "Bank"
 flat = true
 
-[node name="MarketButton" type="Button" parent="TextBackground/JobsButtonContainer"]
+[node name="MarketButton" type="Button" parent="TextBackground/JobsButtonContainer/JobsButtons"]
 margin_top = 168.0
 margin_right = 176.0
 margin_bottom = 188.0
 text = "Market"
 flat = true
 
-[node name="RentButton" type="Button" parent="TextBackground/JobsButtonContainer"]
+[node name="RentButton" type="Button" parent="TextBackground/JobsButtonContainer/JobsButtons"]
 margin_top = 192.0
 margin_right = 176.0
 margin_bottom = 212.0
@@ -119,4 +124,13 @@ text = "Done"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="pressed" from="TextBackground/JobsButtonContainer/JobsButtons/CraftsButton" to="." method="OnJobNamePressed"]
+[connection signal="pressed" from="TextBackground/JobsButtonContainer/JobsButtons/KitchenButton" to="." method="OnJobNamePressed"]
+[connection signal="pressed" from="TextBackground/JobsButtonContainer/JobsButtons/ClothingButton" to="." method="OnJobNamePressed"]
+[connection signal="pressed" from="TextBackground/JobsButtonContainer/JobsButtons/StoneAndCarpentryButton" to="." method="OnJobNamePressed"]
+[connection signal="pressed" from="TextBackground/JobsButtonContainer/JobsButtons/UniversityButton" to="." method="OnJobNamePressed"]
+[connection signal="pressed" from="TextBackground/JobsButtonContainer/JobsButtons/FactoryButton" to="." method="OnJobNamePressed"]
+[connection signal="pressed" from="TextBackground/JobsButtonContainer/JobsButtons/BankButton" to="." method="OnJobNamePressed"]
+[connection signal="pressed" from="TextBackground/JobsButtonContainer/JobsButtons/MarketButton" to="." method="OnJobNamePressed"]
+[connection signal="pressed" from="TextBackground/JobsButtonContainer/JobsButtons/RentButton" to="." method="OnJobNamePressed"]
 [connection signal="pressed" from="TextBackground/DoneButton" to="." method="OneDoneButtonClicked"]

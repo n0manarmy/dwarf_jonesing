@@ -1,7 +1,4 @@
 using Godot;
-using System;
-using System.Collections.Generic;
-using Dwarf.GameDataObjects;
 
 public class RootScene : Node2D
 {
@@ -10,12 +7,14 @@ public class RootScene : Node2D
     // private string b = "text";
 
 
+    // private PackedScene _infoScene = (PackedScene)GD.Load("res://scenes/InfoScene.tscn");
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        // GetNode<InfoScreen>("InfoScreen").GetChild(0).Hide();
-        GetNode<Character>(GameData.characterNodePath).ResetPlayerPosition();
-        GetNode<InfoScreen>("/root/RootScene/InfoScreen").IncrementRounds();
+        // Node infoScene = _infoScene.Instance();
+        // AddChild(infoScene);
+        // GetNode<Character>(GameData.characterNodePath).ResetPlayerPosition();
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

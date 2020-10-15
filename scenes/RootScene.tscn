@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://scenes/InfoScreen.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/InfoScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/BaseMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Character.cs" type="Script" id=3]
 [ext_resource path="res://src/RootScene.cs" type="Script" id=4]
@@ -9,16 +9,14 @@
 [ext_resource path="res://art/white_background.png" type="Texture" id=7]
 
 [sub_resource type="ButtonGroup" id=1]
-resource_name = "Location"
 
 [sub_resource type="ButtonGroup" id=2]
-resource_name = "Location"
 
 [node name="RootScene" type="Node2D"]
 position = Vector2( 64, -56 )
 script = ExtResource( 4 )
 
-[node name="InfoScreen" parent="." instance=ExtResource( 1 )]
+[node name="InfoScene" parent="." instance=ExtResource( 1 )]
 
 [node name="TravelPath" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -280,7 +278,7 @@ texture = ExtResource( 7 )
 
 [node name="Dormitory" type="Sprite" parent="TravelPath/ColorLayer"]
 modulate = Color( 1, 0.482353, 0.627451, 0.509804 )
-position = Vector2( 496, 104.125 )
+position = Vector2( 496, 104 )
 scale = Vector2( 13.5385, 18.8864 )
 texture = ExtResource( 7 )
 
@@ -293,7 +291,7 @@ tile_data = PoolIntArray( 196616, 0, 786441, 196617, 0, 786445, 196618, 0, 78644
 
 [node name="Market" parent="TravelPath/Ground" instance=ExtResource( 2 )]
 position = Vector2( -32, 144 )
-tile_data = PoolIntArray( 196616, 0, 786441, 196617, 0, 786445, 196618, 0, 786445, 196619, 0, 786445, 196620, 0, 786445, 196621, 0, 786445, 196622, 0, 786445, 196623, 0, 720904, 262152, 0, 720906, 262153, 0, 589826, 262154, 0, 589826, 262155, 0, 589826, 262157, 0, 589825, 262158, 0, 524303, 262159, 0, 720906, 327688, 0, 720906, 327693, 0, 720901, 327695, 0, 720906, 393224, 0, 720906, 393226, 0, 524295, 393229, 0, 720901, 393231, 0, 720906, 458760, 0, 720906, 458761, 0, 917516, 458767, 0, 720906, 524296, 0, 720906, 524297, 0, 917516, 524303, 0, 720906, 589832, 0, 720906, 589833, 0, 983040, 589838, 0, 524303, 589839, 0, 720906, 655368, 0, 786432, 655369, 0, 786445, 655370, 0, 786445, 655371, 0, 786445, 655372, 0, 786437, 655373, 0, 786445, 655374, 0, 786445, 655375, 0, 720909 )
+tile_data = PoolIntArray( -65536, 0, 0, -65535, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 131071, 0, 0, 65536, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 131072, 0, 0, 131077, 0, 0, 196608, 0, 0, 196613, 0, 0, 196616, 0, 786441, 196617, 0, 786445, 196618, 0, 786445, 196619, 0, 786445, 196620, 0, 786445, 196621, 0, 786445, 196622, 0, 786445, 196623, 0, 720904, 262144, 0, 0, 262149, 0, 0, 262152, 0, 720906, 262153, 0, 589826, 262154, 0, 589826, 262155, 0, 589826, 262157, 0, 589825, 262158, 0, 524303, 262159, 0, 720906, 327680, 0, 0, 327688, 0, 720906, 327693, 0, 720901, 327695, 0, 720906, 393224, 0, 720906, 393226, 0, 524295, 393229, 0, 720901, 393231, 0, 720906, 458760, 0, 720906, 458761, 0, 917516, 458767, 0, 720906, 524296, 0, 720906, 524297, 0, 917516, 524303, 0, 720906, 589832, 0, 720906, 589833, 0, 983040, 589838, 0, 524303, 589839, 0, 720906, 655368, 0, 786432, 655369, 0, 786445, 655370, 0, 786445, 655371, 0, 786445, 655372, 0, 786437, 655373, 0, 786445, 655374, 0, 786445, 655375, 0, 720909 )
 
 [node name="Bank" parent="TravelPath/Ground" instance=ExtResource( 2 )]
 position = Vector2( -80, 320 )

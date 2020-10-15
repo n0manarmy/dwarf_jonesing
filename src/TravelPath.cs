@@ -10,19 +10,16 @@ public class TravelPath : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        // var tween = GetNode<Tween>("WalkingEffect");
-        // tween.Repeat = true;
-        // var player = GetNode<Character>("Character");
-        // tween.InterpolateProperty(player, "position", 0, 1, 6, Tween.TransitionType.Linear, Tween.EaseType.InOut);
-        // GD.Print("WalkingPath._Ready()");
-        // tween.Start();
+
     }
 
+    // Colored squares on main map, connected to this function. Invisible button overlays
+    // are matched against the location list in GameData. When a match is found, the pos is set
+    // and a path is calculated by Godot. This path is then set in the character.
     public void OnButtonMovePressed() {
         GD.Print("OnButtonMovePressed()");
 
         var player = GetNode<Character>(GameData.characterNodePath);
-        var travelPath = GetNode<TileMap>("WalkingPath/TravelPathTileMap");
         var pos = player.GlobalPosition;
 
         // var gameData = (GameData)GetNode("/root/GameData");
@@ -43,10 +40,18 @@ public class TravelPath : Node
             }
         }
 
-        pos = travelPath.MapToWorld(pos);
+        //Convert tileset coords to World coords
+        pos = GetMapToWorld(pos);
+        GD.Print("Tileset to world coords: " + pos);
         var nav2d = GetNode<Navigation2D>("WalkingPath");
         var newPath = nav2d.GetSimplePath(player.GlobalPosition, pos);
+        GD.Print("SimplePath: " + newPath);
         List<Vector2> pathList = new List<Vector2>(newPath);
         player.SetCharacterPath(pathList);
+    }
+
+    public Vector2 GetMapToWorld(Vector2 pos) {
+        var travelPath = GetNode<TileMap>("WalkingPath/TravelPathTileMap");
+        return travelPath.MapToWorld(pos);
     }
 }
