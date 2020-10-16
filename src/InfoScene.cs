@@ -34,7 +34,7 @@ public class InfoScene : Node
     public void PresentLocationScene(Vector2 locationTag) {
         GD.Print("InfoScene.PresentLocationScene");
         var travelPath = GetNode<TravelPath>("/root/RootScene/TravelPath");
-        // GD.Print("LocationTag: " + locationTag.Floor());
+        GD.Print("LocationTag: " + locationTag.Floor());
         foreach(GameData.Location location in GameData.locations) {
             // GD.Print("location.timeMapPos" + travelPath.GetMapToWorld(location.tileMapPos));
             if(locationTag.Floor() == travelPath.GetMapToWorld(location.tileMapPos)) {

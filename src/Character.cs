@@ -38,14 +38,14 @@ public class Character : Sprite
 
     //iterates through characterPath coordinates, calculating distances between the points.
     public void MoveAlongPath(float distance) {
-        GD.Print("Character.MoveAlongPath()");
+        // GD.Print("Character.MoveAlongPath()");
         var infoScene = GetNode<InfoScene>("/root/RootScene/InfoScene");
         var debugScene = GetNode<DebugScene>("/root/RootScene/InfoScene/Background/DebugScene");
 
         var start = Position;
-        foreach(var val in characterPath) {
-            GD.Print("characterPath: " + val);
-        }
+        // foreach(var val in characterPath) {
+        //     GD.Print("characterPath: " + val);
+        // }
         for (int i = 0; i < characterPath.Count; i++) {
             var distToNext = start.DistanceTo(characterPath[i]);
             debugScene.IncrementTimeValue(1);
@@ -60,14 +60,14 @@ public class Character : Sprite
                 break;
             }
             if (distance <= distToNext && distance >= 0.0) {
-                GD.Print("distance <= distToNext && distance >= 0.0");
-                GD.Print("distToNext: " + distToNext);
-                GD.Print("distance: " + distance);
+                // GD.Print("distance <= distToNext && distance >= 0.0");
+                // GD.Print("distToNext: " + distToNext);
+                // GD.Print("distance: " + distance);
                 Position = start.LinearInterpolate(characterPath[i], distance / distToNext);
                 break;
             } else if (distance < 0.0) {
-                GD.Print("else if (distance < 0.0)");
-                GD.Print("distance: " + distance);
+                // GD.Print("else if (distance < 0.0)");
+                // GD.Print("distance: " + distance);
                 Position = characterPath[i];
                 SetProcess(false);
                 break;
@@ -75,7 +75,7 @@ public class Character : Sprite
 
             distance -= distToNext;
             start = characterPath[i];
-            GD.Print("end for loop distance: " + distance);
+            // GD.Print("end for loop distance: " + distance);
             characterPath.RemoveAt(i);
         }
     }
@@ -96,16 +96,6 @@ public class Character : Sprite
         GD.Print("path.count: " + path.Count);
 
         characterPath = path;
-        // if (path.Count == 0) {
-        //     GD.Print("path.Count == 0");
-        //     playerStopped = true;
-        //     SetProcess(false);
-        //     return;
-        // } else {
-        //     GD.Print("path.Count != 0");
-        //     playerStopped = false;
-        //     SetProcess(true);
-        // }
         SetProcess(true);
     }
 }

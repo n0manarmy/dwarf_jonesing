@@ -9,7 +9,9 @@
         * 
 * Build a clock to show time
 * Location
-  * [CURRENT] Build the employment office menu
+  * [CURRENT] Build the employment office menu. 
+      * Capture CollisionShape2D enter squares
+      * Pop menu!
     * Add degrees required for crafts job.
     * show crafts job menu
     * add back button to restore previous screen
