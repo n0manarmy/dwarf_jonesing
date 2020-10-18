@@ -16,7 +16,7 @@ namespace Dwarf.GameDataObjects
         public static List<Player> players = CreatePlayers();
         public static List<Job> jobs = CreateJobs();
 
-        public static String characterNodePath = "/root/RootScene/TravelPath/KinematicBody2D/Character";
+        public static String characterNodePath = "/root/RootScene/TravelPath/Character";
         public static int totalGameRounds = 0;
 
         public class Player
