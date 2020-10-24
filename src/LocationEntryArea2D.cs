@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Dwarf.GameDataObjects;
 
 public class LocationEntryArea2D : Area2D
 {
@@ -20,6 +21,16 @@ public class LocationEntryArea2D : Area2D
 //  }
 
     public void OnArea2DBodyEntered(KinematicBody2D body) {
-        GD.Print("Entered");
+        var _player = GetNode<Character>(GameData.characterNodePath);
+        if (!_player.moving) {
+            var _infoScene = GetNode<InfoScene>("/root/RootScene/InfoScene");
+            var _travelPath = GetNode<TileMap>(GameData.travelPathTileMap);
+            var _tileMapPos = _travelPath.WorldToMap(GetNode<Character>(GameData.characterNodePath).Position);
+            Vector2 _currentPlayerPos = _player.Position;
+            GD.Print("_currentPlayerPos: " + _currentPlayerPos);
+            _player.Position = new Vector2(_currentPlayerPos.x, _currentPlayerPos.y - 40);
+            GD.Print(_tileMapPos);
+            GD.Print(Name);
+        }
     }
 }

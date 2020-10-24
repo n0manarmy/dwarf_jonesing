@@ -11,14 +11,16 @@ public class Character : Sprite
 
     private List<Vector2> characterPath; //list of pathing points
     private Vector2 START_POS = new Vector2(31, 9);
+    public String destName;
 
     [Export]
     private int speed = 300;
+    public bool moving = false;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        SetProcess(false);
+        MySetProcess(false);
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,21 +41,17 @@ public class Character : Sprite
     //iterates through characterPath coordinates, calculating distances between the points.
     public void MoveAlongPath(float distance) {
         // GD.Print("Character.MoveAlongPath()");
-        var infoScene = GetNode<InfoScene>("/root/RootScene/InfoScene");
         var debugScene = GetNode<DebugScene>("/root/RootScene/InfoScene/Background/DebugScene");
 
         var start = Position;
-        // foreach(var val in characterPath) {
-        //     GD.Print("characterPath: " + val);
-        // }
         for (int i = 0; i < characterPath.Count; i++) {
             var distToNext = start.DistanceTo(characterPath[i]);
             debugScene.IncrementTimeValue(1);
             if (characterPath.Count == 1) {
-                GD.Print("Pop Menu for location");
-                debugScene.IncrementTimeValue(10);
-                infoScene.PresentLocationScene(GetNode<Character>(GameData.characterNodePath).Position);
-                SetProcess(false);
+                // GD.Print("Pop Menu for location");
+                // debugScene.IncrementTimeValue(10);
+                // infoScene.PresentLocationScene(GetNode<Character>(GameData.characterNodePath).Position);
+                MySetProcess(false);
             }
             if (GameData.currentTime >= GameData.totalTime) {
                 EndPlayerturn();
@@ -69,7 +67,7 @@ public class Character : Sprite
                 // GD.Print("else if (distance < 0.0)");
                 // GD.Print("distance: " + distance);
                 Position = characterPath[i];
-                SetProcess(false);
+                MySetProcess(false);
                 break;
             }
 
@@ -88,7 +86,8 @@ public class Character : Sprite
         debugScene.SetStatusText("Your time is up!");
         debugScene.IncrementRounds();
         debugScene.ResetTimeUsed();
-        SetProcess(false);
+        
+        MySetProcess(false);
     }
 
     public void SetCharacterPath(List<Vector2> path) {
@@ -96,6 +95,12 @@ public class Character : Sprite
         GD.Print("path.count: " + path.Count);
 
         characterPath = path;
-        SetProcess(true);
+        MySetProcess(true);
+    }
+
+    // Capture if the character is moving to avoid tripping Area2D objects while moving
+    public void MySetProcess(bool val) {
+        moving = val;
+        SetProcess(val);
     }
 }

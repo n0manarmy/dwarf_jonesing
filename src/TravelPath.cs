@@ -34,6 +34,7 @@ public class TravelPath : Node
                         GD.Print(location.labelName);
                         GD.Print(location.tileMapPos);
                         pos = location.tileMapPos;
+                        player.destName = location.buttonName;
                         break;
                     }
                 }
