@@ -27,16 +27,31 @@ public class LocationEntryArea2D : Area2D
     public void OnArea2DBodyEntered(KinematicBody2D body) {
         var _player = GetNode<Character>(GameData.characterNodePath);
         if (!_player.moving) {
+            // ButtonGroup _buttonGroup = (ButtonGroup)GD.Load("res://res/LocationButtonResource.tres");
             var _infoScene = GetNode<InfoScene>("/root/RootScene/InfoScene");
             var _travelPath = GetNode<TileMap>(GameData.travelPathTileMap);
             var _tileMapPos = _travelPath.WorldToMap(GetNode<Character>(GameData.characterNodePath).Position);
-            // var _buttonGroup = GetNode<ButtonGroup>("/root/RootScene/TravelPath/ButtonNode");
+
+            // GD.Print("_buttonGroup.buttons.Size(): " + _buttonGroup.GetButtons());
+            
+            // foreach(Button _b in _buttonGroup.GetButtons()) {
+            //     GD.Print("_b.Name: " + _b.Name);
+            //     _b.Disabled = true;
+            // }
             Vector2 _currentPlayerPos = _player.Position;
             GD.Print("_currentPlayerPos: " + _currentPlayerPos);
-            _player.Position = new Vector2(_currentPlayerPos.x, _currentPlayerPos.y - 40);
+            // _player.Position = _travelPath.MapToWorld()
 
             GD.Print(_tileMapPos);
             GD.Print(Name);
+            var _locID = Name.Split("_")[0];
+
+            foreach(GameData.Location loc in GameData.locations) {
+                if(loc.locationID == _locID) {
+                    _player.Position = _travelPath.MapToWorld(loc.insideBuildingPos);
+                    break;
+                }
+            }
         }
     }
 }

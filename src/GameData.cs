@@ -11,10 +11,13 @@ namespace Dwarf.GameDataObjects
 
         public static int totalTime = 500;
         public static int currentTime = 0;
+
         public static List<Degree> degrees = CreateDegrees();
         public static List<Location> locations = CreateLocations();
         public static List<Player> players = CreatePlayers();
         public static List<Job> jobs = CreateJobs();
+
+        // public static ButtonGroup locationButtonGroup = InitButtonGroup();
 
         public static String characterNodePath = "/root/RootScene/TravelPath/Character";
         public static String travelPathTileMap = "/root/RootScene/TravelPath/WalkingPath/TravelPathTileMap";
@@ -61,13 +64,15 @@ namespace Dwarf.GameDataObjects
 
         public class Location 
         {
+            public String locationID;
             public String labelName;
             public String buttonName;
             public Vector2 tileMapPos;
             public List<Job> jobs;
             public Vector2 insideBuildingPos;
 
-            public Location(String name, String buttonName, Vector2 pos, List<Job> jobs, Vector2 insideBuildingPos) {
+            public Location(String locationID, String name, String buttonName, Vector2 pos, List<Job> jobs, Vector2 insideBuildingPos) {
+                this.locationID = locationID;
                 this.labelName = name;
                 this.buttonName = buttonName;
                 this.tileMapPos = pos;
@@ -79,23 +84,23 @@ namespace Dwarf.GameDataObjects
         private static List<Location> CreateLocations() {
         return new List<Location>()
             {
-                new Location("LeSecurity", "LeSecurityButton", new Vector2(07, 09), new List<Job>(), new Vector2(07, 05)),
-                new Location("Market", "MarketButton", new Vector2(10, 19), new List<Job>(), new Vector2(10, 19)),
-                new Location("Bank", "BankButton", new Vector2(07, 30), new List<Job>(), new Vector2(07, 30)),
-                new Location("Factory", "FactoryButton", new Vector2(16, 40), new List<Job>(), new Vector2(16, 40)),
-                new Location("Employment", "EmploymentButton", new Vector2(27, 40), new List<Job>(), new Vector2(27, 40)),
-                new Location("University", "UniversityButton", new Vector2(42, 43), new List<Job>(), new Vector2(42, 43)),
-                new Location("Stone and Carpentry", "StoneAndCarpentryButton", new Vector2(52, 41), new List<Job>(), new Vector2(52, 41)),
-                new Location("Clothing", "ClothingButton", new Vector2(50, 29), new List<Job>(), new Vector2(50, 29)),
-                new Location("Kitchen", "KitchenButton", new Vector2(58, 18), new List<Job>(), new Vector2(58, 18)),
-                new Location("Crafts", "CraftsButton", new Vector2(52, 08), new List<Job>() {
+                new Location("12", "LeSecurity",          "12_MoveButton", new Vector2(07, 09), new List<Job>(), new Vector2(07, 05)),
+                new Location("11", "Market",              "11_MoveButton", new Vector2(10, 19), new List<Job>(), new Vector2(10, 19)),
+                new Location("10", "Bank",                "10_MoveButton", new Vector2(07, 30), new List<Job>(), new Vector2(07, 30)),
+                new Location("09", "Factory",             "09_MoveButton", new Vector2(16, 40), new List<Job>(), new Vector2(16, 40)),
+                new Location("08", "Employment",          "08_MoveButton", new Vector2(27, 40), new List<Job>(), new Vector2(27, 40)),
+                new Location("07", "University",          "07_MoveButton", new Vector2(42, 43), new List<Job>(), new Vector2(42, 43)),
+                new Location("06", "Stone and Carpentry", "06_MoveButton", new Vector2(52, 41), new List<Job>(), new Vector2(52, 41)),
+                new Location("05", "Clothing",            "05_MoveButton", new Vector2(50, 29), new List<Job>(), new Vector2(50, 29)),
+                new Location("04", "Kitchen",             "04_MoveButton", new Vector2(59, 19), new List<Job>(), new Vector2(59, 19)),
+                new Location("03", "Crafts",              "03_MoveButton", new Vector2(52, 08), new List<Job>() {
                     new Job("Clerk", 3.0, GetDegreeByName("None"), 0, false),
                     new Job("Assistant Manager", 4.0, GetDegreeByName("Junior College"), 0, false),
                     new Job("Manager", 5.0, GetDegreeByName("Business Administration"), 0, false),
                 }, new Vector2(52, 08)),
-                new Location("Pawn Shop", "PawnShopButton", new Vector2(42, 09), new List<Job>(), new Vector2(42, 09)),
-                new Location("Dormitory", "DormitoryButton", new Vector2(31, 08), new List<Job>(), new Vector2(31, 08)),
-                new Location("Rental Office", "RentalOfficeButton", new Vector2(20, 09), new List<Job>(),  new Vector2(20, 09))
+                new Location("02", "Pawn Shop",           "02_MoveButton", new Vector2(42, 09), new List<Job>(), new Vector2(42, 09)),
+                new Location("01", "Dormitory",           "01_MoveButton", new Vector2(31, 08), new List<Job>(), new Vector2(31, 08)),
+                new Location("13", "Rental Office",       "13_MoveButton", new Vector2(20, 09), new List<Job>(), new Vector2(20, 09))
             };
         }
 
@@ -149,5 +154,13 @@ namespace Dwarf.GameDataObjects
 
             return degrees[0];
         }
+
+        // public static ButtonGroup InitButtonGroup() {
+        //     ButtonGroup temp = new ButtonGroup();
+        //     var _buttonNode = GetNode<Node>("/root/RootScene/TravelPath/ButtonNode");
+        //     foreach(Button _b in _buttonNode) {
+        //         GD.Print(_b.Name);
+        //     }
+        // }
     }
 }
