@@ -65,6 +65,17 @@ public class StartValuesScene : Node
         GameData.players[0].maxHappinessScore = (int) GetNode<Slider>(happinessSlider).Value;
         GameData.players[0].maxJobScore = (int) GetNode<Slider>(jobSlider).Value;
         GameData.players[0].maxEducationScore = (int) GetNode<Slider>(educationSlider).Value;
+        
+        //enable all the location buttons
+        var _buttons = (ButtonGroup)GD.Load("res://res/LocationButtonResource.tres");
+        foreach(Button _b in _buttons.GetButtons()) {
+            // GD.Print("_b.Name: " + _b.Name);
+            _b.Disabled = false;
+        }
+
+        //Clear the slight transparent cover on the buttons
+        var _coverLayer = GetNode<CanvasLayer>("/root/RootScene/BoardCoverLayer");
+        _coverLayer.QueueFree();
 
         // GetNode<Label>("/root/RootScene/InfoScreen/DebugNode/HBoxContainer/VBoxValues/MaxWealthScoreValue").Text = GameData.players[0].maxWealthScore.ToString();
         // GetNode<Label>("/root/RootScene/InfoScreen/DebugNode/HBoxContainer/VBoxValues/MaxHappinessScoreValue").Text = GameData.players[0].maxHappinessScore.ToString();
