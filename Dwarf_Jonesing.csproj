@@ -16,12 +16,13 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\JobsLocationScene.cs" />
+    <Compile Include="src\Scene08.cs" />
     <Compile Include="src\Character.cs" />
     <Compile Include="src\FollowRoad.cs" />
     <Compile Include="src\GameData.cs" />
     <Compile Include="src\InfoScene.cs" />
     <Compile Include="src\LocationEntryArea2D.cs" />
+    <Compile Include="src\LocationScene.cs" />
     <Compile Include="src\RootScene.cs" />
     <Compile Include="src\DebugScene.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

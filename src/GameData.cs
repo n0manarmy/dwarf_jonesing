@@ -87,18 +87,65 @@ namespace Dwarf.GameDataObjects
         return new List<Location>()
             {
                 new Location("12", "LeSecurity",          "12_MoveButton", new Vector2(07, 09), new List<Job>()),
-                new Location("11", "Market",              "11_MoveButton", new Vector2(10, 19), new List<Job>()),
-                new Location("10", "Bank",                "10_MoveButton", new Vector2(07, 30), new List<Job>()),
-                new Location("09", "Factory",             "09_MoveButton", new Vector2(16, 40), new List<Job>()),
+                new Location("11", "Market",              "11_MoveButton", new Vector2(10, 19), new List<Job>()
+                {
+                    new Job("Janitor", 4.0, GetDegreeByName("None"), 0, false),
+                    new Job("Checker", 7.0, GetDegreeByName("None"), 1, false),
+                    new Job("Butcher", 10.0, GetDegreeByName("Trade School"), 2, false),
+                    new Job("Assistant Manager", 14.0, GetDegreeByName("Business Administration"), 3, false),
+                    new Job("Manager", 17.0, GetDegreeByName("Business Administration"), 4, false),
+                }),
+                new Location("10", "Bank",                "10_MoveButton", new Vector2(07, 30), new List<Job>()
+                {
+                    new Job("Janitor", 5.0, GetDegreeByName("None"), 0, false),
+                    new Job("Teller", 9.0, GetDegreeByName("None"), 1, false),
+                    new Job("Assistant Manager", 12.0, GetDegreeByName("Business Administration"), 3, false),
+                    new Job("Manager", 18.0, GetDegreeByName("Business Administration"), 4, false),
+                    new Job("Investment Broker", 20.0, GetDegreeByName("Business Administration"), 5, false),
+                }),
+                new Location("09", "Factory",             "09_MoveButton", new Vector2(16, 40), new List<Job>()
+                {
+                    new Job("Janitor",              07.0, GetDegreeByName("None"),                      00, false),
+                    new Job("Assembly Worker",      07.0, GetDegreeByName("None"),                      01, false),
+                    new Job("Secretary",            08.0, GetDegreeByName("Business Administration"),   03, false),
+                    new Job("Machinist's Helper",   09.0, GetDegreeByName("Business Administration"),   04, false),
+                    new Job("Executive Secretary",  17.0, GetDegreeByName("Business Administration"),   05, false),
+                    new Job("Machinist",            18.0, GetDegreeByName("None"),                      00, false),
+                    new Job("Department Manager",   20.0, GetDegreeByName("None"),                      01, false),
+                    new Job("Engineer",             21.0, GetDegreeByName("Business Administration"),   03, false),
+                    new Job("General Manager",      23.0, GetDegreeByName("Business Administration"),   04, false),
+                }),
                 new Location("08", "Employment",          "08_MoveButton", new Vector2(27, 40), new List<Job>()),
-                new Location("07", "University",          "07_MoveButton", new Vector2(42, 43), new List<Job>()),
-                new Location("06", "Stone and Carpentry", "06_MoveButton", new Vector2(52, 41), new List<Job>()),
-                new Location("05", "Clothing",            "05_MoveButton", new Vector2(50, 29), new List<Job>()),
-                new Location("04", "Kitchen",             "04_MoveButton", new Vector2(59, 19), new List<Job>()),
-                new Location("03", "Crafts",              "03_MoveButton", new Vector2(52, 08), new List<Job>() {
-                    new Job("Clerk", 3.0, GetDegreeByName("None"), 0, false),
-                    new Job("Assistant Manager", 4.0, GetDegreeByName("Junior College"), 0, false),
-                    new Job("Manager", 5.0, GetDegreeByName("Business Administration"), 0, false),
+                new Location("07", "University",          "07_MoveButton", new Vector2(42, 43), new List<Job>()
+                {
+                    new Job("Janitor",              03.0, GetDegreeByName("None"),                      00, false),
+                    new Job("Teacher",              09.0, GetDegreeByName("Junior College"),            00, false),
+                    new Job("Professor",            19.0, GetDegreeByName("Business Administration"),   00, false),
+                }),
+                new Location("06", "Stone and Carpentry", "06_MoveButton", new Vector2(52, 41), new List<Job>()
+                {
+                    new Job("Salesperson",          04.0, GetDegreeByName("None"),                      00, false),
+                    new Job("Electronic's Repair",  09.0, GetDegreeByName("Junior College"),            00, false),
+                    new Job("Manager",              12.0, GetDegreeByName("Business Administration"),   00, false),
+                }),
+                new Location("05", "Clothing",            "05_MoveButton", new Vector2(50, 29), new List<Job>()
+                {
+                    new Job("Salesperson",          06.0, GetDegreeByName("None"),                      00, false),
+                    new Job("Assistant Manager",    08.0, GetDegreeByName("Junior College"),            00, false),
+                    new Job("Manager",              10.0, GetDegreeByName("Business Administration"),   00, false),
+                }),
+                new Location("04", "Kitchen",             "04_MoveButton", new Vector2(59, 19), new List<Job>()
+                {
+                    new Job("Cook",                 03.0, GetDegreeByName("None"),                      00, false),
+                    new Job("Clerik",               04.0, GetDegreeByName("Junior College"),            00, false),
+                    new Job("Assistant Manager",    05.0, GetDegreeByName("Business Administration"),   00, false),
+                    new Job("Manager",              06.0, GetDegreeByName("Business Administration"),   00, false),
+                }),
+                new Location("03", "Crafts",              "03_MoveButton", new Vector2(52, 08), new List<Job>() 
+                {
+                    new Job("Clerk",                03.0, GetDegreeByName("None"),                      00, false),
+                    new Job("Assistant Manager",    04.0, GetDegreeByName("Junior College"),            00, false),
+                    new Job("Manager",              05.0, GetDegreeByName("Business Administration"),   00, false),
                 }),
                 new Location("02", "Pawn Shop",           "02_MoveButton", new Vector2(42, 09), new List<Job>()),
                 new Location("01", "Dormitory",           "01_MoveButton", new Vector2(31, 08), new List<Job>()),
@@ -106,6 +153,9 @@ namespace Dwarf.GameDataObjects
             };
         }
 
+        //TODO Consider experience level as a whole value among all jobs. Ex: Janitor gives 1exp per week worked
+        //and the investment broker may take 100exp to get the job if you have the degree. However working as an
+        //assistant manager or manager will net 10 or 20 exp a week.
         public class Job {
             public String jobName;
             public double baseWage;
@@ -124,7 +174,6 @@ namespace Dwarf.GameDataObjects
 
         private static List<Job> CreateJobs() {
             return new List<Job>() {
-                
             };
         }
 
@@ -157,12 +206,13 @@ namespace Dwarf.GameDataObjects
             return degrees[0];
         }
 
-        // public static ButtonGroup InitButtonGroup() {
-        //     ButtonGroup temp = new ButtonGroup();
-        //     var _buttonNode = GetNode<Node>("/root/RootScene/TravelPath/ButtonNode");
-        //     foreach(Button _b in _buttonNode) {
-        //         GD.Print(_b.Name);
-        //     }
-        // }
+        public static Location GetLocation(String _locationID) {
+            foreach(Location loc in locations) {
+                if(loc.locationID == _locationID) {
+                    return loc;
+                }
+            }
+            return null;
+        }
     }
 }

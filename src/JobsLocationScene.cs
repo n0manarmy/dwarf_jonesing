@@ -2,7 +2,7 @@ using Godot;
 using System;
 using Dwarf.GameDataObjects;
 
-public class JobsLocationScene : Node2D
+public class Scene_08 : Node2D
 {
     // Declare member variables here. Examples:
     // private int a = 2;
@@ -14,7 +14,7 @@ public class JobsLocationScene : Node2D
         
     }
 
-    public void OneDoneButtonClicked() {
+    public void OnDoneButtonClicked() {
         QueueFree();
     }
 

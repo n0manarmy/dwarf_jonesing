@@ -29,10 +29,6 @@ public class StartValuesScene : Node
         vboxContainerName + 
         hboxSliderContainerName + "HBoxJobContainer/JobSlider";
 
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
-
     /* 
     Required because slider connection passes a float value. Not doing any thing with float value but need
     to have the sliders pass their value to the label showing the total score.

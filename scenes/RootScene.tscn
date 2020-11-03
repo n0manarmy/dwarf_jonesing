@@ -10,7 +10,7 @@
 [ext_resource path="res://scenes/LocationEntryArea2D.tscn" type="PackedScene" id=8]
 [ext_resource path="res://res/LocationButtonResource.tres" type="ButtonGroup" id=9]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=1]
 radius = 4.0
 
 [node name="RootScene" type="Node2D"]
@@ -21,7 +21,7 @@ script = ExtResource( 4 )
 layer = 0
 
 [node name="BoardCoverColor" type="Sprite" parent="BoardCoverLayer"]
-modulate = Color( 0.247059, 0.235294, 0.235294, 0.815686 )
+modulate = Color( 0, 0, 0, 0.815686 )
 position = Vector2( 512, 384.5 )
 scale = Vector2( 78.7692, 69.7273 )
 texture = ExtResource( 7 )
@@ -403,7 +403,7 @@ script = ExtResource( 3 )
 [node name="KinematicBody2D" type="KinematicBody2D" parent="TravelPath/Character"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TravelPath/Character/KinematicBody2D"]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 [connection signal="pressed" from="TravelPath/ButtonNode/01_MoveButton" to="TravelPath" method="OnButtonMovePressed"]
 [connection signal="pressed" from="TravelPath/ButtonNode/02_MoveButton" to="TravelPath" method="OnButtonMovePressed"]
 [connection signal="pressed" from="TravelPath/ButtonNode/03_MoveButton" to="TravelPath" method="OnButtonMovePressed"]
