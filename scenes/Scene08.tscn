@@ -48,6 +48,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="TextBackground"]
+margin_left = 520.0
+margin_top = 264.0
+margin_right = 704.0
+margin_bottom = 476.0
+text = "Default Text"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="DoneButton" type="Button" parent="TextBackground"]
 margin_left = 672.0
 margin_top = 488.0

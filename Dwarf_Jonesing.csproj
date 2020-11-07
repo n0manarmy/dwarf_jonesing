@@ -16,6 +16,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\EconEngine.cs" />
     <Compile Include="src\Scene08.cs" />
     <Compile Include="src\Character.cs" />
     <Compile Include="src\FollowRoad.cs" />

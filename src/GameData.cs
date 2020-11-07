@@ -17,6 +17,10 @@ namespace Dwarf.GameDataObjects
         public static List<Player> players = CreatePlayers();
         public static List<Job> jobs = CreateJobs();
 
+        public static int baseEconValue = 10;
+        public static int econMin = 5;
+        public static int econMax = 20;
+
         // public static ButtonGroup locationButtonGroup = InitButtonGroup();
 
         public static String characterNodePath = "/root/RootScene/TravelPath/Character";
@@ -83,79 +87,17 @@ namespace Dwarf.GameDataObjects
             }
         }
 
-        private static List<Location> CreateLocations() {
-        return new List<Location>()
-            {
-                new Location("12", "LeSecurity",          "12_MoveButton", new Vector2(07, 09), new List<Job>()),
-                new Location("11", "Market",              "11_MoveButton", new Vector2(10, 19), new List<Job>()
-                {
-                    new Job("Janitor", 4.0, GetDegreeByName("None"), 0, false),
-                    new Job("Checker", 7.0, GetDegreeByName("None"), 1, false),
-                    new Job("Butcher", 10.0, GetDegreeByName("Trade School"), 2, false),
-                    new Job("Assistant Manager", 14.0, GetDegreeByName("Business Administration"), 3, false),
-                    new Job("Manager", 17.0, GetDegreeByName("Business Administration"), 4, false),
-                }),
-                new Location("10", "Bank",                "10_MoveButton", new Vector2(07, 30), new List<Job>()
-                {
-                    new Job("Janitor", 5.0, GetDegreeByName("None"), 0, false),
-                    new Job("Teller", 9.0, GetDegreeByName("None"), 1, false),
-                    new Job("Assistant Manager", 12.0, GetDegreeByName("Business Administration"), 3, false),
-                    new Job("Manager", 18.0, GetDegreeByName("Business Administration"), 4, false),
-                    new Job("Investment Broker", 20.0, GetDegreeByName("Business Administration"), 5, false),
-                }),
-                new Location("09", "Factory",             "09_MoveButton", new Vector2(16, 40), new List<Job>()
-                {
-                    new Job("Janitor",              07.0, GetDegreeByName("None"),                      00, false),
-                    new Job("Assembly Worker",      07.0, GetDegreeByName("None"),                      01, false),
-                    new Job("Secretary",            08.0, GetDegreeByName("Business Administration"),   03, false),
-                    new Job("Machinist's Helper",   09.0, GetDegreeByName("Business Administration"),   04, false),
-                    new Job("Executive Secretary",  17.0, GetDegreeByName("Business Administration"),   05, false),
-                    new Job("Machinist",            18.0, GetDegreeByName("None"),                      00, false),
-                    new Job("Department Manager",   20.0, GetDegreeByName("None"),                      01, false),
-                    new Job("Engineer",             21.0, GetDegreeByName("Business Administration"),   03, false),
-                    new Job("General Manager",      23.0, GetDegreeByName("Business Administration"),   04, false),
-                }),
-                new Location("08", "Employment",          "08_MoveButton", new Vector2(27, 40), new List<Job>()),
-                new Location("07", "University",          "07_MoveButton", new Vector2(42, 43), new List<Job>()
-                {
-                    new Job("Janitor",              03.0, GetDegreeByName("None"),                      00, false),
-                    new Job("Teacher",              09.0, GetDegreeByName("Junior College"),            00, false),
-                    new Job("Professor",            19.0, GetDegreeByName("Business Administration"),   00, false),
-                }),
-                new Location("06", "Stone and Carpentry", "06_MoveButton", new Vector2(52, 41), new List<Job>()
-                {
-                    new Job("Salesperson",          04.0, GetDegreeByName("None"),                      00, false),
-                    new Job("Electronic's Repair",  09.0, GetDegreeByName("Junior College"),            00, false),
-                    new Job("Manager",              12.0, GetDegreeByName("Business Administration"),   00, false),
-                }),
-                new Location("05", "Clothing",            "05_MoveButton", new Vector2(50, 29), new List<Job>()
-                {
-                    new Job("Salesperson",          06.0, GetDegreeByName("None"),                      00, false),
-                    new Job("Assistant Manager",    08.0, GetDegreeByName("Junior College"),            00, false),
-                    new Job("Manager",              10.0, GetDegreeByName("Business Administration"),   00, false),
-                }),
-                new Location("04", "Kitchen",             "04_MoveButton", new Vector2(59, 19), new List<Job>()
-                {
-                    new Job("Cook",                 03.0, GetDegreeByName("None"),                      00, false),
-                    new Job("Clerik",               04.0, GetDegreeByName("Junior College"),            00, false),
-                    new Job("Assistant Manager",    05.0, GetDegreeByName("Business Administration"),   00, false),
-                    new Job("Manager",              06.0, GetDegreeByName("Business Administration"),   00, false),
-                }),
-                new Location("03", "Crafts",              "03_MoveButton", new Vector2(52, 08), new List<Job>() 
-                {
-                    new Job("Clerk",                03.0, GetDegreeByName("None"),                      00, false),
-                    new Job("Assistant Manager",    04.0, GetDegreeByName("Junior College"),            00, false),
-                    new Job("Manager",              05.0, GetDegreeByName("Business Administration"),   00, false),
-                }),
-                new Location("02", "Pawn Shop",           "02_MoveButton", new Vector2(42, 09), new List<Job>()),
-                new Location("01", "Dormitory",           "01_MoveButton", new Vector2(31, 08), new List<Job>()),
-                new Location("13", "Rental Office",       "13_MoveButton", new Vector2(20, 09), new List<Job>())
-            };
+        public static Location GetLocation(String _locationID) {
+            foreach(Location loc in locations) {
+                if(loc.locationID == _locationID) {
+                    return loc;
+                }
+            }
+            return null;
         }
 
-        //TODO Consider experience level as a whole value among all jobs. Ex: Janitor gives 1exp per week worked
-        //and the investment broker may take 100exp to get the job if you have the degree. However working as an
-        //assistant manager or manager will net 10 or 20 exp a week.
+        //TODO Consider base wage as a base value multiplied by the economic value for the current salary,
+        //instead of actual wages. Base salary X economic factor being x * y where y a min/max range
         public class Job {
             public String jobName;
             public double baseWage;
@@ -172,16 +114,90 @@ namespace Dwarf.GameDataObjects
             }
         }
 
+        private static List<Location> CreateLocations() {
+            return new List<Location>()
+            {
+                new Location("12", "LeSecurity",          "12_MoveButton", new Vector2(07, 09), new List<Job>()),
+                new Location("11", "Market",              "11_MoveButton", new Vector2(10, 19), new List<Job>()
+                {
+                    new Job("Janitor",              04.0, degrees[0],   00, false),
+                    new Job("Checker",              07.0, degrees[0],   04, false),
+                    new Job("Butcher",              10.0, degrees[0],   05, false),
+                    new Job("Assistant Manager",    14.0, degrees[1],   07, false),
+                    new Job("Manager",              17.0, degrees[2],   08, false),
+                }),
+                new Location("10", "Bank",                "10_MoveButton", new Vector2(07, 30), new List<Job>()
+                {
+                    new Job("Janitor",              05.0, degrees[0],   00, false),
+                    new Job("Teller",               09.0, degrees[0],   03, false),
+                    new Job("Assistant Manager",    12.0, degrees[1],   05, false),
+                    new Job("Manager",              18.0, degrees[3],   07, false),
+                    new Job("Investment Broker",    20.0, degrees[8],   10, false),
+                }),
+                //TODO Set experience multiplyer for here on down
+                new Location("09", "Factory",             "09_MoveButton", new Vector2(16, 40), new List<Job>()
+                {
+                    new Job("Janitor",              07.0, degrees[0],   00, false),
+                    new Job("Assembly Worker",      07.0, degrees[2],   01, false),
+                    new Job("Secretary",            08.0, degrees[3],   03, false),
+                    new Job("Machinist's Helper",   09.0, degrees[4],   04, false),
+                    new Job("Executive Secretary",  17.0, degrees[3],   05, false),
+                    new Job("Machinist",            18.0, degrees[6],   00, false),
+                    new Job("Department Manager",   20.0, degrees[3],   01, false),
+                    new Job("Engineer",             21.0, degrees[6],   03, false),
+                    new Job("General Manager",      23.0, degrees[6],   04, false),
+                }),
+                new Location("08", "Employment",          "08_MoveButton", new Vector2(27, 40), new List<Job>()),
+                new Location("07", "University",          "07_MoveButton", new Vector2(42, 43), new List<Job>()
+                {
+                    new Job("Janitor",              03.0, degrees[0],   00, false),
+                    new Job("Teacher",              09.0, degrees[7],   00, false),
+                    new Job("Professor",            19.0, degrees[9],   00, false),
+                }),
+                new Location("06", "Stone and Carpentry", "06_MoveButton", new Vector2(52, 41), new List<Job>()
+                {
+                    new Job("Salesperson",          04.0, degrees[1],   00, false),
+                    new Job("Electronic's Repair",  09.0, degrees[4],   00, false),
+                    new Job("Manager",              12.0, degrees[3],   00, false),
+                }),
+                new Location("05", "Clothing",            "05_MoveButton", new Vector2(50, 29), new List<Job>()
+                {
+                    new Job("Salesperson",          06.0, degrees[0],   00, false),
+                    new Job("Assistant Manager",    08.0, degrees[1],   00, false),
+                    new Job("Manager",              10.0, degrees[3],   00, false),
+                }),
+                new Location("04", "Kitchen",             "04_MoveButton", new Vector2(59, 19), new List<Job>()
+                {
+                    new Job("Cook",                 03.0, degrees[1],   00, false),
+                    new Job("Clerk",                04.0, degrees[0],   00, false),
+                    new Job("Assistant Manager",    05.0, degrees[1],   00, false),
+                    new Job("Manager",              06.0, degrees[3],   00, false),
+                }),
+                new Location("03", "Crafts",              "03_MoveButton", new Vector2(52, 08), new List<Job>() 
+                {
+                    new Job("Clerk",                03.0, degrees[0],   00, false),
+                    new Job("Assistant Manager",    04.0, degrees[1],   00, false),
+                    new Job("Manager",              05.0, degrees[3],   00, false),
+                }),
+                new Location("02", "Pawn Shop",           "02_MoveButton", new Vector2(42, 09), new List<Job>()),
+                new Location("01", "Dormitory",           "01_MoveButton", new Vector2(31, 08), new List<Job>()),
+                new Location("13", "Rental Office",       "13_MoveButton", new Vector2(20, 09), new List<Job>())
+            };
+        }
+
         private static List<Job> CreateJobs() {
             return new List<Job>() {
+            
             };
         }
 
         public class Degree {
+            public int ID;
             public String degreeName;
             public int classCount;
 
-            public Degree(String name, int classCount) {
+            public Degree(int ID, String name, int classCount) {
+                this.ID = ID;
                 this.degreeName = name;
                 this.classCount = classCount;
             }
@@ -189,10 +205,18 @@ namespace Dwarf.GameDataObjects
 
         private static List<Degree> CreateDegrees() {
             return new List<Degree> {
-                new Degree("None", 0),
-                new Degree("Junior College", 10),
-                new Degree("Trade School", 10),
-                new Degree("Business Administration", 10),
+                new Degree(00, "None", 0),
+                new Degree(01, "Junior College", 10),
+                new Degree(02, "Trade School", 10),
+                new Degree(03, "Business Administration", 10),
+                new Degree(04, "Electronics", 10),
+                new Degree(05, "Pre-Engineering", 10),
+                new Degree(06, "Engineering", 10),
+                new Degree(07, "Academic", 10),
+                new Degree(08, "Grad School", 10),
+                new Degree(09, "Post Doctoral", 10),
+                new Degree(10, "Research", 10),
+                new Degree(11, "Publishing", 10),
             };
         }
 
@@ -206,13 +230,10 @@ namespace Dwarf.GameDataObjects
             return degrees[0];
         }
 
-        public static Location GetLocation(String _locationID) {
-            foreach(Location loc in locations) {
-                if(loc.locationID == _locationID) {
-                    return loc;
-                }
-            }
-            return null;
+        public static void UpdateEconomy() {
+            baseEconValue = EconEngine.AdjustEconomy(baseEconValue);
+            locations = EconEngine.SetJobAvailability(locations);
+            locations = EconEngine.AdjustJobSalaries(locations);
         }
     }
 }

@@ -79,6 +79,7 @@ public class StartValuesScene : Node
         // GetNode<Label>("/root/RootScene/InfoScreen/DebugNode/HBoxContainer/VBoxValues/MaxJobScoreValue").Text = GameData.players[0].maxJobScore.ToString();
 
         GetNode<DebugScene>("/root/RootScene/InfoScene/Background/DebugScene").IncrementRounds();
+        GameData.UpdateEconomy();
 
         QueueFree();
     }
