@@ -28,6 +28,7 @@
     <Compile Include="src\DebugScene.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\StartValuesScene.cs" />
+    <Compile Include="src\StaticStrings.cs" />
     <Compile Include="src\TravelPath.cs" />
   </ItemGroup>
 </Project>

@@ -2,11 +2,18 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using Dwarf.GameDataObjects;
+using Dwarf.StaticStrings;
 
 //TODO - Build Job button to check experience, availability, and education
-
+//#About
+//This class is the jobs class. The jobs listing and availability are controlled
+//by this class.
 public class Scene08 : Node2D
 {
+
+    [Signal]
+    public delegate void JobClicked(Godot.Collections.Array job);
+
     enum MenuState {
         CompaniesList,
         JobsList,
@@ -50,27 +57,40 @@ public class Scene08 : Node2D
         var _jobsButtonNode = GetNode<VBoxContainer>("TextBackground/JobsButtonContainer");
         foreach(GameData.Job job in location.jobs) {
             Button button = new Button();
+            button.Name = job.GetJobDataForSplit();
             button.Text = job.jobName + " - $" + String.Format("{0:00}", job.baseWage);
             button.Align = Button.TextAlign.Left;
             GD.Print("BuildJobsButtons button.text: " + button.Text);
-            
-            button.Connect("pressed", this, "OnJobNamePressed");
+
+            // var jobArray = new Godot.Collections.Array() {job.jobName};
+            // GD.Print(jobArray.Count);
+
+            // button.Connect("JobClicked", this, nameof(OnJobNamePressed), new Godot.Collections.Array() {job});
+            button.Connect("pressed", this, nameof(OnJobNamePressed));
+            // button.AddUserSignal(nameof(JobClicked));
+
+            GD.Print(job.jobName);
             _jobsButtonNode.AddChild(button);
         }
         _jobsButtonNode.Update();
     }
 
     public void RemoveButtons() {
-        var buttons = GetNode<VBoxContainer>("TextBackground/JobsButtonContainer");
-        foreach(Button button in buttons.GetChildren()) {
-            button.QueueFree();
+        var buttons = GetNodeOrNull<VBoxContainer>("TextBackground/JobsButtonContainer");
+        if (buttons != null) {
+            foreach(Button button in buttons.GetChildren()) {
+                button.QueueFree();
+            }
         }
     }
 
     public void OnDoneButtonClicked() {
         switch (_thisMenuState) {
         case MenuState.CompaniesList:
-            GetNode<InfoScene>("/root/RootScene/InfoScene").DisableLocationsButtons(false);
+            var node = GetNodeOrNull<InfoScene>("/root/RootScene/InfoScene");
+            if(node != null) {
+                node.DisableLocationsButtons(false);
+            }
             QueueFree();
             break;
         case MenuState.JobsList:
@@ -96,6 +116,37 @@ public class Scene08 : Node2D
         }
     }
 
+    public void OnJobNamePressed() {
+        GD.Print("OnJobNamePressed");
+
+        var buttons = GetNode<VBoxContainer>("TextBackground/JobsButtonContainer");
+        var infoLabelBox = GetNode<Label>("TextBackground/InfoLabelBox");
+        // var player = GetNodeOrNull<Character>(GameData.characterNodePath);
+        
+        foreach (Button b in buttons.GetChildren()) {
+            if (b.Pressed == true) {
+                var job = new GameData.Job(b.Name.Split("|"));
+                try {
+                    if(!job.available) {
+                        infoLabelBox.Text = StaticStrings.jobNotAvailable;
+                    }  else
+                    //Broken, find out why
+                    if(!GameData.hasDegree(GameData.currentPlayer, job.requiredDegree)) {
+                        infoLabelBox.Text = StaticStrings.notEnoughEducation;
+                    } else 
+                    if(GameData.getCurrentPlayer().job != null && (GameData.getCurrentPlayer().workExp < job.expRequired)) {
+                        infoLabelBox.Text = StaticStrings.notEnoughExperience;
+                    } else {
+                        infoLabelBox.Text = StaticStrings.gotTheJob;
+                        GameData.getCurrentPlayer().job = job;
+                    }
+                }
+                catch (NullReferenceException e) {
+                    GD.Print($"NullReferenceException Handler: {e}");
+                }
+            }
+        }
+    }
     
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

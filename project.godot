@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GameData="*res://src/GameData.cs"
+StaticStrings="*res://src/StaticStrings.cs"
 
 [display]
 

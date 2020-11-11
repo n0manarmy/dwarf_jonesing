@@ -31,7 +31,7 @@ public class DebugScene : Node
         GetNode<Label>(totalTimeValueNode).Text =           GameData.totalTime.ToString();
         GetNode<Label>(timeUsedValueNode).Text =            GameData.currentTime.ToString();
         GetNode<Label>(eatenValueNode).Text =               GameData.players[0].eaten.ToString();
-        GetNode<Label>(jobValue).Text =                     GameData.players[0].jobName.ToString();
+        GetNode<Label>(jobValue).Text =                     GameData.players[0].job.jobName.ToString();
         GetNode<Label>(happinessScoreValue).Text =          GameData.players[0].happinessScore.ToString();
         GetNode<Label>(wealthScoreValue).Text =             GameData.players[0].wealthScore.ToString();        
         GetNode<Label>(jobScoreValue).Text =                GameData.players[0].jobScore.ToString();

@@ -48,12 +48,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="TextBackground"]
+[node name="InfoLabelBox" type="Label" parent="TextBackground"]
 margin_left = 520.0
 margin_top = 264.0
 margin_right = 704.0
 margin_bottom = 476.0
 text = "Default Text"
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

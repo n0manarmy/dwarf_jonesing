@@ -288,7 +288,7 @@ texture = ExtResource( 7 )
 
 [node name="13ColorOverlay" type="Sprite" parent="TravelPath/ColorLayer"]
 modulate = Color( 1, 0.458824, 0.458824, 0.509804 )
-position = Vector2( 316, 104.125 )
+position = Vector2( 320, 104 )
 scale = Vector2( 14.1538, 18.8864 )
 texture = ExtResource( 7 )
 
