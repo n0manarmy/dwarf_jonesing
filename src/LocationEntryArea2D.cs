@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Dwarf.GameDataObjects;
+using Dwarf.StaticStrings;
 
 public class LocationEntryArea2D : Area2D
 {
@@ -24,13 +25,13 @@ public class LocationEntryArea2D : Area2D
     //then move player inside of the building. 
     public void OnArea2DBodyEntered(KinematicBody2D body) {
         //get player
-        var _player = GetNode<Character>(GameData.characterNodePath);
+        var _player = GetNode<Character>(StaticStrings.characterNodePath);
 
         //if player not moving, check location and send scene info to InfoScene
         if (!_player.moving) {
-            var _infoScene = GetNode<InfoScene>("/root/RootScene/InfoScene");
-            var _travelPath = GetNode<TileMap>(GameData.travelPathTileMap);
-            var _tileMapPos = _travelPath.WorldToMap(GetNode<Character>(GameData.characterNodePath).Position);
+            var _infoScene = GetNode<InfoScene>(StaticStrings.infoScene);
+            var _travelPath = GetNode<TileMap>(StaticStrings.travelPathTileMap);
+            var _tileMapPos = _travelPath.WorldToMap(GetNode<Character>(StaticStrings.characterNodePath).Position);
 
             Vector2 _currentPlayerPos = _player.Position;
             GD.Print("OnArea2DBodyEntered._currentPlayerPos: " + _currentPlayerPos);

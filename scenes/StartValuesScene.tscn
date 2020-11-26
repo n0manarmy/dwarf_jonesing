@@ -48,19 +48,19 @@ rect_min_size = Vector2( 0, 30 )
 alignment = 1
 
 [node name="GoalsLabel" type="Label" parent="VBoxContainer/HBoxGoalsLabelContainer"]
-margin_left = 200.0
+margin_left = 192.0
 margin_top = 8.0
-margin_right = 236.0
+margin_right = 228.0
 margin_bottom = 22.0
 text = "Goals"
 align = 1
 
 [node name="GoalsValue" type="Label" parent="VBoxContainer/HBoxGoalsLabelContainer"]
-margin_left = 240.0
+margin_left = 232.0
 margin_top = 8.0
-margin_right = 248.0
+margin_right = 256.0
 margin_bottom = 22.0
-text = "0"
+text = "200"
 align = 1
 
 [node name="HBoxSliderContainer" type="HBoxContainer" parent="VBoxContainer"]

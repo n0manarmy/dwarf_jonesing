@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/InfoScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/BaseMap.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://art/white_background.png" type="Texture" id=7]
 [ext_resource path="res://scenes/LocationEntryArea2D.tscn" type="PackedScene" id=8]
 [ext_resource path="res://res/LocationButtonResource.tres" type="ButtonGroup" id=9]
+[ext_resource path="res://src/ScoringEngine.cs" type="Script" id=10]
+[ext_resource path="res://src/TimerEngine.cs" type="Script" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 4.0
@@ -16,6 +18,12 @@ radius = 4.0
 [node name="RootScene" type="Node2D"]
 position = Vector2( 64, -56 )
 script = ExtResource( 4 )
+
+[node name="TimerEngine" type="Node2D" parent="."]
+script = ExtResource( 11 )
+
+[node name="ScoringEngine" type="Node2D" parent="."]
+script = ExtResource( 10 )
 
 [node name="BoardCoverLayer" type="CanvasLayer" parent="."]
 layer = 0
@@ -288,7 +296,7 @@ texture = ExtResource( 7 )
 
 [node name="13ColorOverlay" type="Sprite" parent="TravelPath/ColorLayer"]
 modulate = Color( 1, 0.458824, 0.458824, 0.509804 )
-position = Vector2( 320, 104 )
+position = Vector2( 316, 104 )
 scale = Vector2( 14.1538, 18.8864 )
 texture = ExtResource( 7 )
 

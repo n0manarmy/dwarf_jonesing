@@ -10,8 +10,11 @@
 * Build a clock to show time
 * Location
   * [CURRENT] Build the employment office menu. 
-      * Capture CollisionShape2D enter squares
+      * [DONE] Capture CollisionShape2D enter squares
       * Pop menu!
+      * Added call backs for gui menus. Work on call backs and setting player values
+      * Add # of players screen.
+      * Logic for setting score for current player. At start of each character turn, update debug screen score with current player scores.
     * Add degrees required for crafts job.
     * show crafts job menu
     * add back button to restore previous screen

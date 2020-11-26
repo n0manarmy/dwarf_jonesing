@@ -9,8 +9,7 @@ public class RootScene : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        var _infoScene = GetNode<InfoScene>("/root/RootScene/InfoScene");
-        _infoScene.DisableLocationsButtons(true);
+        GetNode<InfoScene>("/root/RootScene/InfoScene").DisableLocationsButtons(true);
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

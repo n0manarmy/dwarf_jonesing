@@ -38,7 +38,7 @@ public class Scene08 : Node2D
         List<GameData.Location> _jobLocations = new List<GameData.Location>();
 
         foreach(GameData.Location location in GameData.locations) {
-            if(location.jobs.Count > 0) {
+            if(location.jobIDs.Count > 0) {
                 Button button = new Button();
                 button.Text = location.labelName;
                 button.Name = location.locationID;
@@ -55,22 +55,25 @@ public class Scene08 : Node2D
 
         List<GameData.Location> _jobLocations = new List<GameData.Location>();
         var _jobsButtonNode = GetNode<VBoxContainer>("TextBackground/JobsButtonContainer");
-        foreach(GameData.Job job in location.jobs) {
-            Button button = new Button();
-            button.Name = job.GetJobDataForSplit();
-            button.Text = job.jobName + " - $" + String.Format("{0:00}", job.baseWage);
-            button.Align = Button.TextAlign.Left;
-            GD.Print("BuildJobsButtons button.text: " + button.Text);
+        foreach(int id in location.jobIDs) {
+            if(location.jobIDs.Contains(id)) {
+                Button button = new Button();
+                // button.Name = GameData.jobs[id].GetJobDataForSplit();
+                button.Name = id.ToString();
+                button.Text = GameData.jobs[id].jobName + " - $" + String.Format("{0:00}", GameData.jobs[id].baseWage);
+                button.Align = Button.TextAlign.Left;
+                GD.Print("BuildJobsButtons button.text: " + button.Text);
 
-            // var jobArray = new Godot.Collections.Array() {job.jobName};
-            // GD.Print(jobArray.Count);
+                // var jobArray = new Godot.Collections.Array() {job.jobName};
+                // GD.Print(jobArray.Count);
 
-            // button.Connect("JobClicked", this, nameof(OnJobNamePressed), new Godot.Collections.Array() {job});
-            button.Connect("pressed", this, nameof(OnJobNamePressed));
-            // button.AddUserSignal(nameof(JobClicked));
+                // button.Connect("JobClicked", this, nameof(OnJobNamePressed), new Godot.Collections.Array() {job});
+                button.Connect("pressed", this, nameof(OnJobNamePressed));
+                // button.AddUserSignal(nameof(JobClicked));
 
-            GD.Print(job.jobName);
-            _jobsButtonNode.AddChild(button);
+                GD.Print(GameData.jobs[id].jobName);
+                _jobsButtonNode.AddChild(button);
+            }
         }
         _jobsButtonNode.Update();
     }
@@ -121,28 +124,36 @@ public class Scene08 : Node2D
 
         var buttons = GetNode<VBoxContainer>("TextBackground/JobsButtonContainer");
         var infoLabelBox = GetNode<Label>("TextBackground/InfoLabelBox");
-        // var player = GetNodeOrNull<Character>(GameData.characterNodePath);
+        GameData.Player player = GameData.players[GameData.currentPlayer];
+
+        if (GameData.currentTime > GameData.totalTime) {    
+            infoLabelBox.Text = StaticStrings.outOfTime;
+        } else {
+
+            GameData.currentTime = GameData.currentTime + GameData.BUTTON_CLICKED_ADD_TIME;
         
-        foreach (Button b in buttons.GetChildren()) {
-            if (b.Pressed == true) {
-                var job = new GameData.Job(b.Name.Split("|"));
-                try {
-                    if(!job.available) {
-                        infoLabelBox.Text = StaticStrings.jobNotAvailable;
-                    }  else
-                    //Broken, find out why
-                    if(!GameData.hasDegree(GameData.currentPlayer, job.requiredDegree)) {
-                        infoLabelBox.Text = StaticStrings.notEnoughEducation;
-                    } else 
-                    if(GameData.getCurrentPlayer().job != null && (GameData.getCurrentPlayer().workExp < job.expRequired)) {
-                        infoLabelBox.Text = StaticStrings.notEnoughExperience;
-                    } else {
-                        infoLabelBox.Text = StaticStrings.gotTheJob;
-                        GameData.getCurrentPlayer().job = job;
+            foreach (Button b in buttons.GetChildren()) {
+                if (b.Pressed == true) {
+                    var job = GameData.jobs[System.Convert.ToInt32(b.Name)];
+                    GD.Print("OnJobNamePressed: " + job.ToString());                
+                    try {
+                        if(!job.available) {
+                            infoLabelBox.Text = StaticStrings.jobNotAvailable;
+                        }  else
+                        //Broken, find out why
+                        if(!GameData.players[GameData.currentPlayer].playerDegrees.Contains(job.requiredDegree)) {
+                            infoLabelBox.Text = StaticStrings.notEnoughEducation;
+                        } else 
+                        if(GameData.getCurrentPlayer().job != null && (GameData.getCurrentPlayer().workExp < job.expRequired)) {
+                            infoLabelBox.Text = StaticStrings.notEnoughExperience;
+                        } else {
+                            infoLabelBox.Text = StaticStrings.gotTheJob;
+                            GameData.getCurrentPlayer().job = job;
+                        }
                     }
-                }
-                catch (NullReferenceException e) {
-                    GD.Print($"NullReferenceException Handler: {e}");
+                    catch (NullReferenceException e) {
+                        GD.Print($"NullReferenceException Handler: {e}");
+                    }
                 }
             }
         }

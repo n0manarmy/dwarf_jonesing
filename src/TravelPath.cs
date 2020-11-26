@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using Dwarf.GameDataObjects;
+using Dwarf.StaticStrings;
 
 public class TravelPath : Node
 {
@@ -19,7 +20,7 @@ public class TravelPath : Node
     public void OnButtonMovePressed() {
         GD.Print("OnButtonMovePressed()");
 
-        var player = GetNode<Character>(GameData.characterNodePath);
+        var player = GetNode<Character>(StaticStrings.characterNodePath);
         var pos = player.GlobalPosition;
 
         // var gameData = (GameData)GetNode("/root/GameData");

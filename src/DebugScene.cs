@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Dwarf.GameDataObjects;
+using Dwarf.StaticStrings;
 
 public class DebugScene : Node
 {
@@ -28,20 +29,81 @@ public class DebugScene : Node
     public override void _Ready()
     {
         GD.Print("DebugScene._Ready()");
-        GetNode<Label>(totalTimeValueNode).Text =           GameData.totalTime.ToString();
-        GetNode<Label>(timeUsedValueNode).Text =            GameData.currentTime.ToString();
-        GetNode<Label>(eatenValueNode).Text =               GameData.players[0].eaten.ToString();
-        GetNode<Label>(jobValue).Text =                     GameData.players[0].job.jobName.ToString();
-        GetNode<Label>(happinessScoreValue).Text =          GameData.players[0].happinessScore.ToString();
-        GetNode<Label>(wealthScoreValue).Text =             GameData.players[0].wealthScore.ToString();        
-        GetNode<Label>(jobScoreValue).Text =                GameData.players[0].jobScore.ToString();
-        GetNode<Label>(educationScoreValue).Text =          GameData.players[0].educationScore.ToString();
-        GetNode<Label>(maxHappinessScoreValue).Text =       GameData.players[0].maxHappinessScore.ToString(); 
-        GetNode<Label>(maxWealthScoreValue).Text =          GameData.players[0].maxWealthScore.ToString();        
-        GetNode<Label>(maxJobScoreValue).Text =             GameData.players[0].maxJobScore.ToString();
-        GetNode<Label>(maxEducationScoreValue).Text =       GameData.players[0].maxEducationScore.ToString();
+        // GetNode<Label>(timeUsedValueNode).Text =            GameData.currentTime.ToString();
+        // GetNode<Label>(eatenValueNode).Text =               GameData.players[GameData.currentPlayer].eaten.ToString();
+        // GetNode<Label>(jobValue).Text =                     GameData.players[GameData.currentPlayer].job.jobName.ToString();
+        // GetNode<Label>(happinessScoreValue).Text =          GameData.players[GameData.currentPlayer].happinessScore.ToString();
+        // GetNode<Label>(wealthScoreValue).Text =             GameData.players[GameData.currentPlayer].wealthScore.ToString();        
+        // GetNode<Label>(jobScoreValue).Text =                GameData.players[GameData.currentPlayer].jobScore.ToString();
+        // GetNode<Label>(educationScoreValue).Text =          GameData.players[GameData.currentPlayer].educationScore.ToString();
+        // GetNode<Label>(maxHappinessScoreValue).Text =       GameData.players[GameData.currentPlayer].maxHappinessScore.ToString(); 
+        // GetNode<Label>(maxWealthScoreValue).Text =          GameData.players[GameData.currentPlayer].maxWealthScore.ToString();        
+        // GetNode<Label>(maxJobScoreValue).Text =             GameData.players[GameData.currentPlayer].maxJobScore.ToString();
+        // GetNode<Label>(maxEducationScoreValue).Text =       GameData.players[GameData.currentPlayer].maxEducationScore.ToString(); 
 
+        GetNode<TimerEngine>(StaticStrings.timerEngine).Connect("RoundTimerUpdated", this, nameof(UpdateTimeUsedLabel));
+
+        GetNode<ScoringEngine>(StaticStrings.scoringEngine).Connect("JobScoreUpdated", this, nameof(UpdateJobScore));
+        GetNode<ScoringEngine>(StaticStrings.scoringEngine).Connect("EducationScoreUpdated", this, nameof(UpdateEducationScore));
+        GetNode<ScoringEngine>(StaticStrings.scoringEngine).Connect("HappinessScoreUpdated", this, nameof(UpdateHappinessScore));
+        GetNode<ScoringEngine>(StaticStrings.scoringEngine).Connect("WealthScoreUpdated", this, nameof(UpdateWealthScore));
+
+        GetNode<ScoringEngine>(StaticStrings.scoringEngine).Connect("MaxJobScoreUpdated", this, nameof(UpdateJobMaxScore));
+        GetNode<ScoringEngine>(StaticStrings.scoringEngine).Connect("MaxEducationScoreUpdated", this, nameof(UpdateEducationMaxScore));
+        GetNode<ScoringEngine>(StaticStrings.scoringEngine).Connect("MaxHappinessScoreUpdated", this, nameof(UpdateHappinessMaxScore));
+        GetNode<ScoringEngine>(StaticStrings.scoringEngine).Connect("MaxWealthScoreUpdated", this, nameof(UpdateWealthMaxScore));
         
+    }
+
+    public void UpdateEaten(bool val) {
+        GetNode<Label>(eatenValueNode).Text =               val.ToString();
+    }
+
+    public void UpdateJob(GameData.Job job) {
+        GetNode<Label>(jobValue).Text =                     job.jobName.ToString();
+    }
+
+    public void UpdateHappinessScore(int val) {
+        GetNode<Label>(happinessScoreValue).Text =          val.ToString();
+    }
+
+    public void UpdateWealthScore(int val) {
+        GetNode<Label>(wealthScoreValue).Text =             val.ToString();
+    }
+
+    public void UpdateJobScore(int val) {
+        GetNode<Label>(jobScoreValue).Text =                val.ToString();
+    }
+
+    public void UpdateEducationScore(int val) {
+        GetNode<Label>(educationScoreValue).Text =          val.ToString();
+    }
+
+    public void UpdateHappinessMaxScore(int val) {
+        GetNode<Label>(maxHappinessScoreValue).Text =          val.ToString();
+    }
+
+    public void UpdateWealthMaxScore(int val) {
+        GetNode<Label>(maxWealthScoreValue).Text =             val.ToString();
+    }
+
+    public void UpdateJobMaxScore(int val) {
+        GetNode<Label>(maxJobScoreValue).Text =                val.ToString();
+    }
+
+    public void UpdateEducationMaxScore(int val) {
+        GetNode<Label>(maxEducationScoreValue).Text =          val.ToString();
+    }
+
+    // public void UpdateMaxScores(int happy, int wealth, int job, int education) {
+    //     GetNode<Label>(maxHappinessScoreValue).Text =       happy.ToString();
+    //     GetNode<Label>(maxWealthScoreValue).Text =          wealth.ToString();
+    //     GetNode<Label>(maxJobScoreValue).Text =             job.ToString();
+    //     GetNode<Label>(maxEducationScoreValue).Text =       education.ToString();
+    // }
+
+    public void UpdateValues() {
+        GetNode<Label>(totalTimeValueNode).Text =           GameData.totalTime.ToString();
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,23 +112,11 @@ public class DebugScene : Node
 
     // }
 
-    public void ResetTimeUsed() {
-        GameData.currentTime = 0;
-        GetNode<Label>(timeUsedValueNode).Text = GameData.currentTime.ToString();
-    }
-
-    public void IncrementTimeValue(int val) {
-        // GD.Print("InfoScreen.updateCurrentTimeValue()");
-        GameData.currentTime += val;
-        GetNode<Label>(timeUsedValueNode).Text = (GameData.currentTime).ToString();
+    public void UpdateTimeUsedLabel(int val) {
+        GetNode<Label>(timeUsedValueNode).Text = val.ToString();
     }
 
     public void SetStatusText(String val) {
         GetNode<Label>(statusValueNode).Text = val.ToString();
-    }
-
-    public void IncrementRounds() {
-        GameData.rounds += 1;
-        GetNode<Label>(roundsValue).Text = GameData.rounds.ToString();
     }
 }

@@ -33,20 +33,18 @@ public class EconEngine : Node
             results = GameData.econMax;
         }
 
-        GD.Print("AdjustEconomy results: " + results);
+        // GD.Print("AdjustEconomy results: " + results);
         return results;
     }
 
     public static List<GameData.Location> SetJobAvailability(List<GameData.Location> locations) {
         var rng = new RandomNumberGenerator();
 
-        foreach(GameData.Location loc in locations) {
-            foreach(GameData.Job job in loc.jobs) {
-                if (rng.RandiRange(1, 4) > 1) {
-                    job.available = true;
-                } else {
-                    job.available = false;
-                }
+        foreach(GameData.Job job in GameData.jobs) {
+            if (rng.RandiRange(1, 4) > 1) {
+                job.available = true;
+            } else {
+                job.available = false;
             }
         }
 
@@ -56,12 +54,10 @@ public class EconEngine : Node
     //iterate and adjust salaries
     public static List<GameData.Location> AdjustJobSalaries(List<GameData.Location> locations) {
         var rng = new RandomNumberGenerator();
-        foreach(GameData.Location loc in locations) {
-            foreach(GameData.Job job in loc.jobs) {
-                double tempWage = job.baseWage * ((double) GameData.baseEconValue / 10);
-                GD.Print("AdjustJobSalaries tempWage: " + tempWage);
-                job.baseWage = tempWage;
-            }
+        foreach(GameData.Job job in GameData.jobs) {
+            double tempWage = job.baseWage * ((double) GameData.baseEconValue / 10);
+            // GD.Print("AdjustJobSalaries tempWage: " + tempWage);
+            job.baseWage = tempWage;
         }
 
         return locations;

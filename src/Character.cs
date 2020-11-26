@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using Dwarf.GameDataObjects;
+using Dwarf.StaticStrings;
 
 public class Character : Sprite
 {
@@ -32,7 +33,7 @@ public class Character : Sprite
     }
 
     public void ResetPlayerPosition() {
-        var player = GetNode<Character>(GameData.characterNodePath);
+        var player = GetNode<Character>(StaticStrings.characterNodePath);
         var travelPath = GetNode<TileMap>("/root/RootScene/TravelPath/WalkingPath/TravelPathTileMap");
 
         player.Position = travelPath.MapToWorld(START_POS);        
@@ -41,12 +42,13 @@ public class Character : Sprite
     //iterates through characterPath coordinates, calculating distances between the points.
     public void MoveAlongPath(float distance) {
         // GD.Print("Character.MoveAlongPath()");
-        var debugScene = GetNode<DebugScene>("/root/RootScene/InfoScene/Background/DebugScene");
+        // var debugScene = GetNode<DebugScene>(StaticStrings.debugScene);
+        var timerEngine = GetNode<TimerEngine>("../../TimerEngine");
 
         var start = Position;
         for (int i = 0; i < characterPath.Count; i++) {
             var distToNext = start.DistanceTo(characterPath[i]);
-            debugScene.IncrementTimeValue(1);
+            timerEngine.IncrementTimeValue(1);
             if (characterPath.Count == 1) {
                 // GD.Print("Pop Menu for location");
                 // debugScene.IncrementTimeValue(10);
@@ -80,12 +82,13 @@ public class Character : Sprite
 
     public void EndPlayerturn() {
         characterPath.Clear();
-        GetNode<Character>(GameData.characterNodePath).ResetPlayerPosition();
+        GetNode<Character>(StaticStrings.characterNodePath).ResetPlayerPosition();
         var debugScene = GetNode<Node>("/root/RootScene/InfoScene/Background").GetNode<DebugScene>("DebugScene");
+        var timerEngine = GetNode<TimerEngine>("../TimerEngine");
 
         debugScene.SetStatusText("Your time is up!");
-        debugScene.IncrementRounds();
-        debugScene.ResetTimeUsed();
+        timerEngine.IncrementRounds();
+        timerEngine.ResetTimeUsed();
         
         MySetProcess(false);
     }
