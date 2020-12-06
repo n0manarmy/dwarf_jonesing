@@ -26,7 +26,7 @@ StaticStrings="*res://src/StaticStrings.cs"
 
 [display]
 
-window/size/height=768
+window/size/height=900
 
 [input]
 

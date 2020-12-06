@@ -5,13 +5,24 @@ using Dwarf.GameDataObjects;
 using Dwarf.StaticStrings;
 
 public class TravelPath : Node
+
 {
     [Export]
     public PackedScene Character;
     // Called when the node enters the scene tree for the first time.
+
+    private ButtonGroup _buttonGroup = (ButtonGroup)GD.Load("res://res/LocationButtonResource.tres");
+
     public override void _Ready()
     {
 
+    }
+
+    public void DisableLocationsButtons(bool val) {
+        GD.Print("TravelPath.DisableLocationsButtons()");
+        foreach(Button _b in _buttonGroup.GetButtons()) {
+            _b.Disabled = val;
+        }
     }
 
     // Colored squares on main map, connected to this function. Invisible button overlays

@@ -33,30 +33,35 @@ public class ScoringEngine : Node2D
 
 
     public void UpdateJobScore(int player_pos, int val) {
+        GD.Print(this.GetType().Name + ".UpdateJobScore");
         GameData.players[player_pos].jobScore = GameData.players[player_pos].jobScore + val;
 
         EmitSignal(nameof(JobScoreUpdated), player_pos);
     }
 
     public void UpdateEducationScore(int player_pos, int val) {
+        GD.Print(this.GetType().Name + ".UpdateEducationScore");
         GameData.players[player_pos].educationScore = GameData.players[player_pos].educationScore + val;
         
-        EmitSignal(nameof(EducationScoreUpdated));
+        EmitSignal(nameof(EducationScoreUpdated), player_pos);
     }
 
     public void UpdateWealthScore(int player_pos, int val) {
+        GD.Print(this.GetType().Name + ".UpdateWealthScore");
         GameData.players[player_pos].wealthScore = GameData.players[player_pos].wealthScore + val;
         
-        EmitSignal(nameof(WealthScoreUpdated));
+        EmitSignal(nameof(WealthScoreUpdated), player_pos);
     }
 
     public void UpdateHappinessScore(int player_pos, int val) {
+        GD.Print(this.GetType().Name + ".UpdateHappinessScore");
         GameData.players[player_pos].happinessScore = GameData.players[player_pos].happinessScore + val;
         
-        EmitSignal(nameof(HappinessScoreUpdated));
+        EmitSignal(nameof(HappinessScoreUpdated), player_pos);
     }
 
     public void SetMaxHappinessScore(int player_pos, int val) {
+        GD.Print(this.GetType().Name + ".SetMaxHappinessScore");
         GameData.players[player_pos].maxHappinessScore = val;
         
         EmitSignal(nameof(MaxHappinessScoreUpdated), val);
@@ -64,6 +69,7 @@ public class ScoringEngine : Node2D
     }
 
     public void SetMaxWealthScore(int player_pos, int val) {
+        GD.Print(this.GetType().Name + ".SetMaxWealthScore");
         GameData.players[player_pos].maxWealthScore = val;
         
         EmitSignal(nameof(MaxWealthScoreUpdated), val);
@@ -71,6 +77,7 @@ public class ScoringEngine : Node2D
     }
 
     public void SetMaxJobScore(int player_pos, int val) {
+        GD.Print(this.GetType().Name + ".SetMaxJobScore");
         GameData.players[player_pos].maxJobScore = val;
 
         EmitSignal(nameof(MaxJobScoreUpdated), val);
@@ -78,6 +85,7 @@ public class ScoringEngine : Node2D
     }
 
     public void SetMaxEducationScore(int player_pos, int val) {
+        GD.Print(this.GetType().Name + ".SetMaxEducationScore");
         GameData.players[player_pos].maxEducationScore = val;
 
         EmitSignal(nameof(MaxEducationScoreUpdated), val);

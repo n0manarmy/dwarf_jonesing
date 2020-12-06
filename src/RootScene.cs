@@ -9,9 +9,15 @@ public class RootScene : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        GetNode<InfoScene>("/root/RootScene/InfoScene").DisableLocationsButtons(true);
+        GD.Print(this.GetType().Name + "._Ready");
+        GetNode<TravelPath>("TravelPath").DisableLocationsButtons(true);
+        GetNode<StartValuesScene>("StartValuesScene").Connect("GoalsValuesDone", this, nameof(RemoveBoardOverlay));
     }
 
+    public void RemoveBoardOverlay() {
+        GD.Print(this.GetType().Name + ".RemoveBoardOverlay");
+        GetNode<Node2D>("BoardCoverLayer").QueueFree();
+    }
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)
 //  {

@@ -83,8 +83,8 @@ public class Character : Sprite
     public void EndPlayerturn() {
         characterPath.Clear();
         GetNode<Character>(StaticStrings.characterNodePath).ResetPlayerPosition();
-        var debugScene = GetNode<Node>("/root/RootScene/InfoScene/Background").GetNode<DebugScene>("DebugScene");
-        var timerEngine = GetNode<TimerEngine>("../TimerEngine");
+        var debugScene = GetNode<DebugScene>("../../DebugScene");
+        var timerEngine = GetNode<TimerEngine>("../../TimerEngine");
 
         debugScene.SetStatusText("Your time is up!");
         timerEngine.IncrementRounds();

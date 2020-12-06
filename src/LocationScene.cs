@@ -36,7 +36,7 @@ public class LocationScene : Node
     TODO: add support for multiple players
     */
     public void OnDoneClicked() {
-        GetNode<InfoScene>("/root/RootScene/InfoScene").DisableLocationsButtons(false);
+        GetNode<TravelPath>("/root/RootScene/TravelPath").DisableLocationsButtons(false);        
         QueueFree();
     }
 

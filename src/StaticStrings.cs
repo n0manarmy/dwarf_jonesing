@@ -17,6 +17,7 @@ namespace Dwarf.StaticStrings {
 
         public static String scoringEngine          = "/root/RootScene/ScoringEngine";
         public static String timerEngine            = "/root/RootScene/TimerEngine";
+        public static String scene08                = "/root/RootScene/InfoScene/Scene08";
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()

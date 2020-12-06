@@ -10,9 +10,13 @@ using Dwarf.StaticStrings;
 //by this class.
 public class Scene08 : Node2D
 {
+    private String THIS_SCENE = "Scene01";
 
     [Signal]
     public delegate void JobClicked(Godot.Collections.Array job);
+
+    [Signal]
+    public delegate void GotJob();
 
     enum MenuState {
         CompaniesList,
@@ -29,7 +33,7 @@ public class Scene08 : Node2D
     }
 
     public void BuildSceneDetails() {
-        GetNode<Label>("TextBackground/NameLabel").Text = GameData.GetLocation("08").labelName;
+        GetNode<Label>("TextBackground/NameLabel").Text = GameData.GetLocation(THIS_SCENE).labelName;
     }
 
     public void BuildCompaniesListButtons() {
@@ -90,17 +94,22 @@ public class Scene08 : Node2D
     public void OnDoneButtonClicked() {
         switch (_thisMenuState) {
         case MenuState.CompaniesList:
-            var node = GetNodeOrNull<InfoScene>("/root/RootScene/InfoScene");
-            if(node != null) {
-                node.DisableLocationsButtons(false);
-            }
-            QueueFree();
+            // var node = GetNodeOrNull<TravelPath>("/root/RootScene/TravelPath");        
+            // if(node != null) {
+            //     node.DisableLocationsButtons(false);
+            // }
+            // GetNode<Node2D>("../" + THIS_SCENE).ZIndex = -10;
             break;
         case MenuState.JobsList:
             RemoveButtons();
             BuildCompaniesListButtons();
             break;
         }
+        var node = GetNodeOrNull<TravelPath>("/root/RootScene/TravelPath");        
+        if(node != null) {
+            node.DisableLocationsButtons(false);
+        }
+        GetNode<Node2D>("../" + THIS_SCENE).ZIndex = 0;
     }
 
     
@@ -149,6 +158,7 @@ public class Scene08 : Node2D
                         } else {
                             infoLabelBox.Text = StaticStrings.gotTheJob;
                             GameData.getCurrentPlayer().job = job;
+                            EmitSignal(nameof(GotJob), job.jobName);
                         }
                     }
                     catch (NullReferenceException e) {

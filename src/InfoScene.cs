@@ -5,36 +5,27 @@ using Dwarf.GameDataObjects;
 
 
 
-public class InfoScene : Node
+public class InfoScene : Node2D
 {
     // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
 
-    private PackedScene _startValuesScene = (PackedScene)GD.Load("res://scenes/StartValuesScene.tscn");
-    private PackedScene _debugScene = (PackedScene)GD.Load("res://scenes/DebugScene.tscn");
-    private PackedScene _scene08 = (PackedScene)GD.Load("res://scenes/Scene08.tscn");
+    // private PackedScene _startValuesScene = (PackedScene)GD.Load("res://scenes/StartValuesScene.tscn");
+    // private PackedScene _debugScene = (PackedScene)GD.Load("res://scenes/DebugScene.tscn");
+    // private PackedScene _scene08 = (PackedScene)GD.Load("res://scenes/Scene08.tscn");
 
-    private ButtonGroup _buttonGroup = (ButtonGroup)GD.Load("res://res/LocationButtonResource.tres");
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        Node startValues = _startValuesScene.Instance();
-        Node debugScene = _debugScene.Instance();
+        GD.Print(this.GetType().Name + "._Ready()");
+        // Node startValues = _startValuesScene.Instance();
+        // Node debugScene = _debugScene.Instance();
         // Node storeScreenPlaceholder = _storeScreenPlaceholder.Instance();
-        Node scene08 = _scene08.Instance();
 
-        GetNode<CanvasLayer>("Background").AddChild(debugScene);
-        GetNode<CanvasLayer>("Background").AddChild(startValues);
-        // GetNode<CanvasLayer>("Background").AddChild(scene08);
-    }
-
-    public void DisableLocationsButtons(bool val) {
-        GD.Print("InfoScene.ChangeLocationsButtons()");
-        foreach(Button _b in _buttonGroup.GetButtons()) {
-            _b.Disabled = val;
-        }
+        // GetNode<CanvasLayer>("Background").AddChild(debugScene);
+        // GetNode<CanvasLayer>("Background").AddChild(startValues);
     }
 
     /*
@@ -47,27 +38,31 @@ public class InfoScene : Node
         
         var travelPath = GetNode<TravelPath>("/root/RootScene/TravelPath");
         
-        DisableLocationsButtons(true);
+        travelPath.DisableLocationsButtons(true);
 
         foreach(GameData.Location location in GameData.locations) {
             if(location.locationID == _locID) {
+                var debugScene = GetNodeOrNull<DebugScene>("DebugScene");
+                if (debugScene != null) {
+                    debugScene.SetProcess(false);
+                }
                 switch (_locID) {
-                case "01": GD.Print(location.labelName); break;
-                case "02": GD.Print(location.labelName); break;
-                case "03": GD.Print(location.labelName); break;
-                case "04": GD.Print(location.labelName); break;
-                case "05": GD.Print(location.labelName); break;
-                case "06": GD.Print(location.labelName); break;
-                case "07": GD.Print(location.labelName); break;
-                case "08": 
-                    GD.Print(location.labelName);
-                    GetNode<CanvasLayer>("Background").AddChild(_scene08.Instance());
+                case "Scene01": GD.Print("location.locationID: " + location.locationID); break;
+                case "Scene02": GD.Print("location.locationID: " + location.locationID); break;
+                case "Scene03": GD.Print("location.locationID: " + location.locationID); break;
+                case "Scene04": GD.Print("location.locationID: " + location.locationID); break;
+                case "Scene05": GD.Print("location.locationID: " + location.locationID); break;
+                case "Scene06": GD.Print("location.locationID: " + location.locationID); break;
+                case "Scene07": GD.Print("location.locationID: " + location.locationID); break;
+                case "Scene08": 
+                    GD.Print("location.locationID: " + location.locationID);
+                    GetNode<Node2D>("../InfoScene/" + location.locationID).ZIndex = 10;
                     break; 
-                case "09": GD.Print(location.labelName); break;
-                case "10": GD.Print(location.labelName); break;
-                case "11": GD.Print(location.labelName); break;
-                case "12": GD.Print(location.labelName); break;
-                case "13": GD.Print(location.labelName); break;
+                case "Scene09": GD.Print("location.locationID: " + location.locationID); break;
+                case "Scene10": GD.Print("location.locationID: " + location.locationID); break;
+                case "Scene11": GD.Print("location.locationID: " + location.locationID); break;
+                case "Scene12": GD.Print("location.locationID: " + location.locationID); break;
+                case "Scene13": GD.Print("location.locationID: " + location.locationID); break;
                 default: break;
                 }
             }

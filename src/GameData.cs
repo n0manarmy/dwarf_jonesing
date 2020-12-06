@@ -21,6 +21,7 @@ namespace Dwarf.GameDataObjects
         public static int baseEconValue = 10;
         public static int econMin = 5;
         public static int econMax = 20;
+        public static int BASE_STARTING_DIFFICULTY = 50;
 
         public static int BUTTON_CLICKED_ADD_TIME = 10;
 
@@ -57,7 +58,7 @@ namespace Dwarf.GameDataObjects
         private static List<Player> CreatePlayers() {
             return new List<Player>()
             {
-                new Player(1, 100, 100, 100, 100),
+                new Player(1, BASE_STARTING_DIFFICULTY, BASE_STARTING_DIFFICULTY, BASE_STARTING_DIFFICULTY, BASE_STARTING_DIFFICULTY),
             };
         }
 
@@ -159,19 +160,19 @@ namespace Dwarf.GameDataObjects
         private static List<Location> CreateLocations() {
             return new List<Location>()
             {
-                new Location("12", "LeSecurity",          "12_MoveButton", new Vector2(07, 09), new List<int>()),
-                new Location("11", "Market",              "11_MoveButton", new Vector2(10, 19), new List<int>(){1,2,3,4,5}),
-                new Location("10", "Bank",                "10_MoveButton", new Vector2(07, 30), new List<int>(){6,7,8,9,10}),
-                new Location("09", "Factory",             "09_MoveButton", new Vector2(16, 40), new List<int>(){11,12,13,14,15,16,17,18,19}),
-                new Location("08", "Employment",          "08_MoveButton", new Vector2(27, 40), new List<int>()),
-                new Location("07", "University",          "07_MoveButton", new Vector2(42, 43), new List<int>(){20,21,22}),
-                new Location("06", "Stone and Carpentry", "06_MoveButton", new Vector2(52, 41), new List<int>(){23,24,25}),
-                new Location("05", "Clothing",            "05_MoveButton", new Vector2(50, 29), new List<int>(){26,27,28}),
-                new Location("04", "Kitchen",             "04_MoveButton", new Vector2(59, 19), new List<int>(){29,30,31,32}),
-                new Location("03", "Crafts",              "03_MoveButton", new Vector2(52, 08), new List<int>(){33,34,35}),
-                new Location("02", "Pawn Shop",           "02_MoveButton", new Vector2(42, 09), new List<int>()),
-                new Location("01", "Dormitory",           "01_MoveButton", new Vector2(31, 08), new List<int>()),
-                new Location("13", "Rental Office",       "13_MoveButton", new Vector2(20, 09), new List<int>())
+                new Location("Scene12", "LeSecurity",          "12_MoveButton", new Vector2(07, 09), new List<int>()),
+                new Location("Scene11", "Market",              "11_MoveButton", new Vector2(10, 19), new List<int>(){1,2,3,4,5}),
+                new Location("Scene10", "Bank",                "10_MoveButton", new Vector2(07, 30), new List<int>(){6,7,8,9,10}),
+                new Location("Scene09", "Factory",             "09_MoveButton", new Vector2(16, 40), new List<int>(){11,12,13,14,15,16,17,18,19}),
+                new Location("Scene08", "Employment",          "08_MoveButton", new Vector2(27, 40), new List<int>()),
+                new Location("Scene07", "University",          "07_MoveButton", new Vector2(42, 43), new List<int>(){20,21,22}),
+                new Location("Scene06", "Stone and Carpentry", "06_MoveButton", new Vector2(52, 41), new List<int>(){23,24,25}),
+                new Location("Scene05", "Clothing",            "05_MoveButton", new Vector2(50, 29), new List<int>(){26,27,28}),
+                new Location("Scene04", "Kitchen",             "04_MoveButton", new Vector2(59, 19), new List<int>(){29,30,31,32}),
+                new Location("Scene03", "Crafts",              "03_MoveButton", new Vector2(52, 08), new List<int>(){33,34,35}),
+                new Location("Scene02", "Pawn Shop",           "02_MoveButton", new Vector2(42, 09), new List<int>()),
+                new Location("Scene01", "Dormitory",           "01_MoveButton", new Vector2(31, 08), new List<int>()),
+                new Location("Scene13", "Rental Office",       "13_MoveButton", new Vector2(20, 09), new List<int>())
             };
         }
 
