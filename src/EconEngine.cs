@@ -37,10 +37,10 @@ public class EconEngine : Node
         return results;
     }
 
-    public static List<GameData.Location> SetJobAvailability(List<GameData.Location> locations) {
+    public static List<Location> SetJobAvailability(List<Location> locations) {
         var rng = new RandomNumberGenerator();
 
-        foreach(GameData.Job job in GameData.jobs) {
+        foreach(Job job in GameData.jobs) {
             if (rng.RandiRange(1, 4) > 1) {
                 job.available = true;
             } else {
@@ -52,9 +52,9 @@ public class EconEngine : Node
     }
 
     //iterate and adjust salaries
-    public static List<GameData.Location> AdjustJobSalaries(List<GameData.Location> locations) {
+    public static List<Location> AdjustJobSalaries(List<Location> locations) {
         var rng = new RandomNumberGenerator();
-        foreach(GameData.Job job in GameData.jobs) {
+        foreach(Job job in GameData.jobs) {
             double tempWage = job.baseWage * ((double) GameData.baseEconValue / 10);
             // GD.Print("AdjustJobSalaries tempWage: " + tempWage);
             job.baseWage = tempWage;

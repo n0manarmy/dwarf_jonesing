@@ -41,7 +41,7 @@ public class LocationEntryArea2D : Area2D
             GD.Print("OnArea2DBodyEntered._locID: " + _locID);
 
             // iterate over locations and when we find our location, move the player inside the building
-            foreach(GameData.Location loc in GameData.locations) {
+            foreach(Location loc in GameData.locations) {
                 if(loc.locationID == _locID) {
                     _player.Position = _travelPath.MapToWorld(loc.getInsideBuildingLocation());
                     break;

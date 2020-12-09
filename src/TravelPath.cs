@@ -40,7 +40,7 @@ public class TravelPath : Node
 
         foreach (Button button in buttons.GetChildren()) {
             if (button.Pressed == true) {
-                foreach (GameData.Location location in GameData.locations) {
+                foreach (Location location in GameData.locations) {
                     if (button.Name == location.buttonName) {
                         GD.Print(location.buttonName);
                         GD.Print(location.labelName);

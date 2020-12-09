@@ -19,6 +19,7 @@
     <Compile Include="src\ScoringEngine.cs" />
     <Compile Include="src\EconEngine.cs" />
     <Compile Include="src\Scene08.cs" />
+    <Compile Include="src\Scene01.cs" />
     <Compile Include="src\Character.cs" />
     <Compile Include="src\FollowRoad.cs" />
     <Compile Include="src\GameData.cs" />
@@ -27,7 +28,7 @@
     <Compile Include="src\LocationScene.cs" />
     <Compile Include="src\RootScene.cs" />
     <Compile Include="src\DebugScene.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <!--<Compile Include="Properties\AssemblyInfo.cs" />-->
     <Compile Include="src\StartValuesScene.cs" />
     <Compile Include="src\StaticStrings.cs" />
     <Compile Include="src\TimerEngine.cs" />

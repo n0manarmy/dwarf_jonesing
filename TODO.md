@@ -8,6 +8,7 @@
       * build base qualifications for jobs
         * 
 * Build a clock to show time
+* Tie DebugScene to palyer status in gamedata
 * Location
   * [CURRENT] Build the employment office menu. 
       * [DONE] Capture CollisionShape2D enter squares
@@ -21,4 +22,4 @@
     * add back button to restore previous screen
 
 # Bugs
-* Loading does not hide respective menus
+* <s>Loading does not hide respective menus</s>

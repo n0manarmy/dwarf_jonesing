@@ -34,7 +34,8 @@ public class DebugScene : Node2D
         GetNode<Label>(eatenValueNode).Text =               GameData.players[GameData.currentPlayer].eaten.ToString();
         GetNode<Label>(jobValue).Text =                     GameData.players[GameData.currentPlayer].job.jobName.ToString();
 
-        GetNode<Scene08>(StaticStrings.scene08).Connect("GotJob", this, nameof(UpdateJobLabel));
+
+        GetNode<GameData>(StaticStrings.gameData).Connect("JobChanged", this, nameof(UpdateJobLabel));
 
         GetNode<TimerEngine>(StaticStrings.timerEngine).Connect("RoundTimerUpdated", this, nameof(UpdateTimeUsedLabel));
 
@@ -71,7 +72,7 @@ public class DebugScene : Node2D
         GetNode<Label>(eatenValueNode).Text =               val.ToString();
     }
 
-    public void UpdateJob(GameData.Job job) {
+    public void UpdateJob(Job job) {
         GD.Print(this.GetType().Name + ".UpdateJob()");
         GetNode<Label>(jobValue).Text =                     job.jobName.ToString();
     }

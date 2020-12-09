@@ -13,7 +13,8 @@ public class InfoScene : Node2D
 
     // private PackedScene _startValuesScene = (PackedScene)GD.Load("res://scenes/StartValuesScene.tscn");
     // private PackedScene _debugScene = (PackedScene)GD.Load("res://scenes/DebugScene.tscn");
-    // private PackedScene _scene08 = (PackedScene)GD.Load("res://scenes/Scene08.tscn");
+    private PackedScene _scene08 = (PackedScene)GD.Load("res://scenes/Scene08.tscn");
+    private PackedScene _scene01 = (PackedScene)GD.Load("res://scenes/Scene01.tscn");
 
 
     // Called when the node enters the scene tree for the first time.
@@ -37,15 +38,12 @@ public class InfoScene : Node2D
         GD.Print("InfoScene.PresentLocationScene");
         
         var travelPath = GetNode<TravelPath>("/root/RootScene/TravelPath");
+        var infoScene = GetNode<Node2D>("../InfoScene");
         
         travelPath.DisableLocationsButtons(true);
 
-        foreach(GameData.Location location in GameData.locations) {
+        foreach(Location location in GameData.locations) {
             if(location.locationID == _locID) {
-                var debugScene = GetNodeOrNull<DebugScene>("DebugScene");
-                if (debugScene != null) {
-                    debugScene.SetProcess(false);
-                }
                 switch (_locID) {
                 case "Scene01": GD.Print("location.locationID: " + location.locationID); break;
                 case "Scene02": GD.Print("location.locationID: " + location.locationID); break;
@@ -56,7 +54,8 @@ public class InfoScene : Node2D
                 case "Scene07": GD.Print("location.locationID: " + location.locationID); break;
                 case "Scene08": 
                     GD.Print("location.locationID: " + location.locationID);
-                    GetNode<Node2D>("../InfoScene/" + location.locationID).ZIndex = 10;
+                    infoScene.AddChild(_scene08.Instance());
+                    // GetNode<Node2D>("../InfoScene/" + location.locationID).ZIndex = 3;
                     break; 
                 case "Scene09": GD.Print("location.locationID: " + location.locationID); break;
                 case "Scene10": GD.Print("location.locationID: " + location.locationID); break;

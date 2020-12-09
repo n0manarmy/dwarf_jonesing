@@ -3,10 +3,125 @@ using System;
 using System.Collections.Generic;
 
 namespace Dwarf.GameDataObjects 
-{
-    public class GameData : Node
+{   
+    public class Degree :Godot.Object 
     {
+        public int ID;
+        public String degreeName;
+        public int classCount;
 
+        public Degree(int ID, String name, int classCount) {
+            this.ID = ID;
+            this.degreeName = name;
+            this.classCount = classCount;
+        }
+    }
+
+    public class Location : Godot.Object
+    {
+        public String locationID;
+        public String labelName;
+        public String buttonName;
+        public Vector2 tileMapPos;
+        public List<int> jobIDs;
+
+        public Location(String locationID, String name, String buttonName, Vector2 pos, List<int> jobs) {
+            this.locationID = locationID;
+            this.labelName = name;
+            this.buttonName = buttonName;
+            this.tileMapPos = pos;
+            this.jobIDs = jobs;
+        }
+
+        public Vector2 getInsideBuildingLocation() {
+            return new Vector2(tileMapPos.x, tileMapPos.y - 3);
+        }
+    }
+
+    // public class Player : Godot.Object
+    // {   
+    //     public int pos;
+    //     public Job job = GameData.jobs[0];
+    //     public int workExp = 0;
+    //     public bool eaten = false;
+    //     public int happinessScore = 0;
+    //     public int maxHappinessScore = 0;
+    //     public int wealthScore = 0;
+    //     public int maxWealthScore = 0;
+    //     public int jobScore = 0;
+    //     public int maxJobScore = 0;
+    //     public int educationScore = 0;
+    //     public int maxEducationScore = 0;
+    //     public List<Degree> playerDegrees = new List<Degree>();
+
+    //     public Player(int pos, int maxHappinessScore, int maxWealthScore, int maxJobScore, int maxEducationScore) {
+    //         this.pos = pos;
+    //         this.maxHappinessScore = maxHappinessScore;
+    //         this.maxWealthScore = maxWealthScore;
+    //         this.maxJobScore = maxJobScore;
+    //         this.maxEducationScore = maxEducationScore;
+    //         this.playerDegrees.Add(GameData.degrees[0]);
+    //     }
+
+    //     public void SetJob(Job job) {
+    //         this.job = job;
+    //         EmitSignal(nameof(JobChanged), job.jobName);
+    //     }
+    // }
+
+    //TODO Consider base wage as a base value multiplied by the economic value for the current salary,
+    //instead of actual wages. Base salary X economic factor being x * y where y a min/max range
+    public class Job : Godot.Object {
+        public int ID;
+        public String jobName;
+        public double baseWage;
+        public Degree requiredDegree;
+        public int expRequired;
+        public bool available;
+
+        public Job(int ID, String name, double baseWage, Degree requiredDegree, int expRequired, bool available) {
+            this.ID = ID;
+            this.jobName = name;
+            this.baseWage = baseWage;
+            this.requiredDegree = requiredDegree;
+            this.expRequired = expRequired;
+            this.available = available;
+        }
+
+        public Job(String[] values) {
+            this.ID =               System.Convert.ToInt32(values[0]);
+            this.jobName =          values[1];
+            this.baseWage =         System.Convert.ToDouble(values[2]);
+            this.requiredDegree =   GameData.GetDegreeByID(values[3]);
+            this.expRequired =      System.Convert.ToInt32(values[4]);
+            this.available =        System.Convert.ToBoolean(values[5]);
+        }
+
+
+        public String GetJobDataForSplit() {
+            return 
+                this.jobName + "|" + 
+                this.baseWage.ToString()+ "|" +
+                this.requiredDegree.ID.ToString()+ "|" +
+                this.expRequired.ToString()+ "|" +
+                this.available.ToString(); 
+        }
+
+        public override string ToString() {
+            return 
+                "jobName: " + this.jobName +
+                "\nbaseWage: " + this.baseWage.ToString() +
+                "\nrequiredDegree.ID: " + this.requiredDegree.ID.ToString() +
+                "\nexpRequired: " + this.expRequired.ToString() +
+                "\navailable: " + this.available.ToString();
+        }
+    }
+
+    public class GameData : Node2D
+    {
+        [Signal]
+        public delegate void JobChanged(String jobName);
+        
         public static int rounds = 0;
 
         public static int totalTime = 500;
@@ -25,14 +140,19 @@ namespace Dwarf.GameDataObjects
 
         public static int BUTTON_CLICKED_ADD_TIME = 10;
 
-        // public static ButtonGroup locationButtonGroup = InitButtonGroup();
-
         public static int totalGameRounds = 0;
 
-        public class Player
-        {
+        private static List<Player> CreatePlayers() {
+            return new List<Player>()
+            {
+                new Player(1, BASE_STARTING_DIFFICULTY, BASE_STARTING_DIFFICULTY, BASE_STARTING_DIFFICULTY, BASE_STARTING_DIFFICULTY),
+            };
+        }
+
+        public class Player : Godot.Object
+        {   
             public int pos;
-            public Job job = jobs[0];
+            public Job job = GameData.jobs[0];
             public int workExp = 0;
             public bool eaten = false;
             public int happinessScore = 0;
@@ -51,49 +171,17 @@ namespace Dwarf.GameDataObjects
                 this.maxWealthScore = maxWealthScore;
                 this.maxJobScore = maxJobScore;
                 this.maxEducationScore = maxEducationScore;
-                this.playerDegrees.Add(degrees[0]);
+                this.playerDegrees.Add(GameData.degrees[0]);
             }
-        }
 
-        private static List<Player> CreatePlayers() {
-            return new List<Player>()
-            {
-                new Player(1, BASE_STARTING_DIFFICULTY, BASE_STARTING_DIFFICULTY, BASE_STARTING_DIFFICULTY, BASE_STARTING_DIFFICULTY),
-            };
+            public void SetJob(Job job) {
+                this.job = job;
+                EmitSignal(nameof(JobChanged), job.jobName);
+            }
         }
 
         public static Player getCurrentPlayer() {
             return GameData.players[currentPlayer];
-        }
-
-        // private static void CreatePlayerQueue(int count) {
-        //     for(int x = 0; x < count; x++) {
-                
-        //     players = new List<Player>()
-        //     {
-        //         new Player(1, 100, 100, 100, 100),
-        //     };
-        // }
-
-        public class Location
-        {
-            public String locationID;
-            public String labelName;
-            public String buttonName;
-            public Vector2 tileMapPos;
-            public List<int> jobIDs;
-
-            public Location(String locationID, String name, String buttonName, Vector2 pos, List<int> jobs) {
-                this.locationID = locationID;
-                this.labelName = name;
-                this.buttonName = buttonName;
-                this.tileMapPos = pos;
-                this.jobIDs = jobs;
-            }
-
-            public Vector2 getInsideBuildingLocation() {
-                return new Vector2(tileMapPos.x, tileMapPos.y - 3);
-            }
         }
 
         public static Location GetLocation(String _locationID) {
@@ -103,58 +191,6 @@ namespace Dwarf.GameDataObjects
                 }
             }
             return null;
-        }
-
-        //TODO Consider base wage as a base value multiplied by the economic value for the current salary,
-        //instead of actual wages. Base salary X economic factor being x * y where y a min/max range
-        public class Job : Godot.Object {
-            public int ID;
-            public String jobName;
-            public double baseWage;
-            public Degree requiredDegree;
-            public int expRequired;
-            public bool available;
-
-            public Job(int ID, String name, double baseWage, Degree requiredDegree, int expRequired, bool available) {
-                this.ID = ID;
-                this.jobName = name;
-                this.baseWage = baseWage;
-                this.requiredDegree = requiredDegree;
-                this.expRequired = expRequired;
-                this.available = available;
-            }
-
-            public Job(String[] values) {
-                this.ID =               System.Convert.ToInt32(values[0]);
-                this.jobName =          values[1];
-                this.baseWage =         System.Convert.ToDouble(values[2]);
-                this.requiredDegree =   GetDegreeByID(values[3]);
-                this.expRequired =      System.Convert.ToInt32(values[4]);
-                this.available =        System.Convert.ToBoolean(values[5]);
-            }
-
-            // public String[] GetJobStringArray() {
-            //     String[] values = new String[jobName, baseWage.ToString(), requiredDegree.ID.ToString(), experienceLevel.ToString(), available.ToString()]; 
-            //     return new String[0];
-            // }
-
-            public String GetJobDataForSplit() {
-                return 
-                    this.jobName + "|" + 
-                    this.baseWage.ToString()+ "|" +
-                    this.requiredDegree.ID.ToString()+ "|" +
-                    this.expRequired.ToString()+ "|" +
-                    this.available.ToString(); 
-            }
-
-            public override string ToString() {
-                return 
-                    "jobName: " + this.jobName +
-                    "\nbaseWage: " + this.baseWage.ToString() +
-                    "\nrequiredDegree.ID: " + this.requiredDegree.ID.ToString() +
-                    "\nexpRequired: " + this.expRequired.ToString() +
-                    "\navailable: " + this.available.ToString();
-            }
         }
 
         private static List<Location> CreateLocations() {
@@ -287,18 +323,6 @@ namespace Dwarf.GameDataObjects
                 new Job(34, "Assistant Manager",    04.0, degrees[1],   10, false),
                 new Job(35, "Manager",              05.0, degrees[3],   20, false)
             };
-        }
-
-        public class Degree {
-            public int ID;
-            public String degreeName;
-            public int classCount;
-
-            public Degree(int ID, String name, int classCount) {
-                this.ID = ID;
-                this.degreeName = name;
-                this.classCount = classCount;
-            }
         }
 
         private static List<Degree> CreateDegrees() {

@@ -10,13 +10,10 @@ using Dwarf.StaticStrings;
 //by this class.
 public class Scene08 : Node2D
 {
-    private String THIS_SCENE = "Scene01";
+    private String THIS_SCENE = "Scene08";
 
     [Signal]
     public delegate void JobClicked(Godot.Collections.Array job);
-
-    [Signal]
-    public delegate void GotJob();
 
     enum MenuState {
         CompaniesList,
@@ -28,20 +25,24 @@ public class Scene08 : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        GD.Print(this.Name + "._Ready");
         BuildSceneDetails();
         BuildCompaniesListButtons(); 
     }
 
     public void BuildSceneDetails() {
+        GD.Print(this.Name + ".BuildSceneDetails");
         GetNode<Label>("TextBackground/NameLabel").Text = GameData.GetLocation(THIS_SCENE).labelName;
     }
 
     public void BuildCompaniesListButtons() {
+        GD.Print(this.Name + ".BuildCompaniesListButtons");
+
         _thisMenuState = MenuState.CompaniesList;
         var _jobsButtonNode = GetNode<VBoxContainer>("TextBackground/JobsButtonContainer");
-        List<GameData.Location> _jobLocations = new List<GameData.Location>();
+        List<Location> _jobLocations = new List<Location>();
 
-        foreach(GameData.Location location in GameData.locations) {
+        foreach(Location location in GameData.locations) {
             if(location.jobIDs.Count > 0) {
                 Button button = new Button();
                 button.Text = location.labelName;
@@ -53,11 +54,13 @@ public class Scene08 : Node2D
         }
     }
 
-    public void BuildJobsButtons(GameData.Location location) {
+    public void BuildJobsButtons(Location location) {
+        GD.Print(this.Name + ".BuildJobsButtons");
+
         _thisMenuState = MenuState.JobsList;
         RemoveButtons();
 
-        List<GameData.Location> _jobLocations = new List<GameData.Location>();
+        List<Location> _jobLocations = new List<Location>();
         var _jobsButtonNode = GetNode<VBoxContainer>("TextBackground/JobsButtonContainer");
         foreach(int id in location.jobIDs) {
             if(location.jobIDs.Contains(id)) {
@@ -83,6 +86,8 @@ public class Scene08 : Node2D
     }
 
     public void RemoveButtons() {
+        GD.Print(this.Name + ".RemoveButtons");
+
         var buttons = GetNodeOrNull<VBoxContainer>("TextBackground/JobsButtonContainer");
         if (buttons != null) {
             foreach(Button button in buttons.GetChildren()) {
@@ -92,6 +97,8 @@ public class Scene08 : Node2D
     }
 
     public void OnDoneButtonClicked() {
+        GD.Print(this.Name + ".OnDoneButtonClicked");
+
         switch (_thisMenuState) {
         case MenuState.CompaniesList:
             // var node = GetNodeOrNull<TravelPath>("/root/RootScene/TravelPath");        
@@ -105,21 +112,22 @@ public class Scene08 : Node2D
             BuildCompaniesListButtons();
             break;
         }
-        var node = GetNodeOrNull<TravelPath>("/root/RootScene/TravelPath");        
-        if(node != null) {
-            node.DisableLocationsButtons(false);
-        }
-        GetNode<Node2D>("../" + THIS_SCENE).ZIndex = 0;
+        // var node = GetNodeOrNull<TravelPath>("/root/RootScene/TravelPath");        
+        // if(node != null) {
+        //     node.DisableLocationsButtons(false);
+        // }
+        // GetNode<Node2D>("../" + THIS_SCENE).ZIndex = 0;
+        QueueFree();
     }
 
     
     public void OnJobLocationNamePressed() {
-        GD.Print("Scene08.OnJobNamePressed");
+        GD.Print(this.Name + ".OnJobLocationNamePressed");
 
         var buttons = GetNode<VBoxContainer>("TextBackground/JobsButtonContainer");
         foreach (Button button in buttons.GetChildren()) {
             if (button.Pressed == true) {
-                foreach (GameData.Location location in GameData.locations) {
+                foreach (Location location in GameData.locations) {
                     if(location.locationID == button.Name) {
                         BuildJobsButtons(location);
                     }
@@ -129,7 +137,7 @@ public class Scene08 : Node2D
     }
 
     public void OnJobNamePressed() {
-        GD.Print("OnJobNamePressed");
+        GD.Print(this.Name + ".OnJobNamePressed");
 
         var buttons = GetNode<VBoxContainer>("TextBackground/JobsButtonContainer");
         var infoLabelBox = GetNode<Label>("TextBackground/InfoLabelBox");
@@ -157,8 +165,7 @@ public class Scene08 : Node2D
                             infoLabelBox.Text = StaticStrings.notEnoughExperience;
                         } else {
                             infoLabelBox.Text = StaticStrings.gotTheJob;
-                            GameData.getCurrentPlayer().job = job;
-                            EmitSignal(nameof(GotJob), job.jobName);
+                            GameData.getCurrentPlayer().SetJob(job);
                         }
                     }
                     catch (NullReferenceException e) {
@@ -168,11 +175,5 @@ public class Scene08 : Node2D
             }
         }
     }
-    
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
 }
