@@ -221,8 +221,8 @@ margin_left = 402.0
 margin_right = 448.0
 margin_bottom = 20.0
 text = "Done"
-[connection signal="value_changed" from="VBoxContainer/HBoxSliderContainer/HBoxWealthContainer/WealthSlider" to="." method="CallUpdateGoalsValue"]
-[connection signal="value_changed" from="VBoxContainer/HBoxSliderContainer/HBoxHappinessContainer/HappinessSlider" to="." method="CallUpdateGoalsValue"]
-[connection signal="value_changed" from="VBoxContainer/HBoxSliderContainer/HBoxEducationContainer/EducationSlider" to="." method="CallUpdateGoalsValue"]
-[connection signal="value_changed" from="VBoxContainer/HBoxSliderContainer/HBoxJobContainer/JobSlider" to="." method="CallUpdateGoalsValue"]
+[connection signal="value_changed" from="VBoxContainer/HBoxSliderContainer/HBoxWealthContainer/WealthSlider" to="." method="SliderValueChanged"]
+[connection signal="value_changed" from="VBoxContainer/HBoxSliderContainer/HBoxHappinessContainer/HappinessSlider" to="." method="SliderValueChanged"]
+[connection signal="value_changed" from="VBoxContainer/HBoxSliderContainer/HBoxEducationContainer/EducationSlider" to="." method="SliderValueChanged"]
+[connection signal="value_changed" from="VBoxContainer/HBoxSliderContainer/HBoxJobContainer/JobSlider" to="." method="SliderValueChanged"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/DoneButton" to="." method="OnDoneClicked"]

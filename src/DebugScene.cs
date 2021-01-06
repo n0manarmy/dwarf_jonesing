@@ -1,7 +1,5 @@
 using Godot;
 using System;
-using Dwarf.GameDataObjects;
-using Dwarf.StaticStrings;
 
 public class DebugScene : Node2D
 {
@@ -29,37 +27,36 @@ public class DebugScene : Node2D
     public override void _Ready()
     {
         GD.Print(this.GetType().Name + "._Ready()");
-        GetNode<Label>(totalTimeValueNode).Text =           GameData.totalTime.ToString();
-        GetNode<Label>(timeUsedValueNode).Text =            GameData.currentTime.ToString();
-        GetNode<Label>(eatenValueNode).Text =               GameData.players[GameData.currentPlayer].eaten.ToString();
-        GetNode<Label>(jobValue).Text =                     GameData.players[GameData.currentPlayer].job.jobName.ToString();
+        // GetNode<Label>(totalTimeValueNode).Text =           GameData.totalTime.ToString();
+        // GetNode<Label>(timeUsedValueNode).Text =            GameData.currentTime.ToString();
+        // GetNode<Label>(eatenValueNode).Text =               GameData.players[GameData.currentPlayer].eaten.ToString();
+        // GetNode<Label>(jobValue).Text =                     GameData.players[GameData.currentPlayer].job.jobName.ToString();
 
+        // GetNode<GameData>(StaticStrings.scene08).Connect("JobChanged", this, nameof(UpdateJobLabel));
 
-        GetNode<GameData>(StaticStrings.gameData).Connect("JobChanged", this, nameof(UpdateJobLabel));
+        GetNode<TimerEngine>("../TimerEngine").Connect("RoundTimerUpdated", this, nameof(UpdateTimeUsedLabel));
 
-        GetNode<TimerEngine>(StaticStrings.timerEngine).Connect("RoundTimerUpdated", this, nameof(UpdateTimeUsedLabel));
+        GetNode<ScoringEngine>("../ScoringEngine").Connect("JobScoreUpdated", this, nameof(UpdateJobScore));
+        GetNode<ScoringEngine>("../ScoringEngine").Connect("EducationScoreUpdated", this, nameof(UpdateEducationScore));
+        GetNode<ScoringEngine>("../ScoringEngine").Connect("HappinessScoreUpdated", this, nameof(UpdateHappinessScore));
+        GetNode<ScoringEngine>("../ScoringEngine").Connect("WealthScoreUpdated", this, nameof(UpdateWealthScore));
 
-        GetNode<ScoringEngine>(StaticStrings.scoringEngine).Connect("JobScoreUpdated", this, nameof(UpdateJobScore));
-        GetNode<ScoringEngine>(StaticStrings.scoringEngine).Connect("EducationScoreUpdated", this, nameof(UpdateEducationScore));
-        GetNode<ScoringEngine>(StaticStrings.scoringEngine).Connect("HappinessScoreUpdated", this, nameof(UpdateHappinessScore));
-        GetNode<ScoringEngine>(StaticStrings.scoringEngine).Connect("WealthScoreUpdated", this, nameof(UpdateWealthScore));
-
-        GetNode<ScoringEngine>(StaticStrings.scoringEngine).Connect("MaxJobScoreUpdated", this, nameof(UpdateJobMaxScore));
-        GetNode<ScoringEngine>(StaticStrings.scoringEngine).Connect("MaxEducationScoreUpdated", this, nameof(UpdateEducationMaxScore));
-        GetNode<ScoringEngine>(StaticStrings.scoringEngine).Connect("MaxHappinessScoreUpdated", this, nameof(UpdateHappinessMaxScore));
-        GetNode<ScoringEngine>(StaticStrings.scoringEngine).Connect("MaxWealthScoreUpdated", this, nameof(UpdateWealthMaxScore));
+        GetNode<ScoringEngine>("../ScoringEngine").Connect("MaxJobScoreUpdated", this, nameof(UpdateJobMaxScore));
+        GetNode<ScoringEngine>("../ScoringEngine").Connect("MaxEducationScoreUpdated", this, nameof(UpdateEducationMaxScore));
+        GetNode<ScoringEngine>("../ScoringEngine").Connect("MaxHappinessScoreUpdated", this, nameof(UpdateHappinessMaxScore));
+        GetNode<ScoringEngine>("../ScoringEngine").Connect("MaxWealthScoreUpdated", this, nameof(UpdateWealthMaxScore));
 
         
-        var scoringEngine = GetNode<ScoringEngine>(StaticStrings.scoringEngine);
+        var scoringEngine = GetNode<ScoringEngine>("../ScoringEngine");
         // scoringEngine.SetMaxJobScore(GameData.currentPlayer, GameData.players[GameData.currentPlayer].maxJobScore);
         // scoringEngine.SetMaxWealthScore(GameData.currentPlayer, GameData.players[GameData.currentPlayer].maxWealthScore);
         // scoringEngine.SetMaxEducationScore(GameData.currentPlayer, GameData.players[GameData.currentPlayer].maxEducationScore);
         // scoringEngine.SetMaxHappinessScore(GameData.currentPlayer, GameData.players[GameData.currentPlayer].maxHappinessScore);
 
-        scoringEngine.SetMaxJobScore(GameData.currentPlayer,        GameData.BASE_STARTING_DIFFICULTY);
-        scoringEngine.SetMaxWealthScore(GameData.currentPlayer,     GameData.BASE_STARTING_DIFFICULTY);
-        scoringEngine.SetMaxEducationScore(GameData.currentPlayer,  GameData.BASE_STARTING_DIFFICULTY);
-        scoringEngine.SetMaxHappinessScore(GameData.currentPlayer,  GameData.BASE_STARTING_DIFFICULTY);
+        // scoringEngine.SetMaxJobScore(GameData.currentPlayer,        GameData.BASE_STARTING_DIFFICULTY);
+        // scoringEngine.SetMaxWealthScore(GameData.currentPlayer,     GameData.BASE_STARTING_DIFFICULTY);
+        // scoringEngine.SetMaxEducationScore(GameData.currentPlayer,  GameData.BASE_STARTING_DIFFICULTY);
+        // scoringEngine.SetMaxHappinessScore(GameData.currentPlayer,  GameData.BASE_STARTING_DIFFICULTY);
     }
 
     public void UpdateJobLabel(String job) {
@@ -72,10 +69,10 @@ public class DebugScene : Node2D
         GetNode<Label>(eatenValueNode).Text =               val.ToString();
     }
 
-    public void UpdateJob(Job job) {
-        GD.Print(this.GetType().Name + ".UpdateJob()");
-        GetNode<Label>(jobValue).Text =                     job.jobName.ToString();
-    }
+    // public void UpdateJob(Job job) {
+    //     GD.Print(this.GetType().Name + ".UpdateJob()");
+    //     GetNode<Label>(jobValue).Text =                     job.jobName.ToString();
+    // }
 
     public void UpdateHappinessScore(int val) {
         GD.Print(this.GetType().Name + ".UpdateHappinessScore()");
@@ -117,10 +114,10 @@ public class DebugScene : Node2D
         GetNode<Label>(maxEducationScoreValue).Text =          val.ToString();
     }
 
-    public void UpdateValues() {
-        GD.Print(this.GetType().Name + ".UpdateValues()");
-        GetNode<Label>(totalTimeValueNode).Text =           GameData.totalTime.ToString();
-    }
+    // public void UpdateValues() {
+    //     GD.Print(this.GetType().Name + ".UpdateValues()");
+    //     GetNode<Label>(totalTimeValueNode).Text =           GameData.totalTime.ToString();
+    // }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     // public override void _Process(float delta)

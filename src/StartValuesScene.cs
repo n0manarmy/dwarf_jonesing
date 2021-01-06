@@ -11,40 +11,35 @@ public class StartValuesScene : Node2D
     [Signal]
     public delegate void GoalsValuesDone();
 
-    private static String startingValuesNodeName =      "";
     private static String vboxContainerName =           "VBoxContainer/";
     private static String hboxGoalsContainerName =      "HBoxGoalsLabelContainer/";
     private static String hboxSliderContainerName =     "HBoxSliderContainer/";
 
-    private static String goalsValue = startingValuesNodeName + 
-        vboxContainerName + 
+    private static String goalsValue = vboxContainerName + 
         "HBoxGoalsLabelContainer/GoalsValue";
 
-    private static String wealthSlider = startingValuesNodeName + 
-        vboxContainerName + 
+    private static String wealthSlider = vboxContainerName + 
         hboxSliderContainerName + "HBoxWealthContainer/WealthSlider";
 
-    private static String happinessSlider = startingValuesNodeName + 
-        vboxContainerName + 
+    private static String happinessSlider = vboxContainerName + 
         hboxSliderContainerName + "HBoxHappinessContainer/HappinessSlider";
     
-    private static String educationSlider = startingValuesNodeName + 
-        vboxContainerName + 
+    private static String educationSlider = vboxContainerName + 
         hboxSliderContainerName + "HBoxEducationContainer/EducationSlider";
 
-    private static String jobSlider = startingValuesNodeName + 
-        vboxContainerName + 
+    private static String jobSlider = vboxContainerName + 
         hboxSliderContainerName + "HBoxJobContainer/JobSlider";
 
     /* 
     Required because slider connection passes a float value. Not doing any thing with float value but need
     to have the sliders pass their value to the label showing the total score.
     */
-    public void CallUpdateGoalsValue(float x) {
+    public void SliderValueChanged(float x) {
         // GetNode<ScoringEngine>(StaticStrings.scoringEngine).SetMaxWealthScore(GameData.currentPlayer, (int) GetNode<Slider>(wealthSlider).Value);
         // GetNode<ScoringEngine>(StaticStrings.scoringEngine).SetMaxJobScore(GameData.currentPlayer, (int) GetNode<Slider>(jobSlider).Value);
         // GetNode<ScoringEngine>(StaticStrings.scoringEngine).SetMaxEducationScore(GameData.currentPlayer, (int) GetNode<Slider>(educationSlider).Value);
         // GetNode<ScoringEngine>(StaticStrings.scoringEngine).SetMaxHappinessScore(GameData.currentPlayer, (int) GetNode<Slider>(happinessSlider).Value);
+        UpdateGoalsValue();
         EmitSignal(nameof(GoalsValueUpdated));
     }
     
@@ -63,21 +58,22 @@ public class StartValuesScene : Node2D
         //     _b.Disabled = false;
         // }
 
-        var scoringEngine = GetNodeOrNull<ScoringEngine>(StaticStrings.scoringEngine);
-        if (scoringEngine != null) {
-            scoringEngine.UpdateJobScore(GameData.currentPlayer, 0);
-            scoringEngine.UpdateWealthScore(GameData.currentPlayer, 0);
-            scoringEngine.UpdateEducationScore(GameData.currentPlayer, 0);
-            scoringEngine.UpdateHappinessScore(GameData.currentPlayer, 0);
-        }
+        // var scoringEngine = GetNodeOrNull<ScoringEngine>(StaticStrings.scoringEngine);
+        // if (scoringEngine != null) {
+        //     scoringEngine.UpdateJobScore(GameData.currentPlayer, 0);
+        //     scoringEngine.UpdateWealthScore(GameData.currentPlayer, 0);
+        //     scoringEngine.UpdateEducationScore(GameData.currentPlayer, 0);
+        //     scoringEngine.UpdateHappinessScore(GameData.currentPlayer, 0);
+        // }
 
-        GameData.rounds += 1;
-        GameData.UpdateEconomy();
+        // GameData.rounds += 1;
+        // GameData.UpdateEconomy();
 
-        var travelPath = GetNodeOrNull<TravelPath>("../TravelPath");
-        if(travelPath != null) {
-            travelPath.DisableLocationsButtons(false);
-        }
+        // var travelPath = GetNodeOrNull<TravelPath>("../TravelPath");
+        // if(travelPath != null) {
+        //     travelPath.DisableLocationsButtons(false);
+        // }
+        
         
         EmitSignal(nameof(GoalsValuesDone));
         // GetNode<DebugScene>(StaticStrings.debugScene)._Ready();

@@ -2,12 +2,15 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using Dwarf.GameDataObjects;
-using Dwarf.StaticStrings;
 
 //TODO - Build Job button to check experience, availability, and education
 //#About
 //This class is the jobs class. The jobs listing and availability are controlled
 //by this class.
+
+[Signal]
+public delegate void SceneDoneClicked();
+
 public class Scene01 : Node2D
 {
     private String THIS_SCENE = "Scene01";
@@ -23,12 +26,13 @@ public class Scene01 : Node2D
     }
 
     public void OnDoneButtonClicked() {
-        var node = GetNodeOrNull<TravelPath>("/root/RootScene/TravelPath");        
+        var node = GetNodeOrNull<TravelPath>("TravelPath");        
         if(node != null) {
             node.DisableLocationsButtons(false);
         }
         GetNode<Node2D>("../" + THIS_SCENE).ZIndex = 0;
-    }    
+        QueueFree();
+    }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)

@@ -15,6 +15,9 @@ public class Scene08 : Node2D
     [Signal]
     public delegate void JobClicked(Godot.Collections.Array job);
 
+    [Signal]
+    public delegate void JobChanged(String jobName);
+
     enum MenuState {
         CompaniesList,
         JobsList,
@@ -166,6 +169,7 @@ public class Scene08 : Node2D
                         } else {
                             infoLabelBox.Text = StaticStrings.gotTheJob;
                             GameData.getCurrentPlayer().SetJob(job);
+                            EmitSignal(nameof(JobChanged), job.jobName);
                         }
                     }
                     catch (NullReferenceException e) {

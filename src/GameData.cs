@@ -119,9 +119,6 @@ namespace Dwarf.GameDataObjects
 
     public class GameData : Node2D
     {
-        [Signal]
-        public delegate void JobChanged(String jobName);
-        
         public static int rounds = 0;
 
         public static int totalTime = 500;
@@ -176,7 +173,6 @@ namespace Dwarf.GameDataObjects
 
             public void SetJob(Job job) {
                 this.job = job;
-                EmitSignal(nameof(JobChanged), job.jobName);
             }
         }
 
@@ -212,80 +208,10 @@ namespace Dwarf.GameDataObjects
             };
         }
 
-        // private static List<Location> CreateLocations() {
-        //     return new List<Location>()
-        //     {
-        //         new Location("12", "LeSecurity",          "12_MoveButton", new Vector2(07, 09), new List<Job>()),
-        //         new Location("11", "Market",              "11_MoveButton", new Vector2(10, 19), new List<Job>()
-        //         {
-        //             new Job("Janitor",              04.0, degrees[0],   00, false),
-        //             new Job("Checker",              07.0, degrees[0],   05, false),
-        //             new Job("Butcher",              10.0, degrees[0],   10, false),
-        //             new Job("Assistant Manager",    14.0, degrees[1],   15, false),
-        //             new Job("Manager",              17.0, degrees[2],   20, false),
-        //         }),
-        //         new Location("10", "Bank",                "10_MoveButton", new Vector2(07, 30), new List<Job>()
-        //         {
-        //             new Job("Janitor",              05.0, degrees[0],   00, false),
-        //             new Job("Teller",               09.0, degrees[0],   05, false),
-        //             new Job("Assistant Manager",    12.0, degrees[1],   10, false),
-        //             new Job("Manager",              18.0, degrees[3],   15, false),
-        //             new Job("Investment Broker",    20.0, degrees[8],   20, false),
-        //         }),
-        //         //TODO Set experience multiplyer for here on down
-        //         new Location("09", "Factory",             "09_MoveButton", new Vector2(16, 40), new List<Job>()
-        //         {
-        //             new Job("Janitor",              07.0, degrees[0],   00, false),
-        //             new Job("Assembly Worker",      07.0, degrees[2],   05, false),
-        //             new Job("Secretary",            08.0, degrees[3],   10, false),
-        //             new Job("Machinist's Helper",   09.0, degrees[4],   15, false),
-        //             new Job("Executive Secretary",  17.0, degrees[3],   20, false),
-        //             new Job("Machinist",            18.0, degrees[6],   25, false),
-        //             new Job("Department Manager",   20.0, degrees[3],   30, false),
-        //             new Job("Engineer",             21.0, degrees[6],   35, false),
-        //             new Job("General Manager",      23.0, degrees[6],   40, false),
-        //         }),
-        //         new Location("08", "Employment",          "08_MoveButton", new Vector2(27, 40), new List<Job>()),
-        //         new Location("07", "University",          "07_MoveButton", new Vector2(42, 43), new List<Job>()
-        //         {
-        //             new Job("Janitor",              03.0, degrees[0],   00, false),
-        //             new Job("Teacher",              09.0, degrees[7],   10, false),
-        //             new Job("Professor",            19.0, degrees[9],   20, false),
-        //         }),
-        //         new Location("06", "Stone and Carpentry", "06_MoveButton", new Vector2(52, 41), new List<Job>()
-        //         {
-        //             new Job("Salesperson",          04.0, degrees[1],   00, false),
-        //             new Job("Electronic's Repair",  09.0, degrees[4],   10, false),
-        //             new Job("Manager",              12.0, degrees[3],   20, false),
-        //         }),
-        //         new Location("05", "Clothing",            "05_MoveButton", new Vector2(50, 29), new List<Job>()
-        //         {
-        //             new Job("Salesperson",          06.0, degrees[0],   00, false),
-        //             new Job("Assistant Manager",    08.0, degrees[1],   10, false),
-        //             new Job("Manager",              10.0, degrees[3],   20, false),
-        //         }),
-        //         new Location("04", "Kitchen",             "04_MoveButton", new Vector2(59, 19), new List<Job>()
-        //         {
-        //             new Job("Cook",                 03.0, degrees[1],   00, false),
-        //             new Job("Clerk",                04.0, degrees[0],   05, false),
-        //             new Job("Assistant Manager",    05.0, degrees[1],   10, false),
-        //             new Job("Manager",              06.0, degrees[3],   20, false),
-        //         }),
-        //         new Location("03", "Crafts",              "03_MoveButton", new Vector2(52, 08), new List<Job>() 
-        //         {
-        //             new Job("Clerk",                03.0, degrees[0],   00, false),
-        //             new Job("Assistant Manager",    04.0, degrees[1],   10, false),
-        //             new Job("Manager",              05.0, degrees[3],   20, false),
-        //         }),
-        //         new Location("02", "Pawn Shop",           "02_MoveButton", new Vector2(42, 09), new List<Job>()),
-        //         new Location("01", "Dormitory",           "01_MoveButton", new Vector2(31, 08), new List<Job>()),
-        //         new Location("13", "Rental Office",       "13_MoveButton", new Vector2(20, 09), new List<Job>())
-        //     };
-        // }
-
         private static List<Job> CreateJobs() {
             return new List<Job>()
             {
+                //ID, Description, baseWage, Required Degree, Rquired Exp, available
                 new Job( 0, "None",                 00.0, degrees[0],   00, false),
                 new Job( 1, "Janitor",              04.0, degrees[0],   00, false),
                 new Job( 2, "Checker",              07.0, degrees[0],   05, false),

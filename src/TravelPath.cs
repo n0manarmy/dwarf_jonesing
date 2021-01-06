@@ -1,28 +1,56 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using Dwarf.GameDataObjects;
-using Dwarf.StaticStrings;
 
 public class TravelPath : Node
 
 {
+    // [Export]
+    // public PackedScene Player;    
     [Export]
-    public PackedScene Character;
-    // Called when the node enters the scene tree for the first time.
+    private int speed = 300;
 
-    private ButtonGroup _buttonGroup = (ButtonGroup)GD.Load("res://res/LocationButtonResource.tres");
+    [Export]
+    public bool moving = false;
+
+    [Signal]
+    public delegate void PositionUpdated();
+
+    [Signal]
+    public delegate void TurnOver();
+
+    public Vector2 START_POS = new Vector2(31, 9);
+    // private List<Vector2> characterPath; //list of pathing points
+    public String destName;
+    private static int MAX_TIME = 500;
+
+    private int pathPoints = 0;
+    private int transition = 0;
+
+
+
 
     public override void _Ready()
     {
-
+        MySetProcess(false);
+        // DisableLocationsButtons(true);
     }
 
     public void DisableLocationsButtons(bool val) {
         GD.Print("TravelPath.DisableLocationsButtons()");
+        var _buttonGroup = (ButtonGroup)GD.Load("res://res/LocationButtonResource.tres");
+        
         foreach(Button _b in _buttonGroup.GetButtons()) {
             _b.Disabled = val;
         }
+    }
+
+    public void ResetPlayerPosition() {
+        // var player = GetNode<Player>(StaticStrings.characterNodePath);
+        var travelPathTileMap = GetNode<TileMap>("WalkingPath/TravelPathTileMap");
+        // character.Position = travelPathTileMap.MapToWorld(START_POS);
+        var pos = travelPathTileMap.MapToWorld(START_POS);
+        EmitSignal(nameof(PositionUpdated), pos);
     }
 
     // Colored squares on main map, connected to this function. Invisible button overlays
@@ -31,40 +59,148 @@ public class TravelPath : Node
     public void OnButtonMovePressed() {
         GD.Print("OnButtonMovePressed()");
 
-        var player = GetNode<Character>(StaticStrings.characterNodePath);
-        var pos = player.GlobalPosition;
+        // var player = GetNode<Player>("Player");
+        var player = GetNode<Player>("Player");
+        var buttons = GetNode<Node>("ButtonNode");
+
+        var pos = new Vector2();
+        var dst = new Vector2();
+
 
         // var gameData = (GameData)GetNode("/root/GameData");
 
-        var buttons = GetNode<Node>("ButtonNode");
 
         foreach (Button button in buttons.GetChildren()) {
             if (button.Pressed == true) {
-                foreach (Location location in GameData.locations) {
-                    if (button.Name == location.buttonName) {
-                        GD.Print(location.buttonName);
-                        GD.Print(location.labelName);
-                        GD.Print(location.tileMapPos);
-                        pos = location.tileMapPos;
-                        player.destName = location.buttonName;
-                        break;
-                    }
+                MySetProcess(true);
+                switch(button.Name) {
+                case "12_MoveButton":
+                    dst = new Vector2(07, 09);
+                    GD.Print("button name: " + button.Name);
+                    break;
+                case "11_MoveButton":
+                    dst = new Vector2(10, 19);
+                    GD.Print("button name: " + button.Name);
+                    break;
+                case "10_MoveButton":
+                    dst = new Vector2(07, 30);
+                    GD.Print("button name: " + button.Name);
+                    break;
+                case "09_MoveButton":
+                    dst = new Vector2(16, 40);
+                    GD.Print("button name: " + button.Name);
+                    break;
+                case "08_MoveButton":
+                    dst = new Vector2(27, 40);
+                    GD.Print("button name: " + button.Name);
+                    break;
+                case "07_MoveButton":
+                    dst = new Vector2(42, 43);
+                    GD.Print("button name: " + button.Name);
+                    break;
+                case "06_MoveButton":
+                    dst = new Vector2(52, 41);
+                    GD.Print("button name: " + button.Name);
+                    break;
+                case "05_MoveButton":
+                    dst = new Vector2(50, 29);
+                    GD.Print("button name: " + button.Name);
+                    break;
+                case "04_MoveButton":
+                    dst = new Vector2(59, 19);
+                    GD.Print("button name: " + button.Name);
+                    break;
+                case "03_MoveButton":
+                    dst = new Vector2(52, 08);
+                    GD.Print("button name: " + button.Name);
+                    break;
+                case "02_MoveButton":
+                    dst = new Vector2(42, 09);
+                    GD.Print("button name: " + button.Name);
+                    break;
+                case "01_MoveButton":
+                    dst = new Vector2(31, 08);
+                    GD.Print("button name: " + button.Name);
+                    break;
+                case "13_MoveButton":
+                    dst = new Vector2(20, 09);
+                    GD.Print("button name: " + button.Name);
+                    break;
                 }
             }
         }
 
         //Convert tileset coords to World coords
-        pos = GetMapToWorld(pos);
+        // pos = GetNode<TileMap>("WalkingPath/TravelPathTileMap").MapToWorld(dst);
         GD.Print("Tileset to world coords: " + pos);
-        var nav2d = GetNode<Navigation2D>("WalkingPath");
-        var newPath = nav2d.GetSimplePath(player.GlobalPosition, pos);
-        GD.Print("SimplePath: " + newPath);
-        List<Vector2> pathList = new List<Vector2>(newPath);
-        player.SetCharacterPath(pathList);
+        // var nav2d = GetNode<Navigation2D>("WalkingPath").GetSimplePath(player.GlobalPosition, pos);
+        // GD.Print("SimplePath: " + nav2d.ToString());
+        // List<Vector2> pathList = new List<Vector2>(nav2d);
+        // SetPlayerPath(pathList);
+        // player.movement_path = pathList;
+        player.movement_path = GetNode<Navigation2D>("WalkingPath").GetSimplePath(player.GlobalPosition, pos);
+        MySetProcess(true);
     }
 
-    public Vector2 GetMapToWorld(Vector2 pos) {
-        var travelPath = GetNode<TileMap>("WalkingPath/TravelPathTileMap");
-        return travelPath.MapToWorld(pos);
+    //iterates through characterPath coordinates, calculating distances between the points.
+    public void MoveAlongPath(float distance) {
+        var start = GetNode<Sprite>("Player/Sprite").Position;
+        var player = GetNode<Player>("Player");
+        
+        var i = 0;
+        while(i < player.movement_path.Length) {
+            var distToNext = start.DistanceTo(player.movement_path[i]);
+            // timerEngine.IncrementTimeValue(1);
+            player.turnTime = player.turnTime + 1;
+            // if (player.movement_path.Length == 1) {
+            //     // GD.Print("Pop Menu for location");
+            //     // debugScene.IncrementTimeValue(10);
+            //     // infoScene.PresentLocationScene(GetNode<Player>(GameData.characterNodePath).Position);
+            //     MySetProcess(false);
+            // }
+            if (player.turnTime >= MAX_TIME) {
+                EmitSignal(nameof(TurnOver));
+                MySetProcess(false);
+                break;
+            }
+            if (distance <= distToNext && distance >= 0.0) {
+                // GD.Print("distance <= distToNext && distance >= 0.0");
+                // GD.Print("distToNext: " + distToNext);
+                // GD.Print("distance: " + distance);
+                // character.Position = start.LinearInterpolate(characterPath[i], distance / distToNext);
+                var pos = start.LinearInterpolate(player.movement_path[i], distance / distToNext);
+                EmitSignal(nameof(PositionUpdated), pos);
+                // character.Position = start.LinearInterpolate(characterPath[i], distance / distToNext);
+                break;
+            } else if (distance < 0.0) {
+                // GD.Print("else if (distance < 0.0)");
+                // GD.Print("distance: " + distance);
+                // character.Position = characterPath[i];
+                var pos = start.LinearInterpolate(player.movement_path[i], distance / distToNext);
+                MySetProcess(false);
+                EmitSignal(nameof(PositionUpdated), pos);
+                break;
+            }
+
+            // MySetProcess(false);
+            distance -= distToNext;
+            start = player.movement_path[i];
+            // GD.Print("end for loop distance: " + distance);
+            i = i + 1;
+        }
+    }
+
+    // Capture if the character is moving to avoid tripping Area2D objects while moving
+    public void MySetProcess(bool val) {
+        moving = val;
+        SetProcess(val);
+    }
+    
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(float delta)
+    {
+        // GD.Print("_Process");
+        var distance = speed * delta;
+        MoveAlongPath(distance);
     }
 }

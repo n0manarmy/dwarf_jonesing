@@ -16,11 +16,12 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\BoardCoverLayer.cs" />
     <Compile Include="src\ScoringEngine.cs" />
     <Compile Include="src\EconEngine.cs" />
     <Compile Include="src\Scene08.cs" />
     <Compile Include="src\Scene01.cs" />
-    <Compile Include="src\Character.cs" />
+    <Compile Include="src\Player.cs" />
     <Compile Include="src\FollowRoad.cs" />
     <Compile Include="src\GameData.cs" />
     <Compile Include="src\InfoScene.cs" />

@@ -1,3 +1,6 @@
+# Current
+* Movement of player sprite starts from position where last click occured, not last position of sprite.
+
 # Tasks
 * <s>Add time increment when visiting location</s>
 * prompt display at visit
@@ -10,7 +13,7 @@
 * Build a clock to show time
 * Tie DebugScene to palyer status in gamedata
 * Location
-  * [CURRENT] Build the employment office menu. 
+  * [HOLD] Build the employment office menu. 
       * [DONE] Capture CollisionShape2D enter squares
       * [DONE] Pop menu!
       * Added call backs for gui menus. Work on call backs and setting player values
