@@ -1,5 +1,5 @@
 # Current
-* Movement of player sprite starts from position where last click occured, not last position of sprite.
+* <s>Movement of player sprite starts from position where last click occured, not last position of sprite.
 
 # Tasks
 * <s>Add time increment when visiting location</s>
