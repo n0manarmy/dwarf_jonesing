@@ -35,7 +35,7 @@ public class Player : Node2D
     [Export]
     public int turnTime = 0;
 
-    public Vector2[] movement_path;
+    public List<Vector2> movementPath;
     // public List<Degree> playerDegrees = new List<Degree>();
 
         //     public Player(int pos, int maxHappinessScore, int maxWealthScore, int maxJobScore, int maxEducationScore) {

@@ -24,12 +24,6 @@ public class TravelPath : Node
     public String destName;
     private static int MAX_TIME = 500;
 
-    private int pathPoints = 0;
-    private int transition = 0;
-
-
-
-
     public override void _Ready()
     {
         MySetProcess(false);
@@ -59,8 +53,11 @@ public class TravelPath : Node
     public void OnButtonMovePressed() {
         GD.Print(this.GetType().Name + ".OnButtonMovePressed()");
 
-        // var player = GetNode<Player>("Player");
+        var playerSprite = GetNode<Sprite>("Player/Sprite");
+        var player = GetNode<Player>("Player");
+
         var buttons = GetNode<Node>("ButtonNode");
+        var start = new Vector2();
 
         // var pos = new Vector2();
         var dst = new Vector2();
@@ -125,19 +122,23 @@ public class TravelPath : Node
             }
         }
 
-        var player = GetNode<Player>("Player");
 
         //Convert tileset coords to World coords
-        dst = GetNode<TileMap>("WalkingPath/TravelPathTileMap").MapToWorld(dst);
-        GD.Print("Tileset to world coords: " + dst);
+        var travelPathTileMap = GetNode<TileMap>("WalkingPath/TravelPathTileMap");
+
+        // start = travelPathTileMap.MapToWorld(playerSprite.Position);
+        dst = travelPathTileMap.MapToWorld(dst);
+        var path = GetNode<Navigation2D>("WalkingPath").GetSimplePath(playerSprite.Position, dst);
+        player.movementPath = new List<Vector2>(path);
+
         // var nav2d = GetNode<Navigation2D>("WalkingPath").GetSimplePath(player.GlobalPosition, pos);
         // GD.Print("SimplePath: " + nav2d.ToString());
         // List<Vector2> pathList = new List<Vector2>(nav2d);
         // SetPlayerPath(pathList);
         // player.movement_path = pathList;
-        player.movement_path = GetNode<Navigation2D>("WalkingPath").GetSimplePath(player.Position, dst);
-        GD.Print(this.GetType().Name + ".player.movement_path.Length: " + player.movement_path.Length);
-        foreach (Vector2 v in player.movement_path) {
+        
+        // GD.Print(this.GetType().Name + ".player.movement_path.Length: " + player.movement_path.Length);
+        foreach (Vector2 v in player.movementPath) {
             GD.Print(v);
         }
         // MySetProcess(true);
@@ -146,51 +147,57 @@ public class TravelPath : Node
     //iterates through characterPath coordinates, calculating distances between the points.
     public void MoveAlongPath(float distance) {
         GD.Print(this.GetType().Name + ".MoveAlongPath");
-        var lastPos = GetNode<Node2D>("Player").Position;
+        var lastPos = GetNode<Sprite>("Player/Sprite").Position;
         var player = GetNode<Player>("Player");
-        // GD.Print("player.movement_path.Length: " + player.movement_path.Length);
-        for(var i = 1; i < player.movement_path.Length; i++) {
-            GD.Print("i: " + i);
-            GD.Print("player.movement_path[i]: " + player.movement_path[i]);
-            var distToNext = lastPos.DistanceTo(player.movement_path[i]);
+        if(player.movementPath.Count == 0) {
+            GD.Print("player.movement_path.Count: " + player.movementPath.Count);
+            MySetProcess(false);
+        }
+
+        for(var i = 0; i < player.movementPath.Count; i++) {
+            GD.Print("player.movement_path[i]: " + player.movementPath[i]);
+            var distToNext = lastPos.DistanceTo(player.movementPath[i]);
+
+            GD.Print("distToNext: " + distToNext);
+            GD.Print("distance: " + distance);            
             // timerEngine.IncrementTimeValue(1);
             player.turnTime = player.turnTime + 1;
-            // if (player.movement_path.Length == 1) {
-            //     // GD.Print("Pop Menu for location");
-            //     // debugScene.IncrementTimeValue(10);
-            //     // infoScene.PresentLocationScene(GetNode<Player>(GameData.characterNodePath).Position);
-            //     MySetProcess(false);
-            // }
+            if (player.movementPath.Count == 0) {
+                GD.Print("Pop Menu for location");
+                // debugScene.IncrementTimeValue(10);
+                // infoScene.PresentLocationScene(GetNode<Player>(GameData.characterNodePath).Position);
+                MySetProcess(false);
+            }
             if (player.turnTime >= MAX_TIME) {
                 EmitSignal(nameof(TurnOver));
                 MySetProcess(false);
                 break;
             }
-            // if (distance <= distToNext && distance >= 0.0) {
-            if (distance <= distToNext) {
-                // GD.Print("distance <= distToNext && distance >= 0.0");
-                // GD.Print("distToNext: " + distToNext);
-                // GD.Print("distance: " + distance);
-                // character.Position = start.LinearInterpolate(characterPath[i], distance / distToNext);
-                var pos = lastPos.LinearInterpolate(player.movement_path[i], distance / distToNext);
-                EmitSignal(nameof(PositionUpdated), pos);
-                // character.Position = start.LinearInterpolate(characterPath[i], distance / distToNext);
-                break;
-            } 
-            
             if (distance < 0.0) {
-                // GD.Print("else if (distance < 0.0)");
+                GD.Print("distance < 0.0)");
                 // GD.Print("distance: " + distance);
                 // character.Position = characterPath[i];
                 // var pos = lastPos.LinearInterpolate(player.movement_path[i], distance / distToNext);
                 MySetProcess(false);
-                EmitSignal(nameof(PositionUpdated), player.movement_path[0]);
+                EmitSignal(nameof(PositionUpdated), player.movementPath[i]);
                 break;
             }
+            // if (distance <= distToNext && distance >= 0.0) {
+            if (distance <= distToNext) {
+                GD.Print("distance <= distToNext");
+                // GD.Print("distToNext: " + distToNext);
+                // GD.Print("distance: " + distance);
+                // character.Position = start.LinearInterpolate(characterPath[i], distance / distToNext);
+                var pos = lastPos.LinearInterpolate(player.movementPath[i], distance / distToNext);
+                EmitSignal(nameof(PositionUpdated), pos);
+                // character.Position = start.LinearInterpolate(characterPath[i], distance / distToNext);
+                break;
+            } 
 
             // MySetProcess(false);
             distance -= distToNext;
-            lastPos = player.movement_path[i];
+            lastPos = player.movementPath[i];
+            player.movementPath.RemoveAt(i);
             // start = player.movement_path[i];
             // GD.Print("end for loop distance: " + distance);
         }
@@ -204,7 +211,7 @@ public class TravelPath : Node
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        // GD.Print("_Process");
+        GD.Print("_Process");
         var distance = speed * delta;
         MoveAlongPath(distance);
     }
