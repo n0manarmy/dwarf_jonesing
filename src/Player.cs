@@ -36,6 +36,8 @@ public class Player : Node2D
     public int turnTime = 0;
 
     public List<Vector2> movementPath;
+
+    private TileMap travelPathTileMap;
     // public List<Degree> playerDegrees = new List<Degree>();
 
         //     public Player(int pos, int maxHappinessScore, int maxWealthScore, int maxJobScore, int maxEducationScore) {
@@ -58,25 +60,26 @@ public class Player : Node2D
         GD.Print(this.GetType().Name + "._Ready()");
         GetNode<TravelPath>("../../TravelPath").Connect("PositionUpdated", this, nameof(UpdateSpritePosition));
         GetNode<TravelPath>("../../TravelPath").Connect("TurnOver", this, nameof(EndPlayerturn));
+
+        travelPathTileMap = GetNode<TileMap>("../WalkingPath/TravelPathTileMap");
     }
 
     public void UpdateSpritePosition(Vector2 pos) {
         GD.Print(this.GetType().Name + ".UpdateSpritePosition");
         GD.Print(this.GetType().Name + ".pos.x: " + pos.x + " pos.y: " + pos.y);
+        // GetNode<Sprite>("Sprite").Position = travelPathTileMap.MapToWorld(pos);
         GetNode<Sprite>("Sprite").Position = pos;
         // this.Position =pos;
     }
 
     public void EndPlayerturn() {
         GD.Print(this.GetType().Name + ".EndPlayerturn");
-        // movement_path.Clear();
         var travelPath = GetNode<TravelPath>("../../TravelPath");
         var travelPathTileMap = GetNode<TileMap>("../WalkingPath/TravelPathTileMap");
         UpdateSpritePosition(travelPathTileMap.MapToWorld(GetNode<TravelPath>("../../TravelPath").START_POS));
-        // GetNode<Player>(StaticStrings.characterNodePath).ResetPlayerPosition();
+
         // var debugScene = GetNode<DebugScene>("../../DebugScene");
         // var timerEngine = GetNode<TimerEngine>("../../TimerEngine");
-
         // debugScene.SetStatusText("Your time is up!");
         // timerEngine.IncrementRounds();
         // timerEngine.ResetTimeUsed();

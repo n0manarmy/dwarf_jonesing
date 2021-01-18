@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/InfoScene.tscn" type="PackedScene" id=2]
@@ -7,7 +7,20 @@
 [ext_resource path="res://scenes/BaseMap.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/LocationEntryArea2D.tscn" type="PackedScene" id=6]
 [ext_resource path="res://art/Redjack17_clean.png" type="Texture" id=7]
+[ext_resource path="res://scenes/Scene10.tscn" type="PackedScene" id=8]
 [ext_resource path="res://art/white_background.png" type="Texture" id=9]
+[ext_resource path="res://scenes/Scene05.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Scene04.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/Scene02.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/Scene09.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/Scene12.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/Scene01.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/Scene07.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/Scene13.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/Scene08.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/Scene11.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/Scene06.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/Scene03.tscn" type="PackedScene" id=21]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -65,7 +78,7 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 1/shapes = [  ]
 1/z_index = 0
 
-[node name="TravelPath" type="Node"]
+[node name="TravelPath" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="ButtonNode" type="Node" parent="."]
@@ -400,6 +413,32 @@ tile_set = SubResource( 4 )
 tile_data = PoolIntArray( 196616, 0, 786441, 196617, 0, 786445, 196618, 0, 786445, 196619, 0, 786445, 196620, 0, 786445, 196621, 0, 786445, 196622, 0, 786445, 196623, 0, 720904, 262152, 0, 720906, 262153, 0, 589826, 262154, 0, 589826, 262155, 0, 589826, 262157, 0, 589825, 262158, 0, 524303, 262159, 0, 720906, 327688, 0, 720906, 327693, 0, 720901, 327695, 0, 720906, 393224, 0, 720906, 393226, 0, 524295, 393229, 0, 720901, 393231, 0, 720906, 458760, 0, 720906, 458761, 0, 917516, 458767, 0, 720906, 524296, 0, 720906, 524297, 0, 917516, 524303, 0, 720906, 589832, 0, 720906, 589833, 0, 983040, 589838, 0, 524303, 589839, 0, 720906, 655368, 0, 786432, 655369, 0, 786445, 655370, 0, 786445, 655371, 0, 786445, 655372, 0, 786437, 655373, 0, 786445, 655374, 0, 786445, 655375, 0, 720909 )
 
 [node name="InfoScene" parent="." instance=ExtResource( 2 )]
+
+[node name="Scene01Screen" parent="InfoScene" instance=ExtResource( 15 )]
+
+[node name="Scene02" parent="InfoScene" instance=ExtResource( 12 )]
+
+[node name="Scene03" parent="InfoScene" instance=ExtResource( 21 )]
+
+[node name="Scene04" parent="InfoScene" instance=ExtResource( 11 )]
+
+[node name="Scene05" parent="InfoScene" instance=ExtResource( 10 )]
+
+[node name="Scene06" parent="InfoScene" instance=ExtResource( 20 )]
+
+[node name="Scene07" parent="InfoScene" instance=ExtResource( 16 )]
+
+[node name="Scene08" parent="InfoScene" instance=ExtResource( 18 )]
+
+[node name="Scene09" parent="InfoScene" instance=ExtResource( 13 )]
+
+[node name="Scene10" parent="InfoScene" instance=ExtResource( 8 )]
+
+[node name="Scene11" parent="InfoScene" instance=ExtResource( 19 )]
+
+[node name="Scene12" parent="InfoScene" instance=ExtResource( 14 )]
+
+[node name="Scene13" parent="InfoScene" instance=ExtResource( 17 )]
 
 [node name="WalkingPath" type="Navigation2D" parent="."]
 position = Vector2( 0.000366211, 1 )

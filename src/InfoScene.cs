@@ -3,14 +3,38 @@ using System;
 
 public class InfoScene : Node2D
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
+    [Signal]
+    public delegate void DisableLocationsButtons();
 
     // private PackedScene _startValuesScene = (PackedScene)GD.Load("res://scenes/StartValuesScene.tscn");
     // private PackedScene _debugScene = (PackedScene)GD.Load("res://scenes/DebugScene.tscn");
-    private PackedScene _scene08 = (PackedScene)ResourceLoader.Load("res://scenes/Scene08.tscn");
-    private PackedScene _scene01 = (PackedScene)ResourceLoader.Load("res://scenes/Scene01.tscn");
+    // private PackedScene _scene01 = (PackedScene)ResourceLoader.Load("res://scenes/Scene01.tscn");
+    // private PackedScene _scene02 = (PackedScene)ResourceLoader.Load("res://scenes/Scene02.tscn");
+    // private PackedScene _scene03 = (PackedScene)ResourceLoader.Load("res://scenes/Scene03.tscn");
+    // private PackedScene _scene04 = (PackedScene)ResourceLoader.Load("res://scenes/Scene04.tscn");
+    // private PackedScene _scene05 = (PackedScene)ResourceLoader.Load("res://scenes/Scene05.tscn");
+    // private PackedScene _scene06 = (PackedScene)ResourceLoader.Load("res://scenes/Scene06.tscn");
+    // private PackedScene _scene07 = (PackedScene)ResourceLoader.Load("res://scenes/Scene07.tscn");
+    // private PackedScene _scene08 = (PackedScene)ResourceLoader.Load("res://scenes/Scene08.tscn");
+    // private PackedScene _scene09 = (PackedScene)ResourceLoader.Load("res://scenes/Scene09.tscn");
+    // private PackedScene _scene10 = (PackedScene)ResourceLoader.Load("res://scenes/Scene10.tscn");
+    // private PackedScene _scene11 = (PackedScene)ResourceLoader.Load("res://scenes/Scene11.tscn");
+    // private PackedScene _scene12 = (PackedScene)ResourceLoader.Load("res://scenes/Scene12.tscn");
+    // private PackedScene _scene13 = (PackedScene)ResourceLoader.Load("res://scenes/Scene13.tscn");
+
+    private Scene01Screen scene01;
+    private Scene02 scene02;
+    private Scene03 scene03;
+    private Scene04 scene04;
+    private Scene05 scene05;
+    private Scene06 scene06;
+    private Scene07 scene07;
+    private Scene08 scene08;
+    private Scene09 scene09;
+    private Scene10 scene10;
+    private Scene11 scene11;
+    private Scene12 scene12;
+    private Scene13 scene13;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -22,7 +46,47 @@ public class InfoScene : Node2D
 
         // GetNode<CanvasLayer>("Background").AddChild(debugScene);
         // GetNode<CanvasLayer>("Background").AddChild(startValues);
-         GetNodeOrNull<LocationEntryArea2D>("../WalkingPath/Scene01").Connect("LocationEntered", this,  nameof(PresentLocationScene));
+        GetNodeOrNull<LocationEntryArea2D>("../WalkingPath/Scene01").Connect("LocationEntered", this,  nameof(PresentLocationScene));
+        GetNodeOrNull<LocationEntryArea2D>("../WalkingPath/Scene02").Connect("LocationEntered", this,  nameof(PresentLocationScene));
+        GetNodeOrNull<LocationEntryArea2D>("../WalkingPath/Scene03").Connect("LocationEntered", this,  nameof(PresentLocationScene));
+        GetNodeOrNull<LocationEntryArea2D>("../WalkingPath/Scene04").Connect("LocationEntered", this,  nameof(PresentLocationScene));
+        GetNodeOrNull<LocationEntryArea2D>("../WalkingPath/Scene05").Connect("LocationEntered", this,  nameof(PresentLocationScene));
+        GetNodeOrNull<LocationEntryArea2D>("../WalkingPath/Scene06").Connect("LocationEntered", this,  nameof(PresentLocationScene));
+        GetNodeOrNull<LocationEntryArea2D>("../WalkingPath/Scene07").Connect("LocationEntered", this,  nameof(PresentLocationScene));
+        GetNodeOrNull<LocationEntryArea2D>("../WalkingPath/Scene08").Connect("LocationEntered", this,  nameof(PresentLocationScene));
+        GetNodeOrNull<LocationEntryArea2D>("../WalkingPath/Scene09").Connect("LocationEntered", this,  nameof(PresentLocationScene));
+        GetNodeOrNull<LocationEntryArea2D>("../WalkingPath/Scene10").Connect("LocationEntered", this,  nameof(PresentLocationScene));
+        GetNodeOrNull<LocationEntryArea2D>("../WalkingPath/Scene11").Connect("LocationEntered", this,  nameof(PresentLocationScene));
+        GetNodeOrNull<LocationEntryArea2D>("../WalkingPath/Scene12").Connect("LocationEntered", this,  nameof(PresentLocationScene));
+        GetNodeOrNull<LocationEntryArea2D>("../WalkingPath/Scene13").Connect("LocationEntered", this,  nameof(PresentLocationScene));
+
+        scene01 = GetNodeOrNull<Scene01Screen>("Scene01Screen");
+        scene02 = GetNodeOrNull<Scene02>("Scene02");
+        scene03 = GetNodeOrNull<Scene03>("Scene03");
+        scene04 = GetNodeOrNull<Scene04>("Scene04");
+        scene05 = GetNodeOrNull<Scene05>("Scene05");
+        scene06 = GetNodeOrNull<Scene06>("Scene06");
+        scene07 = GetNodeOrNull<Scene07>("Scene07");
+        scene08 = GetNodeOrNull<Scene08>("Scene08");
+        scene09 = GetNodeOrNull<Scene09>("Scene09");
+        scene10 = GetNodeOrNull<Scene10>("Scene10");
+        scene11 = GetNodeOrNull<Scene11>("Scene11");
+        scene12 = GetNodeOrNull<Scene12>("Scene12");
+        scene13 = GetNodeOrNull<Scene13>("Scene13");
+
+        scene01.Hide();
+        scene02.Hide();
+        scene03.Hide();
+        scene04.Hide();
+        scene05.Hide();
+        scene06.Hide();
+        scene07.Hide();
+        scene08.Hide();
+        scene09.Hide();
+        scene10.Hide();
+        scene11.Hide();
+        scene12.Hide();
+        scene13.Hide();
     }
 
     /*
@@ -32,129 +96,87 @@ public class InfoScene : Node2D
     //TODO Continue building menu for each location
     public void PresentLocationScene(String _locID) {
         GD.Print(this.GetType().Name + ".PresentLocationScene");
-        GD.Print("_locID: " + _locID);
+        GD.Print(this.GetType().Name +"_locID: " + _locID);
         var travelPath = GetNodeOrNull<TravelPath>("../../TravelPath");
         if (travelPath == null) {
-            GD.Print("travelPath == null");
+            GD.Print(this.GetType().Name +".travelPath == null");
             GetTree().Quit();
         }
         // var infoScene = GetNode<Node2D>("../InfoScene");
         
-        travelPath.DisableLocationsButtons(true);
+        EmitSignal(nameof(DisableLocationsButtons), new Vector2(0,0), true);
+        GD.Print(this.GetType().Name +"._locID: " + _locID); 
 
         switch (_locID) {
             case "Scene01": 
-                GD.Print("_locID: " + _locID); 
-                this.AddChild(_scene01.Instance());
+                // this.AddChild(_scene01.Instance());
+                scene01.Show();
+                GD.Print(this.GetType().Name + "scene01.Show();");
                 break;
-            case "Scene02": GD.Print("_locID: " + _locID); break;
-            case "Scene03": GD.Print("_locID: " + _locID); break;
-            case "Scene04": GD.Print("_locID: " + _locID); break;
-            case "Scene05": GD.Print("_locID: " + _locID); break;
-            case "Scene06": GD.Print("_locID: " + _locID); break;
-            case "Scene07": GD.Print("_locID: " + _locID); break;
+            case "Scene02": 
+                // this.AddChild(_scene02.Instance());
+                scene02.Show();
+                GD.Print(this.GetType().Name + "scene02.Show();");
+                break;
+            case "Scene03": 
+                // this.AddChild(_scene03.Instance());
+                scene03.Show();
+                GD.Print(this.GetType().Name + "scene03.Show();");
+                break;
+            case "Scene04": 
+                // thisAddChild(_scene04.Instance());
+                scene04.Show();
+                GD.Print(this.GetType().Name + "scene04.Show();");
+                break;
+            case "Scene05": 
+                // this.AddChild(_scene05.Instance());
+                scene05.Show();
+                GD.Print(this.GetType().Name + "scene05.Show();");
+                break;
+            case "Scene06": 
+                // this.AddChild(_scene06.Instance());
+                scene06.Show();
+                GD.Print(this.GetType().Name + "scene06.Show();");
+                break;
+            case "Scene07": 
+                // this.AddChild(_scene07.Instance());
+                scene07.Show();
+                GD.Print(this.GetType().Name + "scene07.Show();");
+                break;
             case "Scene08": 
-                GD.Print("_locID: " + _locID);
-                this.AddChild(_scene08.Instance());
+                // this.AddChild(_scene08.Instance());
+                scene08.Show();
+                GD.Print(this.GetType().Name + "scene08.Show();");
                 break; 
-            case "Scene09": GD.Print("_locID: " + _locID); break;
-            case "Scene10": GD.Print("_locID: " + _locID); break;
-            case "Scene11": GD.Print("_locID: " + _locID); break;
-            case "Scene12": GD.Print("_locID: " + _locID); break;
-            case "Scene13": GD.Print("_locID: " + _locID); break;
-            default: break;
+            case "Scene09": 
+                // this.AddChild(_scene09.Instance()); 
+                scene09.Show();
+                GD.Print(this.GetType().Name + "scene09.Show();");
+                break;
+            case "Scene10": 
+                // this.AddChild(_scene10.Instance()); 
+                scene10.Show();
+                GD.Print(this.GetType().Name + "scene10.Show();");
+                break;
+            case "Scene11": 
+                // this.AddChild(_scene11.Instance()); 
+                scene11.Show();
+                GD.Print(this.GetType().Name + "scene11.Show();");
+                break;
+            case "Scene12": 
+                // this.AddChild(_scene12.Instance()); 
+                scene12.Show();
+                GD.Print(this.GetType().Name + "scene12.Show();");
+                break;
+            case "Scene13": 
+                // this.AddChild(_scene13.Instance()); 
+                scene13.Show();
+                GD.Print(this.GetType().Name + "scene13.Show();");
+                break;
+            default: 
+                break;
         }
     }
-
-    // public void OnArea2DBodyEntered(KinematicBody2D body) {
-    //     GD.Print(this.GetType().Name + ".OnArea2DBodyEntered");
-    //     // GD.Print(body.GetSlideCollision(0).Collider);
-    //     var sprite = GetNodeOrNull<Sprite>("../Player/Sprite");
-    //     if (sprite == null) {GD.Print("sprite: null");} else {GD.Print("sprite: " + sprite);}
-        
-    //     var travelPathTileMap = GetNodeOrNull<TileMap>("TravelPath/WalkingPath/TravelPathTileMap");
-    //     if (travelPathTileMap == null) {GD.Print("travelPathTileMap: null");} else {GD.Print("travelPathTileMap: " + travelPathTileMap);}
-
-    //     GD.Print("travelPath: " + travelPathTileMap);
-    //     GD.Print("this.Name: " + this.Name);
-    //     var pos = new Vector2(sprite.Position);
-
-    //     // var infoScene = GetNode<InfoScene>("../InfoScene");
-    //     var travelPath = GetNode<TravelPath>("TravelPath");
-    //     travelPath.DisableLocationsButtons(true);
-
-    //     switch(this.Name) {
-    //         case "Scene12":
-    //             pos = new Vector2(07, 09);
-    //             break;
-    //         case "Scene11":
-    //             pos = new Vector2(10, 19);
-    //             break;
-    //         case "Scene10":
-    //             pos = new Vector2(07, 30);
-    //             break;
-    //         case "Scene09":
-    //             pos = new Vector2(16, 40);
-    //             break;
-    //         case "Scene08":
-    //             pos = new Vector2(27, 40);
-    //             this.AddChild(_scene08.Instance());
-    //             break;
-    //         case "Scene07":
-    //             pos = new Vector2(42, 43);
-    //             break;
-    //         case "Scene06":
-    //             pos = new Vector2(52, 41);
-    //             break;
-    //         case "Scene05":
-    //             pos = new Vector2(52, 41);
-    //             break;
-    //         case "Scene04":
-    //             pos = new Vector2(59, 19);
-    //             break;
-    //         case "Scene03":
-    //             pos = new Vector2(52, 08);
-    //             break;
-    //         case "Scene02":
-    //             pos = new Vector2(42, 09);
-    //             break;
-    //         case "Scene01":
-    //             pos = new Vector2(31, 08);
-    //             break;
-    //         case "Scene13_Area2D":
-    //             pos = new Vector2(20, 09);
-    //             break;
-    //         }
-            
-    //         pos.y = pos.y - 3;
-    //         sprite.Position = travelPathTileMap.MapToWorld(pos);
-
-
-        //if player not moving, check location and send scene info to InfoScene
-        // if (!_player.moving) {
-        //     var _infoScene = GetNode<InfoScene>(StaticStrings.infoScene);
-        //     var _travelPath = GetNode<TileMap>(StaticStrings.travelPathTileMap);
-        //     var _tileMapPos = _travelPath.WorldToMap(GetNode<Player>(StaticStrings.characterNodePath).Position);
-
-        //     Vector2 _currentPlayerPos = _player.Position;
-        //     GD.Print("OnArea2DBodyEntered._currentPlayerPos: " + _currentPlayerPos);
-        //     GD.Print("OnArea2DBodyEntered._tileMapPos: " + _tileMapPos);
-        //     GD.Print("OnArea2DBodyEntered.Name: " + Name);
-        //     var _locID = Name.Split("_")[0];
-        //     GD.Print("OnArea2DBodyEntered._locID: " + _locID);
-
-        //     // iterate over locations and when we find our location, move the player inside the building
-        //     foreach(Location loc in GameData.locations) {
-        //         if(loc.locationID == _locID) {
-        //             _player.Position = _travelPath.MapToWorld(loc.getInsideBuildingLocation());
-        //             break;
-        //         }
-        //     }
-        //     //Call InfoScene to present location scene
-        //     _infoScene.PresentLocationScene(_locID);
-
-        // }
-    // }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)

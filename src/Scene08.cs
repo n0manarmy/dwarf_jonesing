@@ -11,12 +11,20 @@ using Dwarf.StaticStrings;
 public class Scene08 : Node2D
 {
     private String THIS_SCENE = "Scene08";
+    private Vector2 RETURN_POS = new Vector2(27, 42);
+    private TravelPath travelPath;
+    private TileMap travelPathTileMap;
+    private Player player;
+    private Sprite sprite;
 
     [Signal]
     public delegate void JobClicked(Godot.Collections.Array job);
 
     [Signal]
     public delegate void JobChanged(String jobName);
+
+    [Signal]
+    public delegate void Scene08DoneClicked(Vector2 pos, bool disableLocButtons);
 
     enum MenuState {
         CompaniesList,
@@ -29,8 +37,26 @@ public class Scene08 : Node2D
     public override void _Ready()
     {
         GD.Print(this.Name + "._Ready");
+        travelPath = GetNodeOrNull<TravelPath>("../../../TravelPath");
+        if (null == travelPath) {
+            GD.PrintErr(this.GetType().Name + ".travelPath is null");
+        }       
+        travelPathTileMap = GetNodeOrNull<TileMap>("../../../TravelPath/WalkingPath/TravelPathTileMap");
+        if (null == travelPathTileMap) {
+            GD.PrintErr(this.GetType().Name + ".travelPathTileMap is null");
+        }
+        player = GetNodeOrNull<Player>("../../Player");
+        if (null == player) {
+            GD.PrintErr(this.GetType().Name + ".player is null");
+        }
+        sprite = GetNodeOrNull<Sprite>("../../Player/Sprite");
+        if (null == sprite) {
+            GD.PrintErr(this.GetType().Name + ".sprite is null");
+        }
         BuildSceneDetails();
         BuildCompaniesListButtons(); 
+        this.Hide();
+
     }
 
     public void BuildSceneDetails() {
@@ -103,23 +129,24 @@ public class Scene08 : Node2D
         GD.Print(this.Name + ".OnDoneButtonClicked");
 
         switch (_thisMenuState) {
-        case MenuState.CompaniesList:
-            // var node = GetNodeOrNull<TravelPath>("/root/RootScene/TravelPath");        
-            // if(node != null) {
-            //     node.DisableLocationsButtons(false);
-            // }
-            // GetNode<Node2D>("../" + THIS_SCENE).ZIndex = -10;
-            break;
-        case MenuState.JobsList:
-            RemoveButtons();
-            BuildCompaniesListButtons();
-            break;
+            case MenuState.CompaniesList:
+                // var node = GetNodeOrNull<TravelPath>("/root/RootScene/TravelPath");        
+                // if(node != null) {
+                //     node.DisableLocationsButtons(false);
+                // }
+                // GetNode<Node2D>("../" + THIS_SCENE).ZIndex = -10;
+                break;
+            case MenuState.JobsList:
+                RemoveButtons();
+                BuildCompaniesListButtons();
+                break;
         }
         // var node = GetNodeOrNull<TravelPath>("/root/RootScene/TravelPath");        
         // if(node != null) {
         //     node.DisableLocationsButtons(false);
         // }
         // GetNode<Node2D>("../" + THIS_SCENE).ZIndex = 0;
+        EmitSignal(nameof(Scene08DoneClicked), RETURN_POS, false);
         QueueFree();
     }
 

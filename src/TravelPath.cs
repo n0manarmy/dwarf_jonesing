@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class TravelPath : Node
+public class TravelPath : Node2D
 
 {
     // [Export]
@@ -19,7 +19,7 @@ public class TravelPath : Node
     [Signal]
     public delegate void TurnOver();
 
-    public Vector2 START_POS = new Vector2(31, 9);
+    public Vector2 START_POS = new Vector2(31, 10);
     // private List<Vector2> characterPath; //list of pathing points
     public String destName;
     private static int MAX_TIME = 500;
@@ -27,11 +27,48 @@ public class TravelPath : Node
     public override void _Ready()
     {
         MySetProcess(false);
-        // DisableLocationsButtons(true);
+        // _scene01.Connect("Scene01DoneClicked", this, nameof(DisableLocationsButtons));
+
+        var rootScene = GetNodeOrNull<RootScene>("../../RootScene");
+        if (rootScene != null) {
+            rootScene.Connect("StartupDisableLocationButtons", this, nameof(DisableLocationsButtons));
+        }
+
+        // GetNodeOrNull<Scene01Screen>("InfoScene/Scene01Screen").Connect("Scene01DoneClicked", this, nameof(DisableLocationsButtons));
+        // GetNodeOrNull<Scene02>("InfoScene/Scene02").Connect("Scene02DoneClicked", this, nameof(DisableLocationsButtons));
+        // GetNodeOrNull<Scene03>("InfoScene/Scene03").Connect("Scene03DoneClicked", this, nameof(DisableLocationsButtons));
+        // GetNodeOrNull<Scene04>("InfoScene/Scene04").Connect("Scene04DoneClicked", this, nameof(DisableLocationsButtons));
+        // GetNodeOrNull<Scene05>("InfoScene/Scene05").Connect("Scene05DoneClicked", this, nameof(DisableLocationsButtons));
+        // GetNodeOrNull<Scene06>("InfoScene/Scene06").Connect("Scene06DoneClicked", this, nameof(DisableLocationsButtons));
+        // GetNodeOrNull<Scene07>("InfoScene/Scene07").Connect("Scene07DoneClicked", this, nameof(DisableLocationsButtons));
+        // GetNodeOrNull<Scene08>("InfoScene/Scene08").Connect("Scene08DoneClicked", this, nameof(DisableLocationsButtons));
+        // GetNodeOrNull<Scene09>("InfoScene/Scene09").Connect("Scene09DoneClicked", this, nameof(DisableLocationsButtons));
+        // GetNodeOrNull<Scene10>("InfoScene/Scene10").Connect("Scene10DoneClicked", this, nameof(DisableLocationsButtons));
+        // GetNodeOrNull<Scene11>("InfoScene/Scene11").Connect("Scene11DoneClicked", this, nameof(DisableLocationsButtons));
+        // GetNodeOrNull<Scene12>("InfoScene/Scene12").Connect("Scene12DoneClicked", this, nameof(DisableLocationsButtons));
+        // GetNodeOrNull<Scene13>("InfoScene/Scene13").Connect("Scene13DoneClicked", this, nameof(DisableLocationsButtons));
+        
+        GetNodeOrNull<StartValuesScene>("../StartValuesScene").Connect("GoalsValueDone", this,  nameof(DisableLocationsButtons));
+
+        GetNodeOrNull<LocationEntryArea2D>("WalkingPath/Scene01").Connect("LocationEntered", this,  nameof(DisableLocationsButtons));
+        GetNodeOrNull<LocationEntryArea2D>("WalkingPath/Scene02").Connect("LocationEntered", this,  nameof(DisableLocationsButtons));
+        GetNodeOrNull<LocationEntryArea2D>("WalkingPath/Scene03").Connect("LocationEntered", this,  nameof(DisableLocationsButtons));
+        GetNodeOrNull<LocationEntryArea2D>("WalkingPath/Scene04").Connect("LocationEntered", this,  nameof(DisableLocationsButtons));
+        GetNodeOrNull<LocationEntryArea2D>("WalkingPath/Scene05").Connect("LocationEntered", this,  nameof(DisableLocationsButtons));
+        GetNodeOrNull<LocationEntryArea2D>("WalkingPath/Scene06").Connect("LocationEntered", this,  nameof(DisableLocationsButtons));
+        GetNodeOrNull<LocationEntryArea2D>("WalkingPath/Scene07").Connect("LocationEntered", this,  nameof(DisableLocationsButtons));
+        GetNodeOrNull<LocationEntryArea2D>("WalkingPath/Scene08").Connect("LocationEntered", this,  nameof(DisableLocationsButtons));
+        GetNodeOrNull<LocationEntryArea2D>("WalkingPath/Scene09").Connect("LocationEntered", this,  nameof(DisableLocationsButtons));
+        GetNodeOrNull<LocationEntryArea2D>("WalkingPath/Scene10").Connect("LocationEntered", this,  nameof(DisableLocationsButtons));
+        GetNodeOrNull<LocationEntryArea2D>("WalkingPath/Scene11").Connect("LocationEntered", this,  nameof(DisableLocationsButtons));
+        GetNodeOrNull<LocationEntryArea2D>("WalkingPath/Scene12").Connect("LocationEntered", this,  nameof(DisableLocationsButtons));
+        GetNodeOrNull<LocationEntryArea2D>("WalkingPath/Scene13").Connect("LocationEntered", this,  nameof(DisableLocationsButtons));
+
+
     }
 
-    public void DisableLocationsButtons(bool val) {
-        GD.Print("TravelPath.DisableLocationsButtons()");
+    public void DisableLocationsButtons(Vector2 _ignore, bool val) {
+        GD.Print(this.GetType().Name + ".DisableLocationsButtons()");
         var _buttonGroup = (ButtonGroup)GD.Load("res://res/LocationButtonResource.tres");
         
         foreach(Button _b in _buttonGroup.GetButtons()) {
@@ -40,6 +77,7 @@ public class TravelPath : Node
     }
 
     public void ResetPlayerPosition() {
+        GD.Print(this.GetType().Name + "ResetPlayerPosition");
         // var player = GetNode<Player>(StaticStrings.characterNodePath);
         var travelPathTileMap = GetNode<TileMap>("WalkingPath/TravelPathTileMap");
         // character.Position = travelPathTileMap.MapToWorld(START_POS);
@@ -55,11 +93,7 @@ public class TravelPath : Node
 
         var playerSprite = GetNode<Sprite>("Player/Sprite");
         var player = GetNode<Player>("Player");
-
         var buttons = GetNode<Node>("ButtonNode");
-        var start = new Vector2();
-
-        // var pos = new Vector2();
         var dst = new Vector2();
 
         foreach (Button button in buttons.GetChildren()) {
@@ -125,23 +159,10 @@ public class TravelPath : Node
 
         //Convert tileset coords to World coords
         var travelPathTileMap = GetNode<TileMap>("WalkingPath/TravelPathTileMap");
-
-        // start = travelPathTileMap.MapToWorld(playerSprite.Position);
         dst = travelPathTileMap.MapToWorld(dst);
         var path = GetNode<Navigation2D>("WalkingPath").GetSimplePath(playerSprite.Position, dst);
         player.movementPath = new List<Vector2>(path);
 
-        // var nav2d = GetNode<Navigation2D>("WalkingPath").GetSimplePath(player.GlobalPosition, pos);
-        // GD.Print("SimplePath: " + nav2d.ToString());
-        // List<Vector2> pathList = new List<Vector2>(nav2d);
-        // SetPlayerPath(pathList);
-        // player.movement_path = pathList;
-        
-        // GD.Print(this.GetType().Name + ".player.movement_path.Length: " + player.movement_path.Length);
-        foreach (Vector2 v in player.movementPath) {
-            GD.Print(v);
-        }
-        // MySetProcess(true);
     }
 
     //iterates through characterPath coordinates, calculating distances between the points.
@@ -177,7 +198,6 @@ public class TravelPath : Node
                 GD.Print("distance < 0.0)");
                 // GD.Print("distance: " + distance);
                 // character.Position = characterPath[i];
-                // var pos = lastPos.LinearInterpolate(player.movement_path[i], distance / distToNext);
                 MySetProcess(false);
                 EmitSignal(nameof(PositionUpdated), player.movementPath[i]);
                 break;
@@ -187,19 +207,14 @@ public class TravelPath : Node
                 GD.Print("distance <= distToNext");
                 // GD.Print("distToNext: " + distToNext);
                 // GD.Print("distance: " + distance);
-                // character.Position = start.LinearInterpolate(characterPath[i], distance / distToNext);
                 var pos = lastPos.LinearInterpolate(player.movementPath[i], distance / distToNext);
                 EmitSignal(nameof(PositionUpdated), pos);
-                // character.Position = start.LinearInterpolate(characterPath[i], distance / distToNext);
                 break;
             } 
 
-            // MySetProcess(false);
             distance -= distToNext;
             lastPos = player.movementPath[i];
             player.movementPath.RemoveAt(i);
-            // start = player.movement_path[i];
-            // GD.Print("end for loop distance: " + distance);
         }
     }
 

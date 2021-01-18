@@ -1,5 +1,8 @@
 # Current
-* <s>Movement of player sprite starts from position where last click occured, not last position of sprite.
+* <s>Movement of player sprite starts from position where last click occured, not last position of sprite.</s>
+* <s>Give thought to best way to resetting player position when done clicked</s>
+* wire in travelpath, infoscene, signals
+* build economy engine in Rust
 
 # Tasks
 * <s>Add time increment when visiting location</s>

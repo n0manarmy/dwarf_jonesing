@@ -27,16 +27,15 @@ public class LocationEntryArea2D : Area2D
     public void OnArea2DBodyEntered(KinematicBody2D body) {
         GD.Print(this.GetType().Name + ".OnArea2DBodyEntered");
         // GD.Print(body.GetSlideCollision(0).Collider);
-        var sprite = GetNodeOrNull<Sprite>("../../Player/Sprite");
-        GD.Print("sprite: " + sprite);
-        var travelPath = GetNodeOrNull<TileMap>("../TravelPathTileMap");
-        if(travelPath == null) {
+        var player = GetNodeOrNull<Player>("../../Player");
+        var travelPathTileMap = GetNodeOrNull<TileMap>("../TravelPathTileMap");
+        if(travelPathTileMap == null) {
             GD.Print("travelPath: null");
         } else {
-            GD.Print("travelPath: " + travelPath);   
+            GD.Print("travelPath: " + travelPathTileMap);   
         }
-        GD.Print("this.Name: " + this.Name);
-        var pos = new Vector2(sprite.Position);
+        GD.Print(this.GetType().Name + ".this.Name: " + this.Name);
+        var pos = new Vector2();
 
         switch(this.Name) {
             case "Scene12":
@@ -81,33 +80,9 @@ public class LocationEntryArea2D : Area2D
             }
             
             pos.y = pos.y - 3;
-            sprite.Position = travelPath.MapToWorld(pos);
-            EmitSignal(nameof(LocationEntered), this.Name);
+            player.UpdateSpritePosition(travelPathTileMap.MapToWorld(pos));
+            GetNode<TravelPath>("../../../TravelPath").MySetProcess(false);
+            EmitSignal(nameof(LocationEntered));
 
-
-        //if player not moving, check location and send scene info to InfoScene
-        // if (!_player.moving) {
-        //     var _infoScene = GetNode<InfoScene>(StaticStrings.infoScene);
-        //     var _travelPath = GetNode<TileMap>(StaticStrings.travelPathTileMap);
-        //     var _tileMapPos = _travelPath.WorldToMap(GetNode<Player>(StaticStrings.characterNodePath).Position);
-
-        //     Vector2 _currentPlayerPos = _player.Position;
-        //     GD.Print("OnArea2DBodyEntered._currentPlayerPos: " + _currentPlayerPos);
-        //     GD.Print("OnArea2DBodyEntered._tileMapPos: " + _tileMapPos);
-        //     GD.Print("OnArea2DBodyEntered.Name: " + Name);
-        //     var _locID = Name.Split("_")[0];
-        //     GD.Print("OnArea2DBodyEntered._locID: " + _locID);
-
-        //     // iterate over locations and when we find our location, move the player inside the building
-        //     foreach(Location loc in GameData.locations) {
-        //         if(loc.locationID == _locID) {
-        //             _player.Position = _travelPath.MapToWorld(loc.getInsideBuildingLocation());
-        //             break;
-        //         }
-        //     }
-        //     //Call InfoScene to present location scene
-        //     _infoScene.PresentLocationScene(_locID);
-
-        // }
     }
 }
