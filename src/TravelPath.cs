@@ -34,19 +34,19 @@ public class TravelPath : Node2D
             rootScene.Connect("StartupDisableLocationButtons", this, nameof(DisableLocationsButtons));
         }
 
-        // GetNodeOrNull<Scene01Screen>("InfoScene/Scene01Screen").Connect("Scene01DoneClicked", this, nameof(DisableLocationsButtons));
-        // GetNodeOrNull<Scene02>("InfoScene/Scene02").Connect("Scene02DoneClicked", this, nameof(DisableLocationsButtons));
-        // GetNodeOrNull<Scene03>("InfoScene/Scene03").Connect("Scene03DoneClicked", this, nameof(DisableLocationsButtons));
-        // GetNodeOrNull<Scene04>("InfoScene/Scene04").Connect("Scene04DoneClicked", this, nameof(DisableLocationsButtons));
-        // GetNodeOrNull<Scene05>("InfoScene/Scene05").Connect("Scene05DoneClicked", this, nameof(DisableLocationsButtons));
-        // GetNodeOrNull<Scene06>("InfoScene/Scene06").Connect("Scene06DoneClicked", this, nameof(DisableLocationsButtons));
-        // GetNodeOrNull<Scene07>("InfoScene/Scene07").Connect("Scene07DoneClicked", this, nameof(DisableLocationsButtons));
-        // GetNodeOrNull<Scene08>("InfoScene/Scene08").Connect("Scene08DoneClicked", this, nameof(DisableLocationsButtons));
-        // GetNodeOrNull<Scene09>("InfoScene/Scene09").Connect("Scene09DoneClicked", this, nameof(DisableLocationsButtons));
-        // GetNodeOrNull<Scene10>("InfoScene/Scene10").Connect("Scene10DoneClicked", this, nameof(DisableLocationsButtons));
-        // GetNodeOrNull<Scene11>("InfoScene/Scene11").Connect("Scene11DoneClicked", this, nameof(DisableLocationsButtons));
-        // GetNodeOrNull<Scene12>("InfoScene/Scene12").Connect("Scene12DoneClicked", this, nameof(DisableLocationsButtons));
-        // GetNodeOrNull<Scene13>("InfoScene/Scene13").Connect("Scene13DoneClicked", this, nameof(DisableLocationsButtons));
+        GetNodeOrNull<Scene01>("InfoScene/Scene01").Connect("Scene01DoneClicked", this, nameof(DisableLocationsButtons));
+        GetNodeOrNull<Scene02>("InfoScene/Scene02").Connect("Scene02DoneClicked", this, nameof(DisableLocationsButtons));
+        GetNodeOrNull<Scene03>("InfoScene/Scene03").Connect("Scene03DoneClicked", this, nameof(DisableLocationsButtons));
+        GetNodeOrNull<Scene04>("InfoScene/Scene04").Connect("Scene04DoneClicked", this, nameof(DisableLocationsButtons));
+        GetNodeOrNull<Scene05>("InfoScene/Scene05").Connect("Scene05DoneClicked", this, nameof(DisableLocationsButtons));
+        GetNodeOrNull<Scene06>("InfoScene/Scene06").Connect("Scene06DoneClicked", this, nameof(DisableLocationsButtons));
+        GetNodeOrNull<Scene07>("InfoScene/Scene07").Connect("Scene07DoneClicked", this, nameof(DisableLocationsButtons));
+        GetNodeOrNull<Scene08>("InfoScene/Scene08").Connect("Scene08DoneClicked", this, nameof(DisableLocationsButtons));
+        GetNodeOrNull<Scene09>("InfoScene/Scene09").Connect("Scene09DoneClicked", this, nameof(DisableLocationsButtons));
+        GetNodeOrNull<Scene10>("InfoScene/Scene10").Connect("Scene10DoneClicked", this, nameof(DisableLocationsButtons));
+        GetNodeOrNull<Scene11>("InfoScene/Scene11").Connect("Scene11DoneClicked", this, nameof(DisableLocationsButtons));
+        GetNodeOrNull<Scene12>("InfoScene/Scene12").Connect("Scene12DoneClicked", this, nameof(DisableLocationsButtons));
+        GetNodeOrNull<Scene13>("InfoScene/Scene13").Connect("Scene13DoneClicked", this, nameof(DisableLocationsButtons));
         
         GetNodeOrNull<StartValuesScene>("../StartValuesScene").Connect("GoalsValueDone", this,  nameof(DisableLocationsButtons));
 

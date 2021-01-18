@@ -9,7 +9,7 @@ using System;
 [Signal]
 public delegate void Scene01DoneClicked(Vector2 pos, bool disableLocButtons);
 
-public class Scene01Screen : Node2D
+public class Scene01 : Node2D
 {
     private String THIS_SCENE = "Scene01";
     private TravelPath travelPath;

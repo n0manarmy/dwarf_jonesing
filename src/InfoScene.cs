@@ -22,7 +22,7 @@ public class InfoScene : Node2D
     // private PackedScene _scene12 = (PackedScene)ResourceLoader.Load("res://scenes/Scene12.tscn");
     // private PackedScene _scene13 = (PackedScene)ResourceLoader.Load("res://scenes/Scene13.tscn");
 
-    private Scene01Screen scene01;
+    private Scene01 scene01;
     private Scene02 scene02;
     private Scene03 scene03;
     private Scene04 scene04;
@@ -60,7 +60,7 @@ public class InfoScene : Node2D
         GetNodeOrNull<LocationEntryArea2D>("../WalkingPath/Scene12").Connect("LocationEntered", this,  nameof(PresentLocationScene));
         GetNodeOrNull<LocationEntryArea2D>("../WalkingPath/Scene13").Connect("LocationEntered", this,  nameof(PresentLocationScene));
 
-        scene01 = GetNodeOrNull<Scene01Screen>("Scene01Screen");
+        scene01 = GetNodeOrNull<Scene01>("Scene01");
         scene02 = GetNodeOrNull<Scene02>("Scene02");
         scene03 = GetNodeOrNull<Scene03>("Scene03");
         scene04 = GetNodeOrNull<Scene04>("Scene04");

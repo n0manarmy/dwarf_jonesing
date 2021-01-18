@@ -414,7 +414,7 @@ tile_data = PoolIntArray( 196616, 0, 786441, 196617, 0, 786445, 196618, 0, 78644
 
 [node name="InfoScene" parent="." instance=ExtResource( 2 )]
 
-[node name="Scene01Screen" parent="InfoScene" instance=ExtResource( 15 )]
+[node name="Scene01" parent="InfoScene" instance=ExtResource( 15 )]
 
 [node name="Scene02" parent="InfoScene" instance=ExtResource( 12 )]
 
