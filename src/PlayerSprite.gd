@@ -29,9 +29,10 @@ onready var scene_12_node = get_node_or_null("../InfoScene/Scene12")
 onready var scene_13_node = get_node_or_null("../InfoScene/Scene13")
 
 onready	var travel_path_node = get_node_or_null("../../TravelPath")
+onready var global_data = get_node("/root/GlobalData")
 
 export var movement_path = PoolVector2Array()
-export var START_POS = Vector2(31, 10)
+export var START_POS = Vector2(31, 11)
 
 var debug_this = true
 
@@ -42,7 +43,7 @@ func _ready():
 		connect_signals()
 	
 	if travel_path_node != null:
-		travel_path_node.connect("position_updated", self, "update_sprite_position")
+		global_data.connect("position_updated", self, "update_sprite_position")
 	
 #	if get_node_or_null("../TravelPath") != null:
 #		if debug_this: print(self.name + ".if get_node_or_null(\"/root/RootScene/TravelPath\") != null:")

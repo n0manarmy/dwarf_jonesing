@@ -17,6 +17,9 @@ var players = []
 
 signal player_data_updated
 signal player_time_up
+signal position_updated
+signal update_player_data
+signal turn_over
 
 onready var player_count_select_scene = get_node_or_null("/root/RootScene/PlayerCountSelectScene")
 onready var start_values_scene = get_node_or_null("/root/RootScene/StartValuesScene")
@@ -46,12 +49,16 @@ func _ready():
 	
 func increase_player_happiness(values):
 	if debug_this: print(self.name + ".increase_player_happiness()", values)
+	var value = values[0]
+	var time = values[1]
 	var this_player = self.players[self.current_player - 1]
-	this_player.happiness += values[0]
-	this_player.turn_time_used += values[1]
+	this_player.happiness += value
+	this_player.turn_time_used += time
+	
 	if this_player.turn_time_used >= MAX_TIME:
 		if debug_this: print(self.name, ".if this_player.turn_time_used >= MAX_TIME:")
 		emit_signal("player_time_up")
+		increment_current_player()
 	
 	emit_signal("player_data_updated")
 	
@@ -61,6 +68,8 @@ func increment_current_player():
 		current_player = 1
 	else:
 		current_player += 1
+		
+	emit_signal("player_data_updated")	
 
 func reset_players():
 	current_player = 1

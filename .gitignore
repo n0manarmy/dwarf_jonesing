@@ -3,4 +3,7 @@ exports/
 .import/
 .DS_Store
 *~
+lib/
 logs/
+target/
+addons/

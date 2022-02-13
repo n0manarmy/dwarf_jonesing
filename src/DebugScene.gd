@@ -46,16 +46,15 @@ func _ready():
 		
 	if get_node_or_null("/root/RootScene/TravelPath") != null:
 		var location_entry_area_2d = get_node_or_null("/root/RootScene/TravelPath")
-		location_entry_area_2d.connect("update_player_data", self, "update_player_data")
+		global_data.connect("update_player_data", self, "update_player_data")
 	elif get_node_or_null("/root/TravelPath") != null:
 		var location_entry_area_2d = get_node_or_null("/root/TravelPath")
-		location_entry_area_2d.connect("update_player_data", self, "update_player_data")
+		global_data.connect("update_player_data", self, "update_player_data")
 	
 func update_player_data():
-	if debug_this: print(self.name + ".update_player_data ", global_data.current_player as int, " size: ", global_data.players.size())
+	if debug_this: print(self.name + ".update_player_data")
 	
 	var current_player = global_data.players[global_data.current_player - 1]
-	if debug_this: print(self.name + ".current_player: ", current_player)
 	
 	current_player_value_node.text = global_data.current_player as String
 	total_time_value_node.text = global_data.MAX_TIME as String

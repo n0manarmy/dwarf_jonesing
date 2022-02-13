@@ -12,9 +12,9 @@ position = Vector2( 0.000183105, 0 )
 script = ExtResource( 4 )
 
 [node name="BoardCoverLayer" parent="." instance=ExtResource( 2 )]
+position = Vector2( -0.000488281, 0 )
 
 [node name="DebugScene" parent="." instance=ExtResource( 13 )]
-visible = false
 position = Vector2( 0.000541687, 776 )
 
 [node name="TravelPath" parent="." instance=ExtResource( 3 )]

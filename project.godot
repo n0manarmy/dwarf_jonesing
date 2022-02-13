@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "",
+"class": "GitAPI",
+"language": "NativeScript",
+"path": "res://addons/godot-git-plugin/git_api.gdns"
+} ]
+_global_script_class_icons={
+"GitAPI": ""
+}
+
 [application]
 
 config/name="Dwarf_Jonesing"
@@ -28,11 +38,11 @@ settings/profiler/max_functions=50000
 
 [display]
 
-window/size/height=900
+window/size/height=950
 
 [gdnative]
 
-singletons=[  ]
+singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
 
 [global]
 
