@@ -1,8 +1,4 @@
 exports/
-.mono/
-.import/
-.DS_Store
-*~
 lib/
 logs/
 target/
