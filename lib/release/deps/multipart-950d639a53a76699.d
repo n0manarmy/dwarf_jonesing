@@ -1,0 +1,11 @@
+C:\Users\n0man\workspace\bracket_tutorial\..\Dwarf_Jonesing\lib\release\deps\multipart-950d639a53a76699.rmeta: C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\lib.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\server\mod.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\server\boundary.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\server\field.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\server\save.rs
+
+C:\Users\n0man\workspace\bracket_tutorial\..\Dwarf_Jonesing\lib\release\deps\libmultipart-950d639a53a76699.rlib: C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\lib.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\server\mod.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\server\boundary.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\server\field.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\server\save.rs
+
+C:\Users\n0man\workspace\bracket_tutorial\..\Dwarf_Jonesing\lib\release\deps\multipart-950d639a53a76699.d: C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\lib.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\server\mod.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\server\boundary.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\server\field.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\server\save.rs
+
+C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\lib.rs:
+C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\server\mod.rs:
+C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\server\boundary.rs:
+C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\server\field.rs:
+C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\multipart-0.18.0\src\server\save.rs:

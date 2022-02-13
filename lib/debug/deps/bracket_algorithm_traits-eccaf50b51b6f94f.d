@@ -1,0 +1,10 @@
+C:\Users\n0man\workspace\bracket_tutorial\..\Dwarf_Jonesing\lib\debug\deps\bracket_algorithm_traits-eccaf50b51b6f94f.rmeta: C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-algorithm-traits-0.8.1\src\lib.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-algorithm-traits-0.8.1\src\algorithm2d.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-algorithm-traits-0.8.1\src\algorithm3d.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-algorithm-traits-0.8.1\src\basemap.rs
+
+C:\Users\n0man\workspace\bracket_tutorial\..\Dwarf_Jonesing\lib\debug\deps\libbracket_algorithm_traits-eccaf50b51b6f94f.rlib: C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-algorithm-traits-0.8.1\src\lib.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-algorithm-traits-0.8.1\src\algorithm2d.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-algorithm-traits-0.8.1\src\algorithm3d.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-algorithm-traits-0.8.1\src\basemap.rs
+
+C:\Users\n0man\workspace\bracket_tutorial\..\Dwarf_Jonesing\lib\debug\deps\bracket_algorithm_traits-eccaf50b51b6f94f.d: C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-algorithm-traits-0.8.1\src\lib.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-algorithm-traits-0.8.1\src\algorithm2d.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-algorithm-traits-0.8.1\src\algorithm3d.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-algorithm-traits-0.8.1\src\basemap.rs
+
+C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-algorithm-traits-0.8.1\src\lib.rs:
+C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-algorithm-traits-0.8.1\src\algorithm2d.rs:
+C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-algorithm-traits-0.8.1\src\algorithm3d.rs:
+C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-algorithm-traits-0.8.1\src\basemap.rs:

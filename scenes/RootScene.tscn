@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/PlayerCountSelectScene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/BoardCoverLayer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/TravelPath.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/RootScene.gd" type="Script" id=4]
+[ext_resource path="res://scenes/StartValuesScene.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/DebugScene.tscn" type="PackedScene" id=13]
+
+[node name="RootScene" type="Node2D"]
+position = Vector2( 0.000183105, 0 )
+script = ExtResource( 4 )
+
+[node name="BoardCoverLayer" parent="." instance=ExtResource( 2 )]
+
+[node name="DebugScene" parent="." instance=ExtResource( 13 )]
+visible = false
+position = Vector2( 0.000541687, 776 )
+
+[node name="TravelPath" parent="." instance=ExtResource( 3 )]
+
+[node name="StartValuesScene" parent="." instance=ExtResource( 12 )]
+z_index = 5
+
+[node name="PlayerCountSelectScene" parent="." instance=ExtResource( 1 )]
+z_index = 5

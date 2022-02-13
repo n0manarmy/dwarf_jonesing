@@ -1,0 +1,10 @@
+C:\Users\n0man\workspace\bracket_tutorial\..\Dwarf_Jonesing\lib\debug\deps\bracket_pathfinding-897d1d546f64442f.rmeta: C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-pathfinding-0.8.1\src\lib.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-pathfinding-0.8.1\src\astar.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-pathfinding-0.8.1\src\dijkstra.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-pathfinding-0.8.1\src\fieldofview.rs
+
+C:\Users\n0man\workspace\bracket_tutorial\..\Dwarf_Jonesing\lib\debug\deps\libbracket_pathfinding-897d1d546f64442f.rlib: C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-pathfinding-0.8.1\src\lib.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-pathfinding-0.8.1\src\astar.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-pathfinding-0.8.1\src\dijkstra.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-pathfinding-0.8.1\src\fieldofview.rs
+
+C:\Users\n0man\workspace\bracket_tutorial\..\Dwarf_Jonesing\lib\debug\deps\bracket_pathfinding-897d1d546f64442f.d: C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-pathfinding-0.8.1\src\lib.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-pathfinding-0.8.1\src\astar.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-pathfinding-0.8.1\src\dijkstra.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-pathfinding-0.8.1\src\fieldofview.rs
+
+C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-pathfinding-0.8.1\src\lib.rs:
+C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-pathfinding-0.8.1\src\astar.rs:
+C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-pathfinding-0.8.1\src\dijkstra.rs:
+C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bracket-pathfinding-0.8.1\src\fieldofview.rs:

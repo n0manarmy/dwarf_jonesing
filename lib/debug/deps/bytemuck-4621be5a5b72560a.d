@@ -1,0 +1,12 @@
+C:\Users\n0man\workspace\bracket_tutorial\..\Dwarf_Jonesing\lib\debug\deps\bytemuck-4621be5a5b72560a.rmeta: C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\lib.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\zeroable.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\pod.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\contiguous.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\offset_of.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\transparent.rs
+
+C:\Users\n0man\workspace\bracket_tutorial\..\Dwarf_Jonesing\lib\debug\deps\libbytemuck-4621be5a5b72560a.rlib: C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\lib.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\zeroable.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\pod.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\contiguous.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\offset_of.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\transparent.rs
+
+C:\Users\n0man\workspace\bracket_tutorial\..\Dwarf_Jonesing\lib\debug\deps\bytemuck-4621be5a5b72560a.d: C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\lib.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\zeroable.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\pod.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\contiguous.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\offset_of.rs C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\transparent.rs
+
+C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\lib.rs:
+C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\zeroable.rs:
+C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\pod.rs:
+C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\contiguous.rs:
+C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\offset_of.rs:
+C:\Users\n0man\.cargo\registry\src\github.com-1ecc6299db9ec823\bytemuck-1.2.0\src\transparent.rs:

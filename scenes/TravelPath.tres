@@ -1,0 +1,59 @@
+[gd_resource type="TileSet" load_steps=5 format=2]
+
+[ext_resource path="res://art/Redjack17_clean.png" type="Texture" id=1]
+
+[sub_resource type="NavigationPolygon" id=4]
+vertices = PoolVector2Array( 4.13173, 3.3988, 0, 3.26422, 0, 11.7433, 5.6122, 12.147, 5.74678, 16, 11.2649, 16, 11.5341, 11.2049, 16, 11.4741, 16, 5.01385, 11.1303, 5.14844, 10.5919, 0, 4.13173, 0 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ) ]
+
+[sub_resource type="NavigationPolygon" id=2]
+vertices = PoolVector2Array( 11.9538, 4.20633, 16, 4.61009, 16, 11.6087, 11.2808, 11.8778, 11.4154, 16, 3.47475, 16, 3.60934, 10.532, 0, 10.6665, 0, 4.47549, 4.55145, 4.74469, 4.68604, 0, 11.9538, 0 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ) ]
+
+[sub_resource type="NavigationPolygon" id=3]
+vertices = PoolVector2Array( 4.02906, 0, 4.16364, 4.61009, 0, 4.74469, 0, 11.7433, 4.97118, 11.4741, 4.702, 16, 11.2968, 16, 11.7006, 11.7433, 16, 12.4162, 16, 4.74469, 10.893, 5.01385, 11.1622, 0 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ) ]
+
+[resource]
+0/name = "Redjack17_clean.png 0"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 256, 256 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 1, 0 )
+0/autotile/tile_size = Vector2( 16, 16 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [ Vector2( 0, 11 ), SubResource( 4 ), Vector2( 1, 11 ), SubResource( 2 ), Vector2( 2, 11 ), SubResource( 3 ) ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "Redjack17_clean.png 1"
+1/texture = ExtResource( 1 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 32, 48, 16, 16 )
+1/tile_mode = 2
+1/autotile/icon_coordinate = Vector2( 0, 0 )
+1/autotile/tile_size = Vector2( 16, 16 )
+1/autotile/spacing = 0
+1/autotile/occluder_map = [  ]
+1/autotile/navpoly_map = [  ]
+1/autotile/priority_map = [  ]
+1/autotile/z_index_map = [  ]
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0

@@ -8,20 +8,36 @@
 
 config_version=4
 
-_global_script_classes=[  ]
-_global_script_class_icons={
-
-}
-
 [application]
 
 config/name="Dwarf_Jonesing"
-run/main_scene="res://src/WalkingPath.tscn"
+run/main_scene="res://scenes/RootScene.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+GlobalData="*res://src/GlobalData.gd"
+TimerEngine="*res://scenes/TimerEngine.tscn"
+ScoringEngine="*res://scenes/ScoringEngine.tscn"
+Player="*res://scenes/Player.tscn"
+DebugScene="*res://scenes/DebugScene.tscn"
+
+[debug]
+
+settings/profiler/max_functions=50000
 
 [display]
 
-window/size/height=768
+window/size/height=900
+
+[gdnative]
+
+singletons=[  ]
+
+[global]
+
+editor=false
+ide=false
 
 [input]
 
@@ -30,6 +46,14 @@ LeftMouseButton={
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+
+[logging]
+
+file_logging/enable_file_logging=true
+
+[network]
+
+limits/debugger_stdout/max_chars_per_second=65535
 
 [rendering]
 
