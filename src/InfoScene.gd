@@ -32,6 +32,7 @@ onready var scene_12_area2d = get_node_or_null("../WalkingPath/Scene12")
 onready var scene_13_area2d = get_node_or_null("../WalkingPath/Scene13")
 
 onready var global_data = get_node_or_null("/root/GlobalData")
+onready var signals_manager = get_node_or_null("/root/SignalsManager")
 
 var debug_this = true
 
@@ -66,7 +67,7 @@ func _ready():
 	scene_12_area2d.connect("location_entered_present_scene", self, "present_location")
 	scene_13_area2d.connect("location_entered_present_scene", self, "present_location")
 	
-	global_data.connect("player_time_up", self, "hide_scenes")
+	signals_manager.connect("player_time_up", self, "hide_scenes")
 	
 func hide_scenes():
 	scene_01_node.hide()

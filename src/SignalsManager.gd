@@ -1,10 +1,14 @@
 extends Node
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+# emitted from
+signal update_round_timer_value
+signal update_game_rounds_value
 
+signal player_position_updated
+signal player_data_updated
+signal player_turn_over
+signal player_time_up
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -27,6 +27,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GlobalData="*res://src/GlobalData.gd"
+SignalsManager="*res://src/SignalsManager.gd"
 TimerEngine="*res://scenes/TimerEngine.tscn"
 ScoringEngine="*res://scenes/ScoringEngine.tscn"
 Player="*res://scenes/Player.tscn"
@@ -35,6 +36,7 @@ DebugScene="*res://scenes/DebugScene.tscn"
 [debug]
 
 settings/profiler/max_functions=50000
+gdscript/warnings/unused_signal=false
 
 [display]
 

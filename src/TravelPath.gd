@@ -6,10 +6,6 @@ export var moving = false
 var dest_name = ""
 var MAX_TIME = 500
 
-#signal position_updated
-#signal update_player_data
-#signal turn_over
-
 onready var scene_01_area2d = get_node("WalkingPath/Scene01")
 onready var scene_02_area2d = get_node("WalkingPath/Scene02")
 onready var scene_03_area2d = get_node("WalkingPath/Scene03")
@@ -38,12 +34,13 @@ onready var scene_11_node = get_node("InfoScene/Scene11")
 onready var scene_12_node = get_node("InfoScene/Scene12")
 onready var scene_13_node = get_node("InfoScene/Scene13")
 
+onready var signals_manager = get_node("/root/SignalsManager")
 onready var global_data = get_node("/root/GlobalData")
 onready var root_scene = get_node_or_null("/root/RootScene")
 onready var player_sprite = get_node("PlayerSprite")
 onready var start_values_scene = get_node_or_null("/root/RootScene/StartValuesScene")
 
-var debug_this = true
+var debug_this = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -57,8 +54,8 @@ func _ready():
 		if debug_this:print(self.name + ".running project")
 	
 	if global_data != null:
-		global_data.connect("player_time_up", self, "player_time_up")
-		global_data.connect("player_data_updated", self, "setup_player_for_move")
+		signals_manager.connect("player_time_up", self, "player_time_up")
+		signals_manager.connect("player_data_updated", self, "setup_player_for_move")
 	
 	if start_values_scene != null:
 		start_values_scene.connect("reset_players", self, "setup_player_for_move")
@@ -129,8 +126,8 @@ func connect_signals():
 func player_time_up():
 	if debug_this: print(self.name, ".player_time_up()")
 	var travel_path_tile_map: TileMap = get_node("WalkingPath/TravelPathTileMap")
-	global_data.emit_signal("position_updated", travel_path_tile_map.map_to_world(player_sprite.START_POS))
-	global_data.emit_signal("turn_over")	
+	signals_manager.emit_signal("player_position_updated", travel_path_tile_map.map_to_world(player_sprite.START_POS))
+	signals_manager.emit_signal("player_turn_over")	
 	my_set_process(false)
 	
 	
@@ -171,7 +168,7 @@ func move_along_path(dist: float):
 		
 		var dist_to_next = last_pos.distance_to(player_path[x])
 		this_player.turn_time_used += 1
-		global_data.emit_signal("update_player_data")
+		signals_manager.emit_signal("player_data_updated")
 		
 #		if player_path.size() == 0:
 #			if debug_this: print(self.name + ".Pop Menu for location")
@@ -192,7 +189,7 @@ func move_along_path(dist: float):
 		if dist <= dist_to_next:
 			if debug_this: print(self.name + ".dist <= dist_to_next")
 			var pos = last_pos.linear_interpolate(player_path[x], dist / dist_to_next)
-			global_data.emit_signal("position_updated", pos)
+			signals_manager.emit_signal("player_position_updated", pos)
 			break
 			
 		dist -= dist_to_next

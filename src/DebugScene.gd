@@ -20,11 +20,13 @@ onready var max_education_score_value_node = 	get_node("DebugContainer/HBoxConta
 onready var current_player_value_node = 		get_node("DebugContainer/HBoxContainer2/VBoxValues/CurrentPlayerValue")
 onready var total_players_value_node = 			get_node("DebugContainer/HBoxContainer2/VBoxValues/TotalPlayersValue")
 
+onready var signals_manager = 					get_node_or_null("/root/SignalsManager")
 onready var global_data = 						get_node_or_null("/root/GlobalData")
 onready var timer_engine = 						get_node_or_null("/root/TimerEngine")
 onready var scoring_engine = 					get_node_or_null("/root/ScoringEngine")
 onready var player_count_select_scene =			get_node_or_null("/root/RootScene/PlayerCountSelectScene")
 onready var start_values_scene =				get_node_or_null("/root/RootScene/StartValuesScene")
+onready var location_entry_area_2d = 			find_node("TravelPath", true, false)
 
 var debug_this = true
 
@@ -40,17 +42,12 @@ func _ready():
 		start_values_scene.connect("update_debug_scene", self, "update_player_data")
 	if player_count_select_scene != null:
 		player_count_select_scene.connect("update_debug_scene" , self, "update_player_data")
-	if global_data != null:
-		update_player_data()
-		global_data.connect("player_data_updated", self, "update_player_data")
-		
-	if get_node_or_null("/root/RootScene/TravelPath") != null:
-		var location_entry_area_2d = get_node_or_null("/root/RootScene/TravelPath")
-		global_data.connect("update_player_data", self, "update_player_data")
-	elif get_node_or_null("/root/TravelPath") != null:
-		var location_entry_area_2d = get_node_or_null("/root/TravelPath")
-		global_data.connect("update_player_data", self, "update_player_data")
-	
+#	if global_data != null:
+#		update_player_data()
+#		global_data.connect("player_data_updated", self, "update_player_data")
+#
+	signals_manager.connect("player_data_updated", self, "update_player_data")
+
 func update_player_data():
 	if debug_this: print(self.name + ".update_player_data")
 	

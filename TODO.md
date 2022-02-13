@@ -1,20 +1,20 @@
 # Current
 * <s>Movement of player sprite starts from position where last click occured, not last position of sprite.</s>
 * <s>Give thought to best way to resetting player position when done clicked</s>
-* wire in travelpath, infoscene, signals
-* build economy engine in Rust
+* <S>wire in travelpath, infoscene, signals</s>
+* limit happiness gain based on total items for possible happiness
 
 # Tasks
 * <s>Add time increment when visiting location</s>
 * prompt display at visit
-  * Prevent movement until done clicked
-* Build framework for presenting info screen
+  * <s>Prevent movement until done clicked</s>
+* <s>Build framework for presenting info screen</s>
   * Start with the employment building.
     * List all work places, base salary
       * build base qualifications for jobs
         * 
 * Build a clock to show time
-* Tie DebugScene to palyer status in gamedata
+* <s>Tie DebugScene to player status in gamedata</s>
 * Location
   * [HOLD] Build the employment office menu. 
       * [DONE] Capture CollisionShape2D enter squares

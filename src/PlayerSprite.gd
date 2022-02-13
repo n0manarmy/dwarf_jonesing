@@ -28,6 +28,7 @@ onready var scene_11_node = get_node_or_null("../InfoScene/Scene11")
 onready var scene_12_node = get_node_or_null("../InfoScene/Scene12")
 onready var scene_13_node = get_node_or_null("../InfoScene/Scene13")
 
+onready var signals_manager = get_node_or_null("/root/SignalsManager")
 onready	var travel_path_node = get_node_or_null("../../TravelPath")
 onready var global_data = get_node("/root/GlobalData")
 
@@ -43,7 +44,7 @@ func _ready():
 		connect_signals()
 	
 	if travel_path_node != null:
-		global_data.connect("position_updated", self, "update_sprite_position")
+		signals_manager.connect("player_position_updated", self, "update_sprite_position")
 	
 #	if get_node_or_null("../TravelPath") != null:
 #		if debug_this: print(self.name + ".if get_node_or_null(\"/root/RootScene/TravelPath\") != null:")
