@@ -40,7 +40,7 @@ onready var root_scene = get_node_or_null("/root/RootScene")
 onready var player_sprite = get_node("PlayerSprite")
 onready var start_values_scene = get_node_or_null("/root/RootScene/StartValuesScene")
 
-var debug_this = false
+var debug_this = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -56,17 +56,11 @@ func _ready():
 	
 	signals_manager.connect("player_time_up", self, "player_time_up")
 	signals_manager.connect("player_data_updated", self, "setup_player_for_move")
+	signals_manager.connect("on_done_clicked", self, "on_done_clicked")
+	signals_manager.connect("disable_location_buttons", self, "disable_location_buttons")
+	signals_manager.connect("location_entered_stop_movement", self, "my_set_process")	
+	signals_manager.connect("reset_players", self, "setup_player_for_move")
 	
-	if start_values_scene != null:
-		start_values_scene.connect("reset_players", self, "setup_player_for_move")
-		start_values_scene.connect("enable_location_buttons", self, "disable_location_buttons")
-	
-	if scene_01_area2d != null && scene_01_node != null:
-		connect_signals()
-		
-	if root_scene != null:
-		root_scene.connect("startup_disable_location_buttons", self, "disable_location_buttons")
-		
 	if get_node_or_null("/root/RootScene/LocationEntryArea2D") != null:
 		if debug_this: print(self.name + ".if get_node_or_null(\"/root/RootScene/LocationEntryArea2D\") != null:")
 		var location_entry_area_2d = get_node_or_null("/root/RootScene/LocationEntryArea2D")
@@ -76,8 +70,12 @@ func _ready():
 		var location_entry_area_2d = get_node_or_null("/root/LocationEntryArea2D")
 		location_entry_area_2d.connect("location_entered", self, "my_set_process")
 
+#	connect_signals()
 	my_set_process(false)
 #	setup_player_for_move()
+
+func on_done_clicked():
+	disable_location_buttons(false)
 	
 func connect_signals():
 	
@@ -95,39 +93,9 @@ func connect_signals():
 	scene_12_area2d.connect("location_entered_stop_movement", self, "my_set_process")
 	scene_13_area2d.connect("location_entered_stop_movement", self, "my_set_process")
 	
-	scene_01_area2d.connect("disable_location_buttons", self, "disable_location_buttons")
-	scene_02_area2d.connect("disable_location_buttons", self, "disable_location_buttons")
-	scene_03_area2d.connect("disable_location_buttons", self, "disable_location_buttons")
-	scene_04_area2d.connect("disable_location_buttons", self, "disable_location_buttons")
-	scene_05_area2d.connect("disable_location_buttons", self, "disable_location_buttons")
-	scene_06_area2d.connect("disable_location_buttons", self, "disable_location_buttons")
-	scene_07_area2d.connect("disable_location_buttons", self, "disable_location_buttons")
-	scene_08_area2d.connect("disable_location_buttons", self, "disable_location_buttons")
-	scene_09_area2d.connect("disable_location_buttons", self, "disable_location_buttons")
-	scene_10_area2d.connect("disable_location_buttons", self, "disable_location_buttons")
-	scene_11_area2d.connect("disable_location_buttons", self, "disable_location_buttons")
-	scene_12_area2d.connect("disable_location_buttons", self, "disable_location_buttons")
-	scene_13_area2d.connect("disable_location_buttons", self, "disable_location_buttons")
-	
-	scene_01_node.connect("on_done_clicked", self, "disable_location_buttons")
-	scene_02_node.connect("on_done_clicked", self, "disable_location_buttons")
-	scene_03_node.connect("on_done_clicked", self, "disable_location_buttons")
-	scene_04_node.connect("on_done_clicked", self, "disable_location_buttons")
-	scene_05_node.connect("on_done_clicked", self, "disable_location_buttons")
-	scene_06_node.connect("on_done_clicked", self, "disable_location_buttons")
-	scene_07_node.connect("on_done_clicked", self, "disable_location_buttons")
-	scene_08_node.connect("on_done_clicked", self, "disable_location_buttons")
-	scene_09_node.connect("on_done_clicked", self, "disable_location_buttons")
-	scene_10_node.connect("on_done_clicked", self, "disable_location_buttons")
-	scene_11_node.connect("on_done_clicked", self, "disable_location_buttons")
-	scene_12_node.connect("on_done_clicked", self, "disable_location_buttons")
-	scene_13_node.connect("on_done_clicked", self, "disable_location_buttons")
-	
+
 func player_time_up():
 	if debug_this: print(self.name, ".player_time_up()")
-	var travel_path_tile_map: TileMap = get_node("WalkingPath/TravelPathTileMap")
-	signals_manager.emit_signal("player_position_updated", travel_path_tile_map.map_to_world(player_sprite.START_POS))
-	signals_manager.emit_signal("player_turn_over")	
 	my_set_process(false)
 	
 	
@@ -177,7 +145,8 @@ func move_along_path(dist: float):
 			
 		if this_player.turn_time_used >= MAX_TIME:
 			if debug_this: print(self.name + ".player.turn_time_used >= MAX_TIME")
-			player_time_up()
+#			player_time_up()
+			signals_manager.emit_signal("player_time_up")
 			break
 			
 #		if dist < 0.0:
@@ -210,9 +179,6 @@ func move_along_path(dist: float):
 func on_button_move_pressed(dest: Vector2):
 	if debug_this: print(self.name + ".on_button_move_pressed, dest: ", dest)
 	
-#	var this_player = global_data.players[global_data.current_player - 1]
-#	var player_sprite: Sprite = player.get_child(0)
-	
 	my_set_process(true)
 	
 	var travel_path_tile_map: TileMap = get_node("WalkingPath/TravelPathTileMap")
@@ -227,19 +193,14 @@ func on_button_move_pressed(dest: Vector2):
 func _process(delta):
 	if debug_this: print(self.name + "._process")
 	move_along_path(speed * delta)
-	
 
-func disable_location_buttons():
+
+func disable_location_buttons(state):
 	if debug_this: print(self.name + ".disable_location_buttons")
 	var button_group: ButtonGroup = load("res://res/LocationButtonResource.tres")
 	for _button in button_group.get_buttons():
 		var button: Button = _button
-		if button.disabled:
-			button.disabled = !button.disabled
-			if debug_this: print(self.name + ".button.disabled ", button.disabled)			
-		else:
-			button.disabled = !button.disabled
-			if debug_this: print(self.name + ".button.disabled ", button.disabled)			
+		button.disabled = state
 		
 func my_set_process(val: bool):
 	if debug_this: print(self.name + ".my_set_process ", val)

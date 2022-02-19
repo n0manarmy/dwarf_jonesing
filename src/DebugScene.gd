@@ -39,7 +39,7 @@ func _ready():
 	scoring_engine.connect("update_value", self, "update_value_label")
 	
 	signals_manager.connect("update_debug_scene", self, "update_player_data")
-	#signals_manager.connect("player_data_updated", self, "update_player_data")
+	signals_manager.connect("player_data_updated", self, "update_player_data")
 
 func update_player_data():
 	if debug_this: print(self.name + ".update_player_data")

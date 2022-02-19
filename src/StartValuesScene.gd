@@ -1,11 +1,5 @@
 extends Node2D
 
-signal goals_values_updated
-signal reset_players
-signal increment_players
-signal enable_location_buttons
-signal goals_values_done(values)
-
 var vbox_container_name =           "VBoxContainer/"
 var hbox_goals_container_name =      "HBoxGoalsLabelContainer/"
 var hbox_slider_container_name =     "HBoxSliderContainer/"
@@ -32,7 +26,7 @@ var debug_this = true
 func _ready():
 	if debug_this: print(self.name + "._ready()")
 	#self.goals_values_updated.connect("update_goals_value")
-	connect("goals_values_updated", self, "update_goals_value")
+	signals_manager.connect("goals_values_updated", self, "update_goals_value")
 	if debug_this: print(self.name + ".global_variables.current_player ", global_data.current_player)
 	goals_label.text = DEFAULT_GOALS_LABEL_VALUE % (global_data.current_player as String)
 
@@ -51,20 +45,20 @@ func on_done_clicked():
 		"max_happiness": happiness_slider_node.value
 		}
 	
-	emit_signal("goals_values_done", values)
+	signals_manager.emit_signal("goals_values_done", values)
 	
 	if global_data.current_player == global_data.player_count:
 		if debug_this: print(self.name + ".if global_variables.current_player == global_variables.player_count:")
 		signals_manager.emit_signal("remove_board_overlay")
-		emit_signal("increment_players")
+		signals_manager.emit_signal("increment_players")
 		signals_manager.emit_signal("update_debug_scene")
-		emit_signal("reset_players")
-		emit_signal("enable_location_buttons")
+		signals_manager.emit_signal("reset_players")
+		signals_manager.emit_signal("disable_location_buttons", false)
 		queue_free()
 	else:
 		if debug_this: print(self.name + ".else")
-		emit_signal("increment_players")
-		emit_signal("update_debug_scene")		
+		signals_manager.emit_signal("increment_players")
+		signals_manager.emit_signal("update_debug_scene")
 		goals_label.text = DEFAULT_GOALS_LABEL_VALUE % global_data.current_player		
 		reset_sliders()
 	

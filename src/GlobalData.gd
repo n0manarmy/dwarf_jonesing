@@ -15,12 +15,10 @@ var current_player = 1
 var player_count = 1
 var players = []
 
-
 onready var player_count_select_scene = get_node_or_null("/root/RootScene/PlayerCountSelectScene")
 onready var start_values_scene = get_node_or_null("/root/RootScene/StartValuesScene")
 onready var debug_scene = get_node_or_null("/root/RootScene/DebugScene")
 onready var signals_manager = get_node_or_null("/root/SignalsManager")
-
 onready var scene_01_node = get_node_or_null("/root/RootScene/TravelPath/InfoScene/Scene01")
 
 var debug_this = true
@@ -29,19 +27,18 @@ var debug_this = true
 func _ready():
 	if debug_this: print(self.name + "._ready")
 	
-	if scene_01_node != null:
-		scene_01_node.connect("on_rest_button_pressed", self, "increase_player_happiness")
-	
+	signals_manager.connect("on_rest_button_pressed", self, "increase_player_happiness")
 	signals_manager.connect("player_count_selected", self, "setup_players")
 		
 	if start_values_scene != null:
 		if debug_this: print(self.name + ".if start_values_scene != null:")
-		start_values_scene.connect("increment_players", self, "increment_current_player")
-		start_values_scene.connect("goals_values_done", self, "set_player_max_values")
-		start_values_scene.connect("reset_players", self, "reset_players")
+		signals_manager.connect("increment_players", self, "increment_current_player")
+		signals_manager.connect("goals_values_done", self, "set_player_max_values")
+		signals_manager.connect("reset_players", self, "reset_players")
 			
 	setup_players(player_count)
-	
+
+
 func increase_player_happiness(values):
 	if debug_this: print(self.name + ".increase_player_happiness()", values)
 	var value = values[0]
@@ -53,10 +50,17 @@ func increase_player_happiness(values):
 	if this_player.turn_time_used >= MAX_TIME:
 		if debug_this: print(self.name, ".if this_player.turn_time_used >= MAX_TIME:")
 		signals_manager.emit_signal("player_time_up")
-		increment_current_player()
+		new_round()
 	
 	signals_manager.emit_signal("player_data_updated")
-	
+
+func new_round():
+	var this_player = self.players[self.current_player - 1]
+	this_player.reset_player_new_round()
+	increment_current_player()
+	signals_manager.emit_signal("disable_location_buttons", false)
+	self.game_rounds += 1
+
 func increment_current_player():
 	if debug_this: print(self.name + ".increment_current_player()")
 	if current_player == player_count:
@@ -66,8 +70,10 @@ func increment_current_player():
 		
 	signals_manager.emit_signal("player_data_updated")	
 
+
 func reset_players():
 	current_player = 1
+
 
 func setup_players(val):
 	if debug_this: print(self.name + "._setup_players: ", val)
@@ -103,8 +109,11 @@ func setup_players(val):
 #		var player_sprite: Sprite = player.get_child(0)
 #		if debug_this: print(self.name + ".player_sprite.modulate: ", player_sprite.modulate)
 	if debug_this: print(self.name + ".current_player ", current_player)
-	self.increment_current_player()
-		
+	
+	self.reset_players()
+	signals_manager.emit_signal("player_data_updated")	
+
+
 func set_player_max_values(values):
 	if debug_this: print(self.name + ".set_player_max_values(values)", values)
 	players[current_player - 1].max_job = values["max_job"]
