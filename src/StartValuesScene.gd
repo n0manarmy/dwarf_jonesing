@@ -1,10 +1,8 @@
 extends Node2D
 
 signal goals_values_updated
-signal remove_board_overlay
 signal reset_players
 signal increment_players
-signal update_debug_scene
 signal enable_location_buttons
 signal goals_values_done(values)
 
@@ -25,6 +23,7 @@ onready var wealth_slider_node = get_node(wealth_slider)
 onready var job_slider_node = get_node(job_slider)
 onready var education_slider_node = get_node(education_slider)
 onready var happiness_slider_node = get_node(happiness_slider)
+onready var signals_manager = get_node_or_null("/root/SignalsManager")
 onready var global_data = get_node("/root/GlobalData")
 
 var debug_this = true
@@ -56,9 +55,9 @@ func on_done_clicked():
 	
 	if global_data.current_player == global_data.player_count:
 		if debug_this: print(self.name + ".if global_variables.current_player == global_variables.player_count:")
-		emit_signal("remove_board_overlay")
+		signals_manager.emit_signal("remove_board_overlay")
 		emit_signal("increment_players")
-		emit_signal("update_debug_scene")
+		signals_manager.emit_signal("update_debug_scene")
 		emit_signal("reset_players")
 		emit_signal("enable_location_buttons")
 		queue_free()

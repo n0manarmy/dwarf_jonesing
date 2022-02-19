@@ -53,9 +53,9 @@ func _ready():
 	else:
 		if debug_this:print(self.name + ".running project")
 	
-	if global_data != null:
-		signals_manager.connect("player_time_up", self, "player_time_up")
-		signals_manager.connect("player_data_updated", self, "setup_player_for_move")
+	
+	signals_manager.connect("player_time_up", self, "player_time_up")
+	signals_manager.connect("player_data_updated", self, "setup_player_for_move")
 	
 	if start_values_scene != null:
 		start_values_scene.connect("reset_players", self, "setup_player_for_move")

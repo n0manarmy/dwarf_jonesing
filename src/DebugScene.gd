@@ -38,15 +38,8 @@ func _ready():
 	timer_engine.connect("update_round_timer", self, "update_time_used_label")
 	scoring_engine.connect("update_value", self, "update_value_label")
 	
-	if start_values_scene != null:
-		start_values_scene.connect("update_debug_scene", self, "update_player_data")
-	if player_count_select_scene != null:
-		player_count_select_scene.connect("update_debug_scene" , self, "update_player_data")
-#	if global_data != null:
-#		update_player_data()
-#		global_data.connect("player_data_updated", self, "update_player_data")
-#
-	signals_manager.connect("player_data_updated", self, "update_player_data")
+	signals_manager.connect("update_debug_scene", self, "update_player_data")
+	#signals_manager.connect("player_data_updated", self, "update_player_data")
 
 func update_player_data():
 	if debug_this: print(self.name + ".update_player_data")

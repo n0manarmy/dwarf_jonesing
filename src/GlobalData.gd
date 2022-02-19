@@ -32,8 +32,7 @@ func _ready():
 	if scene_01_node != null:
 		scene_01_node.connect("on_rest_button_pressed", self, "increase_player_happiness")
 	
-	if player_count_select_scene != null:
-		player_count_select_scene.connect("player_count_selected", self, "setup_players")
+	signals_manager.connect("player_count_selected", self, "setup_players")
 		
 	if start_values_scene != null:
 		if debug_this: print(self.name + ".if start_values_scene != null:")
@@ -74,6 +73,7 @@ func setup_players(val):
 	if debug_this: print(self.name + "._setup_players: ", val)
 	player_count = val
 	players.clear()
+	
 	for x in player_count as int:
 		print(self.name + ".creating player ", x + 1)
 		var player = Player.duplicate()
@@ -91,7 +91,6 @@ func setup_players(val):
 				if debug_this: print(self.name + ".player 3 coloring")				
 #				player.get_child(0).modulate = Color(0, 0, 200)
 				player.color = Color(0,0,200)
-
 			4: 
 				if debug_this: print(self.name + ".player 4 coloring")				
 #				player.get_child(0).modulate = Color(100, 0, 100)
@@ -103,6 +102,8 @@ func setup_players(val):
 		if debug_this: print(self.name + ".player id: ", player.id)
 #		var player_sprite: Sprite = player.get_child(0)
 #		if debug_this: print(self.name + ".player_sprite.modulate: ", player_sprite.modulate)
+	if debug_this: print(self.name + ".current_player ", current_player)
+	self.increment_current_player()
 		
 func set_player_max_values(values):
 	if debug_this: print(self.name + ".set_player_max_values(values)", values)
