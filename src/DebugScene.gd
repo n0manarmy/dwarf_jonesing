@@ -38,8 +38,13 @@ func _ready():
 	timer_engine.connect("update_round_timer", self, "update_time_used_label")
 	scoring_engine.connect("update_value", self, "update_value_label")
 	
-	signals_manager.connect("update_debug_scene", self, "update_player_data")
+	signals_manager.connect("global_data_updated", self, "update_global_data")
 	signals_manager.connect("player_data_updated", self, "update_player_data")
+
+
+func update_global_data():
+	if debug_this: print(self.name + ".update_global_data")
+	rounds_value_node = global_data.game_rounds
 
 func update_player_data():
 	if debug_this: print(self.name + ".update_player_data")

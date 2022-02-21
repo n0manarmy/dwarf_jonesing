@@ -46,10 +46,11 @@ func _ready():
 		signals_manager.connect("reset_players", self, "reset_players")
 			
 	setup_players(player_count)
-	setup_economy()
+	setup_board()
+	adjust_economy()
 
 
-func setup_economy():
+func adjust_economy():
 	if debug_this: print(self.name +".test_setup_economy()")
 	
 	var list_min = econ_values.min()
@@ -111,6 +112,11 @@ func get_current_player():
 	return self.players[self.current_player - 1]
 
 
+func setup_board():
+	self.game_rounds = 1
+	signals_manager.emit_signal("global_data_updated")
+
+
 func setup_players(val):
 	if debug_this: print(self.name + "._setup_players: ", val)
 	player_count = val
@@ -149,7 +155,7 @@ func setup_players(val):
 	if debug_this: print(self.name + ".current_player ", current_player)
 	
 	self.reset_players()
-	signals_manager.emit_signal("player_data_updated")	
+	signals_manager.emit_signal("player_data_updated")
 
 
 func set_player_max_values(values):

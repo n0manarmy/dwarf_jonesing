@@ -210,6 +210,7 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="TextBackground/ActionsContainer/PayRentContainer/PayRentButtonContainer/Button" to="." method="pay_rent_clicked"]
+[connection signal="pressed" from="TextBackground/ActionsContainer/MoreTimeContainer/MoreTimeButtonContainer/Button" to="." method="ask_for_more_time"]
 [connection signal="pressed" from="TextBackground/ActionsContainer/LowCostContainer/LowCostButtonContainer/Button" to="." method="rent_low_cost_apartment"]
 [connection signal="pressed" from="TextBackground/DoneButton" to="." method="on_done_clicked"]
 [connection signal="pressed" from="TextBackground/WorkButton" to="." method="on_work_clicked"]

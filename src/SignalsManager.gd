@@ -13,6 +13,7 @@ signal reset_players
 signal increment_players
 signal location_entered_stop_movement
 signal goals_values_updated
+signal global_data_updated
 
 signal disable_location_buttons(state)
 signal goals_values_done(values)

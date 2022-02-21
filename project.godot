@@ -26,9 +26,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-DebugScene="*res://scenes/DebugScene.tscn"
 InventoryManager="*res://src/InventoryManager.gd"
 GlobalData="*res://src/GlobalData.gd"
+DebugScene="*res://scenes/DebugScene.tscn"
 SignalsManager="*res://src/SignalsManager.gd"
 TimerEngine="*res://scenes/TimerEngine.tscn"
 ScoringEngine="*res://scenes/ScoringEngine.tscn"

@@ -30,12 +30,15 @@ func _ready():
 	else:
 		work_button.visible = false
 	
-	if global_data.game_rounds % 4 == 0 && global_data.game_rounds != 0:
+	# if (global_data.game_rounds % 4 == 0 && global_data.game_rounds != 0) || self.player.rent_extended > 0:
 		show_rental_office()
-	else:
-		hide_rental_office()
+	# else:
+	# 	hide_rental_office()
+
 
 func hide_rental_office():
+	if debug_this: print(self.name + ".hide_rental_office")	
+
 	actions_container.visible = false
 	info_label_box.text = text_manager.RENTAL_OFFICE_CLOSED
 
@@ -46,11 +49,23 @@ func show_rental_office():
 	actions_container.visible = true
 	pay_rent_button.set_text(str(player.current_rent))
 
+	info_label_box.text = text_manager.RENTAL_OFFICE_OPEN[global_data.rng.randi_range(0, text_manager.RENTAL_OFFICE_OPEN.size() - 1)]
+
 	var adjust_rent = global_data.adjust_for_economy(LOW_COST_BASE_RENT_VALUE)
 	rent_low_cost_button.set_text(str(adjust_rent))
 	
 	adjust_rent = global_data.adjust_for_economy(LE_SECURITY_BASE_RENT_VALUE)
 	rent_le_security_button.set_text(str(adjust_rent))
+
+
+func ask_for_more_time():
+	if debug_this: print(self.name + ".ask_for_more_time")	
+
+	if self.player.rent_due <= self.player.current_rent && self.player.rent_extended < 2:
+		info_label_box.text = text_manager.EXTEND_RENT
+
+	else:
+		info_label_box.text = text_manager.REJECT_EXTENDING_RENT
 
 
 func pay_rent_clicked():
@@ -60,6 +75,7 @@ func pay_rent_clicked():
 		self.player.rent_due = self.player.rent_due - self.player.current_rent
 		pay_rent_button.set_text(str(self.player.rent_due))
 		info_label_box.text = text_manager.RENT_PAYED
+		self.player.rent_extended = 0
 		if just_payed == true:
 			just_payed = false;
 		signals_manager.emit_signal("player_data_updated")
@@ -79,6 +95,7 @@ func rent_low_cost_apartment():
 		self.player.possessions.erase(im.LE_SECURITY_APARTMENT.keys()[0])
 		self.player.possessions[im.LOW_COST_APARTMENT.keys()[0]] = im.LOW_COST_APARTMENT.values()[0]
 		just_payed = true
+		self.player.rent_extended = 0
 
 
 
@@ -94,8 +111,8 @@ func rent_le_security_apartment():
 		self.player.possessions[im.LE_SECURITY_APARTMENT.keys()[0]] = im.LE_SECURITY_APARTMENT.values()[0]
 		info_label_box.text = text_manager.NEW_LE_SECURITY_APARTMENT
 		just_payed = true
+		self.player.rent_extended = 0
 
-		
 
 func on_done_clicked():
 	if debug_this: print(self.name + ".on_done_clicked")
@@ -106,4 +123,6 @@ func on_done_clicked():
 
 
 func on_work_clicked():
+	if debug_this: print(self.name + ".on_work_clicked")
+
 	pass # Replace with function body.

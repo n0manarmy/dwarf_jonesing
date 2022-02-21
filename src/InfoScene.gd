@@ -96,42 +96,55 @@ func present_location(scene: Area2D):
 	match scene:
 		scene_01_area2d:
 			if debug_this: print(self.name + ".match scene_01_area2d show")			
+			scene_01_node._ready()
 			scene_01_node.show()
 		scene_02_area2d:
 			if debug_this: print(self.name + ".match scene_02_area2d show")			
+			scene_02_node._ready()
 			scene_02_node.show()
 		scene_03_area2d:
 			if debug_this: print(self.name + ".match scene_03_area2d show")			
+			scene_03_node._ready()
 			scene_03_node.show()
 		scene_04_area2d:
 			if debug_this: print(self.name + ".match scene_04_area2d show")			
+			scene_04_node._ready()
 			scene_04_node.show()
 		scene_05_area2d:
 			if debug_this: print(self.name + ".match scene_05_area2d show")			
+			scene_05_node._ready()
 			scene_05_node.show()
 		scene_06_area2d:
 			if debug_this: print(self.name + ".match scene_06_area2d show")			
+			scene_06_node._ready()
 			scene_06_node.show()
 		scene_07_area2d:
 			if debug_this: print(self.name + ".match scene_07_area2d show")			
+			scene_07_node._ready()
 			scene_07_node.show()
 		scene_08_area2d:
 			if debug_this: print(self.name + ".match scene_08_area2d show")			
+			scene_08_node._ready()
 			scene_08_node.show()
 		scene_09_area2d:
 			if debug_this: print(self.name + ".match scene_09_area2d show")			
+			scene_09_node._ready()
 			scene_09_node.show()
 		scene_10_area2d:
 			if debug_this: print(self.name + ".match scene_10_area2d show")			
+			scene_10_node._ready()
 			scene_10_node.show()
 		scene_11_area2d:
 			if debug_this: print(self.name + ".match scene_11_area2d show")			
+			scene_11_node._ready()
 			scene_11_node.show()
 		scene_12_area2d:
 			if debug_this: print(self.name + ".match scene_12_area2d show")			
+			scene_12_node._ready()
 			scene_12_node.show()
 		scene_13_area2d:
 			if debug_this: print(self.name + ".match scene_13_area2d show")			
+			scene_13_node._ready()
 			scene_13_node.show()
 		
 	

@@ -9,6 +9,10 @@ export var RENT_PAYED = "Thank you for paying your rent! Now we won't have to se
 export var NO_MONEY_TO_PAY_RENT = "You ain't got no monies!"
 export var RENTAL_OFFICE_CLOSED = "Closed!"
 export var SECURITY_DEPOSIT_PAYED_FIRST = "You must pay your security deposit for the month first!"
+export var EXTEND_RENT = "Sure you can pay your rent next week!"
+export var REJECTED_EXTENDING_RENT = "Sorry but I need you to pay now."
+
+export var RENTAL_OFFICE_OPEN = ["Welcome to another beautiful day at your caring Rental Office", "Hi! Finally here to pay the rent?!", "Hello? Oh Hi! Got my monies?!"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

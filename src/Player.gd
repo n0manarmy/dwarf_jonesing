@@ -19,6 +19,7 @@ export var current_job = "NONE"
 export var current_rent:int  = 325
 export var rent_due: int = 325
 export var color = Color()
+export var rent_extended: int = 0
 export var possessions: Dictionary = {}
 
 var debug_this = true
@@ -45,6 +46,7 @@ func to_string():
 	print(self.name + ".color ", color)
 	print(self.name + ".current_rent ", current_rent)
 	print(self.name + ".rent_due ", rent_due)
+	print(self.name + ".rent_extended ", rent_extended)
 	print(self.name + ".possessions ", possessions)
 
 func reset_player_new_round():
