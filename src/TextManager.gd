@@ -14,7 +14,8 @@ export var EXTEND_RENT = "Sure you can pay your rent next week!"
 export var REJECTED_EXTENDING_RENT = "Sorry but I need you to pay now."
 
 export var RENTAL_OFFICE_OPEN = ["Welcome to another beautiful day at your caring Rental Office", "Hi! Finally here to pay the rent?!", "Hello? Oh Hi! Got my monies?!"]
-export var LOW_COST_APARTMENT_GREET = ["Ahh, home sweet BLAAARGH!!", "Oh! Hey! There's that banana I've been missing!", "Oh...rats!"]
+export var LOW_COST_APARTMENT_HOME_GREET = ["Ahh, home sweet BLAAARGH!!", "Oh! Hey! There's that banana I've been missing!", "Oh...rats!"]
+export var LOW_COST_APARTMENT_VISITOR_GREET = ["Well that's just something special! Vomit colored doormats?", "I wonder why they call it Low Cost...ooooh!", "Oh...rats!"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

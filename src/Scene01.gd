@@ -24,9 +24,10 @@ func setup_buttons():
 	if debug_this: print(self.name + ".setup_buttons")	
 
 	if self.player.possessions.has(im.LOW_COST_APARTMENT.keys()[0]):
-		info_label_box.text = text_manager.get_random_message(text_manager.LOW_COST_APARTMENT_GREET)
+		info_label_box.text = text_manager.get_random_message(text_manager.LOW_COST_APARTMENT_HOME_GREET)
 		rest_button.visible = true
 	else:
+		info_label_box.text = text_manager.get_random_message(text_manager.LOW_COST_APARTMENT_VISITOR_GREET)
 		rest_button.visible = false
 	
 func on_done_clicked():

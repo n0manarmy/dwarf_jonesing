@@ -3,7 +3,8 @@
 * <s>Give thought to best way to resetting player position when done clicked</s>
 * <S>wire in travelpath, infoscene, signals</s>
 * limit happiness gain based on total items for possible happiness
-* Finish up Rental Office. 
+* Finish up Rental Office.
+  * Make checks on worth o make sure they can rent low cost or le security before allowing rental
 
 # Tasks
 * <s>Add time increment when visiting location</s>
