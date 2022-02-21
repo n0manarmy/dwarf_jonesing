@@ -30,10 +30,10 @@ func _ready():
 	else:
 		work_button.visible = false
 	
-	# if (global_data.game_rounds % 4 == 0 && global_data.game_rounds != 0) || self.player.rent_extended > 0:
+	if (global_data.game_rounds % 4 == 0 && global_data.game_rounds != 0) || self.player.rent_extended > 0:
 		show_rental_office()
-	# else:
-	# 	hide_rental_office()
+	else:
+		hide_rental_office()
 
 
 func hide_rental_office():
@@ -49,7 +49,8 @@ func show_rental_office():
 	actions_container.visible = true
 	pay_rent_button.set_text(str(player.current_rent))
 
-	info_label_box.text = text_manager.RENTAL_OFFICE_OPEN[global_data.rng.randi_range(0, text_manager.RENTAL_OFFICE_OPEN.size() - 1)]
+	# info_label_box.text = text_manager.RENTAL_OFFICE_OPEN[global_data.rng.randi_range(0, text_manager.RENTAL_OFFICE_OPEN.size() - 1)]
+	info_label_box.text = text_manager.get_random_message(text_manager.RENTAL_OFFICE_OPEN)
 
 	var adjust_rent = global_data.adjust_for_economy(LOW_COST_BASE_RENT_VALUE)
 	rent_low_cost_button.set_text(str(adjust_rent))

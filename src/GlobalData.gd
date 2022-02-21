@@ -58,10 +58,17 @@ func adjust_economy():
 	# if debug_this: print(self.name + ".list_min: ", list_min)
 	# if debug_this: print(self.name + ".list_max: ", list_max)
 
+	var list_avg = 0
+	for v in econ_values:
+		list_avg += v
+	list_avg = list_avg / econ_values.size()
+
 	if list_min == list_max:
-		econ_values.append(rng.randi_range(ECON_MIN, ECON_MAX))
+		var val = (rng.randi_range(ECON_MIN, ECON_MAX) + list_avg) / 2
+		econ_values.append(val)
 	else:
-		econ_values.append(rng.randi_range(list_min, list_max))		
+		var val = (rng.randi_range(list_min, list_max) + list_avg) / 2
+		econ_values.append(val)		
 
 	econ_values.remove(0)
 	# if debug_this: print(self.name + "econ_values: ", econ_values)
