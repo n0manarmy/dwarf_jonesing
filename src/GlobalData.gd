@@ -5,9 +5,13 @@ extends Node2D
 # var b = "text"
 
 var MAX_TIME = 500
-var base_econ_value = 10
-var econ_min = 5
-var econ_max = 20
+
+# ECONOMY
+var base_econ_value = 1
+var ECON_MIN = 55
+var ECON_MAX = 155
+var econ_values = [90, 95, 100, 105, 110]
+
 var base_starting_difficulty = 50
 var button_clicked_add_time = 10
 var game_rounds = 0
@@ -15,10 +19,13 @@ var current_player = 1
 var player_count = 1
 var players = []
 
+var rng = RandomNumberGenerator.new()
+
 onready var player_count_select_scene = get_node_or_null("/root/RootScene/PlayerCountSelectScene")
 onready var start_values_scene = get_node_or_null("/root/RootScene/StartValuesScene")
 onready var debug_scene = get_node_or_null("/root/RootScene/DebugScene")
 onready var signals_manager = get_node_or_null("/root/SignalsManager")
+onready var im = get_node("/root/InventoryManager")
 onready var scene_01_node = get_node_or_null("/root/RootScene/TravelPath/InfoScene/Scene01")
 
 var debug_this = true
@@ -26,6 +33,8 @@ var debug_this = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if debug_this: print(self.name + "._ready")
+
+	rng.seed = hash(OS.get_datetime())
 	
 	signals_manager.connect("on_rest_button_pressed", self, "increase_player_happiness")
 	signals_manager.connect("player_count_selected", self, "setup_players")
@@ -37,6 +46,30 @@ func _ready():
 		signals_manager.connect("reset_players", self, "reset_players")
 			
 	setup_players(player_count)
+	setup_economy()
+
+
+func setup_economy():
+	if debug_this: print(self.name +".test_setup_economy()")
+	
+	var list_min = econ_values.min()
+	var list_max = econ_values.max()
+	# if debug_this: print(self.name + ".list_min: ", list_min)
+	# if debug_this: print(self.name + ".list_max: ", list_max)
+
+	if list_min == list_max:
+		econ_values.append(rng.randi_range(ECON_MIN, ECON_MAX))
+	else:
+		econ_values.append(rng.randi_range(list_min, list_max))		
+
+	econ_values.remove(0)
+	# if debug_this: print(self.name + "econ_values: ", econ_values)
+
+func adjust_for_economy(val):
+	if debug_this: print(self.name + ".adjust_for_economy()")
+	var adjusted = (self.econ_values.back() as float / 100 as float)
+	if debug_this: print(self.name + ".adjusted: ", adjusted)
+	return (val * adjusted) as int
 
 
 func increase_player_happiness(values):
@@ -74,6 +107,9 @@ func increment_current_player():
 func reset_players():
 	current_player = 1
 
+func get_current_player():
+	return self.players[self.current_player - 1]
+
 
 func setup_players(val):
 	if debug_this: print(self.name + "._setup_players: ", val)
@@ -83,6 +119,7 @@ func setup_players(val):
 	for x in player_count as int:
 		print(self.name + ".creating player ", x + 1)
 		var player = Player.duplicate()
+		player.possessions[im.LOW_COST_APARTMENT.keys()[0]] = im.LOW_COST_APARTMENT.values()[0]
 		player.id = x + 1
 		match (x + 1):
 			1:
@@ -106,6 +143,7 @@ func setup_players(val):
 	
 	for player in players:
 		if debug_this: print(self.name + ".player id: ", player.id)
+		if debug_this: print(self.name + ".player.to_string(): ", player.to_string())
 #		var player_sprite: Sprite = player.get_child(0)
 #		if debug_this: print(self.name + ".player_sprite.modulate: ", player_sprite.modulate)
 	if debug_this: print(self.name + ".current_player ", current_player)

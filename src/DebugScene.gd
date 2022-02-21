@@ -44,7 +44,7 @@ func _ready():
 func update_player_data():
 	if debug_this: print(self.name + ".update_player_data")
 	
-	var current_player = global_data.players[global_data.current_player - 1]
+	var current_player = global_data.get_current_player()
 	
 	current_player_value_node.text = global_data.current_player as String
 	total_time_value_node.text = global_data.MAX_TIME as String

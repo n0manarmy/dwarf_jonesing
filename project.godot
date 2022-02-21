@@ -26,12 +26,14 @@ config/icon="res://icon.png"
 
 [autoload]
 
+DebugScene="*res://scenes/DebugScene.tscn"
+InventoryManager="*res://src/InventoryManager.gd"
 GlobalData="*res://src/GlobalData.gd"
 SignalsManager="*res://src/SignalsManager.gd"
 TimerEngine="*res://scenes/TimerEngine.tscn"
 ScoringEngine="*res://scenes/ScoringEngine.tscn"
 Player="*res://scenes/Player.tscn"
-DebugScene="*res://scenes/DebugScene.tscn"
+TextManager="*res://src/TextManager.gd"
 
 [debug]
 

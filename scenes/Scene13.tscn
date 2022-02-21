@@ -39,14 +39,144 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="JobsButtonContainer" type="VBoxContainer" parent="TextBackground"]
-margin_left = 272.0
+[node name="ActionsContainer" type="VBoxContainer" parent="TextBackground"]
+margin_left = 296.0
 margin_top = 264.0
-margin_right = 448.0
+margin_right = 506.0
 margin_bottom = 476.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="PayRentContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer"]
+margin_right = 210.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="PayRentLabelContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer/PayRentContainer"]
+margin_right = 103.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TextBackground/ActionsContainer/PayRentContainer/PayRentLabelContainer"]
+margin_top = 3.0
+margin_right = 93.0
+margin_bottom = 17.0
+text = "Rent Due, Pay:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PayRentButtonContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer/PayRentContainer"]
+margin_left = 107.0
+margin_right = 210.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Button" type="Button" parent="TextBackground/ActionsContainer/PayRentContainer/PayRentButtonContainer"]
+margin_left = 67.0
+margin_right = 103.0
+margin_bottom = 20.0
+text = "325"
+
+[node name="MoreTimeContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer"]
+margin_top = 24.0
+margin_right = 210.0
+margin_bottom = 44.0
+
+[node name="MoreTimeLabelContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer/MoreTimeContainer"]
+margin_right = 116.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TextBackground/ActionsContainer/MoreTimeContainer/MoreTimeLabelContainer"]
+margin_top = 3.0
+margin_right = 116.0
+margin_bottom = 17.0
+text = "Ask for more time"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoreTimeButtonContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer/MoreTimeContainer"]
+margin_left = 120.0
+margin_right = 210.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Button" type="Button" parent="TextBackground/ActionsContainer/MoreTimeContainer/MoreTimeButtonContainer"]
+margin_left = 33.0
+margin_right = 90.0
+margin_bottom = 20.0
+text = "1 week"
+
+[node name="LowCostContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer"]
+margin_top = 48.0
+margin_right = 210.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+
+[node name="LowCostLabelContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer/LowCostContainer"]
+margin_right = 124.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TextBackground/ActionsContainer/LowCostContainer/LowCostLabelContainer"]
+margin_top = 3.0
+margin_right = 124.0
+margin_bottom = 17.0
+text = "Rent Low Cost Appt"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LowCostButtonContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer/LowCostContainer"]
+margin_left = 128.0
+margin_right = 210.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Button" type="Button" parent="TextBackground/ActionsContainer/LowCostContainer/LowCostButtonContainer"]
+margin_left = 46.0
+margin_right = 82.0
+margin_bottom = 20.0
+text = "325"
+
+[node name="LeSecurityContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer"]
+margin_top = 72.0
+margin_right = 210.0
+margin_bottom = 92.0
+size_flags_horizontal = 3
+
+[node name="LeSecurityLabelContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer/LeSecurityContainer"]
+margin_right = 137.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TextBackground/ActionsContainer/LeSecurityContainer/LeSecurityLabelContainer"]
+margin_top = 3.0
+margin_right = 137.0
+margin_bottom = 17.0
+text = "Rent Le Security Appt"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeSecurityButtonContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer/LeSecurityContainer"]
+margin_left = 141.0
+margin_right = 210.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Button" type="Button" parent="TextBackground/ActionsContainer/LeSecurityContainer/LeSecurityButtonContainer"]
+margin_left = 33.0
+margin_right = 69.0
+margin_bottom = 20.0
+text = "325"
 
 [node name="InfoLabelBox" type="Label" parent="TextBackground"]
 margin_left = 520.0
@@ -60,13 +190,26 @@ __meta__ = {
 }
 
 [node name="DoneButton" type="Button" parent="TextBackground"]
-margin_left = 672.0
-margin_top = 488.0
-margin_right = 718.0
-margin_bottom = 508.0
+margin_left = 648.0
+margin_top = 476.0
+margin_right = 694.0
+margin_bottom = 496.0
 text = "Done"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="WorkButton" type="Button" parent="TextBackground"]
+margin_left = 296.0
+margin_top = 476.0
+margin_right = 342.0
+margin_bottom = 496.0
+text = "Work"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="TextBackground/ActionsContainer/PayRentContainer/PayRentButtonContainer/Button" to="." method="pay_rent_clicked"]
+[connection signal="pressed" from="TextBackground/ActionsContainer/LowCostContainer/LowCostButtonContainer/Button" to="." method="rent_low_cost_apartment"]
 [connection signal="pressed" from="TextBackground/DoneButton" to="." method="on_done_clicked"]
+[connection signal="pressed" from="TextBackground/WorkButton" to="." method="on_work_clicked"]
