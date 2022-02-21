@@ -18,6 +18,7 @@ var game_rounds = 0
 var current_player = 1
 var player_count = 1
 var players = []
+var jobs = []
 
 var rng = RandomNumberGenerator.new()
 
@@ -46,6 +47,7 @@ func _ready():
 		signals_manager.connect("reset_players", self, "reset_players")
 			
 	setup_players(player_count)
+	setup_jobs()
 	setup_board()
 	adjust_economy()
 
@@ -72,6 +74,7 @@ func adjust_economy():
 
 	econ_values.remove(0)
 	# if debug_this: print(self.name + "econ_values: ", econ_values)
+
 
 func adjust_for_economy(val):
 	if debug_this: print(self.name + ".adjust_for_economy()")
@@ -122,6 +125,10 @@ func get_current_player():
 func setup_board():
 	self.game_rounds = 1
 	signals_manager.emit_signal("global_data_updated")
+
+
+func setup_jobs():
+	if debug_this: print(self.name + ".setup_jobs: ")
 
 
 func setup_players(val):

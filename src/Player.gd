@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 onready var signals_manager = get_node("/root/SignalsManager")
 onready var im = get_node("/root/InventoryManager")
@@ -24,6 +24,9 @@ export var possessions: Dictionary = {}
 
 var debug_this = true
 
+# func _init(this_id):
+# 	self.id = this_id
+# 	self.possessions[im.LOW_COST_APARTMENT.keys()[0]] = im.LOW_COST_APARTMENT.values()[0]
 
 func _ready():
 	if debug_this: print(self.name + "._ready")
