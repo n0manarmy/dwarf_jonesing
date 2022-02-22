@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "",
+"class": "GitAPI",
+"language": "NativeScript",
+"path": "res://addons/godot-git-plugin/git_api.gdns"
+} ]
+_global_script_class_icons={
+"GitAPI": ""
+}
+
 [application]
 
 config/name="Dwarf_Jonesing"
@@ -20,10 +30,11 @@ InventoryManager="*res://src/InventoryManager.gd"
 GlobalData="*res://src/GlobalData.gd"
 DebugScene="*res://scenes/DebugScene.tscn"
 SignalsManager="*res://src/SignalsManager.gd"
+Player="*res://scenes/Player.tscn"
 TimerEngine="*res://scenes/TimerEngine.tscn"
 ScoringEngine="*res://scenes/ScoringEngine.tscn"
-Player="*res://scenes/Player.tscn"
 TextManager="*res://src/TextManager.gd"
+JobManager="*res://src/JobManager.gd"
 
 [debug]
 
@@ -36,7 +47,7 @@ window/size/height=950
 
 [gdnative]
 
-singletons=[  ]
+singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
 
 [global]
 

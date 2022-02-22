@@ -30,8 +30,8 @@ func present_jobs(label, jobs):
 
 func scene_03():
 	if debug_this: print(self.name + ".z_mart_discount")
-	hide_menus()
-	present_jobs(tm.Z_MART_JOBS_LABEL)
+	# hide_menus()
+	# present_jobs(tm.Z_MART_JOBS_LABEL)
 
 func scene_04():
 	if debug_this: print(self.name + ".monolith_burger")
