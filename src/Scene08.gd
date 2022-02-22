@@ -9,7 +9,7 @@ var THIS_SCENE_EXIT = Vector2(27,43)
 var debug_this = true
 
 func _ready():
-	if debug_this: print(self.name + "._ready")	
+	if debug_this: print(self.name + "._ready")
 	pass # Replace with function body.
 	
 	
