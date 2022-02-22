@@ -1,2 +1,3 @@
-# README
-Initial build of a recreation of Jones in the Fastlane based off of Dwarf Fortress lore
+# About
+
+This is a loose remake of Jones In the Fast Lane by Sierra Games.

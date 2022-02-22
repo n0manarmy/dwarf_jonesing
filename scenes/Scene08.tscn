@@ -135,14 +135,14 @@ margin_top = 216.0
 margin_right = 149.0
 margin_bottom = 216.0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="TextBackground/VBoxContainer/MainMenuContainer"]
+[node name="Text Box" type="HBoxContainer" parent="TextBackground/VBoxContainer/MainMenuContainer"]
 margin_left = 226.0
 margin_right = 448.0
 margin_bottom = 216.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 
-[node name="InfoLabelBox" type="Label" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer2"]
+[node name="InfoLabelBox" type="Label" parent="TextBackground/VBoxContainer/MainMenuContainer/Text Box"]
 margin_top = 101.0
 margin_right = 222.0
 margin_bottom = 115.0
