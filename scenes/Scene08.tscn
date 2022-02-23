@@ -55,37 +55,37 @@ __meta__ = {
 [node name="MainMenuContainer" type="HBoxContainer" parent="TextBackground/VBoxContainer"]
 margin_top = 18.0
 margin_right = 448.0
-margin_bottom = 234.0
+margin_bottom = 230.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TextBackground/VBoxContainer/MainMenuContainer"]
 margin_right = 222.0
-margin_bottom = 216.0
+margin_bottom = 212.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 
-[node name="JobsButtonContainer" type="VBoxContainer" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer"]
+[node name="CompaniesButtonContainer" type="VBoxContainer" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer"]
 margin_right = 149.0
-margin_bottom = 216.0
+margin_bottom = 212.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CompanyContainer" type="VBoxContainer" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/JobsButtonContainer"]
+[node name="CompanyContainer" type="VBoxContainer" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer"]
 margin_right = 149.0
 margin_bottom = 212.0
 
-[node name="ZMartDiscount" type="Button" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/JobsButtonContainer/CompanyContainer"]
+[node name="ZMartDiscount" type="Button" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer"]
 margin_right = 149.0
 margin_bottom = 20.0
 text = "Z-Mart Discount"
 
-[node name="MonolithBurger" type="Button" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/JobsButtonContainer/CompanyContainer"]
+[node name="MonolithBurger" type="Button" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer"]
 margin_top = 24.0
 margin_right = 149.0
 margin_bottom = 44.0
 text = "Monolith Burger"
 
-[node name="QTClothing" type="Button" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/JobsButtonContainer/CompanyContainer"]
+[node name="QTClothing" type="Button" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer"]
 margin_top = 48.0
 margin_right = 149.0
 margin_bottom = 68.0
@@ -94,58 +94,92 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SocketCityAppliance" type="Button" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/JobsButtonContainer/CompanyContainer"]
+[node name="SocketCityAppliance" type="Button" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer"]
 margin_top = 72.0
 margin_right = 149.0
 margin_bottom = 92.0
 text = "Socket City Appliance"
 
-[node name="HiTechUniversity" type="Button" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/JobsButtonContainer/CompanyContainer"]
+[node name="HiTechUniversity" type="Button" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer"]
 margin_top = 96.0
 margin_right = 149.0
 margin_bottom = 116.0
 text = "Hi-Tech University"
 
-[node name="Factory" type="Button" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/JobsButtonContainer/CompanyContainer"]
+[node name="Factory" type="Button" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer"]
 margin_top = 120.0
 margin_right = 149.0
 margin_bottom = 140.0
 text = "Factory"
 
-[node name="Bank" type="Button" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/JobsButtonContainer/CompanyContainer"]
+[node name="Bank" type="Button" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer"]
 margin_top = 144.0
 margin_right = 149.0
 margin_bottom = 164.0
 text = "Bank"
 
-[node name="BlacksMarket" type="Button" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/JobsButtonContainer/CompanyContainer"]
+[node name="BlacksMarket" type="Button" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer"]
 margin_top = 168.0
 margin_right = 149.0
 margin_bottom = 188.0
 text = "Black's Market"
 
-[node name="RentOffice" type="Button" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/JobsButtonContainer/CompanyContainer"]
+[node name="RentOffice" type="Button" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer"]
 margin_top = 192.0
 margin_right = 149.0
 margin_bottom = 212.0
 text = "Rent Office"
 
-[node name="JobsContainer" type="VBoxContainer" parent="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/JobsButtonContainer"]
-margin_top = 216.0
-margin_right = 149.0
-margin_bottom = 216.0
-
 [node name="Text Box" type="HBoxContainer" parent="TextBackground/VBoxContainer/MainMenuContainer"]
 margin_left = 226.0
 margin_right = 448.0
-margin_bottom = 216.0
+margin_bottom = 212.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 
 [node name="InfoLabelBox" type="Label" parent="TextBackground/VBoxContainer/MainMenuContainer/Text Box"]
-margin_top = 101.0
+margin_top = 99.0
 margin_right = 222.0
-margin_bottom = 115.0
+margin_bottom = 113.0
+size_flags_horizontal = 3
+text = "Default Text"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JobsMenuContainer" type="HBoxContainer" parent="TextBackground/VBoxContainer"]
+visible = false
+margin_top = 234.0
+margin_right = 448.0
+margin_bottom = 253.0
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextBackground/VBoxContainer/JobsMenuContainer"]
+margin_right = 222.0
+margin_bottom = 19.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+
+[node name="JobsButtonContainer" type="VBoxContainer" parent="TextBackground/VBoxContainer/JobsMenuContainer/HBoxContainer"]
+margin_bottom = 19.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JobsContainer" type="VBoxContainer" parent="TextBackground/VBoxContainer/JobsMenuContainer/HBoxContainer/JobsButtonContainer"]
+
+[node name="Text Box" type="HBoxContainer" parent="TextBackground/VBoxContainer/JobsMenuContainer"]
+margin_left = 226.0
+margin_right = 448.0
+margin_bottom = 19.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+
+[node name="JobsLabelBox" type="Label" parent="TextBackground/VBoxContainer/JobsMenuContainer/Text Box"]
+margin_top = 2.0
+margin_right = 222.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 text = "Default Text"
 autowrap = true
@@ -163,4 +197,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="pressed" from="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer/ZMartDiscount" to="." method="scene_03"]
 [connection signal="pressed" from="TextBackground/DoneButton" to="." method="on_done_clicked"]

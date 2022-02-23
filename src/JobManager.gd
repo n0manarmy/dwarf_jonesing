@@ -60,7 +60,7 @@ export var jobs: Array
 var debug_this = true
 
 func _init():
-	jobs = [
+	self.jobs = [
 		preload("Job.gd").new(0, "Scene03", SCENE03_JOBS_COMPANY, self.SCENE03_JOBS_1, 5, [], 0, true), 
 		preload("Job.gd").new(1, "Scene03", SCENE03_JOBS_COMPANY, self.SCENE03_JOBS_2, 5, [], 10, true),
 		preload("Job.gd").new(2, "Scene03", SCENE03_JOBS_COMPANY, self.SCENE03_JOBS_3, 5, [], 20, true),
@@ -111,7 +111,4 @@ func _init():
 
 func _ready():
 	if debug_this: print(self.name + "._ready")	
-
-	for j in jobs:
-		print(j.to_string())
-	pass # Replace with function body.
+	if debug_this: print(self.name + ".jobs count: ", jobs.size())

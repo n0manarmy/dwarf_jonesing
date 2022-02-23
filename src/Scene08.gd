@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var signals_manager = get_node_or_null("/root/SignalsManager")
+onready var job_manager = get_node("/root/JobManager")
 onready var tm = get_node_or_null("/root/TextManager")
 onready var main_menu_container = get_node("TextBackground/VBoxContainer/MainMenuContainer")
 
@@ -24,14 +25,18 @@ func hide_menus():
 	if debug_this: print(self.name + ".hide_menus")
 	main_menu_container.visible = false
 
-func present_jobs(label, jobs):
+func present_jobs(label):
 	if debug_this: print(self.name + ".present_jobs")
+	if debug_this: print(self.name + ".jobs size ", job_manager.jobs.size())
+	for job in job_manager.jobs:
+		if job.scene == label:
+			if debug_this: print(self.name + ".job ", job.to_string())
 
 
 func scene_03():
 	if debug_this: print(self.name + ".z_mart_discount")
-	# hide_menus()
-	# present_jobs(tm.Z_MART_JOBS_LABEL)
+	hide_menus()
+	present_jobs("Scene03")
 
 func scene_04():
 	if debug_this: print(self.name + ".monolith_burger")
