@@ -26,10 +26,24 @@ onready var player_count_select_scene = get_node_or_null("/root/RootScene/Player
 onready var start_values_scene = get_node_or_null("/root/RootScene/StartValuesScene")
 onready var debug_scene = get_node_or_null("/root/RootScene/DebugScene")
 onready var signals_manager = get_node_or_null("/root/SignalsManager")
+onready var job_manager = get_node("/root/JobManager")
 onready var im = get_node("/root/InventoryManager")
 onready var scene_01_node = get_node_or_null("/root/RootScene/TravelPath/InfoScene/Scene01")
 
 var debug_this = true
+
+# new Degree(00, "None", 0),
+# new Degree(01, "Junior College", 10),
+# new Degree(02, "Trade School", 10),
+# new Degree(03, "Business Administration", 10),
+# new Degree(04, "Electronics", 10),
+# new Degree(05, "Pre-Engineering", 10),
+# new Degree(06, "Engineering", 10),
+# new Degree(07, "Academic", 10),
+# new Degree(08, "Grad School", 10),
+# new Degree(09, "Post Doctoral", 10),
+# new Degree(10, "Research", 10),
+# new Degree(11, "Publishing", 10),
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -52,8 +66,12 @@ func _ready():
 	adjust_economy()
 
 
+func get_rand_between(_min: int, _max: int):
+	return rng.randi_range(_min, _max)
+
+
 func adjust_economy():
-	if debug_this: print(self.name +".test_setup_economy()")
+	if debug_this: print(self.name +".adjust_economy()")
 	
 	var list_min = econ_values.min()
 	var list_max = econ_values.max()
@@ -73,11 +91,12 @@ func adjust_economy():
 		econ_values.append(val)		
 
 	econ_values.remove(0)
+	signals_manager.emit_signal("update_job_economy")
 	# if debug_this: print(self.name + "econ_values: ", econ_values)
 
 
 func adjust_for_economy(val):
-	if debug_this: print(self.name + ".adjust_for_economy()")
+	if debug_this: print(self.name + ".adjust_for_economy")
 	var adjusted = (self.econ_values.back() as float / 100 as float)
 	if debug_this: print(self.name + ".adjusted: ", adjusted)
 	return (val * adjusted) as int
@@ -140,6 +159,7 @@ func setup_players(val):
 		print(self.name + ".creating player ", x + 1)
 		var player = Player.duplicate()
 		player.possessions[im.LOW_COST_APARTMENT.keys()[0]] = im.LOW_COST_APARTMENT.values()[0]
+		player.education["None"] = 99
 		player.id = x + 1
 		match (x + 1):
 			1:
@@ -174,9 +194,9 @@ func setup_players(val):
 
 func set_player_max_values(values):
 	if debug_this: print(self.name + ".set_player_max_values(values)", values)
-	players[current_player - 1].max_job = values["max_job"]
-	players[current_player - 1].max_education = values["max_education"]
-	players[current_player - 1].max_happiness = values["max_happiness"]
-	players[current_player - 1].max_wealth = values["max_wealth"]
+	self.get_current_player().max_job_score = values["max_job"]
+	self.get_current_player().max_education_score = values["max_education"]
+	self.get_current_player().max_happiness_score = values["max_happiness"]
+	self.get_current_player().max_wealth_score = values["max_wealth"]
 	
-	players[current_player - 1].to_string()
+	self.get_current_player().to_string()

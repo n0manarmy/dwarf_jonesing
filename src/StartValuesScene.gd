@@ -32,7 +32,7 @@ func _ready():
 
 func slider_value_changed(x):
 	if debug_this: print(self.name + ".slider_value_changed()", x)
-	emit_signal("goals_values_updated")
+	signals_manager.emit_signal("goals_values_updated")
 
 func on_done_clicked():
 	#add logic to look for current player and cycle, taking max score until players met

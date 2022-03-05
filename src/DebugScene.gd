@@ -59,15 +59,15 @@ func update_player_data():
 	rounds_value_node.text = global_data.game_rounds as String
 	job_value_node.text = current_player.current_job as String
 	
-	happiness_score_value_node.text = current_player.happiness as String
-	wealth_score_value_node.text = current_player.wealth as String
-	job_score_value_node.text = current_player.job as String
-	education_score_value_node.text = current_player.education as String
+	happiness_score_value_node.text = current_player.happiness_score as String
+	wealth_score_value_node.text = current_player.wealth_score as String
+	job_score_value_node.text = current_player.job_score as String
+	education_score_value_node.text = current_player.education_score as String
 	
-	max_happiness_score_value_node.text = current_player.max_happiness as String
-	max_wealth_score_value_node.text = current_player.max_wealth as String
-	max_job_score_value_node.text = current_player.max_job as String
-	max_education_score_value_node.text = current_player.max_education as String
+	max_happiness_score_value_node.text = current_player.max_happiness_score as String
+	max_wealth_score_value_node.text = current_player.max_wealth_score as String
+	max_job_score_value_node.text = current_player.max_job_score as String
+	max_education_score_value_node.text = current_player.max_education_score as String
 	
 	current_player_value_node.text = global_data.current_player as String
 	

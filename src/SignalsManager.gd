@@ -1,5 +1,7 @@
 extends Node
 
+const Job = preload("res://src/Job.gd")
+
 signal update_round_timer_value
 signal update_game_rounds_value
 signal remove_board_overlay
@@ -14,6 +16,7 @@ signal increment_players
 signal location_entered_stop_movement
 signal goals_values_updated
 signal global_data_updated
+signal update_job_economy
 
 signal disable_location_buttons(state)
 signal goals_values_done(values)
@@ -21,7 +24,8 @@ signal update_position(new_pos)
 signal on_rest_button_pressed(values)
 signal location_entered_move_player(pos)
 signal location_entered_present_scene(scene)
-
+signal can_get_the_job(job, message)
+signal cannot_get_the_job(message)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

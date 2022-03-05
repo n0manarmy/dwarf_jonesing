@@ -5,6 +5,7 @@
 * limit happiness gain based on total items for possible happiness
 * Finish up Rental Office.
   * Make checks on worth o make sure they can rent low cost or le security before allowing rental
+* add time loss to each job application
 
 # Tasks
 * <s>Add time increment when visiting location</s>

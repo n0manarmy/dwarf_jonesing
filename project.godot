@@ -27,6 +27,7 @@ config/icon="res://icon.png"
 [autoload]
 
 InventoryManager="*res://src/InventoryManager.gd"
+JobManager="*res://src/JobManager.gd"
 GlobalData="*res://src/GlobalData.gd"
 DebugScene="*res://scenes/DebugScene.tscn"
 SignalsManager="*res://src/SignalsManager.gd"
@@ -34,7 +35,6 @@ Player="*res://scenes/Player.tscn"
 TimerEngine="*res://scenes/TimerEngine.tscn"
 ScoringEngine="*res://scenes/ScoringEngine.tscn"
 TextManager="*res://src/TextManager.gd"
-JobManager="*res://src/JobManager.gd"
 
 [debug]
 

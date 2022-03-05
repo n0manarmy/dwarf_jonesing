@@ -2,6 +2,10 @@ extends Node
 
 onready var global_data = get_node("/root/GlobalData")
 
+export var GOT_THE_JOB = "Congrats! You got the job!"
+export var NO_JOB_AVAILABLE = "Sorry but this job is not available."
+export var NOT_ENOUGH_EXPERIENCE = "You do not have enough experience for this job!"
+export var NOT_ENOUGH_EDUCATION = "You do not have enough education for this job!"
 export var NEW_LOW_COST_APARTMENT = "We'll get you a key right away! And we'll even scrub that spot on the carpet!!"
 export var RENTING_LOW_COST_APARTMENT = "You're already renting a Low Cost Apartment!"
 export var RENTING_LE_SECURITY_APARTMENT = "But Sir! We have already prepared your bubble bath in your Le Security apartment!"
@@ -13,9 +17,24 @@ export var SECURITY_DEPOSIT_PAYED_FIRST = "You must pay your security deposit fo
 export var EXTEND_RENT = "Sure you can pay your rent next week!"
 export var REJECTED_EXTENDING_RENT = "Sorry but I need you to pay now."
 
-export var RENTAL_OFFICE_OPEN = ["Welcome to another beautiful day at your caring Rental Office", "Hi! Finally here to pay the rent?!", "Hello? Oh Hi! Got my monies?!"]
-export var LOW_COST_APARTMENT_HOME_GREET = ["Ahh, home sweet BLAAARGH!!", "Oh! Hey! There's that banana I've been missing!", "Oh...rats!"]
-export var LOW_COST_APARTMENT_VISITOR_GREET = ["Well that's just something special! Vomit colored doormats?", "I wonder why they call it Low Cost...ooooh!", "Oh...rats!"]
+export var RENTAL_OFFICE_OPEN = [
+	"Welcome to another beautiful day at your caring Rental Office", 
+	"Hi! Finally here to pay the rent?!", "Hello? Oh Hi! Got my monies?!"
+]
+export var LOW_COST_APARTMENT_HOME_GREET = [
+	"Ahh, home sweet BLAAARGH!!", 
+	"Oh! Hey! There's that banana I've been missing!", 
+	"Oh...rats!"
+]
+export var LOW_COST_APARTMENT_VISITOR_GREET = [
+	"Well that's just something special! Vomit colored doormats?", 
+	"I wonder why they call it Low Cost...ooooh!", "Oh...rats!"
+]
+export var JOBS_RESULTS_GREET = [
+	"Looking for a little something new today?", 
+	"Would you like a side of fries with that?", 
+	"Have you consided maybe just lounging around all day?"
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
