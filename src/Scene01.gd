@@ -39,4 +39,4 @@ func on_done_clicked():
 
 func on_rest_button_pressed():
 	if debug_this: print(self.name + ".on_rest_clicked")
-	signals_manager.emit_signal("on_rest_button_pressed", Vector2(1, 30))
+	signals_manager.emit_signal("on_rest_button_pressed", {"happiness_increase": 1, "time_used": 30} )

@@ -30,6 +30,8 @@ onready var job_manager = get_node("/root/JobManager")
 onready var im = get_node("/root/InventoryManager")
 onready var scene_01_node = get_node_or_null("/root/RootScene/TravelPath/InfoScene/Scene01")
 
+const Player = preload("res://src/Player.gd")
+
 var debug_this = true
 
 # new Degree(00, "None", 0),
@@ -104,11 +106,12 @@ func adjust_for_economy(val):
 
 func increase_player_happiness(values):
 	if debug_this: print(self.name + ".increase_player_happiness()", values)
-	var value = values[0]
-	var time = values[1]
-	var this_player = self.players[self.current_player - 1]
-	this_player.happiness += value
-	this_player.turn_time_used += time
+	# var value = values[0]
+	# var time = values[1]
+	# var this_player = self.players[self.current_player - 1]
+	var this_player = self.get_current_player()
+	this_player.happiness_score += values["happiness_increase"]
+	this_player.turn_time_used += values["time_used"]
 	
 	if this_player.turn_time_used >= MAX_TIME:
 		if debug_this: print(self.name, ".if this_player.turn_time_used >= MAX_TIME:")
@@ -157,7 +160,8 @@ func setup_players(val):
 	
 	for x in player_count as int:
 		print(self.name + ".creating player ", x + 1)
-		var player = Player.duplicate()
+		# var player = Player.duplicate()
+		var player = Player.new()
 		player.possessions[im.LOW_COST_APARTMENT.keys()[0]] = im.LOW_COST_APARTMENT.values()[0]
 		player.education["None"] = 99
 		player.id = x + 1

@@ -135,34 +135,30 @@ func update_jobs_economy():
 		else:
 			job.job_available = true
 
-
-
 func can_get_job(player, job: Job):
 	if debug_this: print(self.name + ".can_get_job")
 	
 	var can_get_the_job = false
+
 	if player.job == job:
 		signals_manager.emit_signal("can_get_the_job", job, tm.GOT_THE_JOB)
+		signals_manager.emit_signal("job_results_container_update", tm.GOT_THE_JOB)
 		return
 
 	for key in player.education.keys():
 		if key == job.required_degree && player.education[key] > 13:
 			can_get_the_job = true
-			break
-		else:
-			signals_manager.emit_signal("cannot_get_the_job", tm.GOT_THE_JOB)
-			return
-			
+			break	
 
 	if job.job_available != true:
-		signals_manager.emit_signal("cannot_get_the_job", tm.NO_JOB_AVAILABLE)
+		signals_manager.emit_signal("job_results_container_update", tm.NO_JOB_AVAILABLE)
+		return	
+
+	if player.work_exp < job.required_work_exp:
+		signals_manager.emit_signal("job_results_container_update", tm.NOT_ENOUGH_EXPERIENCE)
 		return
 
-	
-	if player.work_exp < job.required_work_exp:
-		signals_manager.emit_signal("cannot_get_the_job", tm.NOT_ENOUGH_EXPERIENCE)
-		return
-	
 	if can_get_the_job:
-		signals_manager.emit_signal("can_get_the_job", job, tm.GOT_THE_JOB)
+		signals_manager.emit_signal("player_got_new_job", job)
+		signals_manager.emit_signal("job_results_container_update", tm.GOT_THE_JOB)
 	

@@ -20,12 +20,12 @@ var jobs_button_container: VBoxContainer = VBoxContainer.new()
 var debug_this = true
 var jobs_presented = false
 
+# signal_manager duplicating connection because _ready is being called twice. probably from travel path
 func _ready():
 	if debug_this: print(self.name + "._ready")
 	main_menu_container.visible = true
 	jobs_menu_container.visible = false
-	signals_manager.connect("can_get_the_job", self, "display_can_get_the_job")
-	signals_manager.connect("cannot_get_the_job", self, "display_cannot_get_the_job")
+	signals_manager.connect("job_results_container_update", self, "update_job_results_container")
 	
 	
 func on_done_clicked():
@@ -77,17 +77,11 @@ func on_company_button_pressed(scene: String):
 func this_job_pressed(job: Job):
 	if debug_this: print(self.name, "this_job_pressed: ", job)
 	var player = global_data.get_current_player()
+	player.turn_time_used += 5
+	signals_manager.emit_signal("player_data_updated")
+	# signals_manager.emit_signal("increase_player_turn_time_used", 5)
 	job_manager.can_get_job(player, job)
-	# 	player.job = job
-	# 	jobs_results_container.text = "You got the job!"
-	# 	if debug_this: print(self.name, "job the job")
-	# else:
-	# 	if debug_this: print(self.name, "no go job")
-
-func display_can_get_the_job(_job: Job, results: String):
-	jobs_results_container.text = results
 
 	
-func display_cannot_get_the_job(results: String):
+func update_job_results_container(results: String):
 	jobs_results_container.text = results
-	

@@ -24,8 +24,8 @@ signal update_position(new_pos)
 signal on_rest_button_pressed(values)
 signal location_entered_move_player(pos)
 signal location_entered_present_scene(scene)
-signal can_get_the_job(job, message)
-signal cannot_get_the_job(message)
+signal can_get_the_job(job)
+signal job_results_container_update(message)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -70,6 +70,7 @@ func update_player_data():
 	max_education_score_value_node.text = current_player.max_education_score as String
 	
 	current_player_value_node.text = global_data.current_player as String
+	total_players_value_node.text = global_data.players.size() as String
 	
 func update_time_used_label(val):
 	status_value_node.text = val as String

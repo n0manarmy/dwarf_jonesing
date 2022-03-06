@@ -57,11 +57,15 @@ func _to_string():
 			rent_extended,
 			possessions
 			], "{}")
-	
+		
 func reset_player_new_round():
+	if debug_this: print(self.name + ".reset_player_new_round")
+
 	self.turn_time_used = 0
 
 func player_time_up():
+	if debug_this: print(self.name + ".player_time_up")
+
 	var travel_path_tile_map: TileMap = get_node("/root/RootScene/TravelPath/WalkingPath/TravelPathTileMap")
 	var player_sprite: Sprite = get_node("/root/RootScene/TravelPath/PlayerSprite")
 	signals_manager.emit_signal("player_position_updated", travel_path_tile_map.map_to_world(player_sprite.START_POS))

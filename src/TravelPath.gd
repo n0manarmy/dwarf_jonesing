@@ -111,14 +111,12 @@ func move_along_path(dist: float):
 	
 	# get current player
 	var this_player = global_data.players[global_data.current_player - 1]
-#	var player = get_node("/root/Player")
 	player_sprite.modulate = this_player.color
 	
 	if debug_this: print(self.name + ".this_player ", this_player.to_string())
 	# get player path
 	var player_path: PoolVector2Array = player_sprite.movement_path
 	# get player sprite
-#	var player_sprite: Sprite = player.get_child(0)
 	# get current player position
 	var last_pos = player_sprite.position
 	# our path position variable
@@ -138,23 +136,11 @@ func move_along_path(dist: float):
 		this_player.turn_time_used += 1
 		signals_manager.emit_signal("player_data_updated")
 		
-#		if player_path.size() == 0:
-#			if debug_this: print(self.name + ".Pop Menu for location")
-#			my_set_process(false)
-#			break
-			
 		if this_player.turn_time_used >= MAX_TIME:
 			if debug_this: print(self.name + ".player.turn_time_used >= MAX_TIME")
-#			player_time_up()
 			signals_manager.emit_signal("player_time_up")
 			break
-			
-#		if dist < 0.0:
-#			if debug_this: print(self.name + ".dist < 0.0")
-#			my_set_process(false)
-#			emit_signal("position_updated", player_path[x])
-#			break
-		
+					
 		if dist <= dist_to_next:
 			if debug_this: print(self.name + ".dist <= dist_to_next")
 			var pos = last_pos.linear_interpolate(player_path[x], dist / dist_to_next)
@@ -189,11 +175,9 @@ func on_button_move_pressed(dest: Vector2):
 	if debug_this: print(self.name + ".path: ", path)
 	player_sprite.movement_path = PoolVector2Array(path)
 
-
 func _process(delta):
 	if debug_this: print(self.name + "._process")
 	move_along_path(speed * delta)
-
 
 func disable_location_buttons(state):
 	if debug_this: print(self.name + ".disable_location_buttons")
