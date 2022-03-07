@@ -1,7 +1,9 @@
 extends Area2D
 
 onready var player_sprite = get_node("../../PlayerSprite")
+onready var global_data = get_node("/root/GlobalData")
 onready var signals_manager = get_node_or_null("/root/SignalsManager")
+onready var travel_path_tile_map: TileMap = get_node("../TravelPathTileMap")
 
 var debug_this = true
 
@@ -11,13 +13,7 @@ func _ready():
 	pass # Replace with function body.
 
 func on_area_2d_body_entered(_body: KinematicBody2D):
-	var travel_path_tile_map: TileMap = get_node("../TravelPathTileMap")
-	var global_data = get_node("/root/GlobalData")
-	
 	if debug_this: print(self.name + ".on_area_2d_body_entered")
-	if global_data == null:
-		print(self.name + ".GlobalData not loaded. return")
-		return
 	
 	if travel_path_tile_map == null:
 		if debug_this: print(self.name + ".TravelPathTileMap not loaded. return")
