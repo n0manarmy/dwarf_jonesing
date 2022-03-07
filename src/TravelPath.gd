@@ -40,7 +40,7 @@ onready var root_scene = get_node_or_null("/root/RootScene")
 onready var player_sprite = get_node("PlayerSprite")
 onready var start_values_scene = get_node_or_null("/root/RootScene/StartValuesScene")
 
-var debug_this = true
+var debug_this = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

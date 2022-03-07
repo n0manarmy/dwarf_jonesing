@@ -58,7 +58,7 @@ func _to_string():
 			possessions
 			], "{}")
 		
-func reset_player_new_round():
+func reset_player():
 	if debug_this: print(self.name + ".reset_player_new_round")
 
 	self.turn_time_used = 0

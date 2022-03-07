@@ -55,6 +55,7 @@ func _ready():
 	
 	signals_manager.connect("on_rest_button_pressed", self, "increase_player_happiness")
 	signals_manager.connect("player_count_selected", self, "setup_players")
+	signals_manager.connect("player_time_up", self, "next_player")
 		
 	if start_values_scene != null:
 		if debug_this: print(self.name + ".if start_values_scene != null:")
@@ -100,7 +101,7 @@ func adjust_economy():
 func adjust_for_economy(val):
 	if debug_this: print(self.name + ".adjust_for_economy")
 	var adjusted = (self.econ_values.back() as float / 100 as float)
-	if debug_this: print(self.name + ".adjusted: ", adjusted)
+	if debug_this: print(self.name + ".adjusted: ", adjusted as float)
 	return (val * adjusted) as int
 
 
@@ -116,16 +117,22 @@ func increase_player_happiness(values):
 	if this_player.turn_time_used >= MAX_TIME:
 		if debug_this: print(self.name, ".if this_player.turn_time_used >= MAX_TIME:")
 		signals_manager.emit_signal("player_time_up")
-		new_round()
+		next_player()
 	
 	signals_manager.emit_signal("player_data_updated")
 
-func new_round():
-	var this_player = self.players[self.current_player - 1]
-	this_player.reset_player_new_round()
-	increment_current_player()
+func next_player():
+	if debug_this: print(self.name + ".next_player()")
+
+	var this_player = self.get_current_player()
+	this_player.reset_player()
 	signals_manager.emit_signal("disable_location_buttons", false)
-	self.game_rounds += 1
+	if this_player == self.players[self.players.size() - 1]:
+		self.game_rounds += 1
+		signals_manager.emit_signal("update_job_economy")
+	
+	increment_current_player()
+	
 
 func increment_current_player():
 	if debug_this: print(self.name + ".increment_current_player()")
@@ -138,9 +145,13 @@ func increment_current_player():
 
 
 func reset_players():
+	if debug_this: print(self.name + ".reset_players()")
+
 	current_player = 1
 
 func get_current_player():
+	if debug_this: print(self.name + ".get_current_player()")
+
 	return self.players[self.current_player - 1]
 
 
