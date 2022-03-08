@@ -53,13 +53,13 @@ func _ready():
 
 	rng.seed = hash(OS.get_datetime())
 	
-	signals_manager.connect("on_rest_button_pressed", self, "increase_player_happiness")
 	signals_manager.connect("player_count_selected", self, "setup_players")
 	signals_manager.connect("player_time_up", self, "next_player")
+	signals_manager.connect("increment_player", self, "increment_current_player")
 		
 	if start_values_scene != null:
 		if debug_this: print(self.name + ".if start_values_scene != null:")
-		signals_manager.connect("increment_players", self, "increment_current_player")
+		# signals_manager.connect("increment_players", self, "increment_current_player")
 		signals_manager.connect("goals_values_done", self, "set_player_max_values")
 		signals_manager.connect("reset_players", self, "reset_players")
 			
@@ -74,7 +74,8 @@ func get_rand_between(_min: int, _max: int):
 
 
 func adjust_economy():
-	if debug_this: print(self.name +".adjust_economy()")
+	var debug_this = false
+	if debug_this: print(self.name +".adjust_economy")
 	
 	var list_min = econ_values.min()
 	var list_max = econ_values.max()
@@ -99,40 +100,24 @@ func adjust_economy():
 
 
 func adjust_for_economy(val):
+	var debug_this = false
+
 	if debug_this: print(self.name + ".adjust_for_economy")
 	var adjusted = (self.econ_values.back() as float / 100 as float)
 	if debug_this: print(self.name + ".adjusted: ", adjusted as float)
 	return (val * adjusted) as int
 
 
-func increase_player_happiness(values):
-	if debug_this: print(self.name + ".increase_player_happiness()", values)
-	# var value = values[0]
-	# var time = values[1]
-	# var this_player = self.players[self.current_player - 1]
-	var this_player = self.get_current_player()
-	this_player.happiness_score += values["happiness_increase"]
-	this_player.turn_time_used += values["time_used"]
-	
-	if this_player.turn_time_used >= MAX_TIME:
-		if debug_this: print(self.name, ".if this_player.turn_time_used >= MAX_TIME:")
-		signals_manager.emit_signal("player_time_up")
-		next_player()
-	
-	signals_manager.emit_signal("player_data_updated")
-
 func next_player():
 	if debug_this: print(self.name + ".next_player()")
 
 	var this_player = self.get_current_player()
-	this_player.reset_player()
 	signals_manager.emit_signal("disable_location_buttons", false)
+
 	if this_player == self.players[self.players.size() - 1]:
 		self.game_rounds += 1
 		signals_manager.emit_signal("update_job_economy")
-	
-	increment_current_player()
-	
+		
 
 func increment_current_player():
 	if debug_this: print(self.name + ".increment_current_player()")
@@ -140,18 +125,16 @@ func increment_current_player():
 		current_player = 1
 	else:
 		current_player += 1
-		
-	signals_manager.emit_signal("player_data_updated")	
+	signals_manager.emit_signal("player_data_updated")
 
 
 func reset_players():
 	if debug_this: print(self.name + ".reset_players()")
-
 	current_player = 1
+
 
 func get_current_player():
 	if debug_this: print(self.name + ".get_current_player()")
-
 	return self.players[self.current_player - 1]
 
 
@@ -176,6 +159,7 @@ func setup_players(val):
 		player.possessions[im.LOW_COST_APARTMENT.keys()[0]] = im.LOW_COST_APARTMENT.values()[0]
 		player.education["None"] = 99
 		player.id = x + 1
+		player.current_job = job_manager.jobs[0]
 		match (x + 1):
 			1:
 				if debug_this: print(self.name + ".player 1 coloring")
@@ -199,10 +183,8 @@ func setup_players(val):
 	for player in players:
 		if debug_this: print(self.name + ".player id: ", player.id)
 		if debug_this: print(self.name + ".player.to_string(): ", player.to_string())
-#		var player_sprite: Sprite = player.get_child(0)
-#		if debug_this: print(self.name + ".player_sprite.modulate: ", player_sprite.modulate)
+
 	if debug_this: print(self.name + ".current_player ", current_player)
-	
 	self.reset_players()
 	signals_manager.emit_signal("player_data_updated")
 
@@ -213,5 +195,6 @@ func set_player_max_values(values):
 	self.get_current_player().max_education_score = values["max_education"]
 	self.get_current_player().max_happiness_score = values["max_happiness"]
 	self.get_current_player().max_wealth_score = values["max_wealth"]
-	
 	self.get_current_player().to_string()
+
+	signals_manager.emit_signal("player_data_updated")

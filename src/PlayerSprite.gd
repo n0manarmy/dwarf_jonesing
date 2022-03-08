@@ -45,15 +45,7 @@ func _ready():
 	
 	if travel_path_node != null:
 		signals_manager.connect("player_position_updated", self, "update_sprite_position")
-	
-#	if get_node_or_null("../TravelPath") != null:
-#		if debug_this: print(self.name + ".if get_node_or_null(\"/root/RootScene/TravelPath\") != null:")
-#		var travel_path_node = get_node_or_null("../TravelPath")
-#		travel_path_node.connect("position_updated", self, "update_sprite_position")
-#	elif get_node_or_null("../TravelPath") != null:
-#		if debug_this: print(self.name + ".elif get_node_or_null(\"/root/TravelPath\") != null:")
-#		var travel_path_node = get_node_or_null("/root/TravelPath")
-#		travel_path_node.connect("position_updated", self, "update_sprite_position")
+
 
 func connect_signals():
 	if debug_this: print(self.name + ".connect_signals")
@@ -88,7 +80,8 @@ func connect_signals():
 #	scene_13_node.connect("update_position", self, "update_sprite_position")
 
 func update_sprite_position(pos: Vector2):
-	if debug_this: print(self.name + ".update_sprite_position" + ".pos.x " + pos.x as String + " pos.y " + pos.y as String )
+	if debug_this: print(self.name + ".update_sprite_position")
+	if debug_this: print(self.name + ".pos.x " + pos.x as String + " pos.y " + pos.y as String )
 	self.position = pos
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

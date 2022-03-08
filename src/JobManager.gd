@@ -4,7 +4,7 @@ extends Node2D
 
 const Job = preload("res://src/Job.gd")
 
-onready var tm = get_node_or_null("/root/TextManager")
+onready var tm = get_node("/root/TextManager")
 
 export var SCENE03_JOBS_COMPANY = "Z Mart Discount Store"
 export var SCENE03_JOBS_1 = "Clerk"
@@ -61,6 +61,8 @@ export var SCENE13_JOBS_COMPANY = "Rental Office"
 export var SCENE13_JOBS_1 = "Grounds Keeper"
 export var SCENE13_JOBS_2 = "Apartment Manager"
 
+export var NONE = "None"
+
 export var jobs: Array
 
 onready var signals_manager = get_node("/root/SignalsManager")
@@ -71,6 +73,8 @@ var debug_this = true
 
 func _init():
 	self.jobs = [
+		preload("Job.gd").new(99, "scene01", NONE, NONE, 0, "None", 0, true), 
+		
 		preload("Job.gd").new(0, "scene03", SCENE03_JOBS_COMPANY, self.SCENE03_JOBS_1, 3, "None", 0, true), 
 		preload("Job.gd").new(1, "scene03", SCENE03_JOBS_COMPANY, self.SCENE03_JOBS_2, 5, "None", 10, true),
 		preload("Job.gd").new(2, "scene03", SCENE03_JOBS_COMPANY, self.SCENE03_JOBS_3, 6, "None", 20, true),
@@ -123,6 +127,7 @@ func _ready():
 	if debug_this: print(self.name + "._ready")	
 	if debug_this: print(self.name + ".jobs count: ", jobs.size())
 	signals_manager.connect("update_job_economy", self, "update_jobs_economy")
+	signals_manager.connect("job_manager_check_get_job", self, "can_get_job")
 
 
 func update_jobs_economy():
@@ -135,13 +140,14 @@ func update_jobs_economy():
 		else:
 			job.job_available = true
 
-func can_get_job(player, job: Job):
+func can_get_job(job: Job):
 	if debug_this: print(self.name + ".can_get_job")
 	
 	var can_get_the_job = false
+	var player = global_data.get_current_player()
 
-	if player.job == job:
-		signals_manager.emit_signal("can_get_the_job", job, tm.GOT_THE_JOB)
+	if player.current_job == job:
+		signals_manager.emit_signal("change_player_job", job)
 		signals_manager.emit_signal("job_results_container_update", tm.GOT_THE_JOB)
 		return
 
@@ -159,6 +165,6 @@ func can_get_job(player, job: Job):
 		return
 
 	if can_get_the_job:
-		signals_manager.emit_signal("player_got_new_job", job)
+		signals_manager.emit_signal("change_player_job", job)
 		signals_manager.emit_signal("job_results_container_update", tm.GOT_THE_JOB)
 	

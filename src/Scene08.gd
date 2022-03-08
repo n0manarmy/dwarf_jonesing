@@ -40,10 +40,12 @@ func on_done_clicked():
 		signals_manager.emit_signal("on_done_clicked")
 		self.hide()
 
+
 func hide_menus():
 	if debug_this: print(self.name + ".hide_menus")
 	main_menu_container.visible = !main_menu_container.visible
 	jobs_menu_container.visible = !jobs_menu_container.visible
+
 
 func present_jobs(label):
 	if debug_this: print(self.name + ".present_jobs")
@@ -75,13 +77,16 @@ func on_company_button_pressed(scene: String):
 
 
 func this_job_pressed(job: Job):
-	if debug_this: print(self.name, "this_job_pressed: ", job)
+	if debug_this: print(self.name, ".this_job_pressed()")
+	if debug_this: print(self.name, " ", job)
 	var player = global_data.get_current_player()
+	# signals_manager.emit_signal("increase_player_turn_time_used", 5)
+	signals_manager.emit_signal("job_manager_check_get_job", job)
 	player.turn_time_used += 5
 	signals_manager.emit_signal("player_data_updated")
-	# signals_manager.emit_signal("increase_player_turn_time_used", 5)
-	job_manager.can_get_job(player, job)
+	# job_manager.can_get_job(player, job)
 
 	
 func update_job_results_container(results: String):
+	if debug_this: print(self.name, ".update_job_results_container()")
 	jobs_results_container.text = results

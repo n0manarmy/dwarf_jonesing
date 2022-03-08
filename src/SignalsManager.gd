@@ -12,7 +12,7 @@ signal player_data_updated
 signal player_time_up
 signal on_done_clicked
 signal reset_players
-signal increment_players
+signal increment_player
 signal location_entered_stop_movement
 signal goals_values_updated
 signal global_data_updated
@@ -24,7 +24,8 @@ signal update_position(new_pos)
 signal on_rest_button_pressed(values)
 signal location_entered_move_player(pos)
 signal location_entered_present_scene(scene)
-signal can_get_the_job(job)
+signal job_manager_check_get_job(job)
+signal change_player_job(job)
 signal job_results_container_update(message)
 
 # Called when the node enters the scene tree for the first time.

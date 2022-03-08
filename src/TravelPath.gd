@@ -134,12 +134,8 @@ func move_along_path(dist: float):
 		
 		var dist_to_next = last_pos.distance_to(player_path[x])
 		this_player.turn_time_used += 1
+		# regular player checks, such as time used.
 		signals_manager.emit_signal("player_data_updated")
-		
-		if this_player.turn_time_used >= MAX_TIME:
-			if debug_this: print(self.name + ".player.turn_time_used >= MAX_TIME")
-			signals_manager.emit_signal("player_time_up")
-			break
 					
 		if dist <= dist_to_next:
 			if debug_this: print(self.name + ".dist <= dist_to_next")

@@ -15,7 +15,9 @@ onready var global_data = get_node("/root/GlobalData")
 onready var signals_manager = get_node_or_null("/root/SignalsManager")
 onready var im = get_node("/root/InventoryManager")
 onready var scene_label = get_node("TextBackground/NameLabel")
+
 onready var text_manager = get_node("/root/TextManager")
+onready var job_manager = get_node("/root/JobManager")
 
 onready var just_payed = false
 
@@ -25,7 +27,7 @@ var debug_this = true
 func _ready():
 	if debug_this: print(self.name + "._ready")	
 	self.player = global_data.get_current_player()
-	if self.player.current_job == scene_label.get_text():
+	if self.player.current_job.company == job_manager.SCENE13_JOBS_COMPANY:
 		work_button.visible = true
 	else:
 		work_button.visible = false

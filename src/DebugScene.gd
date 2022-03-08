@@ -28,7 +28,7 @@ onready var player_count_select_scene =			get_node_or_null("/root/RootScene/Play
 onready var start_values_scene =				get_node_or_null("/root/RootScene/StartValuesScene")
 onready var location_entry_area_2d = 			find_node("TravelPath", true, false)
 
-var debug_this = false
+var debug_this = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,25 +49,25 @@ func update_global_data():
 func update_player_data():
 	if debug_this: print(self.name + ".update_player_data")
 	
-	var current_player = global_data.get_current_player()
+	var player = global_data.get_current_player()
 	
 	current_player_value_node.text = global_data.current_player as String
 	total_time_value_node.text = global_data.MAX_TIME as String
-	turn_time_used_value_node.text = current_player.turn_time_used as String
+	turn_time_used_value_node.text = player.turn_time_used as String
 	#status_value_node.text = current_player
-	eaten_value_node.text = current_player.eaten as String
+	eaten_value_node.text = player.eaten as String
 	rounds_value_node.text = global_data.game_rounds as String
-	job_value_node.text = current_player.current_job as String
+	job_value_node.text = player.current_job.job_name as String
 	
-	happiness_score_value_node.text = current_player.happiness_score as String
-	wealth_score_value_node.text = current_player.wealth_score as String
-	job_score_value_node.text = current_player.job_score as String
-	education_score_value_node.text = current_player.education_score as String
+	happiness_score_value_node.text = player.happiness_score as String
+	wealth_score_value_node.text = player.wealth_score as String
+	job_score_value_node.text = player.job_score as String
+	education_score_value_node.text = player.education_score as String
 	
-	max_happiness_score_value_node.text = current_player.max_happiness_score as String
-	max_wealth_score_value_node.text = current_player.max_wealth_score as String
-	max_job_score_value_node.text = current_player.max_job_score as String
-	max_education_score_value_node.text = current_player.max_education_score as String
+	max_happiness_score_value_node.text = player.max_happiness_score as String
+	max_wealth_score_value_node.text = player.max_wealth_score as String
+	max_job_score_value_node.text = player.max_job_score as String
+	max_education_score_value_node.text = player.max_education_score as String
 	
 	current_player_value_node.text = global_data.current_player as String
 	total_players_value_node.text = global_data.players.size() as String
