@@ -75,7 +75,7 @@ func reset_player():
 
 
 func increase_player_happiness(values):
-	if debug_this: print(self.name + ".increase_player_happiness()", values)
+	if debug_this: print(self.name + ".increase_player_happiness", values)
 	# var value = values[0]
 	# var time = values[1]
 	# var this_player = self.players[self.current_player - 1]
@@ -86,7 +86,7 @@ func increase_player_happiness(values):
 
 
 func change_this_player_job(job):
-	if debug_this: print(self.name + ".change_this_player_job()")
+	if debug_this: print(self.name + ".change_this_player_job")
 	var this_player = global_data.get_current_player()
 	this_player.current_job = job
 	if debug_this: print(self.name, " ", self)
@@ -94,7 +94,7 @@ func change_this_player_job(job):
 
 
 func check_player_changes():
-	if debug_this: print(self.name +".check_player_changes()")
+	if debug_this: print(self.name +".check_player_changes")
 	var this_player = global_data.get_current_player()
 	if this_player.turn_time_used >= global_data.MAX_TIME:
 		if debug_this: print(self.name, ".if this_player.turn_time_used >= MAX_TIME:")

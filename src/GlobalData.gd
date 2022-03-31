@@ -4,7 +4,7 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
-var MAX_TIME = 500
+var MAX_TIME = 100
 
 # ECONOMY
 var base_econ_value = 1
@@ -63,7 +63,7 @@ func _ready():
 		signals_manager.connect("goals_values_done", self, "set_player_max_values")
 		signals_manager.connect("reset_players", self, "reset_players")
 			
-	setup_players(player_count)
+	setup_players(self.name, player_count)
 	setup_jobs()
 	setup_board()
 	adjust_economy()
@@ -135,6 +135,7 @@ func reset_players():
 
 func get_current_player():
 	if debug_this: print(self.name + ".get_current_player()")
+	if debug_this: print(self.name + ".current_player: ", self.current_player)
 	return self.players[self.current_player - 1]
 
 
@@ -147,10 +148,12 @@ func setup_jobs():
 	if debug_this: print(self.name + ".setup_jobs: ")
 
 
-func setup_players(val):
-	if debug_this: print(self.name + "._setup_players: ", val)
+func setup_players(caller, val):
+	if debug_this: print(self.name + "._setup_players: ", val, " caller: ", caller)
 	player_count = val
 	players.clear()
+
+	var transparency: float = 1.0
 	
 	for x in player_count as int:
 		print(self.name + ".creating player ", x + 1)
@@ -164,19 +167,19 @@ func setup_players(val):
 			1:
 				if debug_this: print(self.name + ".player 1 coloring")
 #				player.get_child(0).modulate = Color(200, 0, 0)
-				player.color = Color(200,0,0)
+				player.color = Color(200,0,0,transparency)
 			2: 
 				if debug_this: print(self.name + ".player 2 coloring")				
 #				player.get_child(0).modulate = Color(0, 200, 0)
-				player.color = Color(0,200,0)				
+				player.color = Color(0,200,0,transparency)				
 			3: 
 				if debug_this: print(self.name + ".player 3 coloring")				
 #				player.get_child(0).modulate = Color(0, 0, 200)
-				player.color = Color(0,0,200)
+				player.color = Color(0,0,200,transparency)
 			4: 
 				if debug_this: print(self.name + ".player 4 coloring")				
 #				player.get_child(0).modulate = Color(100, 0, 100)
-				player.color = Color(100,0,100)				
+				player.color = Color(100,0,100,transparency)				
 				
 		players.append(player)
 	

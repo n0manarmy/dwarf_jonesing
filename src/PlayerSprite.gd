@@ -40,47 +40,19 @@ var debug_this = true
 func _ready():
 	if debug_this: print(self.name + "._ready")
 	
-	if scene_01_area2d != null:
-		connect_signals()
+	# if scene_01_area2d != null:
+	# connect_signals()
+	# signals_manager.connect("location_entered_move_player", self, "update_sprite_position")
+
 	
 	if travel_path_node != null:
+		signals_manager.connect("location_entered_move_player", self, "update_sprite_position")
 		signals_manager.connect("player_position_updated", self, "update_sprite_position")
+		signals_manager.connect("update_position", self, "update_sprite_position")	
 
 
-func connect_signals():
-	if debug_this: print(self.name + ".connect_signals")
-	signals_manager.connect("location_entered_move_player", self, "update_sprite_position")
-	
-#	scene_01_area2d.connect("location_entered_move_player", self, "update_sprite_position")
-#	scene_02_area2d.connect("location_entered_move_player", self, "update_sprite_position")
-#	scene_03_area2d.connect("location_entered_move_player", self, "update_sprite_position")
-#	scene_04_area2d.connect("location_entered_move_player", self, "update_sprite_position")
-#	scene_05_area2d.connect("location_entered_move_player", self, "update_sprite_position")
-#	scene_06_area2d.connect("location_entered_move_player", self, "update_sprite_position")
-#	scene_07_area2d.connect("location_entered_move_player", self, "update_sprite_position")
-#	scene_08_area2d.connect("location_entered_move_player", self, "update_sprite_position")
-#	scene_09_area2d.connect("location_entered_move_player", self, "update_sprite_position")
-#	scene_10_area2d.connect("location_entered_move_player", self, "update_sprite_position")
-#	scene_11_area2d.connect("location_entered_move_player", self, "update_sprite_position")
-#	scene_12_area2d.connect("location_entered_move_player", self, "update_sprite_position")
-#	scene_13_area2d.connect("location_entered_move_player", self, "update_sprite_position")
-	
-	signals_manager.connect("update_position", self, "update_sprite_position")	
-#	scene_02_node.connect("update_position", self, "update_sprite_position")	
-#	scene_03_node.connect("update_position", self, "update_sprite_position")
-#	scene_04_node.connect("update_position", self, "update_sprite_position")
-#	scene_05_node.connect("update_position", self, "update_sprite_position")
-#	scene_06_node.connect("update_position", self, "update_sprite_position")
-#	scene_07_node.connect("update_position", self, "update_sprite_position")
-#	scene_08_node.connect("update_position", self, "update_sprite_position")
-#	scene_09_node.connect("update_position", self, "update_sprite_position")
-#	scene_10_node.connect("update_position", self, "update_sprite_position")
-#	scene_11_node.connect("update_position", self, "update_sprite_position")
-#	scene_12_node.connect("update_position", self, "update_sprite_position")
-#	scene_13_node.connect("update_position", self, "update_sprite_position")
-
-func update_sprite_position(pos: Vector2):
-	if debug_this: print(self.name + ".update_sprite_position")
+func update_sprite_position(caller: String, pos: Vector2):
+	if debug_this: print(self.name + ".update_sprite_position", " caller: ", caller)
 	if debug_this: print(self.name + ".pos.x " + pos.x as String + " pos.y " + pos.y as String )
 	self.position = pos
 

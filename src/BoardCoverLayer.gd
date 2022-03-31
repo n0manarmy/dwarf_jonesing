@@ -8,8 +8,8 @@ func _ready():
 	if debug_this: print(self.name + "._ready")
 	signals_manager.connect("remove_board_overlay", self, "remove_board_overlay")
 
-func remove_board_overlay():
-	if debug_this: print(self.name + ".remove_board_overlay")
+func remove_board_overlay(caller):
+	if debug_this: print(self.name + ".remove_board_overlay", " caller: ", caller)
 	queue_free()
 
 

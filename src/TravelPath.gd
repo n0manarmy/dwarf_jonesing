@@ -40,6 +40,8 @@ onready var root_scene = get_node_or_null("/root/RootScene")
 onready var player_sprite = get_node("PlayerSprite")
 onready var start_values_scene = get_node_or_null("/root/RootScene/StartValuesScene")
 
+var this_player
+
 var debug_this = false
 
 # Called when the node enters the scene tree for the first time.
@@ -101,7 +103,7 @@ func player_time_up():
 	
 func setup_player_for_move():
 	if debug_this: print(self.name + ".setup_player_for_move()")
-	var this_player = global_data.players[global_data.current_player - 1]
+	this_player = global_data.players[global_data.current_player - 1]
 	player_sprite.modulate = this_player.color
 	if debug_this: print(self.name + "start_values_scene: ", start_values_scene)
 	player_sprite.show()
@@ -110,7 +112,8 @@ func move_along_path(dist: float):
 	if debug_this: print(self.name + ".move_along_path")
 	
 	# get current player
-	var this_player = global_data.players[global_data.current_player - 1]
+	# var this_player = global_data.players[global_data.current_player - 1]
+	# var this_player = global_data.players[global_data.current_player - 1]
 	player_sprite.modulate = this_player.color
 	
 	if debug_this: print(self.name + ".this_player ", this_player.to_string())

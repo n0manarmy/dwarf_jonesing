@@ -42,12 +42,12 @@ func _ready():
 	signals_manager.connect("player_data_updated", self, "update_player_data")
 
 
-func update_global_data():
-	if debug_this: print(self.name + ".update_global_data")
+func update_global_data(caller):
+	if debug_this: print(self.name + ".update_global_data", " caller: ", caller)
 	rounds_value_node = global_data.game_rounds
 
-func update_player_data():
-	if debug_this: print(self.name + ".update_player_data")
+func update_player_data(caller):
+	if debug_this: print(self.name + ".update_player_data", " caller: ", caller)
 	
 	var player = global_data.get_current_player()
 	
