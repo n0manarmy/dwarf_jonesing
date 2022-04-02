@@ -33,11 +33,11 @@ func setup_buttons():
 func on_done_clicked():
 	if debug_this: print(self.name + ".on_done_clicked")
 	var travel_path_tile_map: TileMap = get_node("../../WalkingPath/TravelPathTileMap")
-	signals_manager.emit_signal("update_position", travel_path_tile_map.map_to_world(THIS_SCENE_EXIT))
-	signals_manager.emit_signal("on_done_clicked")
+	signals_manager.emit_signal("update_position", self.name, travel_path_tile_map.map_to_world(THIS_SCENE_EXIT))
+	signals_manager.emit_signal("on_done_clicked", self.name)
 	self.hide()
 
 
 func on_rest_button_pressed():
 	if debug_this: print(self.name + ".on_rest_clicked")
-	signals_manager.emit_signal("on_rest_button_pressed", {"happiness_increase": 1, "time_used": 30} )
+	signals_manager.emit_signal("on_rest_button_pressed", self.name, {"happiness_increase": 1, "time_used": 30} )

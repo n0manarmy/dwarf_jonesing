@@ -130,8 +130,8 @@ func _ready():
 	signals_manager.connect("job_manager_check_get_job", self, "can_get_job")
 
 
-func update_jobs_economy():
-	if debug_this: print(self.name + ".update_jobs_economy")	
+func update_jobs_economy(caller):
+	if debug_this: print(self.name + ".update_jobs_economy", " caller: ", caller)	
 
 	for job in self.jobs:
 		job.base_salary = global_data.adjust_for_economy(job.base_salary)
@@ -140,8 +140,8 @@ func update_jobs_economy():
 		else:
 			job.job_available = true
 
-func can_get_job(job: Job):
-	if debug_this: print(self.name + ".can_get_job")
+func can_get_job(caller, job: Job):
+	if debug_this: print(self.name + ".can_get_job", " caller: ", caller)
 	
 	var can_get_the_job = false
 	var player = global_data.get_current_player()

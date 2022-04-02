@@ -39,13 +39,13 @@ var debug_this = true
 func _ready():
 	if debug_this: print(self.name + "._ready")	
 	
-	hide_scenes()
+	hide_scenes(self.name)
 	
 	signals_manager.connect("location_entered_present_scene", self, "present_location")
 	signals_manager.connect("player_time_up", self, "hide_scenes")
 	
-func hide_scenes():
-	if debug_this: print(self.name + ".hide_scenes")
+func hide_scenes(caller):
+	if debug_this: print(self.name + ".hide_scenes", " caller: ", caller)
 	scene_01_node.hide()
 	scene_02_node.hide()
 	scene_03_node.hide()
@@ -61,9 +61,9 @@ func hide_scenes():
 	scene_13_node.hide()
 
 
-func present_location(scene: Area2D):
-	if debug_this: print(self.name + ".present_location ", scene)
-	emit_signal("disable_location_buttons")
+func present_location(caller, scene: Area2D):
+	if debug_this: print(self.name + ".present_location ", scene, " caller: ", caller)
+	signals_manager.emit_signal("disable_location_buttons", self.name, true)
 	
 	match scene:
 		scene_01_area2d:

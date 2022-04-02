@@ -36,8 +36,8 @@ func on_done_clicked():
 		jobs_presented = false
 	else:
 		var travel_path_tile_map: TileMap = get_node("../../WalkingPath/TravelPathTileMap")
-		signals_manager.emit_signal("update_position", travel_path_tile_map.map_to_world(THIS_SCENE_EXIT))
-		signals_manager.emit_signal("on_done_clicked")
+		signals_manager.emit_signal("update_position", self.name, travel_path_tile_map.map_to_world(THIS_SCENE_EXIT))
+		signals_manager.emit_signal("on_done_clicked", self.name)
 		self.hide()
 
 
@@ -76,14 +76,14 @@ func on_company_button_pressed(scene: String):
 	present_jobs(scene)
 
 
-func this_job_pressed(job: Job):
-	if debug_this: print(self.name, ".this_job_pressed()")
+func this_job_pressed(caller, job: Job):
+	if debug_this: print(self.name, ".this_job_pressed()", " caller: ", caller)
 	if debug_this: print(self.name, " ", job)
 	var player = global_data.get_current_player()
 	# signals_manager.emit_signal("increase_player_turn_time_used", 5)
-	signals_manager.emit_signal("job_manager_check_get_job", job)
+	signals_manager.emit_signal("job_manager_check_get_job", self.name, job)
 	player.turn_time_used += 5
-	signals_manager.emit_signal("player_data_updated")
+	signals_manager.emit_signal("player_data_updated", self.name)
 	# job_manager.can_get_job(player, job)
 
 	

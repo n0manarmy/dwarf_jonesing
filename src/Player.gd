@@ -63,15 +63,15 @@ func _to_string():
 			], "{}")
 
 		
-func reset_player():
-	if debug_this: print(self.name, ".reset_player")
+func reset_player(caller):
+	if debug_this: print(self.name, ".reset_player", " caller: ", caller)
 	var this_player = global_data.get_current_player()
 	this_player.turn_time_used = 0
 	var travel_path_tile_map: TileMap = get_node("/root/RootScene/TravelPath/WalkingPath/TravelPathTileMap")
 	var player_sprite: Sprite = get_node("/root/RootScene/TravelPath/PlayerSprite")
-	signals_manager.emit_signal("player_position_updated", travel_path_tile_map.map_to_world(player_sprite.START_POS))
-	signals_manager.emit_signal("increment_player")
-	signals_manager.emit_signal("player_data_updated")
+	signals_manager.emit_signal("player_position_updated", self.name, travel_path_tile_map.map_to_world(player_sprite.START_POS))
+	signals_manager.emit_signal("increment_player", self.name)
+	signals_manager.emit_signal("player_data_updated", self.name)
 
 
 func increase_player_happiness(values):
@@ -82,7 +82,7 @@ func increase_player_happiness(values):
 	var this_player = global_data.get_current_player()
 	this_player.happiness_score += values["happiness_increase"]
 	this_player.turn_time_used += values["time_used"]
-	signals_manager.emit_signal("player_data_updated")
+	signals_manager.emit_signal("player_data_updated", self.name)
 
 
 func change_this_player_job(job):
@@ -90,13 +90,13 @@ func change_this_player_job(job):
 	var this_player = global_data.get_current_player()
 	this_player.current_job = job
 	if debug_this: print(self.name, " ", self)
-	signals_manager.emit_signal("player_data_updated")
+	signals_manager.emit_signal("player_data_updated", self.name)
 
 
-func check_player_changes():
-	if debug_this: print(self.name +".check_player_changes")
+func check_player_changes(caller):
+	if debug_this: print(self.name +".check_player_changes", " caller: ", caller)
 	var this_player = global_data.get_current_player()
 	if this_player.turn_time_used >= global_data.MAX_TIME:
 		if debug_this: print(self.name, ".if this_player.turn_time_used >= MAX_TIME:")
-		signals_manager.emit_signal("player_time_up")
+		signals_manager.emit_signal("player_time_up", self.name)
 	

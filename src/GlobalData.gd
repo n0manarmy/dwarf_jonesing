@@ -74,7 +74,7 @@ func get_rand_between(_min: int, _max: int):
 
 
 func adjust_economy():
-	var debug_this = false
+	# var debug_this = false
 	if debug_this: print(self.name +".adjust_economy")
 	
 	var list_min = econ_values.min()
@@ -95,12 +95,12 @@ func adjust_economy():
 		econ_values.append(val)		
 
 	econ_values.remove(0)
-	signals_manager.emit_signal("update_job_economy")
+	signals_manager.emit_signal("update_job_economy", self.name)
 	# if debug_this: print(self.name + "econ_values: ", econ_values)
 
 
 func adjust_for_economy(val):
-	var debug_this = false
+	# var debug_this = false
 
 	if debug_this: print(self.name + ".adjust_for_economy")
 	var adjusted = (self.econ_values.back() as float / 100 as float)
@@ -108,28 +108,28 @@ func adjust_for_economy(val):
 	return (val * adjusted) as int
 
 
-func next_player():
-	if debug_this: print(self.name + ".next_player()")
+func next_player(caller):
+	if debug_this: print(self.name + ".next_player()", " caller: ", caller)
 
 	var this_player = self.get_current_player()
-	signals_manager.emit_signal("disable_location_buttons", false)
+	signals_manager.emit_signal("disable_location_buttons", self.name, false)
 
 	if this_player == self.players[self.players.size() - 1]:
 		self.game_rounds += 1
-		signals_manager.emit_signal("update_job_economy")
+		signals_manager.emit_signal("update_job_economy", self.name)
 		
 
-func increment_current_player():
-	if debug_this: print(self.name + ".increment_current_player()")
+func increment_current_player(caller):
+	if debug_this: print(self.name + ".increment_current_player()", " caller: ", caller)
 	if current_player == player_count:
 		current_player = 1
 	else:
 		current_player += 1
-	signals_manager.emit_signal("player_data_updated")
+	signals_manager.emit_signal("player_data_updated", self.name)
 
 
-func reset_players():
-	if debug_this: print(self.name + ".reset_players()")
+func reset_players(caller):
+	if debug_this: print(self.name + ".reset_players()", " caller: ", caller)
 	current_player = 1
 
 
@@ -141,7 +141,7 @@ func get_current_player():
 
 func setup_board():
 	self.game_rounds = 1
-	signals_manager.emit_signal("global_data_updated")
+	signals_manager.emit_signal("global_data_updated", self.name)
 
 
 func setup_jobs():
@@ -188,8 +188,8 @@ func setup_players(caller, val):
 		if debug_this: print(self.name + ".player.to_string(): ", player.to_string())
 
 	if debug_this: print(self.name + ".current_player ", current_player)
-	self.reset_players()
-	signals_manager.emit_signal("player_data_updated")
+	self.reset_players(self.name)
+	signals_manager.emit_signal("player_data_updated", self.name)
 
 
 func set_player_max_values(values):
@@ -200,4 +200,4 @@ func set_player_max_values(values):
 	self.get_current_player().max_wealth_score = values["max_wealth"]
 	self.get_current_player().to_string()
 
-	signals_manager.emit_signal("player_data_updated")
+	signals_manager.emit_signal("player_data_updated", self.name)

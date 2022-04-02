@@ -49,16 +49,16 @@ func on_done_clicked():
 	
 	if global_data.current_player == global_data.player_count:
 		if debug_this: print(self.name + ".if global_variables.current_player == global_variables.player_count:")
-		signals_manager.emit_signal("remove_board_overlay")
-		signals_manager.emit_signal("increment_player")
-		signals_manager.emit_signal("update_debug_scene")
-		signals_manager.emit_signal("reset_players")
-		signals_manager.emit_signal("disable_location_buttons", false)
+		signals_manager.emit_signal("remove_board_overlay", self.name)
+		signals_manager.emit_signal("increment_player", self.name)
+		signals_manager.emit_signal("update_debug_scene", self.name)
+		signals_manager.emit_signal("reset_players", self.name)
+		signals_manager.emit_signal("disable_location_buttons", self.name, false)
 		queue_free()
 	else:
 		if debug_this: print(self.name + ".else")
-		signals_manager.emit_signal("increment_player")
-		signals_manager.emit_signal("update_debug_scene")
+		signals_manager.emit_signal("increment_player", self.name)
+		signals_manager.emit_signal("update_debug_scene", self.name)
 		goals_label.text = DEFAULT_GOALS_LABEL_VALUE % global_data.current_player		
 		reset_sliders()
 	

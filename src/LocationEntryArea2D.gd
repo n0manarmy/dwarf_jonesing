@@ -22,7 +22,7 @@ func on_area_2d_body_entered(_body: KinematicBody2D):
 	var player_pos = travel_path_tile_map.world_to_map(player_sprite.position)
 	player_pos.y -= 4
 	if debug_this: print(self.name + ".player_pos: ", player_pos)
-	signals_manager.emit_signal("location_entered_move_player", travel_path_tile_map.map_to_world(player_pos))
-	signals_manager.emit_signal("location_entered_present_scene", self)
-	signals_manager.emit_signal("disable_location_buttons", true)
-	signals_manager.emit_signal("location_entered_stop_movement", false)
+	signals_manager.emit_signal("location_entered_move_player", self.name, travel_path_tile_map.map_to_world(player_pos))
+	signals_manager.emit_signal("location_entered_present_scene", self.name, self)
+	signals_manager.emit_signal("disable_location_buttons", self.name, true)
+	signals_manager.emit_signal("location_entered_stop_movement", self.name, false)

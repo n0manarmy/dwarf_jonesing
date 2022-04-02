@@ -51,7 +51,7 @@ func _ready():
 	
 	if self.get_parent() == get_node("/root"):
 		if debug_this:print(self.name + ".running scene")
-		setup_player_for_move()
+		setup_player_for_move(self.name)
 	else:
 		if debug_this:print(self.name + ".running project")
 	
@@ -73,11 +73,12 @@ func _ready():
 		location_entry_area_2d.connect("location_entered", self, "my_set_process")
 
 #	connect_signals()
-	my_set_process(false)
+	my_set_process(self.name, false)
 #	setup_player_for_move()
 
-func on_done_clicked():
-	disable_location_buttons(false)
+func on_done_clicked(caller):
+	if debug_this: print(self.name, ".on_done_clicked()", " caller: ", caller)
+	disable_location_buttons(self.name, false)
 	
 func connect_signals():
 	
@@ -96,13 +97,13 @@ func connect_signals():
 	scene_13_area2d.connect("location_entered_stop_movement", self, "my_set_process")
 	
 
-func player_time_up():
-	if debug_this: print(self.name, ".player_time_up()")
-	my_set_process(false)
+func player_time_up(caller):
+	if debug_this: print(self.name, ".player_time_up()", " caller: ", caller)
+	my_set_process(self.name, false)
 	
 	
-func setup_player_for_move():
-	if debug_this: print(self.name + ".setup_player_for_move()")
+func setup_player_for_move(caller):
+	if debug_this: print(self.name + ".setup_player_for_move()", " caller: ", caller)
 	this_player = global_data.players[global_data.current_player - 1]
 	player_sprite.modulate = this_player.color
 	if debug_this: print(self.name + "start_values_scene: ", start_values_scene)
@@ -127,7 +128,7 @@ func move_along_path(dist: float):
 	
 	if player_path.size() == 0:
 		if debug_this: print(self.name + ".player_path.size() == ", player_path.size())
-		my_set_process(false)
+		my_set_process(self.name, false)
 
 	if debug_this: print(self.name + ".player_path.size() ", player_path.size())
 	if debug_this: print(self.name + ".player_path: ", player_path)
@@ -138,12 +139,12 @@ func move_along_path(dist: float):
 		var dist_to_next = last_pos.distance_to(player_path[x])
 		this_player.turn_time_used += 1
 		# regular player checks, such as time used.
-		signals_manager.emit_signal("player_data_updated")
+		signals_manager.emit_signal("player_data_updated", self.name)
 					
 		if dist <= dist_to_next:
 			if debug_this: print(self.name + ".dist <= dist_to_next")
 			var pos = last_pos.linear_interpolate(player_path[x], dist / dist_to_next)
-			signals_manager.emit_signal("player_position_updated", pos)
+			signals_manager.emit_signal("player_position_updated", self.name, pos)
 			break
 			
 		dist -= dist_to_next
@@ -164,7 +165,7 @@ func move_along_path(dist: float):
 func on_button_move_pressed(dest: Vector2):
 	if debug_this: print(self.name + ".on_button_move_pressed, dest: ", dest)
 	
-	my_set_process(true)
+	my_set_process(self.name, true)
 	
 	var travel_path_tile_map: TileMap = get_node("WalkingPath/TravelPathTileMap")
 	if debug_this: print(self.name + ".travel_path_tile_map: ", travel_path_tile_map)	
@@ -178,13 +179,13 @@ func _process(delta):
 	if debug_this: print(self.name + "._process")
 	move_along_path(speed * delta)
 
-func disable_location_buttons(state):
-	if debug_this: print(self.name + ".disable_location_buttons")
+func disable_location_buttons(caller, state):
+	if debug_this: print(self.name + ".disable_location_buttons", " caller: ", caller)
 	var button_group: ButtonGroup = load("res://res/LocationButtonResource.tres")
 	for _button in button_group.get_buttons():
 		var button: Button = _button
 		button.disabled = state
 		
-func my_set_process(val: bool):
-	if debug_this: print(self.name + ".my_set_process ", val)
+func my_set_process(caller, val: bool):
+	if debug_this: print(self.name + ".my_set_process ", val, " caller: ", caller)
 	set_process(val)
