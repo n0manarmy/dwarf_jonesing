@@ -132,13 +132,16 @@ func _ready():
 
 func update_jobs_economy(caller):
 	if debug_this: print(self.name + ".update_jobs_economy", " caller: ", caller)	
+	var adjusted = (global_data.econ_values.back() as float / 100 as float)
 
 	for job in self.jobs:
-		job.base_salary = global_data.adjust_for_economy(job.base_salary)
+		job.base_salary = (job.base_salary * adjusted) as int
 		if (global_data.get_rand_between(1, 10)) < 3:
 			job.job_available = false
 		else:
 			job.job_available = true
+			
+				
 
 func can_get_job(caller, job: Job):
 	if debug_this: print(self.name + ".can_get_job", " caller: ", caller)

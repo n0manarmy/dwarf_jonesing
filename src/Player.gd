@@ -71,7 +71,7 @@ func reset_player(caller):
 	var player_sprite: Sprite = get_node("/root/RootScene/TravelPath/PlayerSprite")
 	signals_manager.emit_signal("player_position_updated", self.name, travel_path_tile_map.map_to_world(player_sprite.START_POS))
 	signals_manager.emit_signal("increment_player", self.name)
-	signals_manager.emit_signal("player_data_updated", self.name)
+	signals_manager.emit_signal("player_data_updated", self.name + ".change_this_player_job")
 
 
 func increase_player_happiness(values):

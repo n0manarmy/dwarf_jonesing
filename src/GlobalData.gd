@@ -99,15 +99,6 @@ func adjust_economy():
 	# if debug_this: print(self.name + "econ_values: ", econ_values)
 
 
-func adjust_for_economy(val):
-	# var debug_this = false
-
-	if debug_this: print(self.name + ".adjust_for_economy")
-	var adjusted = (self.econ_values.back() as float / 100 as float)
-	if debug_this: print(self.name + ".adjusted: ", adjusted as float)
-	return (val * adjusted) as int
-
-
 func next_player(caller):
 	if debug_this: print(self.name + ".next_player()", " caller: ", caller)
 

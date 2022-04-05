@@ -42,7 +42,7 @@ onready var start_values_scene = get_node_or_null("/root/RootScene/StartValuesSc
 
 var this_player
 
-var debug_this = false
+var debug_this = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -104,10 +104,12 @@ func player_time_up(caller):
 	
 func setup_player_for_move(caller):
 	if debug_this: print(self.name + ".setup_player_for_move()", " caller: ", caller)
-	this_player = global_data.players[global_data.current_player - 1]
+	this_player = global_data.get_current_player()
 	player_sprite.modulate = this_player.color
-	if debug_this: print(self.name + "start_values_scene: ", start_values_scene)
+	# if debug_this: print(self.name + ".start_values_scene: ", start_values_scene)
+	player_sprite.movement_path = []
 	player_sprite.show()
+	# my_set_process(self.name, false)
 	
 func move_along_path(dist: float):
 	if debug_this: print(self.name + ".move_along_path")
@@ -131,7 +133,7 @@ func move_along_path(dist: float):
 		my_set_process(self.name, false)
 
 	if debug_this: print(self.name + ".player_path.size() ", player_path.size())
-	if debug_this: print(self.name + ".player_path: ", player_path)
+	# if debug_this: print(self.name + ".player_path: ", player_path)
 	
 	while player_path.size() > 0 && x != player_path.size():
 		if debug_this: print(self.name + ".x: ", x)
@@ -157,9 +159,9 @@ func move_along_path(dist: float):
 		if debug_this: print(self.name + ".for_loop end")
 		
 	if debug_this: print(self.name + ".current player sprite: ", player_sprite.position)
-	if debug_this: print(self.name + ".end player_path: ", player_path)
+	if debug_this: print(self.name + ".end player_path size: ", player_path.size())
 	player_sprite.movement_path = player_path
-	if debug_this: print(self.name + ".end this_player.movement_path: ", player_sprite.movement_path)	
+	if debug_this: print(self.name + ".end this_player.movement_path size: ", player_sprite.movement_path.size())	
 	
 	
 func on_button_move_pressed(dest: Vector2):
