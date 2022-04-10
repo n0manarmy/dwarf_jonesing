@@ -3,4 +3,5 @@ lib/
 logs/
 target/
 addons/
+.import/*
 modeling/economy/scratch/target
