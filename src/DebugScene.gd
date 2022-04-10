@@ -6,6 +6,7 @@ onready var status_value_node = 				get_node("DebugContainer/HBoxContainer/VBoxV
 onready var eaten_value_node = 					get_node("DebugContainer/HBoxContainer/VBoxValues/EatenValue")
 onready var rounds_value_node = 				get_node("DebugContainer/HBoxContainer/VBoxValues/RoundsValue")
 onready var job_value_node = 					get_node("DebugContainer/HBoxContainer/VBoxValues/JobNameValue")
+onready var money_value_node = 					get_node("DebugContainer/HBoxContainer/VBoxValues/MoneyValue")
 
 onready var happiness_score_value_node = 		get_node("DebugContainer/HBoxContainer2/VBoxValues/HappinessScoreValue")
 onready var wealth_score_value_node = 			get_node("DebugContainer/HBoxContainer2/VBoxValues/WealthScoreValue")
@@ -58,6 +59,7 @@ func update_player_data(caller):
 	eaten_value_node.text = player.eaten as String
 	rounds_value_node.text = global_data.game_rounds as String
 	job_value_node.text = player.current_job.job_name as String
+	money_value_node.text = player.current_money as String
 	
 	happiness_score_value_node.text = player.happiness_score as String
 	wealth_score_value_node.text = player.wealth_score as String

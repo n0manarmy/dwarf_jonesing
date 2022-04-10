@@ -4,7 +4,6 @@ extends Node2D
 export var speed = 300
 export var moving = false
 var dest_name = ""
-var MAX_TIME = 500
 
 onready var scene_01_area2d = get_node("WalkingPath/Scene01")
 onready var scene_02_area2d = get_node("WalkingPath/Scene02")
@@ -40,9 +39,9 @@ onready var root_scene = get_node_or_null("/root/RootScene")
 onready var player_sprite = get_node("PlayerSprite")
 onready var start_values_scene = get_node_or_null("/root/RootScene/StartValuesScene")
 
-var this_player
+# var this_player
 
-var debug_this = true
+var debug_this = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -57,7 +56,7 @@ func _ready():
 	
 	
 	signals_manager.connect("player_time_up", self, "player_time_up")
-	signals_manager.connect("player_data_updated", self, "setup_player_for_move")
+	# signals_manager.connect("player_data_updated", self, "setup_player_for_move")
 	signals_manager.connect("on_done_clicked", self, "on_done_clicked")
 	signals_manager.connect("disable_location_buttons", self, "disable_location_buttons")
 	signals_manager.connect("location_entered_stop_movement", self, "my_set_process")	
@@ -72,9 +71,7 @@ func _ready():
 		var location_entry_area_2d = get_node_or_null("/root/LocationEntryArea2D")
 		location_entry_area_2d.connect("location_entered", self, "my_set_process")
 
-#	connect_signals()
 	my_set_process(self.name, false)
-#	setup_player_for_move()
 
 func on_done_clicked(caller):
 	if debug_this: print(self.name, ".on_done_clicked()", " caller: ", caller)
@@ -104,25 +101,26 @@ func player_time_up(caller):
 	
 func setup_player_for_move(caller):
 	if debug_this: print(self.name + ".setup_player_for_move()", " caller: ", caller)
-	this_player = global_data.get_current_player()
+	var this_player = global_data.get_current_player()
 	player_sprite.modulate = this_player.color
 	# if debug_this: print(self.name + ".start_values_scene: ", start_values_scene)
 	player_sprite.movement_path = []
 	player_sprite.show()
+	if debug_this: print(self.name + ".setup_player_for_move()", " caller: ", caller)
+
 	# my_set_process(self.name, false)
 	
 func move_along_path(dist: float):
-	if debug_this: print(self.name + ".move_along_path")
+	if debug_this: print("========================== ", self.name, ".move_along_path ======================  ")
 	
-	# get current player
-	# var this_player = global_data.players[global_data.current_player - 1]
-	# var this_player = global_data.players[global_data.current_player - 1]
-	player_sprite.modulate = this_player.color
+	var this_player = global_data.get_current_player()
+	
+	# # get current player
+	# player_sprite.modulate = this_player.color
 	
 	if debug_this: print(self.name + ".this_player ", this_player.to_string())
 	# get player path
 	var player_path: PoolVector2Array = player_sprite.movement_path
-	# get player sprite
 	# get current player position
 	var last_pos = player_sprite.position
 	# our path position variable
@@ -137,12 +135,18 @@ func move_along_path(dist: float):
 	
 	while player_path.size() > 0 && x != player_path.size():
 		if debug_this: print(self.name + ".x: ", x)
+		signals_manager.emit_signal("player_data_updated", self.name)
 		
 		var dist_to_next = last_pos.distance_to(player_path[x])
 		this_player.turn_time_used += 1
 		# regular player checks, such as time used.
-		signals_manager.emit_signal("player_data_updated", self.name)
-					
+		# signals_manager.emit_signal("player_data_updated", self.name)
+		# we check for turn time used mid routine because the player_data_updated call resets and changes.
+		if this_player.turn_time_used >= global_data.MAX_TIME:
+			if debug_this: print(self.name, ".if this_player.turn_time_used >= MAX_TIME:")	
+			signals_manager.emit_signal("player_time_up", self.name)
+			break
+						
 		if dist <= dist_to_next:
 			if debug_this: print(self.name + ".dist <= dist_to_next")
 			var pos = last_pos.linear_interpolate(player_path[x], dist / dist_to_next)
@@ -155,7 +159,6 @@ func move_along_path(dist: float):
 		
 		player_path.remove(x)
 		x = x + 1
-		
 		if debug_this: print(self.name + ".for_loop end")
 		
 	if debug_this: print(self.name + ".current player sprite: ", player_sprite.position)

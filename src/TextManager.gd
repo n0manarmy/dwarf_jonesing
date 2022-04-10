@@ -12,6 +12,7 @@ export var RENTING_LE_SECURITY_APARTMENT = "But Sir! We have already prepared yo
 export var NEW_LE_SECURITY_APARTMENT = "Please step this way so you can know what money smells like!"
 export var RENT_PAYED = "Thank you for paying your rent! Now we won't have to send the dogs."
 export var NO_MONEY_TO_PAY_RENT = "You ain't got no monies!"
+export var NOT_ENOUGH_MONEY = "Sorry you seem to be a bit short on monies!"
 export var RENTAL_OFFICE_CLOSED = "Closed!"
 export var SECURITY_DEPOSIT_PAYED_FIRST = "You must pay your security deposit for the month first!"
 export var EXTEND_RENT = "Sure you can pay your rent next week!"

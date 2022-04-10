@@ -71,7 +71,16 @@ func _ready():
 
 func get_rand_between(_min: int, _max: int):
 	return rng.randi_range(_min, _max)
+	
 
+func adjust_for_economy(val):
+	# var debug_this = false
+
+	if debug_this: print(self.name + ".adjust_for_economy")
+	var adjusted = (self.econ_values.back() as float / 100 as float)
+	if debug_this: print(self.name + ".adjusted: ", adjusted as float)
+	return (val * adjusted) as int
+	
 
 func adjust_economy():
 	# var debug_this = false
@@ -105,9 +114,11 @@ func next_player(caller):
 	var this_player = self.get_current_player()
 	signals_manager.emit_signal("disable_location_buttons", self.name, false)
 
-	if this_player == self.players[self.players.size() - 1]:
+	if this_player == self.players[0]:
 		self.game_rounds += 1
 		signals_manager.emit_signal("update_job_economy", self.name)
+	
+	signals_manager.emit_signal("player_data_updated", self.name)
 		
 
 func increment_current_player(caller):
@@ -116,6 +127,8 @@ func increment_current_player(caller):
 		current_player = 1
 	else:
 		current_player += 1
+
+	signals_manager.emit_signal("setup_next_player", self.name)
 	signals_manager.emit_signal("player_data_updated", self.name)
 
 
@@ -125,8 +138,8 @@ func reset_players(caller):
 
 
 func get_current_player():
-	if debug_this: print(self.name + ".get_current_player()")
-	if debug_this: print(self.name + ".current_player: ", self.current_player)
+	# if debug_this: print(self.name + ".get_current_player()")
+	# if debug_this: print(self.name + ".current_player: ", self.current_player)
 	return self.players[self.current_player - 1]
 
 

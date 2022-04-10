@@ -39,14 +39,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="InfoLabelBox" type="Label" parent="TextBackground"]
+margin_left = 520.0
+margin_top = 264.0
+margin_right = 704.0
+margin_bottom = 476.0
+text = "Default Text"
+autowrap = true
+
 [node name="ActionsContainer" type="VBoxContainer" parent="TextBackground"]
 margin_left = 296.0
 margin_top = 264.0
 margin_right = 506.0
 margin_bottom = 476.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PayRentContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer"]
 margin_right = 210.0
@@ -178,26 +183,12 @@ margin_right = 69.0
 margin_bottom = 20.0
 text = "325"
 
-[node name="InfoLabelBox" type="Label" parent="TextBackground"]
-margin_left = 520.0
-margin_top = 264.0
-margin_right = 704.0
-margin_bottom = 476.0
-text = "Default Text"
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="DoneButton" type="Button" parent="TextBackground"]
 margin_left = 648.0
 margin_top = 476.0
 margin_right = 694.0
 margin_bottom = 496.0
 text = "Done"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="WorkButton" type="Button" parent="TextBackground"]
 margin_left = 296.0
@@ -212,5 +203,6 @@ __meta__ = {
 [connection signal="pressed" from="TextBackground/ActionsContainer/PayRentContainer/PayRentButtonContainer/Button" to="." method="pay_rent_clicked"]
 [connection signal="pressed" from="TextBackground/ActionsContainer/MoreTimeContainer/MoreTimeButtonContainer/Button" to="." method="ask_for_more_time"]
 [connection signal="pressed" from="TextBackground/ActionsContainer/LowCostContainer/LowCostButtonContainer/Button" to="." method="rent_low_cost_apartment"]
+[connection signal="pressed" from="TextBackground/ActionsContainer/LeSecurityContainer/LeSecurityButtonContainer/Button" to="." method="rent_le_security_apartment"]
 [connection signal="pressed" from="TextBackground/DoneButton" to="." method="on_done_clicked"]
 [connection signal="pressed" from="TextBackground/WorkButton" to="." method="on_work_clicked"]
