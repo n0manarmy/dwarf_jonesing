@@ -4,7 +4,7 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
-var MAX_TIME = 100
+var MAX_TIME = 750
 
 # ECONOMY
 var base_econ_value = 1
