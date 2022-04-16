@@ -26,12 +26,12 @@ var debug_this = true
 
 func _ready():
 	if debug_this: print(self.name + "._ready")	
-	signals_manager.connect("scene_change", self, "change_scene")
+	signals_manager.connect("scene_change", self, "call_this_scene")
 	self.hide()
 
 
-func change_scene(caller, scene_name, state):
-	if debug_this: print(self.name + ".change_scene() caller ", caller, " state ", state, " scene_name ", scene_name)	
+func call_this_scene(caller, scene_name, state):
+	if debug_this: print(self.name + ".call_this_scene() caller ", caller, " state ", state, " scene_name ", scene_name)	
 	var player = global_data.get_current_player()
 	if scene_name == self.name:
 		if state == info_scene.SCENE_STATE.HIDE:
@@ -76,9 +76,14 @@ func ask_for_more_time():
 
 	if player.rent_due <= player.current_rent && player.rent_extended < 2:
 		info_label_box.text = text_manager.EXTEND_RENT
-
+		player.rent_extended += 1		
+	elif player.rent_extended == 2:
+		info_label_box.text = text_manager.RENT_EXTENDED_MAX
 	else:
 		info_label_box.text = text_manager.REJECT_EXTENDING_RENT
+
+	player.turn_time_used += 5
+	signals_manager.emit_signal("player_data_updated", self.name)
 
 
 func pay_rent_clicked():
@@ -93,7 +98,7 @@ func pay_rent_clicked():
 		player.rent_extended = 0
 		if just_payed == true:
 			just_payed = false;
-		signals_manager.emit_signal("player_data_updated")
+		signals_manager.emit_signal("player_data_updated", self.name)
 		if debug_this: print(self.name + ".player.rent_due: ", player.rent_due)
 	else:
 		info_label_box.text = text_manager.NO_MONEY_TO_PAY_RENT
@@ -113,7 +118,6 @@ func rent_low_cost_apartment():
 		player.possessions[im.LOW_COST_APARTMENT.keys()[0]] = im.LOW_COST_APARTMENT.values()[0]
 		just_payed = true
 		player.rent_extended = 0
-
 
 
 func rent_le_security_apartment():

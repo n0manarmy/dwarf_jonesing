@@ -16,6 +16,7 @@ export var NOT_ENOUGH_MONEY = "Sorry you seem to be a bit short on monies!"
 export var RENTAL_OFFICE_CLOSED = "Closed!"
 export var SECURITY_DEPOSIT_PAYED_FIRST = "You must pay your security deposit for the month first!"
 export var EXTEND_RENT = "Sure you can pay your rent next week!"
+export var RENT_EXTENDED_MAX = "You've already got 2 weeks extension!"
 export var REJECTED_EXTENDING_RENT = "Sorry but I need you to pay now."
 
 export var RENTAL_OFFICE_OPEN = [
