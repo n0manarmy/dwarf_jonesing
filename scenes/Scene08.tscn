@@ -189,13 +189,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer/ZMartDiscount" to="." method="on_company_button_pressed" binds= [ "scene03" ]]
-[connection signal="pressed" from="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer/MonolithBurger" to="." method="on_company_button_pressed" binds= [ "scene04" ]]
-[connection signal="pressed" from="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer/QTClothing" to="." method="on_company_button_pressed" binds= [ "scene05" ]]
-[connection signal="pressed" from="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer/SocketCityAppliance" to="." method="on_company_button_pressed" binds= [ "scene06" ]]
-[connection signal="pressed" from="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer/HiTechUniversity" to="." method="on_company_button_pressed" binds= [ "scene07" ]]
-[connection signal="pressed" from="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer/Factory" to="." method="on_company_button_pressed" binds= [ "scene09" ]]
-[connection signal="pressed" from="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer/Bank" to="." method="on_company_button_pressed" binds= [ "scene10" ]]
-[connection signal="pressed" from="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer/BlacksMarket" to="." method="on_company_button_pressed" binds= [ "scene11" ]]
-[connection signal="pressed" from="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer/RentOffice" to="." method="on_company_button_pressed" binds= [ "scene13" ]]
+[connection signal="pressed" from="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer/ZMartDiscount" to="." method="on_company_button_pressed" binds= [ "Scene03" ]]
+[connection signal="pressed" from="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer/MonolithBurger" to="." method="on_company_button_pressed" binds= [ "Scene04" ]]
+[connection signal="pressed" from="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer/QTClothing" to="." method="on_company_button_pressed" binds= [ "Scene05" ]]
+[connection signal="pressed" from="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer/SocketCityAppliance" to="." method="on_company_button_pressed" binds= [ "Scene06" ]]
+[connection signal="pressed" from="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer/HiTechUniversity" to="." method="on_company_button_pressed" binds= [ "Scene07" ]]
+[connection signal="pressed" from="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer/Factory" to="." method="on_company_button_pressed" binds= [ "Scene09" ]]
+[connection signal="pressed" from="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer/Bank" to="." method="on_company_button_pressed" binds= [ "Scene10" ]]
+[connection signal="pressed" from="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer/BlacksMarket" to="." method="on_company_button_pressed" binds= [ "Scene11" ]]
+[connection signal="pressed" from="TextBackground/VBoxContainer/MainMenuContainer/HBoxContainer/CompaniesButtonContainer/CompanyContainer/RentOffice" to="." method="on_company_button_pressed" binds= [ "Scene13" ]]
 [connection signal="pressed" from="TextBackground/DoneButton" to="." method="on_done_clicked"]

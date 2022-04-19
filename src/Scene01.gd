@@ -7,6 +7,7 @@ onready var text_manager = get_node("/root/TextManager")
 onready var info_label_box: Label = get_node("TextBackground/VBoxContainer/HBoxContainer/InfoLabelBox")
 onready var rest_button: Button = get_node("TextBackground/RestButton")
 onready var info_scene = get_node("/root/RootScene/TravelPath/InfoScene")
+onready var job_manager = get_node("/root/JobManager")
 
 var THIS_SCENE_EXIT = Vector2(31, 11)
 
@@ -14,12 +15,13 @@ var debug_this = true
 
 func _ready():
 	if debug_this: print(self.name + "._ready")	
-	signals_manager.connect("scene_change", self, "change_scene")
+	signals_manager.connect("scene_change", self, "call_this_scene")
 	self.hide()
 
 
-func change_scene(caller, scene_name, state):
-	if debug_this: print(self.name + ".change_scene() caller ", caller, " state ", state, " scene_name ", scene_name)	
+func call_this_scene(caller, scene_name, state):
+	if debug_this: print(self.name + ".call_this_scene() caller ", caller, " state ", state, " scene_name ", scene_name)	
+	var player = global_data.get_current_player()
 	if scene_name == self.name:
 		if state == info_scene.SCENE_STATE.HIDE:
 			self.hide()

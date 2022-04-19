@@ -18,7 +18,7 @@ onready var scene_label = get_node("TextBackground/NameLabel")
 
 onready var text_manager = get_node("/root/TextManager")
 onready var job_manager = get_node("/root/JobManager")
-onready var info_scene = get_node("/root/RootScene/TravelPath/InfoScene")
+onready var info_scene = get_node_or_null("/root/RootScene/TravelPath/InfoScene")
 
 onready var just_payed = false
 
@@ -28,6 +28,8 @@ func _ready():
 	if debug_this: print(self.name + "._ready")	
 	signals_manager.connect("scene_change", self, "call_this_scene")
 	self.hide()
+	if self.get_parent() == get_node("/root"):
+		self.show()
 
 
 func call_this_scene(caller, scene_name, state):
@@ -38,11 +40,11 @@ func call_this_scene(caller, scene_name, state):
 			self.hide()
 		else:
 			self.show()
-			if player.current_job.company == job_manager.SCENE13_JOBS_COMPANY:
+			if player.current_job.scene == self.name:
 				work_button.visible = true
 			else:
 				work_button.visible = false
-			if (global_data.game_rounds % 4 == 0 && global_data.game_rounds != 0) || player.rent_extended > 0:
+			if player.rent_extended > 0 || (global_data.game_rounds % 4 == 0 && global_data.game_rounds != 0):
 				show_rental_services()
 			else:
 				hide_rental_services()

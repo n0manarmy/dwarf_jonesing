@@ -25,19 +25,23 @@ var jobs_presented = false
 func _ready():
 	if debug_this: print(self.name + "._ready")
 	signals_manager.connect("job_results_container_update", self, "update_job_results_container")
-	signals_manager.connect("scene_change", self, "change_scene")
+	signals_manager.connect("scene_change", self, "call_this_scene")
 
-	setup_scene()
 	self.hide()
+	if self.get_parent() == get_node("/root"):
+		self.show()
+	setup_scene()
 
 
-func change_scene(caller, scene_name, state):
-	if debug_this: print(self.name + ".change_scene() caller ", caller, " state ", state, " scene_name ", scene_name)	
+func call_this_scene(caller, scene_name, state):
+	if debug_this: print(self.name + ".call_this_scene() caller ", caller, " state ", state, " scene_name ", scene_name)	
+	var player = global_data.get_current_player()
 	if scene_name == self.name:
 		if state == info_scene.SCENE_STATE.HIDE:
 			self.hide()
 		else:
 			self.show()
+
 	
 func setup_scene():
 	main_menu_container.visible = true
@@ -64,8 +68,8 @@ func hide_menus():
 
 func present_jobs(label):
 	if debug_this: print(self.name + ".present_jobs")
-	if debug_this: print(self.name + ".jobs size ", job_manager.jobs.size())
-	if debug_this: print(self.name + ".jobs_button_container: ", jobs_button_container)
+	if debug_this: print(self.name + ".jobs_menu_container.visible ", jobs_menu_container.visible)
+	
 
 	if !is_instance_valid(jobs_button_container):
 		jobs_button_container = VBoxContainer.new()
@@ -77,7 +81,6 @@ func present_jobs(label):
 	for job in job_manager.jobs:
 		if job.scene == label:
 			var button = Button.new()
-			# var button = JobButton.new(job)
 			# button.set_text_align(Button.ALIGN_LEFT)
 			button.text = "{} - {} ${}".format([job.job_name, job.job_available, job.base_salary], "{}")
 			button.connect("pressed", self, "this_job_pressed", [self.name, job])

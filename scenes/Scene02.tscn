@@ -69,4 +69,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="WorkButton" type="Button" parent="TextBackground"]
+margin_left = 296.0
+margin_top = 476.0
+margin_right = 342.0
+margin_bottom = 496.0
+text = "Work"
+
 [connection signal="pressed" from="TextBackground/DoneButton" to="." method="on_done_clicked"]
