@@ -13,6 +13,7 @@ var ECON_MAX = 155
 var econ_values = [90, 95, 100, 105, 110]
 
 var base_starting_difficulty = 50
+var base_work_time = 50
 var button_clicked_add_time = 10
 var game_rounds = 0
 var current_player = 1

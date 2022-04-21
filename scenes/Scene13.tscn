@@ -201,3 +201,5 @@ text = "Work"
 [connection signal="pressed" from="TextBackground/ActionsContainer/MoreTimeContainer/MoreTimeButtonContainer/Button" to="." method="ask_for_more_time"]
 [connection signal="pressed" from="TextBackground/ActionsContainer/LowCostContainer/LowCostButtonContainer/Button" to="." method="rent_low_cost_apartment"]
 [connection signal="pressed" from="TextBackground/ActionsContainer/LeSecurityContainer/LeSecurityButtonContainer/Button" to="." method="rent_le_security_apartment"]
+[connection signal="pressed" from="TextBackground/DoneButton" to="." method="on_done_clicked"]
+[connection signal="pressed" from="TextBackground/WorkButton" to="." method="work_button_clicked"]

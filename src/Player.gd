@@ -72,7 +72,7 @@ func reset_player(caller):
 	var this_player = global_data.get_current_player()
 	
 	if this_player.eaten == false:
-		this_player.turn_time_used = 25
+		this_player.turn_time_used = int(global_data.MAX_TIME * .3)
 	else:
 		this_player.turn_time_used = 0
 		

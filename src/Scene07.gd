@@ -36,3 +36,6 @@ func on_done_clicked():
 	signals_manager.emit_signal("on_done_clicked", self.name)
 	self.hide()
 
+
+func work_button_clicked():
+	signals_manager.emit_signal("work_button_clicked", self.name) 

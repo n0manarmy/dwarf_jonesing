@@ -36,3 +36,6 @@ func on_done_clicked():
 	signals_manager.emit_signal("update_position", self.name, travel_path_tile_map.map_to_world(THIS_SCENE_EXIT))
 	signals_manager.emit_signal("on_done_clicked", self.name)
 	self.hide()
+
+func work_button_clicked():
+	signals_manager.emit_signal("work_button_clicked", self.name) 

@@ -148,7 +148,5 @@ func on_done_clicked():
 	self.hide()
 
 
-func on_work_clicked():
-	if debug_this: print(self.name + ".on_work_clicked")
-
-	pass # Replace with function body.
+func work_button_clicked():
+	signals_manager.emit_signal("work_button_clicked", self.name) 

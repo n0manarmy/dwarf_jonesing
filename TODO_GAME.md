@@ -6,6 +6,7 @@
 * Finish up Rental Office.
   * [DONE] Make checks on worth o make sure they can rent low cost or le security before allowing rental
 * add time loss to each job application
+* increase time loss from lack of food (make relative to total game time)
 * [DONE] When running out of time on the track, player stops and does not reset
 
 # Tasks

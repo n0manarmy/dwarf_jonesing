@@ -77,3 +77,4 @@ margin_bottom = 496.0
 text = "Work"
 
 [connection signal="pressed" from="TextBackground/DoneButton" to="." method="on_done_clicked"]
+[connection signal="pressed" from="TextBackground/WorkButton" to="." method="work_button_clicked"]
