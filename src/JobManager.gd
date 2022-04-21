@@ -128,6 +128,16 @@ func _ready():
 	if debug_this: print(self.name + ".jobs count: ", jobs.size())
 	signals_manager.connect("update_job_economy", self, "update_jobs_economy")
 	signals_manager.connect("job_manager_check_get_job", self, "can_get_job")
+	signals_manager.connect("work_button_clicked", self, "work_job")
+
+
+func work_job(caller):
+	if debug_this: print(self.name + ".work_job", " caller: ", caller)	
+	var player = global_data.get_current_player()
+	if (player.turn_time_used + global_data.base_work_time) < global_data.MAX_TIME:
+		player.current_money += player.job.base_salary * 8
+		player.turn_time_used += (global_data.MAX_TIME / 9.5)
+	
 
 
 func update_jobs_economy(caller):
