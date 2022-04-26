@@ -107,11 +107,13 @@ func increase_player_happiness(caller, values):
 	signals_manager.emit_signal("player_data_updated", self.name)
 
 
-func change_this_player_job(job):
-	if debug_this: print(self.name + ".change_this_player_job")
+func change_this_player_job(caller, job: Job):
+	if debug_this: print(self.name + ".change_this_player_job, caller: ", caller)
 	var this_player = global_data.get_current_player()
 	this_player.current_job = job
-	if debug_this: print(self.name, " ", self)
+	# if debug_this: print(self.name, " ", self)
+	if debug_this: print(self.name, " this.job: ", job)
+	if debug_this: print(self.name, " player.job: ", self.current_job)
 	signals_manager.emit_signal("player_data_updated", self.name)
 
 

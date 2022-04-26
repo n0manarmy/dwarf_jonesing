@@ -5,6 +5,10 @@ extends Node2D
 # var b = "text"
 
 var MAX_TIME = 1500
+var WORK_JOB_COST = 9.5
+var WORK_JOB_MULTIPLYER = 8
+# var BASE_WORK_TIME = 50
+
 
 # ECONOMY
 var base_econ_value = 1
@@ -13,7 +17,6 @@ var ECON_MAX = 155
 var econ_values = [90, 95, 100, 105, 110]
 
 var base_starting_difficulty = 50
-var base_work_time = 50
 var button_clicked_add_time = 10
 var game_rounds = 0
 var current_player = 1

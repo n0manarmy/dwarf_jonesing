@@ -14,7 +14,6 @@ onready var global_data = get_node("/root/GlobalData")
 const JobButton = preload("res://src/JobButton.gd")
 const Job = preload("res://src/Job.gd")
 
-
 var THIS_SCENE_EXIT = Vector2(27,43)
 
 var jobs_button_container: VBoxContainer = VBoxContainer.new()
@@ -35,7 +34,7 @@ func _ready():
 
 func call_this_scene(caller, scene_name, state):
 	if debug_this: print(self.name + ".call_this_scene() caller ", caller, " state ", state, " scene_name ", scene_name)	
-	var player = global_data.get_current_player()
+	# var player = global_data.get_current_player()
 	if scene_name == self.name:
 		if state == info_scene.SCENE_STATE.HIDE:
 			self.hide()
@@ -98,7 +97,6 @@ func this_job_pressed(caller, job: Job):
 	if debug_this: print(self.name, ".this_job_pressed()", " caller: ", caller)
 	if debug_this: print(self.name, " ", job)
 	var player = global_data.get_current_player()
-	# signals_manager.emit_signal("increase_player_turn_time_used", 5)
 	signals_manager.emit_signal("job_manager_check_get_job", self.name, job)
 	player.turn_time_used += 5
 	signals_manager.emit_signal("player_data_updated", self.name)

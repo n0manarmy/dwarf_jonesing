@@ -1,8 +1,8 @@
 extends Node2D
 
 
-export var speed = 300
-export var moving = false
+var speed = 500
+var moving = false
 var dest_name = ""
 
 onready var scene_01_area2d = get_node("WalkingPath/Scene01")
@@ -111,7 +111,7 @@ func setup_player_for_move(caller):
 	# my_set_process(self.name, false)
 	
 func move_along_path(dist: float):
-	if debug_this: print("========================== ", self.name, ".move_along_path ======================  ")
+	if debug_this: print(self.name, ".move_along_path")
 	
 	var this_player = global_data.get_current_player()
 	

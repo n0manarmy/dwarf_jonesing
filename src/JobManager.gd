@@ -134,9 +134,17 @@ func _ready():
 func work_job(caller):
 	if debug_this: print(self.name + ".work_job", " caller: ", caller)	
 	var player = global_data.get_current_player()
-	if (player.turn_time_used + global_data.base_work_time) < global_data.MAX_TIME:
-		player.current_money += player.job.base_salary * 8
-		player.turn_time_used += (global_data.MAX_TIME / 9.5)
+	# if players turn time plus a single time to work is less than the global time, do normal work cost
+	if (player.turn_time_used + (global_data.MAX_TIME / global_data.WORK_JOB_COST)) < global_data.MAX_TIME:
+		player.current_money += player.current_job.base_salary * global_data.WORK_JOB_MULTIPLYER
+		player.turn_time_used += (global_data.MAX_TIME / global_data.WORK_JOB_COST)
+	# else we calculate the amount of time that can be worked and do a smaller salery
+	else:
+		var time_left = global_data.MAX_TIME - player.turn_time_used
+		player.current_money += player.current_job.base_salary * ((time_left / (global_data.MAX_TIME / global_data.WORK_JOB_COST)) * 10)
+		player.turn_time_used += global_data.MAX_TIME / global_data.WORK_JOB_COST
+	
+	signals_manager.emit_signal("player_data_updated", self.name)
 	
 
 
@@ -160,7 +168,7 @@ func can_get_job(caller, job: Job):
 	var player = global_data.get_current_player()
 
 	if player.current_job == job:
-		signals_manager.emit_signal("change_player_job", job)
+		signals_manager.emit_signal("change_player_job", self.name, job)
 		signals_manager.emit_signal("job_results_container_update", tm.GOT_THE_JOB)
 		return
 
@@ -178,6 +186,6 @@ func can_get_job(caller, job: Job):
 		return
 
 	if can_get_the_job:
-		signals_manager.emit_signal("change_player_job", job)
+		signals_manager.emit_signal("change_player_job", self.name, job)
 		signals_manager.emit_signal("job_results_container_update", tm.GOT_THE_JOB)
 	
