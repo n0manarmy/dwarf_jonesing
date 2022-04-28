@@ -20,6 +20,7 @@ export var max_education_score: int = 0
 export var education: Dictionary = {} #Job:classes completed (13 is completed)
 export var turn_time_used: int = 0
 var current_job: Job
+export var current_job_experience: int = 0
 export var current_rent:int  = 325
 export var rent_due: int = 325
 export var color = Color()
@@ -43,7 +44,7 @@ func _ready():
 
 
 func _to_string():
-	return ".id: {}, work_exp {}, eaten {}, happiness {}, max_happiness {}, wealth {}, max_wealth {}, job {}, max_job {}, education {}, max_education {}, turn_time_used {}, current_job {}, color {}, current_rent {}, rent_due {}, rent_extended {}, possessions {}, current_money {}".format(
+	return ".id: {}, work_exp {}, eaten {}, happiness {}, max_happiness {}, wealth {}, max_wealth {}, job {}, max_job {}, education {}, max_education {}, turn_time_used {}, current_job {}, current_job_experience {}, color {}, current_rent {}, rent_due {}, rent_extended {}, possessions {}, current_money {}".format(
 		[
 			id, 
 			work_exp, 
@@ -58,6 +59,7 @@ func _to_string():
 			max_education_score,
 			turn_time_used,
 			current_job,
+			current_job_experience,
 			color,
 			current_rent,
 			rent_due,
@@ -110,6 +112,8 @@ func increase_player_happiness(caller, values):
 func change_this_player_job(caller, job: Job):
 	if debug_this: print(self.name + ".change_this_player_job, caller: ", caller)
 	var this_player = global_data.get_current_player()
+	if this_player.current_job.company != job.company:
+		this_player.current_job_experience = 0
 	this_player.current_job = job
 	# if debug_this: print(self.name, " ", self)
 	if debug_this: print(self.name, " this.job: ", job)

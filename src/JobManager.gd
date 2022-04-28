@@ -144,6 +144,7 @@ func work_job(caller):
 		player.current_money += player.current_job.base_salary * ((time_left / (global_data.MAX_TIME / global_data.WORK_JOB_COST)) * 10)
 		player.turn_time_used += global_data.MAX_TIME / global_data.WORK_JOB_COST
 	
+	player.current_job_experience += 1
 	signals_manager.emit_signal("player_data_updated", self.name)
 	
 
