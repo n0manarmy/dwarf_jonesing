@@ -4,4 +4,5 @@ logs/
 target/
 addons/
 .import/*
+.mono/
 modeling/economy/scratch/target
