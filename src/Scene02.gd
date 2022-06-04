@@ -9,11 +9,11 @@ var debug_this = true
 
 func _ready():
 	if debug_this: print(self.name + "._ready")
+	signals_manager.connect("scene_change", self, "change_scene")
 	setup_scene()
 	
 func setup_scene():
 	if debug_this: print(self.name, ".setup_scene()")
-	signals_manager.connect("scene_change", self, "change_scene")
 	if owner == null:
 		self.show()
 	else:

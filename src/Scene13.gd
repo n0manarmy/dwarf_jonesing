@@ -29,7 +29,6 @@ func _ready():
 	
 func setup_scene():
 	if debug_this: print(self.name, ".setup_scene()")
-	signals_manager.connect("scene_change", self, "change_scene")
 	if owner == null:
 		self.show()
 	else:

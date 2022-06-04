@@ -23,11 +23,11 @@ var jobs_presented = false
 func _ready():
 	if debug_this: print(self.name + "._ready")
 	signals_manager.connect("job_results_container_update", self, "update_job_results_container")
+	signals_manager.connect("scene_change", self, "change_scene")
 	setup_scene()
 	
 func setup_scene():
 	if debug_this: print(self.name, ".setup_scene()")
-	signals_manager.connect("scene_change", self, "change_scene")
 	main_menu_container.visible = true
 	jobs_menu_container.visible = false
 	if owner == null:
