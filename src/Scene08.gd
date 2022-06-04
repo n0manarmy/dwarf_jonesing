@@ -1,19 +1,17 @@
 extends Node2D
 
 onready var signals_manager = get_node_or_null("/root/SignalsManager")
-onready var job_manager = get_node("/root/JobManager")
+onready var job_manager = get_node_or_null("/root/JobManager")
 onready var tm = get_node_or_null("/root/TextManager")
-onready var main_menu_container = get_node("TextBackground/VBoxContainer/MainMenuContainer")
+onready var main_menu_container = get_node_or_null("TextBackground/VBoxContainer/MainMenuContainer")
 # onready var jobs_button_container = get_node("TextBackground/VBoxContainer/JobsMenuContainer/HBoxContainer/JobsButtonContainer/JobsContainer")
-onready var jobs_container = get_node("TextBackground/VBoxContainer/JobsMenuContainer/JobsContainer")
-onready var jobs_results_container = get_node("TextBackground/VBoxContainer/JobsMenuContainer/Text Box/JobsLabelBox")
-onready var jobs_menu_container = get_node("TextBackground/VBoxContainer/JobsMenuContainer")
-onready var info_scene = get_node("/root/RootScene/TravelPath/InfoScene")
-onready var global_data = get_node("/root/GlobalData")
+onready var jobs_container = get_node_or_null("TextBackground/VBoxContainer/JobsMenuContainer/JobsContainer")
+onready var jobs_results_container = get_node_or_null("TextBackground/VBoxContainer/JobsMenuContainer/Text Box/JobsLabelBox")
+onready var jobs_menu_container = get_node_or_null("TextBackground/VBoxContainer/JobsMenuContainer")
+onready var global_data = get_node_or_null("/root/GlobalData")
 
 const JobButton = preload("res://src/JobButton.gd")
 const Job = preload("res://src/Job.gd")
-
 
 var THIS_SCENE_EXIT = Vector2(27,43)
 
@@ -25,23 +23,26 @@ var jobs_presented = false
 func _ready():
 	if debug_this: print(self.name + "._ready")
 	signals_manager.connect("job_results_container_update", self, "update_job_results_container")
-	signals_manager.connect("scene_change", self, "change_scene")
-
 	setup_scene()
-	self.hide()
-
+	
+func setup_scene():
+	if debug_this: print(self.name, ".setup_scene()")
+	signals_manager.connect("scene_change", self, "change_scene")
+	main_menu_container.visible = true
+	jobs_menu_container.visible = false
+	if owner == null:
+		self.show()
+	else:
+		self.hide()
 
 func change_scene(caller, scene_name, state):
 	if debug_this: print(self.name + ".change_scene() caller ", caller, " state ", state, " scene_name ", scene_name)	
 	if scene_name == self.name:
-		if state == info_scene.SCENE_STATE.HIDE:
+		if state == global_data.SCENE_STATE.HIDE:
 			self.hide()
 		else:
 			self.show()
-	
-func setup_scene():
-	main_menu_container.visible = true
-	jobs_menu_container.visible = false
+
 	
 func on_done_clicked():
 	if debug_this: print(self.name + ".on_done_clicked")

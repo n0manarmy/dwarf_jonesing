@@ -2,11 +2,6 @@ extends Node2D
 
 signal disable_location_buttons
 
-enum SCENE_STATE {
-	HIDE,
-	SHOW,
-}
-
 onready var scene_01_node = get_node_or_null("Scene01")
 onready var scene_02_node = get_node_or_null("Scene02")
 onready var scene_03_node = get_node_or_null("Scene03")
@@ -51,19 +46,19 @@ func _ready():
 func hide_scenes(caller):
 	if debug_this: print(self.name + ".hide_scenes", " caller: ", caller)
 
-	signals_manager.emit_signal("scene_change", self.name, "Scene01", self.SCENE_STATE.HIDE)
-	signals_manager.emit_signal("scene_change", self.name, "Scene02", self.SCENE_STATE.HIDE)
-	signals_manager.emit_signal("scene_change", self.name, "Scene03", self.SCENE_STATE.HIDE)
-	signals_manager.emit_signal("scene_change", self.name, "Scene04", self.SCENE_STATE.HIDE)
-	signals_manager.emit_signal("scene_change", self.name, "Scene05", self.SCENE_STATE.HIDE)
-	signals_manager.emit_signal("scene_change", self.name, "Scene06", self.SCENE_STATE.HIDE)
-	signals_manager.emit_signal("scene_change", self.name, "Scene07", self.SCENE_STATE.HIDE)
-	signals_manager.emit_signal("scene_change", self.name, "Scene08", self.SCENE_STATE.HIDE)
-	signals_manager.emit_signal("scene_change", self.name, "Scene09", self.SCENE_STATE.HIDE)
-	signals_manager.emit_signal("scene_change", self.name, "Scene10", self.SCENE_STATE.HIDE)
-	signals_manager.emit_signal("scene_change", self.name, "Scene11", self.SCENE_STATE.HIDE)
-	signals_manager.emit_signal("scene_change", self.name, "Scene12", self.SCENE_STATE.HIDE)
-	signals_manager.emit_signal("scene_change", self.name, "Scene13", self.SCENE_STATE.HIDE)
+	signals_manager.emit_signal("scene_change", self.name, "Scene01", global_data.SCENE_STATE.HIDE)
+	signals_manager.emit_signal("scene_change", self.name, "Scene02", global_data.SCENE_STATE.HIDE)
+	signals_manager.emit_signal("scene_change", self.name, "Scene03", global_data.SCENE_STATE.HIDE)
+	signals_manager.emit_signal("scene_change", self.name, "Scene04", global_data.SCENE_STATE.HIDE)
+	signals_manager.emit_signal("scene_change", self.name, "Scene05", global_data.SCENE_STATE.HIDE)
+	signals_manager.emit_signal("scene_change", self.name, "Scene06", global_data.SCENE_STATE.HIDE)
+	signals_manager.emit_signal("scene_change", self.name, "Scene07", global_data.SCENE_STATE.HIDE)
+	signals_manager.emit_signal("scene_change", self.name, "Scene08", global_data.SCENE_STATE.HIDE)
+	signals_manager.emit_signal("scene_change", self.name, "Scene09", global_data.SCENE_STATE.HIDE)
+	signals_manager.emit_signal("scene_change", self.name, "Scene10", global_data.SCENE_STATE.HIDE)
+	signals_manager.emit_signal("scene_change", self.name, "Scene11", global_data.SCENE_STATE.HIDE)
+	signals_manager.emit_signal("scene_change", self.name, "Scene12", global_data.SCENE_STATE.HIDE)
+	signals_manager.emit_signal("scene_change", self.name, "Scene13", global_data.SCENE_STATE.HIDE)
 
 
 func present_location(caller, scene: Area2D):

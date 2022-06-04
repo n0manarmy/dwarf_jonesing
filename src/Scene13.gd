@@ -18,7 +18,6 @@ onready var scene_label = get_node("TextBackground/NameLabel")
 
 onready var text_manager = get_node("/root/TextManager")
 onready var job_manager = get_node("/root/JobManager")
-onready var info_scene = get_node("/root/RootScene/TravelPath/InfoScene")
 
 onready var just_payed = false
 
@@ -26,15 +25,21 @@ var debug_this = true
 
 func _ready():
 	if debug_this: print(self.name + "._ready")	
-	signals_manager.connect("scene_change", self, "call_this_scene")
-	self.hide()
-
+	setup_scene()
+	
+func setup_scene():
+	if debug_this: print(self.name, ".setup_scene()")
+	signals_manager.connect("scene_change", self, "change_scene")
+	if owner == null:
+		self.show()
+	else:
+		self.hide()
 
 func call_this_scene(caller, scene_name, state):
 	if debug_this: print(self.name + ".call_this_scene() caller ", caller, " state ", state, " scene_name ", scene_name)	
 	var player = global_data.get_current_player()
 	if scene_name == self.name:
-		if state == info_scene.SCENE_STATE.HIDE:
+		if state == global_data.SCENE_STATE.HIDE:
 			self.hide()
 		else:
 			self.show()

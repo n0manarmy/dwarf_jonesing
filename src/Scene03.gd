@@ -1,7 +1,7 @@
 extends Node2D
 
-onready var info_scene = get_node("/root/RootScene/TravelPath/InfoScene")
 onready var signals_manager = get_node_or_null("/root/SignalsManager")
+onready var global_data = get_node("/root/GlobalData")
 
 var THIS_SCENE_EXIT = Vector2(52,11)
 
@@ -9,15 +9,20 @@ var debug_this = true
 
 func _ready():
 	if debug_this: print(self.name + "._ready")	
+	setup_scene()
 	
+func setup_scene():
+	if debug_this: print(self.name, ".setup_scene()")
 	signals_manager.connect("scene_change", self, "change_scene")
-	self.hide()
-
+	if owner == null:
+		self.show()
+	else:
+		self.hide()
 
 func change_scene(caller, scene_name, state):
 	if debug_this: print(self.name + ".change_scene() caller ", caller, " state ", state, " scene_name ", scene_name)	
 	if scene_name == self.name:
-		if state == info_scene.SCENE_STATE.HIDE:
+		if state == global_data.SCENE_STATE.HIDE:
 			self.hide()
 		else:
 			self.show()
