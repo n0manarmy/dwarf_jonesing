@@ -25,6 +25,7 @@ export var rent_due: int = 325
 export var color = Color()
 export var rent_extended: int = 0
 export var current_money: int = 0
+export var player_salary: int = 0
 export var possessions: Dictionary = {} #Name:Weath Value
 
 var debug_this = true
@@ -43,7 +44,7 @@ func _ready():
 
 
 func _to_string():
-	return ".id: {}, work_exp {}, eaten {}, happiness {}, max_happiness {}, wealth {}, max_wealth {}, job {}, max_job {}, education {}, max_education {}, turn_time_used {}, current_job {}, color {}, current_rent {}, rent_due {}, rent_extended {}, possessions {}, current_money {}".format(
+	return ".id: {}, work_exp {}, eaten {}, happiness {}, max_happiness {}, wealth {}, max_wealth {}, job {}, max_job {}, education {}, max_education {}, turn_time_used {}, current_job {}, color {}, current_rent {}, rent_due {}, rent_extended {}, possessions {}, current_money {}, player_salary {}".format(
 		[
 			id, 
 			work_exp, 
@@ -63,7 +64,8 @@ func _to_string():
 			rent_due,
 			rent_extended,
 			possessions,
-			current_money
+			current_money,
+			player_salary
 			], "{}")
 
 		
@@ -107,10 +109,12 @@ func increase_player_happiness(caller, values):
 	signals_manager.emit_signal("player_data_updated", self.name)
 
 
-func change_this_player_job(job):
-	if debug_this: print(self.name + ".change_this_player_job")
+func change_this_player_job(job: Job):
+	if debug_this: print(self.name + ".change_this_player_job ", job)
 	var this_player = global_data.get_current_player()
-	this_player.current_job = job
+#	this_player.current_job = job
+	this_player.player_salary = job.base_salary
+	global_data.set_current_player_job(job)
 	if debug_this: print(self.name, " ", self)
 	signals_manager.emit_signal("player_data_updated", self.name)
 

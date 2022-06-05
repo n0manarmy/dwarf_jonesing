@@ -7,6 +7,8 @@
   * [DONE] Make checks on worth o make sure they can rent low cost or le security before allowing rental
 * add time loss to each job application
 * [DONE] When running out of time on the track, player stops and does not reset
+* Change LocationActionButtons for all scenes to the LocationActionButtons scene
+  * Fix show/hide of job for LocationActionButtons scene
 
 # Tasks
 * [DONE]Add time increment when visiting location
@@ -19,7 +21,7 @@
 * Build a clock to show time
 * [DONE] Tie DebugScene to player status in gamedata
 * Location
-  * [HOLD] Build the employment office menu. 
+  * [DONE] Build the employment office menu. 
       * [DONE] Capture CollisionShape2D enter squares
       * [DONE] Pop menu!
       * [DONE] Added call backs for gui menus. Work on call backs and setting player values

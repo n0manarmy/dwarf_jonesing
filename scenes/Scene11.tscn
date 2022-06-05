@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/Scene11.gd" type="Script" id=1]
 [ext_resource path="res://art/info_layer_background.png" type="Texture" id=2]
+[ext_resource path="res://scenes/LocationActionButtons.tscn" type="PackedScene" id=3]
 
 [sub_resource type="TileSet" id=1]
 0/name = "info_layer_background.png 0"
@@ -60,13 +61,14 @@ __meta__ = {
 }
 
 [node name="DoneButton" type="Button" parent="TextBackground"]
-margin_left = 672.0
-margin_top = 488.0
-margin_right = 718.0
-margin_bottom = 508.0
+visible = false
+margin_left = 660.0
+margin_top = 480.0
+margin_right = 706.0
+margin_bottom = 500.0
 text = "Done"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="LocationActionButtons" parent="TextBackground" instance=ExtResource( 3 )]
+position = Vector2( 0, 280 )
 
 [connection signal="pressed" from="TextBackground/DoneButton" to="." method="on_done_clicked"]

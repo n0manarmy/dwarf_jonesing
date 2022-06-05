@@ -18,7 +18,6 @@ func setup_scene():
 	else:
 		self.hide()
 
-
 func change_scene(caller, scene_name, state):
 	if debug_this: print(self.name + ".change_scene() caller ", caller, " state ", state, " scene_name ", scene_name)	
 	if scene_name == self.name:

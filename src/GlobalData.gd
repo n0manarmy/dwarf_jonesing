@@ -1,11 +1,13 @@
 extends Node2D
 
+const Job = preload("res://src/Job.gd")
+
 enum SCENE_STATE {
 	HIDE,
 	SHOW,
 }
 
-var MAX_TIME = 200
+var MAX_TIME = 1000
 
 # ECONOMY
 var base_econ_value = 1
@@ -142,6 +144,10 @@ func get_current_player():
 	# if debug_this: print(self.name + ".get_current_player()")
 	# if debug_this: print(self.name + ".current_player: ", self.current_player)
 	return self.players[self.current_player - 1]
+
+
+func set_current_player_job(job: Job):
+	self.players[self.current_player - 1].current_job = job
 
 
 func setup_board():

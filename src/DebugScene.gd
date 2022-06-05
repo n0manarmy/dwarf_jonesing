@@ -29,7 +29,7 @@ onready var player_count_select_scene =			get_node_or_null("/root/RootScene/Play
 onready var start_values_scene =				get_node_or_null("/root/RootScene/StartValuesScene")
 onready var location_entry_area_2d = 			find_node("TravelPath", true, false)
 
-var debug_this = true
+var debug_this = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

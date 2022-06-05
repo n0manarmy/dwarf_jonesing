@@ -35,7 +35,7 @@ onready var global_data = get_node("/root/GlobalData")
 export var movement_path = PoolVector2Array()
 export var START_POS = Vector2(31, 11)
 
-var debug_this = true
+var debug_this = false
 
 func _ready():
 	if debug_this: print(self.name + "._ready")
@@ -44,7 +44,6 @@ func _ready():
 	# connect_signals()
 	# signals_manager.connect("location_entered_move_player", self, "update_sprite_position")
 
-	
 	if travel_path_node != null:
 		signals_manager.connect("location_entered_move_player", self, "update_sprite_position")
 		signals_manager.connect("player_position_updated", self, "update_sprite_position")

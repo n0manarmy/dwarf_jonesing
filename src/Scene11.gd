@@ -25,12 +25,10 @@ func change_scene(caller, scene_name, state):
 			self.hide()
 		else:
 			self.show()
-	
-	
-	
-func on_done_clicked():
-	if debug_this: print(self.name + ".on_done_clicked")
-	var travel_path_tile_map: TileMap = get_node("../../WalkingPath/TravelPathTileMap")
-	signals_manager.emit_signal("update_position", self.name, travel_path_tile_map.map_to_world(THIS_SCENE_EXIT))
-	signals_manager.emit_signal("on_done_clicked", self.name)
-	self.hide()
+
+#func on_done_clicked():
+#	if debug_this: print(self.name + ".on_done_clicked")
+#	var travel_path_tile_map: TileMap = get_node("../../WalkingPath/TravelPathTileMap")
+#	signals_manager.emit_signal("update_position", self.name, travel_path_tile_map.map_to_world(THIS_SCENE_EXIT))
+#	signals_manager.emit_signal("on_done_clicked", self.name)
+#	self.hide()

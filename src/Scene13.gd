@@ -25,6 +25,7 @@ var debug_this = true
 
 func _ready():
 	if debug_this: print(self.name + "._ready")	
+	signals_manager.connect("scene_change", self, "change_scene")
 	setup_scene()
 	
 func setup_scene():
@@ -34,8 +35,8 @@ func setup_scene():
 	else:
 		self.hide()
 
-func call_this_scene(caller, scene_name, state):
-	if debug_this: print(self.name + ".call_this_scene() caller ", caller, " state ", state, " scene_name ", scene_name)	
+func change_scene(caller, scene_name, state):
+	if debug_this: print(self.name + ".change_scene() caller ", caller, " state ", state, " scene_name ", scene_name)	
 	var player = global_data.get_current_player()
 	if scene_name == self.name:
 		if state == global_data.SCENE_STATE.HIDE:
