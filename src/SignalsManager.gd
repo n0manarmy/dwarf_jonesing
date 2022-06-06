@@ -29,6 +29,7 @@ signal location_entered_present_scene(caller, scene)
 signal job_manager_check_get_job(caller, job)
 signal change_player_job(caller, job)
 signal job_results_container_update(caller, message)
+signal _on_WorkButton_pressed(caller)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

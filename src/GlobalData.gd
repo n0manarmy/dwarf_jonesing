@@ -15,6 +15,9 @@ var ECON_MIN = 55
 var ECON_MAX = 155
 var econ_values = [90, 95, 100, 105, 110]
 
+var WORK_TIME_COST = MAX_TIME / 12
+var WAGE_DAY_MODIFIER = 8
+
 var base_starting_difficulty = 50
 var button_clicked_add_time = 10
 var game_rounds = 0

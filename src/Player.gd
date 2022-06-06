@@ -41,6 +41,7 @@ func _ready():
 	signals_manager.connect("player_time_up", self, "reset_player")
 	signals_manager.connect("on_rest_button_pressed", self, "increase_player_happiness")
 	signals_manager.connect("setup_next_player", self, "next_player")
+	signals_manager.connect("_on_WorkButton_pressed", self, "work_job")
 
 
 func _to_string():
@@ -108,9 +109,17 @@ func increase_player_happiness(caller, values):
 	this_player.turn_time_used += values["time_used"]
 	signals_manager.emit_signal("player_data_updated", self.name)
 	
-func work_job():
-	if debug_this: print(self.name, ".work_job()")
+func work_job(caller):
+	if debug_this: print(self.name, ".work_job() caller: ", caller)
 	var this_player = global_data.get_current_player()
+	var time_left = this_player.turn_time_used
+	if global_data.WORK_TIME_COST < (global_data.MAX_TIME - time_left):
+		this_player.current_money = this_player.player_salary * global_data.WAGE_DAY_MODIFIER
+	else:
+		this_player.current_money = this_player.player_salary * (global_data.MAX_TIME - time_left)
+
+	signals_manager.emit_signal("player_data_updated", self.name)
+		
 	# determine work time cost
 	# calculate for less than total and find amount
 	# subtract time
