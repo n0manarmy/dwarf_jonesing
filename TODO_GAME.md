@@ -8,7 +8,8 @@
 * add time loss to each job application
 * [DONE] When running out of time on the track, player stops and does not reset
 * Change LocationActionButtons for all scenes to the LocationActionButtons scene
-  * Fix show/hide of job for LocationActionButtons scene
+  * [DONE] Fix show/hide of job for LocationActionButtons scene
+  * finish wiring in work button
 
 # Tasks
 * [DONE]Add time increment when visiting location

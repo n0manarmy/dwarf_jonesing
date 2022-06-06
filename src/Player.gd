@@ -107,6 +107,15 @@ func increase_player_happiness(caller, values):
 	this_player.happiness_score += values["happiness_increase"]
 	this_player.turn_time_used += values["time_used"]
 	signals_manager.emit_signal("player_data_updated", self.name)
+	
+func work_job():
+	if debug_this: print(self.name, ".work_job()")
+	var this_player = global_data.get_current_player()
+	# determine work time cost
+	# calculate for less than total and find amount
+	# subtract time
+	# add salary
+	# player_data_updated
 
 
 func change_this_player_job(job: Job):
