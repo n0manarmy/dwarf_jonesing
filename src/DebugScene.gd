@@ -20,6 +20,7 @@ onready var max_education_score_value_node = 	get_node("DebugContainer/HBoxConta
 
 onready var current_player_value_node = 		get_node("DebugContainer/HBoxContainer2/VBoxValues/CurrentPlayerValue")
 onready var total_players_value_node = 			get_node("DebugContainer/HBoxContainer2/VBoxValues/TotalPlayersValue")
+onready var work_experience_value_node = 		get_node("DebugContainer/HBoxContainer2/VBoxValues/WorkExpValue")
 
 onready var signals_manager = 					get_node_or_null("/root/SignalsManager")
 onready var global_data = 						get_node_or_null("/root/GlobalData")
@@ -70,6 +71,8 @@ func update_player_data(caller):
 	max_wealth_score_value_node.text = player.max_wealth_score as String
 	max_job_score_value_node.text = player.max_job_score as String
 	max_education_score_value_node.text = player.max_education_score as String
+	
+	work_experience_value_node.text = player.work_exp as String
 	
 	current_player_value_node.text = global_data.current_player as String
 	total_players_value_node.text = global_data.players.size() as String

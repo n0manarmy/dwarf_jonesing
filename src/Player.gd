@@ -1,8 +1,8 @@
 extends Node
 
+onready var global_data = get_node("/root/GlobalData")
 onready var signals_manager = get_node("/root/SignalsManager")
 onready var im = get_node("/root/InventoryManager")
-onready var global_data = get_node("/root/GlobalData")
 
 const Job = preload("res://src/Job.gd")
 
@@ -19,16 +19,17 @@ export var max_job_score: int = 0
 export var max_education_score: int = 0
 export var education: Dictionary = {} #Job:classes completed (13 is completed)
 export var turn_time_used: int = 0
-var current_job: Job
-export var current_rent:int  = 325
-export var rent_due: int = 325
 export var color = Color()
 export var rent_extended: int = 0
 export var current_money: int = 0
 export var player_salary: int = 0
 export var possessions: Dictionary = {} #Name:Weath Value
 
-var debug_this = true
+var current_job: Job
+var current_rent: int  = 0
+var rent_due: int = 0
+
+var debug_this = false
 
 # func _init(this_id):
 # 	self.id = this_id
@@ -75,7 +76,7 @@ func reset_player(caller):
 	var this_player = global_data.get_current_player()
 	
 	if this_player.eaten == false:
-		this_player.turn_time_used = 25
+		this_player.turn_time_used = global_data.TIME_LOSS_NO_FOOD
 	else:
 		this_player.turn_time_used = 0
 		
@@ -114,18 +115,15 @@ func work_job(caller):
 	var this_player = global_data.get_current_player()
 	var time_left = this_player.turn_time_used
 	if global_data.WORK_TIME_COST < (global_data.MAX_TIME - time_left):
-		this_player.current_money = this_player.player_salary * global_data.WAGE_DAY_MODIFIER
+		this_player.current_money += this_player.player_salary * global_data.WAGE_DAY_MODIFIER
+		this_player.turn_time_used = this_player.turn_time_used + global_data.WORK_TIME_COST
 	else:
-		this_player.current_money = this_player.player_salary * (global_data.MAX_TIME - time_left)
-
+		this_player.current_money += this_player.player_salary * (global_data.MAX_TIME - time_left)
+		this_player.turn_time_used = this_player.turn_time_used + global_data.WORK_TIME_COST
+	
+	this_player.work_exp += global_data.get_rand_between(0,1)
 	signals_manager.emit_signal("player_data_updated", self.name)
-		
-	# determine work time cost
-	# calculate for less than total and find amount
-	# subtract time
-	# add salary
-	# player_data_updated
-
+	
 
 func change_this_player_job(job: Job):
 	if debug_this: print(self.name + ".change_this_player_job ", job)

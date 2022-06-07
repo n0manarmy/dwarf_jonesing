@@ -13,9 +13,6 @@ anchor_right = 0.703
 anchor_bottom = 0.667
 margin_right = 576.0
 margin_bottom = 248.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="DebugContainer"]
 margin_right = 139.0
@@ -202,11 +199,17 @@ margin_right = 106.0
 margin_bottom = 86.0
 text = "CurrentPlayer"
 
-[node name="Label" type="Label" parent="DebugContainer/HBoxContainer2/VBoxLabels"]
+[node name="TotalPlayersLabel" type="Label" parent="DebugContainer/HBoxContainer2/VBoxLabels"]
 margin_top = 90.0
 margin_right = 106.0
 margin_bottom = 104.0
 text = "Total Players"
+
+[node name="WorkExpLabel" type="Label" parent="DebugContainer/HBoxContainer2/VBoxLabels"]
+margin_top = 108.0
+margin_right = 106.0
+margin_bottom = 122.0
+text = "Work Exp"
 
 [node name="VBoxValues" type="VBoxContainer" parent="DebugContainer/HBoxContainer2"]
 margin_left = 110.0
@@ -258,6 +261,12 @@ text = "None"
 margin_top = 90.0
 margin_right = 34.0
 margin_bottom = 104.0
+text = "None"
+
+[node name="WorkExpValue" type="Label" parent="DebugContainer/HBoxContainer2/VBoxValues"]
+margin_top = 108.0
+margin_right = 34.0
+margin_bottom = 122.0
 text = "None"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="DebugContainer"]

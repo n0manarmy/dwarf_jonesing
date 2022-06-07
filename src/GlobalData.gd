@@ -15,8 +15,11 @@ var ECON_MIN = 55
 var ECON_MAX = 155
 var econ_values = [90, 95, 100, 105, 110]
 
+# General player variables
 var WORK_TIME_COST = MAX_TIME / 12
 var WAGE_DAY_MODIFIER = 8
+var BASE_RENT: int = 325
+var TIME_LOSS_NO_FOOD = .2 * MAX_TIME
 
 var base_starting_difficulty = 50
 var button_clicked_add_time = 10
@@ -177,6 +180,8 @@ func setup_players(caller, val):
 		player.education["None"] = 99
 		player.id = x + 1
 		player.current_job = job_manager.jobs[0]
+		player.current_rent = BASE_RENT
+		player.rent_due = BASE_RENT
 		match (x + 1):
 			1:
 				if debug_this: print(self.name + ".player 1 coloring")

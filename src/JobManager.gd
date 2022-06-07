@@ -73,7 +73,7 @@ var debug_this = true
 
 func _init():
 	self.jobs = [
-		preload("Job.gd").new(99, "scene01", NONE, NONE, 0, "None", 0, true), 
+		preload("Job.gd").new(99, "NoJob", NONE, NONE, 0, "None", 0, true), 
 		
 		preload("Job.gd").new(0, "scene03", SCENE03_JOBS_COMPANY, self.SCENE03_JOBS_1, 3, "None", 0, true), 
 		preload("Job.gd").new(1, "scene03", SCENE03_JOBS_COMPANY, self.SCENE03_JOBS_2, 5, "None", 10, true),

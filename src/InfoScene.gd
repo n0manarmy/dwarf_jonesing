@@ -70,7 +70,8 @@ func present_location(caller, scene: Area2D):
 			if debug_this: print(self.name + ".match scene_01_area2d show")			
 			if !scene_01_node.is_inside_tree():
 				scene_01_node._ready()
-			scene_01_node.show()
+#			scene_01_node.show()
+			signals_manager.emit_signal("scene_change", self.name, "Scene01", global_data.SCENE_STATE.SHOW)
 		scene_02_area2d:
 			if debug_this: print(self.name + ".match scene_02_area2d show")			
 			if !scene_02_node.is_inside_tree():
