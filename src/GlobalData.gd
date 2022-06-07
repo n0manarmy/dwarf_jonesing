@@ -20,6 +20,7 @@ var WORK_TIME_COST = MAX_TIME / 12
 var WAGE_DAY_MODIFIER = 8
 var BASE_RENT: int = 325
 var TIME_LOSS_NO_FOOD = .2 * MAX_TIME
+var REST_TIME_CONSUMED = MAX_TIME * 0.03
 
 var base_starting_difficulty = 50
 var button_clicked_add_time = 10
