@@ -76,47 +76,56 @@ func present_location(caller, scene: Area2D):
 			if debug_this: print(self.name + ".match scene_02_area2d show")			
 			if !scene_02_node.is_inside_tree():
 				scene_02_node._ready()
-			scene_02_node.show()
+#			scene_02_node.show()
+			signals_manager.emit_signal("scene_change", self.name, "Scene02", global_data.SCENE_STATE.SHOW)
 		scene_03_area2d:
 			if debug_this: print(self.name + ".match scene_03_area2d show")			
 			if !scene_03_node.is_inside_tree():
 				scene_03_node._ready()
-			scene_03_node.show()
+#			scene_03_node.show()
+			signals_manager.emit_signal("scene_change", self.name, "Scene03", global_data.SCENE_STATE.SHOW)
 		scene_04_area2d:
 			if debug_this: print(self.name + ".match scene_04_area2d show")			
 			if !scene_04_node.is_inside_tree():
 				scene_04_node._ready()
-			scene_04_node.show()
+#			scene_04_node.show()
+			signals_manager.emit_signal("scene_change", self.name, "Scene04", global_data.SCENE_STATE.SHOW)
 		scene_05_area2d:
 			if debug_this: print(self.name + ".match scene_05_area2d show")			
 			if !scene_05_node.is_inside_tree():
 				scene_05_node._ready()
-			scene_05_node.show()
+#			scene_05_node.show()
+			signals_manager.emit_signal("scene_change", self.name, "Scene05", global_data.SCENE_STATE.SHOW)
 		scene_06_area2d:
 			if debug_this: print(self.name + ".match scene_06_area2d show")			
 			if !scene_06_node.is_inside_tree():
 				scene_06_node._ready()
-			scene_06_node.show()
+#			scene_06_node.show()
+			signals_manager.emit_signal("scene_change", self.name, "Scene06", global_data.SCENE_STATE.SHOW)
 		scene_07_area2d:
 			if debug_this: print(self.name + ".match scene_07_area2d show")
 			if !scene_07_node.is_inside_tree():
 				scene_07_node._ready()
-			scene_07_node.show()
+#			scene_07_node.show()
+			signals_manager.emit_signal("scene_change", self.name, "Scene07", global_data.SCENE_STATE.SHOW)
 		scene_08_area2d:
 			if debug_this: print(self.name + ".match scene_08_area2d show")
 			if !scene_08_node.is_inside_tree():
 				scene_08_node._ready()
-			scene_08_node.show()
+#			scene_08_node.show()
+			signals_manager.emit_signal("scene_change", self.name, "Scene08", global_data.SCENE_STATE.SHOW)
 		scene_09_area2d:
 			if debug_this: print(self.name + ".match scene_09_area2d show")			
 			if !scene_09_node.is_inside_tree():
 				scene_09_node._ready()
-			scene_09_node.show()
+#			scene_09_node.show()
+			signals_manager.emit_signal("scene_change", self.name, "Scene09", global_data.SCENE_STATE.SHOW)
 		scene_10_area2d:
 			if debug_this: print(self.name + ".match scene_10_area2d show")			
 			if !scene_10_node.is_inside_tree():
 				scene_10_node._ready()
-			scene_10_node.show()
+#			scene_10_node.show()
+			signals_manager.emit_signal("scene_change", self.name, "Scene10", global_data.SCENE_STATE.SHOW)
 		scene_11_area2d:
 			if debug_this: print(self.name + ".match scene_11_area2d show")			
 			if !scene_11_node.is_inside_tree():
@@ -127,7 +136,8 @@ func present_location(caller, scene: Area2D):
 			if debug_this: print(self.name + ".match scene_12_area2d show")			
 			if !scene_12_node.is_inside_tree():
 				scene_12_node._ready()
-			scene_12_node.show()
+#			scene_12_node.show()
+			signals_manager.emit_signal("scene_change", self.name, "Scene12", global_data.SCENE_STATE.SHOW)
 		scene_13_area2d:
 			if debug_this: print(self.name + ".match scene_13_area2d show")
 			signals_manager.emit_signal("scene_change", self.name, "Scene13", global_data.SCENE_STATE.SHOW)

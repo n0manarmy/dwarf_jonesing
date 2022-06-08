@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/Scene02.gd" type="Script" id=1]
 [ext_resource path="res://art/info_layer_background.png" type="Texture" id=2]
+[ext_resource path="res://scenes/LocationActionButtons.tscn" type="PackedScene" id=3]
 
 [sub_resource type="TileSet" id=1]
 0/name = "info_layer_background.png 0"
@@ -28,45 +29,69 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 917521, 0, 0, 917525, 0, 0, 917529, 0, 0, 917533, 0, 0, 917537, 0, 0, 917541, 0, 0, 917545, 0, 0, 1179665, 0, 0, 1179669, 0, 0, 1179673, 0, 0, 1179677, 0, 0, 1179681, 0, 0, 1179685, 0, 0, 1179689, 0, 0, 1441809, 0, 0, 1441813, 0, 0, 1441817, 0, 0, 1441821, 0, 0, 1441825, 0, 0, 1441829, 0, 0, 1441833, 0, 0, 1703953, 0, 0, 1703957, 0, 0, 1703961, 0, 0, 1703965, 0, 0, 1703969, 0, 0, 1703973, 0, 0, 1703977, 0, 0, 1835025, 0, 0, 1835029, 0, 0, 1835033, 0, 0, 1835037, 0, 0, 1835041, 0, 0, 1835045, 0, 0, 1835049, 0, 0 )
 
-[node name="NameLabel" type="Label" parent="TextBackground"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 280.0
 margin_top = 232.0
 margin_right = 712.0
-margin_bottom = 246.0
+margin_bottom = 504.0
+
+[node name="NameLabel" type="Label" parent="VBoxContainer"]
+margin_right = 432.0
+margin_bottom = 14.0
 text = "Pawn Shop"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="JobsButtonContainer" type="VBoxContainer" parent="TextBackground"]
-margin_left = 272.0
-margin_top = 264.0
-margin_right = 448.0
-margin_bottom = 476.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="HBoxContent" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 18.0
+margin_right = 432.0
+margin_bottom = 86.0
 
-[node name="InfoLabelBox" type="Label" parent="TextBackground"]
-margin_left = 520.0
-margin_top = 264.0
-margin_right = 704.0
-margin_bottom = 476.0
-text = "Default Text"
+[node name="HBoxActions" type="HBoxContainer" parent="VBoxContainer/HBoxContent"]
+margin_right = 214.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContent/HBoxActions"]
+margin_right = 214.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContent/HBoxActions/VBoxContainer"]
+margin_right = 214.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Pawn"
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContent/HBoxActions/VBoxContainer"]
+margin_top = 24.0
+margin_right = 214.0
+margin_bottom = 44.0
+text = "Redeem"
+
+[node name="Button3" type="Button" parent="VBoxContainer/HBoxContent/HBoxActions/VBoxContainer"]
+margin_top = 48.0
+margin_right = 214.0
+margin_bottom = 68.0
+text = "Buy"
+
+[node name="HBoxText" type="HBoxContainer" parent="VBoxContainer/HBoxContent"]
+margin_left = 218.0
+margin_right = 432.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InfoLabelBox" type="Label" parent="VBoxContainer/HBoxContent/HBoxText"]
+margin_right = 214.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Default Text Default Text "
+align = 3
+valign = 3
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="DoneButton" type="Button" parent="TextBackground"]
-margin_left = 672.0
-margin_top = 488.0
-margin_right = 718.0
-margin_bottom = 508.0
-text = "Done"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[connection signal="pressed" from="TextBackground/DoneButton" to="." method="on_done_clicked"]
+[node name="LocationActionButtons" parent="VBoxContainer" instance=ExtResource( 3 )]
+position = Vector2( -272, 56 )

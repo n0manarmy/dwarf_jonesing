@@ -4,8 +4,7 @@ onready var signals_manager = get_node_or_null("/root/SignalsManager")
 onready var im = get_node("/root/InventoryManager")
 onready var global_data = get_node("/root/GlobalData")
 onready var text_manager = get_node("/root/TextManager")
-onready var info_label_box: Label = get_node("TextBackground/VBoxContainer/HBoxContainer/InfoLabelBox")
-onready var rest_button: Button = get_node("TextBackground/RestButton")
+onready var info_label_box: Label = get_node("VBoxContainer/HBoxContainer/InfoLabelBox")
 
 var THIS_SCENE_EXIT = Vector2(31, 11)
 

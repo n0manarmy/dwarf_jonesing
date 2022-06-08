@@ -38,9 +38,15 @@ export var JOBS_RESULTS_GREET = [
 	"Have you consided maybe just lounging around all day?"
 ]
 
+export var PAWN_SHOP_GREET = [
+	"Down there at the pawn shop, it's the way-only way to shop.",
+	"Down there at the pawn shop, if it's not in stone",
+	"Down there at the pawn shop, it no way, no way to shop"
+]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 func get_random_message(val):
-	return val[global_data.rng.randi_range(0, val.size() - 1)]
+	return val[global_data.get_rand_between(0, val.size() - 1)]
