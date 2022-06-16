@@ -1,6 +1,5 @@
 extends Node
 
-
 export var LOW_COST_APARTMENT: Dictionary = {"Low Cost Apartment": 0}
 export var LE_SECURITY_APARTMENT: Dictionary = {"Le Security Apartment": 10}
 

@@ -40,35 +40,84 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="JobsButtonContainer" type="VBoxContainer" parent="TextBackground"]
-margin_left = 272.0
-margin_top = 264.0
-margin_right = 448.0
-margin_bottom = 476.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="InfoLabelBox" type="Label" parent="TextBackground"]
 margin_left = 520.0
 margin_top = 264.0
 margin_right = 704.0
-margin_bottom = 476.0
+margin_bottom = 464.0
 text = "Default Text"
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="DoneButton" type="Button" parent="TextBackground"]
-visible = false
-margin_left = 660.0
-margin_top = 480.0
-margin_right = 706.0
-margin_bottom = 500.0
-text = "Done"
+[node name="ProductVBox" type="VBoxContainer" parent="TextBackground"]
+margin_left = 288.0
+margin_top = 264.0
+margin_right = 488.0
+margin_bottom = 464.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextBackground/ProductVBox"]
+margin_right = 200.0
+margin_bottom = 20.0
+
+[node name="FoodOneWeekButton" type="Button" parent="TextBackground/ProductVBox/HBoxContainer"]
+margin_right = 116.0
+margin_bottom = 20.0
+text = "Food for 1 Week"
+flat = true
+align = 0
+
+[node name="Label" type="Label" parent="TextBackground/ProductVBox/HBoxContainer"]
+margin_left = 120.0
+margin_top = 3.0
+margin_right = 120.0
+margin_bottom = 17.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TextBackground/ProductVBox"]
+margin_top = 24.0
+margin_right = 200.0
+margin_bottom = 44.0
+
+[node name="FoodTwoWeeksButton" type="Button" parent="TextBackground/ProductVBox/HBoxContainer2"]
+margin_right = 120.0
+margin_bottom = 20.0
+text = "Food for 2 weeks"
+flat = true
+align = 0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TextBackground/ProductVBox"]
+margin_top = 48.0
+margin_right = 200.0
+margin_bottom = 68.0
+
+[node name="FoodFourWeeksButton" type="Button" parent="TextBackground/ProductVBox/HBoxContainer3"]
+margin_right = 120.0
+margin_bottom = 20.0
+text = "Food for 4 weeks"
+flat = true
+align = 0
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="TextBackground/ProductVBox"]
+margin_top = 72.0
+margin_right = 200.0
+margin_bottom = 92.0
+
+[node name="LottoTicketsButton" type="Button" parent="TextBackground/ProductVBox/HBoxContainer4"]
+margin_right = 126.0
+margin_bottom = 20.0
+text = "10 Lottery Tickets"
+flat = true
+align = 0
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="TextBackground/ProductVBox"]
+margin_top = 96.0
+margin_right = 200.0
+margin_bottom = 116.0
+
+[node name="NewspaperButton" type="Button" parent="TextBackground/ProductVBox/HBoxContainer5"]
+margin_right = 83.0
+margin_bottom = 20.0
+text = "Newspaper"
+flat = true
+align = 0
 
 [node name="LocationActionButtons" parent="TextBackground" instance=ExtResource( 3 )]
 position = Vector2( 0, 280 )
-
-[connection signal="pressed" from="TextBackground/DoneButton" to="." method="on_done_clicked"]
