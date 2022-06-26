@@ -16,11 +16,11 @@ config/icon="res://icon.png"
 
 [autoload]
 
-InventoryManager="*res://src/InventoryManager.gd"
+ItemManager="*res://src/ItemManager.gd"
+InventoryManager="res://src/InventoryManager.gd"
 JobManager="*res://src/JobManager.gd"
 Player="res://scenes/Player.tscn"
 GlobalData="*res://src/GlobalData.gd"
-ItemManager="*res://src/ItemManager.gd"
 DebugScene="*res://scenes/DebugScene.tscn"
 SignalsManager="*res://src/SignalsManager.gd"
 TimerEngine="*res://scenes/TimerEngine.tscn"

@@ -65,12 +65,6 @@ text = "Food for 1 Week"
 flat = true
 align = 0
 
-[node name="Price" type="Label" parent="TextBackground/ProductVBox/HBoxContainer"]
-margin_left = 120.0
-margin_top = 3.0
-margin_right = 120.0
-margin_bottom = 17.0
-
 [node name="HBoxContainer2" type="HBoxContainer" parent="TextBackground/ProductVBox"]
 margin_top = 24.0
 margin_right = 200.0
@@ -82,12 +76,6 @@ margin_bottom = 20.0
 text = "Food for 2 weeks"
 flat = true
 align = 0
-
-[node name="Price" type="Label" parent="TextBackground/ProductVBox/HBoxContainer2"]
-margin_left = 124.0
-margin_top = 3.0
-margin_right = 124.0
-margin_bottom = 17.0
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="TextBackground/ProductVBox"]
 margin_top = 48.0
@@ -101,12 +89,6 @@ text = "Food for 4 weeks"
 flat = true
 align = 0
 
-[node name="Price" type="Label" parent="TextBackground/ProductVBox/HBoxContainer3"]
-margin_left = 124.0
-margin_top = 3.0
-margin_right = 124.0
-margin_bottom = 17.0
-
 [node name="HBoxContainer4" type="HBoxContainer" parent="TextBackground/ProductVBox"]
 margin_top = 72.0
 margin_right = 200.0
@@ -119,12 +101,6 @@ text = "10 Lottery Tickets"
 flat = true
 align = 0
 
-[node name="Price" type="Label" parent="TextBackground/ProductVBox/HBoxContainer4"]
-margin_left = 130.0
-margin_top = 3.0
-margin_right = 130.0
-margin_bottom = 17.0
-
 [node name="HBoxContainer5" type="HBoxContainer" parent="TextBackground/ProductVBox"]
 margin_top = 96.0
 margin_right = 200.0
@@ -136,12 +112,6 @@ margin_bottom = 20.0
 text = "News Paper"
 flat = true
 align = 0
-
-[node name="Price" type="Label" parent="TextBackground/ProductVBox/HBoxContainer5"]
-margin_left = 91.0
-margin_top = 3.0
-margin_right = 91.0
-margin_bottom = 17.0
 
 [node name="LocationActionButtons" parent="TextBackground" instance=ExtResource( 3 )]
 position = Vector2( 0, 280 )

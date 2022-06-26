@@ -2,7 +2,7 @@ extends Node
 
 onready var global_data = get_node("/root/GlobalData")
 onready var signals_manager = get_node("/root/SignalsManager")
-onready var im = get_node("/root/InventoryManager")
+onready var im = get_node("/root/ItemManager")
 
 const Job = preload("res://src/Job.gd")
 
@@ -23,7 +23,7 @@ export var color = Color()
 export var rent_extended: int = 0
 export var current_money: int = 0
 export var player_salary: int = 0
-export var possessions: Dictionary = {} #Name:Weath Value
+export var possessions: Array = [] #Name:Weath Value
 
 var current_job: Job
 var current_rent: int  = 0

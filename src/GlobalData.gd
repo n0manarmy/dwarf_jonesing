@@ -37,7 +37,7 @@ onready var start_values_scene = get_node_or_null("/root/RootScene/StartValuesSc
 onready var debug_scene = get_node_or_null("/root/RootScene/DebugScene")
 onready var signals_manager = get_node_or_null("/root/SignalsManager")
 onready var job_manager = get_node("/root/JobManager")
-onready var im = get_node("/root/InventoryManager")
+onready var item_manager = get_node("/root/ItemManager")
 onready var scene_01_node = get_node_or_null("/root/RootScene/TravelPath/InfoScene/Scene01")
 
 const Player = preload("res://src/Player.gd")
@@ -180,7 +180,9 @@ func setup_players(caller, val):
 		print(self.name + ".creating player ", x + 1)
 		# var player = Player.duplicate()
 		var player = Player.new()
-		player.possessions[im.LOW_COST_APARTMENT.keys()[0]] = im.LOW_COST_APARTMENT.values()[0]
+		var low_cost_appartment = item_manager.get_item(item_manager.ItemRef.LOW_COST_RENT)
+#		player.possessions[im.LOW_COST_APARTMENT.keys()[0]] = im.LOW_COST_APARTMENT.values()[0]
+		player.possessions.append(low_cost_appartment)
 		player.education["None"] = 99
 		player.id = x + 1
 		player.current_job = job_manager.jobs[0]
