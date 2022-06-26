@@ -2,8 +2,8 @@ extends Node2D
 
 
 var THIS_SCENE_EXIT = Vector2(20,12)
-var LOW_COST_BASE_RENT_VALUE = 325
-var LE_SECURITY_BASE_RENT_VALUE = 600
+
+const item_manager = preload("res://src/ItemManager.gd")
 
 onready var pay_rent_button: Button = get_node("TextBackground/ActionsContainer/PayRentContainer/PayRentButtonContainer/Button")
 onready var rent_low_cost_button: Button = get_node("TextBackground/ActionsContainer/LowCostContainer/LowCostButtonContainer/Button")
@@ -68,10 +68,10 @@ func show_rental_services():
 	# info_label_box.text = text_manager.RENTAL_OFFICE_OPEN[global_data.rng.randi_range(0, text_manager.RENTAL_OFFICE_OPEN.size() - 1)]
 	info_label_box.text = text_manager.get_random_message(text_manager.RENTAL_OFFICE_OPEN)
 
-	var adjust_rent = global_data.adjust_for_economy(LOW_COST_BASE_RENT_VALUE)
+	var adjust_rent = global_data.adjust_for_economy(item_manager.LOW_COST_BASE_RENT_VALUE)
 	rent_low_cost_button.set_text(str(adjust_rent))
 	
-	adjust_rent = global_data.adjust_for_economy(LE_SECURITY_BASE_RENT_VALUE)
+	adjust_rent = global_data.adjust_for_economy(item_manager.LE_SECURITY_BASE_RENT_VALUE)
 	rent_le_security_button.set_text(str(adjust_rent))
 
 

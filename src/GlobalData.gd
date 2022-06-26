@@ -82,7 +82,8 @@ func _ready():
 func get_rand_between(_min: int, _max: int):
 	return rng.randi_range(_min, _max)
 	
-
+# Adjusts the value based on the current economy value for this turn
+# These values are built from adjust_economy list below
 func adjust_for_economy(val):
 	# var debug_this = false
 
@@ -92,6 +93,8 @@ func adjust_for_economy(val):
 	return (val * adjusted) as int
 	
 
+# builds a consistent list of economy values avoiding massive spikes and swings
+# Each turn the list is updated 
 func adjust_economy():
 	# var debug_this = false
 	if debug_this: print(self.name +".adjust_economy")
