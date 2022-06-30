@@ -31,10 +31,6 @@ var rent_due: int = 0
 
 var debug_this = false
 
-# func _init(this_id):
-# 	self.id = this_id
-# 	self.possessions[im.LOW_COST_APARTMENT.keys()[0]] = im.LOW_COST_APARTMENT.values()[0]
-
 func _ready():
 	if debug_this: print(self.name + "._ready")
 	signals_manager.connect("change_player_job", self, "change_this_player_job")
@@ -65,12 +61,20 @@ func _to_string():
 			current_rent,
 			rent_due,
 			rent_extended,
-			possessions,
+			self.print_player_possessions(),
 			current_money,
 			player_salary
 			], "{}")
+			
 
-		
+func print_player_possessions():
+	var pos_string = "["
+	for pos in possessions:
+		pos_string += pos.to_string() + ", "
+	
+	pos_string += "]"
+	return pos_string
+
 func reset_player(caller):
 	if debug_this: print(self.name, ".reset_player", " caller: ", caller)
 	var this_player = global_data.get_current_player()

@@ -3,13 +3,14 @@
 * [DONE] Give thought to best way to resetting player position when done clicked
 * [DONE] wire in travelpath, infoscene, signals
 * limit happiness gain based on total items for possible happiness
-* Finish up Rental Office.
+* [DONE] Finish up Rental Office.
   * [DONE] Make checks on worth o make sure they can rent low cost or le security before allowing rental
 * add time loss to each job application
 * [DONE] When running out of time on the track, player stops and does not reset
 * Change LocationActionButtons for all scenes to the LocationActionButtons scene
   * [DONE] Fix show/hide of job for LocationActionButtons scene
   * finish wiring in work button
+* Add purchase on clicks for market
 
 # Tasks
 * [DONE]Add time increment when visiting location

@@ -49,12 +49,18 @@ func change_scene(caller, scene_name, state):
 			self.show()
 			
 func updateItemPrices():
-	food_one_week_prices.text = str(global_data.adjust_for_economy(item_manager.FOOD_ONE_WEEK_BASE_VALUE))
-	food_two_week_prices.text = str(global_data.adjust_for_economy(item_manager.FOOD_TWO_WEEK_BASE_VALUE))
-	food_four_week_prices.text = str(global_data.adjust_for_economy(item_manager.FOOD_FOUR_WEEK_BASE_VALUE))
-	lotto_ticket_prices.text = str(item_manager.LOTTERY_TICKET_BASE_VALUE)
-	newspaper_prices.text = str(global_data.adjust_for_economy(item_manager.NEWSPAPER_BASE_VALUE))
-	pass
+	food_one_week = item_manager.get_item(item_manager.ItemRef.FOOD_ONE_WEEK)
+	food_two_weeks = item_manager.get_item(item_manager.ItemRef.FOOD_TWO_WEEKS)
+	food_four_weeks = item_manager.get_item(item_manager.ItemRef.FOOD_FOUR_WEEKS)
+	food_one_week_prices.text = str(
+		food_one_week.item_name + " - " + 
+		str(global_data.adjust_for_economy(food_one_week.item_value)))
+	food_two_week_prices.text = str(
+		food_two_weeks.item_name + " - " + 
+		str(global_data.adjust_for_economy(food_two_weeks.item_value)))
+	food_four_week_prices.text = str(
+		food_four_weeks.item_name + " - " + 
+		str(global_data.adjust_for_economy(food_four_weeks.item_value)))
 
 #func on_done_clicked():
 #	if debug_this: print(self.name + ".on_done_clicked")

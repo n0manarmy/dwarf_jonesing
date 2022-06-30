@@ -170,7 +170,7 @@ func setup_jobs():
 
 
 func setup_players(caller, val):
-	if debug_this: print(self.name + "._setup_players: ", val, " caller: ", caller)
+	if debug_this: print(self.name + ".setup_players: ", val, " caller: ", caller)
 	player_count = val
 	players.clear()
 
@@ -180,9 +180,15 @@ func setup_players(caller, val):
 		print(self.name + ".creating player ", x + 1)
 		# var player = Player.duplicate()
 		var player = Player.new()
-		var low_cost_appartment = item_manager.get_item(item_manager.ItemRef.LOW_COST_RENT)
+		#TODO if I don't clear the array, it starts with a LOW_COST_RENT item...makes no sense!
+		player.possessions.clear()
+		if debug_this: print(self.name + ".player.new().to_string(): ", player.to_string())
+		for pos in player.possessions:
+			if debug_this: print(self.name + ".player.pos: ", pos.to_string())
+#		var low_cost_appartment = 
+#		if debug_this: print(self.name, ".low_cost_appartment: ", low_cost_appartment)
 #		player.possessions[im.LOW_COST_APARTMENT.keys()[0]] = im.LOW_COST_APARTMENT.values()[0]
-		player.possessions.append(low_cost_appartment)
+		player.possessions.append(item_manager.get_item(item_manager.ItemRef.LOW_COST_RENT))
 		player.education["None"] = 99
 		player.id = x + 1
 		player.current_job = job_manager.jobs[0]

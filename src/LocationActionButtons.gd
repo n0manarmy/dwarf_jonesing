@@ -2,7 +2,7 @@ extends Node2D
 
 onready var global_data = get_node_or_null("/root/GlobalData")
 onready var signals_manager = get_node_or_null("/root/SignalsManager")
-onready var inventory_manager = get_node("/root/InventoryManager")
+onready var item_manager = get_node("/root/ItemManager")
 onready var text_manager = get_node("/root/TextManager")
 onready var work_button = get_node_or_null("HBoxContainer/HBoxContainer/WorkButton")
 onready var rest_button = get_node_or_null("HBoxContainer/HBoxContainer/RestButton")
@@ -48,7 +48,7 @@ func change_scene(caller, scene_name, state):
 		if player.current_job.scene == owner_name:
 			if debug_this: print("work_button.show()")
 			work_button.show()
-		if player.possessions.has(inventory_manager.LOW_COST_APARTMENT.keys()[0]) && scene_name == "Scene01":
+		if player.possessions.has(item_manager.get_item(item_manager.ItemRef.LOW_COST_RENT)) && scene_name == "Scene01":
 #			info_label_box.text = text_manager.get_random_message(text_manager.LOW_COST_APARTMENT_HOME_GREET)
 			rest_button.show()
 		else:

@@ -17,7 +17,6 @@ config/icon="res://icon.png"
 [autoload]
 
 ItemManager="*res://src/ItemManager.gd"
-InventoryManager="res://src/InventoryManager.gd"
 JobManager="*res://src/JobManager.gd"
 Player="res://scenes/Player.tscn"
 GlobalData="*res://src/GlobalData.gd"

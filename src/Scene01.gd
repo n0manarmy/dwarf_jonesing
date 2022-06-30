@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var signals_manager = get_node_or_null("/root/SignalsManager")
-onready var im = get_node("/root/InventoryManager")
+onready var im = get_node("/root/ItemManager")
 onready var global_data = get_node("/root/GlobalData")
 onready var text_manager = get_node("/root/TextManager")
 onready var info_label_box: Label = get_node("VBoxContainer/HBoxContainer/InfoLabelBox")
@@ -30,7 +30,7 @@ func change_scene(caller, scene_name, state):
 		else:
 			self.show()
 			var player = global_data.get_current_player()
-			if player.possessions.has(im.LOW_COST_APARTMENT.keys()[0]):
+			if player.possessions.has(im.get_item(im.ItemRef.LOW_COST_RENT)):
 				info_label_box.text = text_manager.get_random_message(text_manager.LOW_COST_APARTMENT_HOME_GREET)
 			else:
 				info_label_box.text = text_manager.get_random_message(text_manager.LOW_COST_APARTMENT_VISITOR_GREET)

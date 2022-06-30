@@ -13,7 +13,7 @@ onready var actions_container: VBoxContainer = get_node("TextBackground/ActionsC
 onready var work_button: Button = get_node("TextBackground/WorkButton")
 onready var global_data = get_node("/root/GlobalData")
 onready var signals_manager = get_node_or_null("/root/SignalsManager")
-onready var im = get_node("/root/InventoryManager")
+onready var im = get_node("/root/ItemManager")
 onready var scene_label = get_node("TextBackground/NameLabel")
 
 onready var text_manager = get_node("/root/TextManager")
@@ -113,14 +113,14 @@ func rent_low_cost_apartment():
 	if debug_this: print(self.name + ".rent_low_cost_apartment")
 	var player = global_data.get_current_player()
 	
-	if player.possessions.has(im.LOW_COST_APARTMENT.keys()[0]):
+	if player.possessions.has(im.get_item(im.ItemRef.LOW_COST_RENT)):
 		info_label_box.text = text_manager.RENTING_LOW_COST_APARTMENT
 	elif just_payed == true:
 		info_label_box.text = text_manager.SECURITY_DEPOSIT_PAYED_FIRST
 	else:
 		info_label_box.text = text_manager.NEW_LOW_COST_APARTMENT
-		player.possessions.erase(im.LE_SECURITY_APARTMENT.keys()[0])
-		player.possessions[im.LOW_COST_APARTMENT.keys()[0]] = im.LOW_COST_APARTMENT.values()[0]
+		player.possessions.erase(im.get_item(im.ItemRef.LE_SECURITY_RENT))
+		player.possessions.append(im.get_item(im.ItemRef.LOW_COST_RENT))
 		just_payed = true
 		player.rent_extended = 0
 
@@ -134,8 +134,8 @@ func rent_le_security_apartment():
 	elif just_payed == true:
 		info_label_box.text = text_manager.SECURITY_DEPOSIT_PAYED_FIRST
 	elif player.current_money >= im.LE_SECURITY_APARTMENT.values()[0]:
-		player.possessions.erase(im.LOW_COST_APARTMENT.keys()[0])
-		player.possessions[im.LE_SECURITY_APARTMENT.keys()[0]] = im.LE_SECURITY_APARTMENT.values()[0]
+		player.possessions.erase(im.get_item(im.ItemRef.LOW_COST_RENT))
+		player.possessions.append(im.get_item(im.ItemRef.LE_SECURITY_RENT))
 		info_label_box.text = text_manager.NEW_LE_SECURITY_APARTMENT
 		just_payed = true
 		player.rent_extended = 0
