@@ -172,11 +172,15 @@ func on_button_move_pressed(dest: Vector2):
 	
 	my_set_process(self.name, true)
 	
+	var walking_path_node = get_node("WalkingPath")
+	
 	var travel_path_tile_map: TileMap = get_node("WalkingPath/TravelPathTileMap")
 	if debug_this: print(self.name + ".travel_path_tile_map: ", travel_path_tile_map)	
 	var tile_map_dest = travel_path_tile_map.map_to_world(dest)
 	if debug_this: print(self.name + ".tile_map_dest: ", tile_map_dest)
-	var path = get_node("WalkingPath").get_simple_path(player_sprite.global_position, tile_map_dest)
+	var path = Navigation2DServer.map_get_path(
+		walking_path_node.get_world_2d().get_navigation_map(), 
+		player_sprite.global_position, tile_map_dest, true, 1)
 	if debug_this: print(self.name + ".path: ", path)
 	player_sprite.movement_path = PoolVector2Array(path)
 
