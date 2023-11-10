@@ -12,7 +12,7 @@ enum ItemRef {
 	LOTTERY_TICKET = 6,
 }
 
-export var items: Array
+@export var items: Array
 var debug_this = true
 
 func _init():

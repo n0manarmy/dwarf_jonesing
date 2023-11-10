@@ -18,5 +18,4 @@ func _ready():
 	pass
 
 func _to_string():
-	return "item_ref: {}, item_name: {}, item_value: {}, happiness_value: {} " \
-		.format([self.item_ref, self.item_name, self.item_value, self.happiness_value], "{}")
+	return "item_ref: {}, item_name: {}, item_value: {}, happiness_value: {} ".format([self.item_ref, self.item_name, self.item_value, self.happiness_value], "{}")

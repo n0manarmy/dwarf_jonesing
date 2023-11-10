@@ -12,13 +12,13 @@ var job_slider = vbox_container_name + hbox_slider_container_name + "HBoxJobCont
 var STARTING_SLIDER_VALUE = 50
 var DEFAULT_GOALS_LABEL_VALUE = "Player %s Goals"
 
-onready var goals_label = get_node(vbox_container_name + "HBoxGoalsLabelContainer/GoalsLabel")
-onready var wealth_slider_node = get_node(wealth_slider)
-onready var job_slider_node = get_node(job_slider)
-onready var education_slider_node = get_node(education_slider)
-onready var happiness_slider_node = get_node(happiness_slider)
-onready var signals_manager = get_node_or_null("/root/SignalsManager")
-onready var global_data = get_node("/root/GlobalData")
+@onready var goals_label = get_node(vbox_container_name + "HBoxGoalsLabelContainer/GoalsLabel")
+@onready var wealth_slider_node = get_node(wealth_slider)
+@onready var job_slider_node = get_node(job_slider)
+@onready var education_slider_node = get_node(education_slider)
+@onready var happiness_slider_node = get_node(happiness_slider)
+@onready var signals_manager = get_node_or_null("/root/SignalsManager")
+@onready var global_data = get_node("/root/GlobalData")
 
 var debug_this = true
 
@@ -26,9 +26,9 @@ var debug_this = true
 func _ready():
 	if debug_this: print(self.name + "._ready()")
 	#self.goals_values_updated.connect("update_goals_value")
-	signals_manager.connect("goals_values_updated", self, "update_goals_value")
+	signals_manager.connect("goals_values_updated", Callable(self, "update_goals_value"))
 	if debug_this: print(self.name + ".global_variables.current_player ", global_data.current_player)
-	goals_label.text = DEFAULT_GOALS_LABEL_VALUE % (global_data.current_player as String)
+	goals_label.text = DEFAULT_GOALS_LABEL_VALUE % str(global_data.current_player)
 
 func slider_value_changed(x):
 	if debug_this: print(self.name + ".slider_value_changed()", x)
@@ -65,11 +65,11 @@ func on_done_clicked():
 func update_goals_value():
 	if debug_this: print(self.name + ".update_goals_value")	
 	
-	get_node(goals_value).text = (
+	get_node(goals_value).text = str(
 		wealth_slider_node.value +
 		job_slider_node.value + 
 		education_slider_node.value +
-		happiness_slider_node.value) as String
+		happiness_slider_node.value)
 	
 func update_max_score(val):
 	if debug_this: print(self.name + ".update_max_score")

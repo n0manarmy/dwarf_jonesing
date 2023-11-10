@@ -2,7 +2,7 @@ extends Node2D
 
 var debug_this = true
 
-onready var signals_manager = get_node_or_null("/root/SignalsManager")
+@onready var signals_manager = get_node_or_null("/root/SignalsManager")
 
 func _ready():
 	print(self.name + "._ready")

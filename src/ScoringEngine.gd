@@ -2,7 +2,7 @@ extends Node2D
 
 signal update_value
 
-onready var global_data = get_node("/root/GlobalData")
+@onready var global_data = get_node("/root/GlobalData")
 
 var debug_this = true
 # Called when the node enters the scene tree for the first time.

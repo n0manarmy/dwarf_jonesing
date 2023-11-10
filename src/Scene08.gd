@@ -1,14 +1,14 @@
 extends Node2D
 
-onready var signals_manager = get_node_or_null("/root/SignalsManager")
-onready var job_manager = get_node_or_null("/root/JobManager")
-onready var tm = get_node_or_null("/root/TextManager")
-onready var main_menu_container = get_node_or_null("TextBackground/VBoxContainer/MainMenuContainer")
+@onready var signals_manager = get_node_or_null("/root/SignalsManager")
+@onready var job_manager = get_node_or_null("/root/JobManager")
+@onready var tm = get_node_or_null("/root/TextManager")
+@onready var main_menu_container = get_node_or_null("TextBackground/VBoxContainer/MainMenuContainer")
 # onready var jobs_button_container = get_node("TextBackground/VBoxContainer/JobsMenuContainer/HBoxContainer/JobsButtonContainer/JobsContainer")
-onready var jobs_container = get_node_or_null("TextBackground/VBoxContainer/JobsMenuContainer/JobsContainer")
-onready var jobs_results_container = get_node_or_null("TextBackground/VBoxContainer/JobsMenuContainer/Text Box/JobsLabelBox")
-onready var jobs_menu_container = get_node_or_null("TextBackground/VBoxContainer/JobsMenuContainer")
-onready var global_data = get_node_or_null("/root/GlobalData")
+@onready var jobs_container = get_node_or_null("TextBackground/VBoxContainer/JobsMenuContainer/JobsContainer")
+@onready var jobs_results_container = get_node_or_null("TextBackground/VBoxContainer/JobsMenuContainer/Text Box/JobsLabelBox")
+@onready var jobs_menu_container = get_node_or_null("TextBackground/VBoxContainer/JobsMenuContainer")
+@onready var global_data = get_node_or_null("/root/GlobalData")
 
 const JobButton = preload("res://src/JobButton.gd")
 const Job = preload("res://src/Job.gd")
@@ -22,8 +22,8 @@ var jobs_presented = false
 # signal_manager duplicating connection because _ready is being called twice. probably from travel path
 func _ready():
 	if debug_this: print(self.name + "._ready")
-	signals_manager.connect("job_results_container_update", self, "update_job_results_container")
-	signals_manager.connect("scene_change", self, "change_scene")
+	signals_manager.connect("job_results_container_update", Callable(self, "update_job_results_container"))
+	signals_manager.connect("scene_change", Callable(self, "change_scene_to_file"))
 	setup_scene()
 	
 func setup_scene():
@@ -35,8 +35,8 @@ func setup_scene():
 	else:
 		self.hide()
 
-func change_scene(caller, scene_name, state):
-	if debug_this: print(self.name + ".change_scene() caller ", caller, " state ", state, " scene_name ", scene_name)	
+func change_scene_to_file(caller, scene_name, state):
+	if debug_this: print(self.name + ".change_scene_to_file() caller ", caller, " state ", state, " scene_name ", scene_name)	
 	if scene_name == self.name:
 		if state == global_data.SCENE_STATE.HIDE:
 			self.hide()
@@ -52,7 +52,7 @@ func on_done_clicked():
 		jobs_presented = false
 	else:
 		var travel_path_tile_map: TileMap = get_node("../../WalkingPath/TravelPathTileMap")
-		signals_manager.emit_signal("update_position", self.name, travel_path_tile_map.map_to_world(THIS_SCENE_EXIT))
+		signals_manager.emit_signal("update_position", self.name, travel_path_tile_map.map_to_local(THIS_SCENE_EXIT))
 		signals_manager.emit_signal("on_done_clicked", self.name)
 		self.hide()
 
@@ -81,7 +81,7 @@ func present_jobs(label):
 			# var button = JobButton.new(job)
 			# button.set_text_align(Button.ALIGN_LEFT)
 			button.text = "{} - {} ${}".format([job.job_name, job.job_available, job.base_salary], "{}")
-			button.connect("pressed", self, "this_job_pressed", [self.name, job])
+			button.connect("pressed", Callable(self, "this_job_pressed").bind(self.name, job))
 			jobs_button_container.add_child(button)
 			if debug_this: print(self.name + ".job ", job)
 

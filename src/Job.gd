@@ -1,13 +1,13 @@
 extends Object
 
-export var pos: int
-export var scene: String
-export var company: String
-export var job_name: String
-export var base_salary: int
-export var required_degree: String
-export var required_work_exp: int
-export var job_available: bool
+@export var pos: int
+@export var scene: String
+@export var company: String
+@export var job_name: String
+@export var base_salary: int
+@export var required_degree: String
+@export var required_work_exp: int
+@export var job_available: bool
 
 var debug_this = true
 

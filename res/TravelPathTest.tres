@@ -1,18 +1,18 @@
 [gd_resource type="TileSet" load_steps=5 format=2]
 
-[ext_resource path="res://art/Redjack17_clean.png" type="Texture" id=1]
+[ext_resource path="res://art/Redjack17_clean.png" type="Texture2D" id=1]
 
 [sub_resource type="NavigationPolygon" id=37]
-vertices = PoolVector2Array( 4.80466, 4.18951, 0, 3.96521, 0, 12.0405, 4.80466, 12.377, 4.80466, 16, 10.8611, 16, 10.8611, 11.704, 16, 11.704, 16, 5.42323, 11.1976, 5.31108, 10.749, 0, 4.69251, 0 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ) ]
+vertices = PackedVector2Array( 4.80466, 4.18951, 0, 3.96521, 0, 12.0405, 4.80466, 12.377, 4.80466, 16, 10.8611, 16, 10.8611, 11.704, 16, 11.704, 16, 5.42323, 11.1976, 5.31108, 10.749, 0, 4.69251, 0 )
+polygons = [ PackedInt32Array( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ) ]
 
 [sub_resource type="NavigationPolygon" id=38]
-vertices = PoolVector2Array( 4.7309, 4.52599, 0, 3.85304, 0, 12.0405, 5.62815, 11.8162, 5.40384, 16, 11.236, 16, 11.236, 11.8162, 16, 11.8162, 16, 4.86246, 11.4603, 4.52599, 11.4603, 0, 4.84306, 0 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ) ]
+vertices = PackedVector2Array( 4.7309, 4.52599, 0, 3.85304, 0, 12.0405, 5.62815, 11.8162, 5.40384, 16, 11.236, 16, 11.236, 11.8162, 16, 11.8162, 16, 4.86246, 11.4603, 4.52599, 11.4603, 0, 4.84306, 0 )
+polygons = [ PackedInt32Array( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ) ]
 
 [sub_resource type="NavigationPolygon" id=39]
-vertices = PoolVector2Array( 3.75988, 5.08676, 0, 4.86246, 0, 11.4797, 4.88145, 11.8162, 4.9936, 16, 11.2744, 16, 11.8352, 11.0311, 16, 11.3675, 16, 4.97461, 11.3865, 4.30167, 11.0501, 0, 4.32066, 0 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ) ]
+vertices = PackedVector2Array( 3.75988, 5.08676, 0, 4.86246, 0, 11.4797, 4.88145, 11.8162, 4.9936, 16, 11.2744, 16, 11.8352, 11.0311, 16, 11.3675, 16, 4.97461, 11.3865, 4.30167, 11.0501, 0, 4.32066, 0 )
+polygons = [ PackedInt32Array( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ) ]
 
 [resource]
 0/name = "Redjack17_clean.png 0"

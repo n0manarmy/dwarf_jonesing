@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var signals_manager = get_node("/root/SignalsManager")
+@onready var signals_manager = get_node("/root/SignalsManager")
 var debug = true
 
 # Called when the node enters the scene tree for the first time.

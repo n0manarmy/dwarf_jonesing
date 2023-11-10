@@ -1,29 +1,29 @@
 extends Node
 
-onready var global_data = get_node("/root/GlobalData")
-onready var signals_manager = get_node("/root/SignalsManager")
-onready var im = get_node("/root/ItemManager")
+@onready var global_data = get_node("/root/GlobalData")
+@onready var signals_manager = get_node("/root/SignalsManager")
+@onready var im = get_node("/root/ItemManager")
 
 const Job = preload("res://src/Job.gd")
 
-export var id: int = 0
-export var work_exp: int = 0
-export var eaten: bool = false
-export var happiness_score: int = 0
-export var wealth_score: int = 0
-export var education_score: int
-export var job_score: int = 0
-export var max_happiness_score: int = 0
-export var max_wealth_score: int = 0
-export var max_job_score: int = 0
-export var max_education_score: int = 0
-export var education: Dictionary = {} #Job:classes completed (13 is completed)
-export var turn_time_used: int = 0
-export var color = Color()
-export var rent_extended: int = 0
-export var current_money: int = 0
-export var player_salary: int = 0
-export var possessions: Array = [] #Name:Weath Value
+@export var id: int = 0
+@export var work_exp: int = 0
+@export var eaten: bool = false
+@export var happiness_score: int = 0
+@export var wealth_score: int = 0
+@export var education_score: int
+@export var job_score: int = 0
+@export var max_happiness_score: int = 0
+@export var max_wealth_score: int = 0
+@export var max_job_score: int = 0
+@export var max_education_score: int = 0
+@export var education: Dictionary = {} #Job:classes completed (13 is completed)
+@export var turn_time_used: int = 0
+@export var color = Color()
+@export var rent_extended: int = 0
+@export var current_money: int = 0
+@export var player_salary: int = 0
+@export var possessions: Array = [] #Name:Weath Value
 
 var current_job: Job
 var current_rent: int  = 0
@@ -33,12 +33,12 @@ var debug_this = false
 
 func _ready():
 	if debug_this: print(self.name + "._ready")
-	signals_manager.connect("change_player_job", self, "change_this_player_job")
-	signals_manager.connect("player_data_updated", self, "check_player_changes")
-	signals_manager.connect("player_time_up", self, "reset_player")
-	signals_manager.connect("on_rest_button_pressed", self, "increase_player_happiness")
-	signals_manager.connect("setup_next_player", self, "next_player")
-	signals_manager.connect("_on_WorkButton_pressed", self, "work_job")
+	signals_manager.connect("change_player_job", Callable(self, "change_this_player_job"))
+	signals_manager.connect("player_data_updated", Callable(self, "check_player_changes"))
+	signals_manager.connect("player_time_up", Callable(self, "reset_player"))
+	signals_manager.connect("on_rest_button_pressed", Callable(self, "increase_player_happiness"))
+	signals_manager.connect("setup_next_player", Callable(self, "next_player"))
+	signals_manager.connect("_on_WorkButton_pressed", Callable(self, "work_job"))
 
 
 func _to_string():
@@ -97,9 +97,9 @@ func next_player(caller):
 	var this_player = global_data.get_current_player()
 	this_player.eaten = false
 
-	var player_sprite: Sprite = get_node("/root/RootScene/TravelPath/PlayerSprite")
+	var player_sprite: Sprite2D = get_node("/root/RootScene/TravelPath/PlayerSprite")
 	var travel_path_tile_map: TileMap = get_node("/root/RootScene/TravelPath/WalkingPath/TravelPathTileMap")
-	signals_manager.emit_signal("player_position_updated", self.name, travel_path_tile_map.map_to_world(player_sprite.START_POS))
+	signals_manager.emit_signal("player_position_updated", self.name, travel_path_tile_map.map_to_local(player_sprite.START_POS))
 	player_sprite.modulate = this_player.color
 	signals_manager.emit_signal("player_data_updated", self.name + ".next_player")
 

@@ -16,7 +16,7 @@ var ECON_MAX = 155
 var econ_values = [90, 95, 100, 105, 110]
 
 # General player variables
-var WORK_TIME_COST = MAX_TIME / 12
+var WORK_TIME_COST = MAX_TIME / 12.0
 var WAGE_DAY_MODIFIER = 8
 var BASE_RENT: int = 325
 var TIME_LOSS_NO_FOOD = .2 * MAX_TIME
@@ -32,13 +32,13 @@ var jobs = []
 
 var rng = RandomNumberGenerator.new()
 
-onready var player_count_select_scene = get_node_or_null("/root/RootScene/PlayerCountSelectScene")
-onready var start_values_scene = get_node_or_null("/root/RootScene/StartValuesScene")
-onready var debug_scene = get_node_or_null("/root/RootScene/DebugScene")
-onready var signals_manager = get_node_or_null("/root/SignalsManager")
-onready var job_manager = get_node("/root/JobManager")
-onready var item_manager = get_node("/root/ItemManager")
-onready var scene_01_node = get_node_or_null("/root/RootScene/TravelPath/InfoScene/Scene01")
+@onready var player_count_select_scene = get_node_or_null("/root/RootScene/PlayerCountSelectScene")
+@onready var start_values_scene = get_node_or_null("/root/RootScene/StartValuesScene")
+@onready var debug_scene = get_node_or_null("/root/RootScene/DebugScene")
+@onready var signals_manager = get_node_or_null("/root/SignalsManager")
+@onready var job_manager = get_node("/root/JobManager")
+@onready var item_manager = get_node("/root/ItemManager")
+@onready var scene_01_node = get_node_or_null("/root/RootScene/TravelPath/InfoScene/Scene01")
 
 const Player = preload("res://src/Player.gd")
 
@@ -61,17 +61,17 @@ var debug_this = true
 func _ready():
 	if debug_this: print(self.name + "._ready")
 
-	rng.seed = hash(OS.get_datetime())
+	rng.seed = hash(Time.get_datetime_dict_from_system())
 	
-	signals_manager.connect("player_count_selected", self, "setup_players")
-	signals_manager.connect("player_time_up", self, "next_player")
-	signals_manager.connect("increment_player", self, "increment_current_player")
+	signals_manager.connect("player_count_selected", Callable(self, "setup_players"))
+	signals_manager.connect("player_time_up", Callable(self, "next_player"))
+	signals_manager.connect("increment_player", Callable(self, "increment_current_player"))
 		
 	if start_values_scene != null:
 		if debug_this: print(self.name + ".if start_values_scene != null:")
 		# signals_manager.connect("increment_players", self, "increment_current_player")
-		signals_manager.connect("goals_values_done", self, "set_player_max_values")
-		signals_manager.connect("reset_players", self, "reset_players")
+		signals_manager.connect("goals_values_done", Callable(self, "set_player_max_values"))
+		signals_manager.connect("reset_players", Callable(self, "reset_players"))
 			
 	setup_players(self.name, player_count)
 	setup_jobs()
@@ -116,7 +116,7 @@ func adjust_economy():
 		var val = (rng.randi_range(list_min, list_max) + list_avg) / 2
 		econ_values.append(val)		
 
-	econ_values.remove(0)
+	econ_values.remove_at(0)
 	signals_manager.emit_signal("update_job_economy", self.name)
 	# if debug_this: print(self.name + "econ_values: ", econ_values)
 

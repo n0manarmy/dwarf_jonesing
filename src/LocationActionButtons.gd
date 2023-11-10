@@ -1,11 +1,11 @@
 extends Node2D
 
-onready var global_data = get_node_or_null("/root/GlobalData")
-onready var signals_manager = get_node_or_null("/root/SignalsManager")
-onready var item_manager = get_node("/root/ItemManager")
-onready var text_manager = get_node("/root/TextManager")
-onready var work_button = get_node_or_null("HBoxContainer/HBoxContainer/WorkButton")
-onready var rest_button = get_node_or_null("HBoxContainer/HBoxContainer/RestButton")
+@onready var global_data = get_node_or_null("/root/GlobalData")
+@onready var signals_manager = get_node_or_null("/root/SignalsManager")
+@onready var item_manager = get_node("/root/ItemManager")
+@onready var text_manager = get_node("/root/TextManager")
+@onready var work_button = get_node_or_null("HBoxContainer/HBoxContainer/WorkButton")
+@onready var rest_button = get_node_or_null("HBoxContainer/HBoxContainer/RestButton")
 
 var SCENE_01_EXIT = Vector2(31, 11)
 var SCENE_02_EXIT = Vector2(42,12)
@@ -16,7 +16,7 @@ var debug_this = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if debug_this: print(self.name, "._ready()")
-	signals_manager.connect("scene_change", self, "change_scene")
+	signals_manager.connect("scene_change", Callable(self, "change_scene_to_file"))
 	setup_scene()
 	
 	
@@ -30,8 +30,8 @@ func setup_scene():
 		rest_button.hide()
 
 
-func change_scene(caller, scene_name, state):
-	if debug_this: print(self.name + ".change_scene() caller ", caller, " state ", state, " scene_name ", scene_name)
+func change_scene_to_file(caller, scene_name, state):
+	if debug_this: print(self.name + ".change_scene_to_file() caller ", caller, " state ", state, " scene_name ", scene_name)
 	var player = global_data.get_current_player()
 	var owner_name = owner.name.to_lower()
 	if debug_this: print(self.name, ".owner.name.to_lower(): ", owner.name.to_lower())
@@ -64,13 +64,13 @@ func _on_DoneButton_pressed():
 	match owner_name:
 		"Scene01":
 			signals_manager.emit_signal("scene_change", self.name, owner_name, global_data.SCENE_STATE.HIDE)
-			signals_manager.emit_signal("update_position", self.name, travel_path_tile_map.map_to_world(SCENE_01_EXIT))
+			signals_manager.emit_signal("update_position", self.name, travel_path_tile_map.map_to_local(SCENE_01_EXIT))
 		"Scene02":
 			signals_manager.emit_signal("scene_change", self.name, owner_name, global_data.SCENE_STATE.HIDE)
-			signals_manager.emit_signal("update_position", self.name, travel_path_tile_map.map_to_world(SCENE_02_EXIT))
+			signals_manager.emit_signal("update_position", self.name, travel_path_tile_map.map_to_local(SCENE_02_EXIT))
 		"Scene11":
 			signals_manager.emit_signal("scene_change", self.name, owner_name, global_data.SCENE_STATE.HIDE)
-			signals_manager.emit_signal("update_position", self.name, travel_path_tile_map.map_to_world(SCENE_11_EXIT))
+			signals_manager.emit_signal("update_position", self.name, travel_path_tile_map.map_to_local(SCENE_11_EXIT))
 		null:
 			if debug_this: print(self.name + ".null")
 			

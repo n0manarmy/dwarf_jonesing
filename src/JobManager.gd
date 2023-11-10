@@ -4,69 +4,69 @@ extends Node2D
 
 const Job = preload("res://src/Job.gd")
 
-onready var tm = get_node("/root/TextManager")
+@onready var tm = get_node("/root/TextManager")
 
-export var SCENE03_JOBS_COMPANY = "Z Mart Discount Store"
-export var SCENE03_JOBS_1 = "Clerk"
-export var SCENE03_JOBS_2 = "Assistmant Manager"
-export var SCENE03_JOBS_3 = "Manager"
+@export var SCENE03_JOBS_COMPANY = "Z Mart Discount Store"
+@export var SCENE03_JOBS_1 = "Clerk"
+@export var SCENE03_JOBS_2 = "Assistmant Manager"
+@export var SCENE03_JOBS_3 = "Manager"
 
-export var SCENE04_JOBS_COMPANY = "Monolith Burger"
-export var SCENE04_JOBS_1 = "Cook"
-export var SCENE04_JOBS_2 = "Clerk"
-export var SCENE04_JOBS_3 = "Assistant Manager"
-export var SCENE04_JOBS_4 = "Manager"
+@export var SCENE04_JOBS_COMPANY = "Monolith Burger"
+@export var SCENE04_JOBS_1 = "Cook"
+@export var SCENE04_JOBS_2 = "Clerk"
+@export var SCENE04_JOBS_3 = "Assistant Manager"
+@export var SCENE04_JOBS_4 = "Manager"
 
-export var SCENE05_JOBS_COMPANY = "QT Clothing"
-export var SCENE05_JOBS_1 = "Sales Person"
-export var SCENE05_JOBS_2 = "Assistmant Manager"
-export var SCENE05_JOBS_3 = "Manager"
+@export var SCENE05_JOBS_COMPANY = "QT Clothing"
+@export var SCENE05_JOBS_1 = "Sales Person"
+@export var SCENE05_JOBS_2 = "Assistmant Manager"
+@export var SCENE05_JOBS_3 = "Manager"
 
-export var SCENE06_JOBS_COMPANY = "Socket City"
-export var SCENE06_JOBS_1 = "Sales Person"
-export var SCENE06_JOBS_2 = "Electronics Repair"
-export var SCENE06_JOBS_3 = "Manager"
+@export var SCENE06_JOBS_COMPANY = "Socket City"
+@export var SCENE06_JOBS_1 = "Sales Person"
+@export var SCENE06_JOBS_2 = "Electronics Repair"
+@export var SCENE06_JOBS_3 = "Manager"
 
-export var SCENE07_JOBS_COMPANY = "Hi-Tech University"
-export var SCENE07_JOBS_1 = "Janitor"
-export var SCENE07_JOBS_2 = "Teacher"
-export var SCENE07_JOBS_3 = "Professor"
+@export var SCENE07_JOBS_COMPANY = "Hi-Tech University"
+@export var SCENE07_JOBS_1 = "Janitor"
+@export var SCENE07_JOBS_2 = "Teacher"
+@export var SCENE07_JOBS_3 = "Professor"
 
-export var SCENE09_JOBS_COMPANY = "Factory"
-export var SCENE09_JOBS_1 = "Janitor"
-export var SCENE09_JOBS_2 = "Assembly Worker"
-export var SCENE09_JOBS_3 = "Secretary"
-export var SCENE09_JOBS_4 = "Machinist's Helper"
-export var SCENE09_JOBS_5 = "Executive Secretary"
-export var SCENE09_JOBS_6 = "Machinist"
-export var SCENE09_JOBS_7 = "Department Manager"
-export var SCENE09_JOBS_8 = "Engineer"
-export var SCENE09_JOBS_9 = "General Manager"
+@export var SCENE09_JOBS_COMPANY = "Factory"
+@export var SCENE09_JOBS_1 = "Janitor"
+@export var SCENE09_JOBS_2 = "Assembly Worker"
+@export var SCENE09_JOBS_3 = "Secretary"
+@export var SCENE09_JOBS_4 = "Machinist's Helper"
+@export var SCENE09_JOBS_5 = "Executive Secretary"
+@export var SCENE09_JOBS_6 = "Machinist"
+@export var SCENE09_JOBS_7 = "Department Manager"
+@export var SCENE09_JOBS_8 = "Engineer"
+@export var SCENE09_JOBS_9 = "General Manager"
 
-export var SCENE10_JOBS_COMPANY = "Bank"
-export var SCENE10_JOBS_1 = "Janitor"
-export var SCENE10_JOBS_2 = "Teller"
-export var SCENE10_JOBS_3 = "Assistant Manager"
-export var SCENE10_JOBS_4 = "Manager"
-export var SCENE10_JOBS_5 = "Investment Broker"
+@export var SCENE10_JOBS_COMPANY = "Bank"
+@export var SCENE10_JOBS_1 = "Janitor"
+@export var SCENE10_JOBS_2 = "Teller"
+@export var SCENE10_JOBS_3 = "Assistant Manager"
+@export var SCENE10_JOBS_4 = "Manager"
+@export var SCENE10_JOBS_5 = "Investment Broker"
 
-export var SCENE11_JOBS_COMPANY = "Black's Market"
-export var SCENE11_JOBS_1 = "Janitor"
-export var SCENE11_JOBS_2 = "Checker"
-export var SCENE11_JOBS_3 = "Butcher"
-export var SCENE11_JOBS_4 = "Assistant Manager"
-export var SCENE11_JOBS_5 = "Manager"
+@export var SCENE11_JOBS_COMPANY = "Black's Market"
+@export var SCENE11_JOBS_1 = "Janitor"
+@export var SCENE11_JOBS_2 = "Checker"
+@export var SCENE11_JOBS_3 = "Butcher"
+@export var SCENE11_JOBS_4 = "Assistant Manager"
+@export var SCENE11_JOBS_5 = "Manager"
 
-export var SCENE13_JOBS_COMPANY = "Rental Office"
-export var SCENE13_JOBS_1 = "Grounds Keeper"
-export var SCENE13_JOBS_2 = "Apartment Manager"
+@export var SCENE13_JOBS_COMPANY = "Rental Office"
+@export var SCENE13_JOBS_1 = "Grounds Keeper"
+@export var SCENE13_JOBS_2 = "Apartment Manager"
 
-export var NONE = "None"
+@export var NONE = "None"
 
-export var jobs: Array
+@export var jobs: Array
 
-onready var signals_manager = get_node("/root/SignalsManager")
-onready var global_data = get_node("/root/GlobalData")
+@onready var signals_manager = get_node("/root/SignalsManager")
+@onready var global_data = get_node("/root/GlobalData")
 
 var debug_this = true
 
@@ -126,8 +126,8 @@ func _init():
 func _ready():
 	if debug_this: print(self.name + "._ready")	
 	if debug_this: print(self.name + ".jobs count: ", jobs.size())
-	signals_manager.connect("update_job_economy", self, "update_jobs_economy")
-	signals_manager.connect("job_manager_check_get_job", self, "can_get_job")
+	signals_manager.connect("update_job_economy", Callable(self, "update_jobs_economy"))
+	signals_manager.connect("job_manager_check_get_job", Callable(self, "can_get_job"))
 
 
 func update_jobs_economy(caller):

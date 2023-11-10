@@ -3,29 +3,29 @@ extends Node2D
 
 var THIS_SCENE_EXIT = Vector2(20,12)
 
-const item_manager = preload("res://src/ItemManager.gd")
+@onready const item_manager = preload("res://src/ItemManager.gd")
 
-onready var pay_rent_button: Button = get_node("TextBackground/ActionsContainer/PayRentContainer/PayRentButtonContainer/Button")
-onready var rent_low_cost_button: Button = get_node("TextBackground/ActionsContainer/LowCostContainer/LowCostButtonContainer/Button")
-onready var rent_le_security_button: Button = get_node("TextBackground/ActionsContainer/LeSecurityContainer/LeSecurityButtonContainer/Button")
-onready var info_label_box: Label = get_node("TextBackground/InfoLabelBox")
-onready var actions_container: VBoxContainer = get_node("TextBackground/ActionsContainer")
-onready var work_button: Button = get_node("TextBackground/WorkButton")
-onready var global_data = get_node("/root/GlobalData")
-onready var signals_manager = get_node_or_null("/root/SignalsManager")
-onready var im = get_node("/root/ItemManager")
-onready var scene_label = get_node("TextBackground/NameLabel")
+@onready var pay_rent_button: Button = get_node("TextBackground/ActionsContainer/PayRentContainer/PayRentButtonContainer/Button")
+@onready var rent_low_cost_button: Button = get_node("TextBackground/ActionsContainer/LowCostContainer/LowCostButtonContainer/Button")
+@onready var rent_le_security_button: Button = get_node("TextBackground/ActionsContainer/LeSecurityContainer/LeSecurityButtonContainer/Button")
+@onready var info_label_box: Label = get_node("TextBackground/InfoLabelBox")
+@onready var actions_container: VBoxContainer = get_node("TextBackground/ActionsContainer")
+@onready var work_button: Button = get_node("TextBackground/WorkButton")
+@onready var global_data = get_node("/root/GlobalData")
+@onready var signals_manager = get_node_or_null("/root/SignalsManager")
+@onready var im = get_node("/root/ItemManager")
+@onready var scene_label = get_node("TextBackground/NameLabel")
 
-onready var text_manager = get_node("/root/TextManager")
-onready var job_manager = get_node("/root/JobManager")
+@onready var text_manager = get_node("/root/TextManager")
+@onready var job_manager = get_node("/root/JobManager")
 
-onready var just_payed = false
+@onready var just_payed = false
 
 var debug_this = true
 
 func _ready():
 	if debug_this: print(self.name + "._ready")	
-	signals_manager.connect("scene_change", self, "change_scene")
+	signals_manager.connect("scene_change", Callable(self, "change_scene_to_file"))
 	setup_scene()
 	
 func setup_scene():
@@ -35,8 +35,8 @@ func setup_scene():
 	else:
 		self.hide()
 
-func change_scene(caller, scene_name, state):
-	if debug_this: print(self.name + ".change_scene() caller ", caller, " state ", state, " scene_name ", scene_name)	
+func change_scene_to_file(caller, scene_name, state):
+	if debug_this: print(self.name + ".change_scene_to_file() caller ", caller, " state ", state, " scene_name ", scene_name)	
 	var player = global_data.get_current_player()
 	if scene_name == self.name:
 		if state == global_data.SCENE_STATE.HIDE:
@@ -146,7 +146,7 @@ func rent_le_security_apartment():
 func on_done_clicked():
 	if debug_this: print(self.name + ".on_done_clicked")
 	var travel_path_tile_map: TileMap = get_node("../../WalkingPath/TravelPathTileMap")
-	signals_manager.emit_signal("update_position", self.name, travel_path_tile_map.map_to_world(THIS_SCENE_EXIT))
+	signals_manager.emit_signal("update_position", self.name, travel_path_tile_map.map_to_local(THIS_SCENE_EXIT))
 	signals_manager.emit_signal("on_done_clicked", self.name)
 	self.hide()
 

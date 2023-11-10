@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/Scene13.gd" type="Script" id=1]
-[ext_resource path="res://art/info_layer_background.png" type="Texture" id=2]
+[ext_resource path="res://art/info_layer_background.png" type="Texture2D" id=2]
 
 [sub_resource type="TileSet" id=1]
 0/name = "info_layer_background.png 0"
@@ -26,13 +26,13 @@ script = ExtResource( 1 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 917521, 0, 0, 917525, 0, 0, 917529, 0, 0, 917533, 0, 0, 917537, 0, 0, 917541, 0, 0, 917545, 0, 0, 1179665, 0, 0, 1179669, 0, 0, 1179673, 0, 0, 1179677, 0, 0, 1179681, 0, 0, 1179685, 0, 0, 1179689, 0, 0, 1441809, 0, 0, 1441813, 0, 0, 1441817, 0, 0, 1441821, 0, 0, 1441825, 0, 0, 1441829, 0, 0, 1441833, 0, 0, 1703953, 0, 0, 1703957, 0, 0, 1703961, 0, 0, 1703965, 0, 0, 1703969, 0, 0, 1703973, 0, 0, 1703977, 0, 0, 1835025, 0, 0, 1835029, 0, 0, 1835033, 0, 0, 1835037, 0, 0, 1835041, 0, 0, 1835045, 0, 0, 1835049, 0, 0 )
+tile_data = PackedInt32Array( 917521, 0, 0, 917525, 0, 0, 917529, 0, 0, 917533, 0, 0, 917537, 0, 0, 917541, 0, 0, 917545, 0, 0, 1179665, 0, 0, 1179669, 0, 0, 1179673, 0, 0, 1179677, 0, 0, 1179681, 0, 0, 1179685, 0, 0, 1179689, 0, 0, 1441809, 0, 0, 1441813, 0, 0, 1441817, 0, 0, 1441821, 0, 0, 1441825, 0, 0, 1441829, 0, 0, 1441833, 0, 0, 1703953, 0, 0, 1703957, 0, 0, 1703961, 0, 0, 1703965, 0, 0, 1703969, 0, 0, 1703973, 0, 0, 1703977, 0, 0, 1835025, 0, 0, 1835029, 0, 0, 1835033, 0, 0, 1835037, 0, 0, 1835041, 0, 0, 1835045, 0, 0, 1835049, 0, 0 )
 
 [node name="NameLabel" type="Label" parent="TextBackground"]
-margin_left = 280.0
-margin_top = 232.0
-margin_right = 712.0
-margin_bottom = 246.0
+offset_left = 280.0
+offset_top = 232.0
+offset_right = 712.0
+offset_bottom = 246.0
 text = "Rental Office"
 align = 1
 __meta__ = {
@@ -40,161 +40,161 @@ __meta__ = {
 }
 
 [node name="InfoLabelBox" type="Label" parent="TextBackground"]
-margin_left = 520.0
-margin_top = 264.0
-margin_right = 704.0
-margin_bottom = 476.0
+offset_left = 520.0
+offset_top = 264.0
+offset_right = 704.0
+offset_bottom = 476.0
 text = "Default Text"
 autowrap = true
 
 [node name="ActionsContainer" type="VBoxContainer" parent="TextBackground"]
-margin_left = 296.0
-margin_top = 264.0
-margin_right = 506.0
-margin_bottom = 476.0
+offset_left = 296.0
+offset_top = 264.0
+offset_right = 506.0
+offset_bottom = 476.0
 
 [node name="PayRentContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer"]
-margin_right = 210.0
-margin_bottom = 20.0
+offset_right = 210.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 
 [node name="PayRentLabelContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer/PayRentContainer"]
-margin_right = 103.0
-margin_bottom = 20.0
+offset_right = 103.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="TextBackground/ActionsContainer/PayRentContainer/PayRentLabelContainer"]
-margin_top = 3.0
-margin_right = 93.0
-margin_bottom = 17.0
+offset_top = 3.0
+offset_right = 93.0
+offset_bottom = 17.0
 text = "Rent Due, Pay:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PayRentButtonContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer/PayRentContainer"]
-margin_left = 107.0
-margin_right = 210.0
-margin_bottom = 20.0
+offset_left = 107.0
+offset_right = 210.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 alignment = 2
 
 [node name="Button" type="Button" parent="TextBackground/ActionsContainer/PayRentContainer/PayRentButtonContainer"]
-margin_left = 67.0
-margin_right = 103.0
-margin_bottom = 20.0
+offset_left = 67.0
+offset_right = 103.0
+offset_bottom = 20.0
 text = "325"
 
 [node name="MoreTimeContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer"]
-margin_top = 24.0
-margin_right = 210.0
-margin_bottom = 44.0
+offset_top = 24.0
+offset_right = 210.0
+offset_bottom = 44.0
 
 [node name="MoreTimeLabelContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer/MoreTimeContainer"]
-margin_right = 116.0
-margin_bottom = 20.0
+offset_right = 116.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="TextBackground/ActionsContainer/MoreTimeContainer/MoreTimeLabelContainer"]
-margin_top = 3.0
-margin_right = 116.0
-margin_bottom = 17.0
+offset_top = 3.0
+offset_right = 116.0
+offset_bottom = 17.0
 text = "Ask for more time"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MoreTimeButtonContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer/MoreTimeContainer"]
-margin_left = 120.0
-margin_right = 210.0
-margin_bottom = 20.0
+offset_left = 120.0
+offset_right = 210.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 alignment = 2
 
 [node name="Button" type="Button" parent="TextBackground/ActionsContainer/MoreTimeContainer/MoreTimeButtonContainer"]
-margin_left = 33.0
-margin_right = 90.0
-margin_bottom = 20.0
+offset_left = 33.0
+offset_right = 90.0
+offset_bottom = 20.0
 text = "1 week"
 
 [node name="LowCostContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer"]
-margin_top = 48.0
-margin_right = 210.0
-margin_bottom = 68.0
+offset_top = 48.0
+offset_right = 210.0
+offset_bottom = 68.0
 size_flags_horizontal = 3
 
 [node name="LowCostLabelContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer/LowCostContainer"]
-margin_right = 124.0
-margin_bottom = 20.0
+offset_right = 124.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="TextBackground/ActionsContainer/LowCostContainer/LowCostLabelContainer"]
-margin_top = 3.0
-margin_right = 124.0
-margin_bottom = 17.0
+offset_top = 3.0
+offset_right = 124.0
+offset_bottom = 17.0
 text = "Rent Low Cost Appt"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LowCostButtonContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer/LowCostContainer"]
-margin_left = 128.0
-margin_right = 210.0
-margin_bottom = 20.0
+offset_left = 128.0
+offset_right = 210.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 alignment = 2
 
 [node name="Button" type="Button" parent="TextBackground/ActionsContainer/LowCostContainer/LowCostButtonContainer"]
-margin_left = 46.0
-margin_right = 82.0
-margin_bottom = 20.0
+offset_left = 46.0
+offset_right = 82.0
+offset_bottom = 20.0
 text = "325"
 
 [node name="LeSecurityContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer"]
-margin_top = 72.0
-margin_right = 210.0
-margin_bottom = 92.0
+offset_top = 72.0
+offset_right = 210.0
+offset_bottom = 92.0
 size_flags_horizontal = 3
 
 [node name="LeSecurityLabelContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer/LeSecurityContainer"]
-margin_right = 137.0
-margin_bottom = 20.0
+offset_right = 137.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="TextBackground/ActionsContainer/LeSecurityContainer/LeSecurityLabelContainer"]
-margin_top = 3.0
-margin_right = 137.0
-margin_bottom = 17.0
+offset_top = 3.0
+offset_right = 137.0
+offset_bottom = 17.0
 text = "Rent Le Security Appt"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LeSecurityButtonContainer" type="HBoxContainer" parent="TextBackground/ActionsContainer/LeSecurityContainer"]
-margin_left = 141.0
-margin_right = 210.0
-margin_bottom = 20.0
+offset_left = 141.0
+offset_right = 210.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 alignment = 2
 
 [node name="Button" type="Button" parent="TextBackground/ActionsContainer/LeSecurityContainer/LeSecurityButtonContainer"]
-margin_left = 33.0
-margin_right = 69.0
-margin_bottom = 20.0
+offset_left = 33.0
+offset_right = 69.0
+offset_bottom = 20.0
 text = "325"
 
 [node name="DoneButton" type="Button" parent="TextBackground"]
-margin_left = 648.0
-margin_top = 476.0
-margin_right = 694.0
-margin_bottom = 496.0
+offset_left = 648.0
+offset_top = 476.0
+offset_right = 694.0
+offset_bottom = 496.0
 text = "Done"
 
 [node name="WorkButton" type="Button" parent="TextBackground"]
-margin_left = 296.0
-margin_top = 476.0
-margin_right = 342.0
-margin_bottom = 496.0
+offset_left = 296.0
+offset_top = 476.0
+offset_right = 342.0
+offset_bottom = 496.0
 text = "Work"
 __meta__ = {
 "_edit_use_anchors_": false

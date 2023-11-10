@@ -11,343 +11,343 @@ anchor_left = 0.266
 anchor_top = 0.292
 anchor_right = 0.703
 anchor_bottom = 0.667
-margin_right = 576.0
-margin_bottom = 248.0
+offset_right = 576.0
+offset_bottom = 248.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="DebugContainer"]
-margin_right = 139.0
-margin_bottom = 248.0
+offset_right = 139.0
+offset_bottom = 248.0
 
 [node name="VBoxLabels" type="VBoxContainer" parent="DebugContainer/HBoxContainer"]
-margin_right = 101.0
-margin_bottom = 248.0
+offset_right = 101.0
+offset_bottom = 248.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TotalTimeLabel" type="Label" parent="DebugContainer/HBoxContainer/VBoxLabels"]
-margin_right = 101.0
-margin_bottom = 14.0
+offset_right = 101.0
+offset_bottom = 14.0
 text = "Time Total"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TimeUsedLabel" type="Label" parent="DebugContainer/HBoxContainer/VBoxLabels"]
-margin_top = 18.0
-margin_right = 101.0
-margin_bottom = 32.0
+offset_top = 18.0
+offset_right = 101.0
+offset_bottom = 32.0
 text = "Turn Time Used"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="StatusLabel" type="Label" parent="DebugContainer/HBoxContainer/VBoxLabels"]
-margin_top = 36.0
-margin_right = 101.0
-margin_bottom = 50.0
+offset_top = 36.0
+offset_right = 101.0
+offset_bottom = 50.0
 text = "Status"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="EatenLabel" type="Label" parent="DebugContainer/HBoxContainer/VBoxLabels"]
-margin_top = 54.0
-margin_right = 101.0
-margin_bottom = 68.0
+offset_top = 54.0
+offset_right = 101.0
+offset_bottom = 68.0
 text = "Eaten"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RoundsLabel" type="Label" parent="DebugContainer/HBoxContainer/VBoxLabels"]
-margin_top = 72.0
-margin_right = 101.0
-margin_bottom = 86.0
+offset_top = 72.0
+offset_right = 101.0
+offset_bottom = 86.0
 text = "Rounds"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="JobNameLabel" type="Label" parent="DebugContainer/HBoxContainer/VBoxLabels"]
-margin_top = 90.0
-margin_right = 101.0
-margin_bottom = 104.0
+offset_top = 90.0
+offset_right = 101.0
+offset_bottom = 104.0
 text = "Job"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MoneyLabel" type="Label" parent="DebugContainer/HBoxContainer/VBoxLabels"]
-margin_top = 108.0
-margin_right = 101.0
-margin_bottom = 122.0
+offset_top = 108.0
+offset_right = 101.0
+offset_bottom = 122.0
 text = "Money"
 
 [node name="VBoxValues" type="VBoxContainer" parent="DebugContainer/HBoxContainer"]
-margin_left = 105.0
-margin_right = 139.0
-margin_bottom = 248.0
+offset_left = 105.0
+offset_right = 139.0
+offset_bottom = 248.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TotalTimeValue" type="Label" parent="DebugContainer/HBoxContainer/VBoxValues"]
-margin_right = 34.0
-margin_bottom = 14.0
+offset_right = 34.0
+offset_bottom = 14.0
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TimeUsedValue" type="Label" parent="DebugContainer/HBoxContainer/VBoxValues"]
-margin_top = 18.0
-margin_right = 34.0
-margin_bottom = 32.0
+offset_top = 18.0
+offset_right = 34.0
+offset_bottom = 32.0
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="StatusValue" type="Label" parent="DebugContainer/HBoxContainer/VBoxValues"]
-margin_top = 36.0
-margin_right = 34.0
-margin_bottom = 50.0
+offset_top = 36.0
+offset_right = 34.0
+offset_bottom = 50.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="EatenValue" type="Label" parent="DebugContainer/HBoxContainer/VBoxValues"]
-margin_top = 54.0
-margin_right = 34.0
-margin_bottom = 68.0
+offset_top = 54.0
+offset_right = 34.0
+offset_bottom = 68.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RoundsValue" type="Label" parent="DebugContainer/HBoxContainer/VBoxValues"]
-margin_top = 72.0
-margin_right = 34.0
-margin_bottom = 86.0
+offset_top = 72.0
+offset_right = 34.0
+offset_bottom = 86.0
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="JobNameValue" type="Label" parent="DebugContainer/HBoxContainer/VBoxValues"]
-margin_top = 90.0
-margin_right = 34.0
-margin_bottom = 104.0
+offset_top = 90.0
+offset_right = 34.0
+offset_bottom = 104.0
 text = "None"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MoneyValue" type="Label" parent="DebugContainer/HBoxContainer/VBoxValues"]
-margin_top = 108.0
-margin_right = 34.0
-margin_bottom = 122.0
+offset_top = 108.0
+offset_right = 34.0
+offset_bottom = 122.0
 text = "None"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="DebugContainer"]
-margin_left = 143.0
-margin_right = 287.0
-margin_bottom = 248.0
+offset_left = 143.0
+offset_right = 287.0
+offset_bottom = 248.0
 
 [node name="VBoxLabels" type="VBoxContainer" parent="DebugContainer/HBoxContainer2"]
-margin_right = 106.0
-margin_bottom = 248.0
+offset_right = 106.0
+offset_bottom = 248.0
 
 [node name="HappinessScoreLabel" type="Label" parent="DebugContainer/HBoxContainer2/VBoxLabels"]
-margin_right = 106.0
-margin_bottom = 14.0
+offset_right = 106.0
+offset_bottom = 14.0
 text = "Happiness Score"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="WealthScoreLabel" type="Label" parent="DebugContainer/HBoxContainer2/VBoxLabels"]
-margin_top = 18.0
-margin_right = 106.0
-margin_bottom = 32.0
+offset_top = 18.0
+offset_right = 106.0
+offset_bottom = 32.0
 text = "Wealth Score"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="JobScoreLabel" type="Label" parent="DebugContainer/HBoxContainer2/VBoxLabels"]
-margin_top = 36.0
-margin_right = 106.0
-margin_bottom = 50.0
+offset_top = 36.0
+offset_right = 106.0
+offset_bottom = 50.0
 text = "Job Score"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="EducationScoreLabel" type="Label" parent="DebugContainer/HBoxContainer2/VBoxLabels"]
-margin_top = 54.0
-margin_right = 106.0
-margin_bottom = 68.0
+offset_top = 54.0
+offset_right = 106.0
+offset_bottom = 68.0
 text = "Education Score"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CurrentPlayer" type="Label" parent="DebugContainer/HBoxContainer2/VBoxLabels"]
-margin_top = 72.0
-margin_right = 106.0
-margin_bottom = 86.0
+offset_top = 72.0
+offset_right = 106.0
+offset_bottom = 86.0
 text = "CurrentPlayer"
 
 [node name="TotalPlayersLabel" type="Label" parent="DebugContainer/HBoxContainer2/VBoxLabels"]
-margin_top = 90.0
-margin_right = 106.0
-margin_bottom = 104.0
+offset_top = 90.0
+offset_right = 106.0
+offset_bottom = 104.0
 text = "Total Players"
 
 [node name="WorkExpLabel" type="Label" parent="DebugContainer/HBoxContainer2/VBoxLabels"]
-margin_top = 108.0
-margin_right = 106.0
-margin_bottom = 122.0
+offset_top = 108.0
+offset_right = 106.0
+offset_bottom = 122.0
 text = "Work Exp"
 
 [node name="VBoxValues" type="VBoxContainer" parent="DebugContainer/HBoxContainer2"]
-margin_left = 110.0
-margin_right = 144.0
-margin_bottom = 248.0
+offset_left = 110.0
+offset_right = 144.0
+offset_bottom = 248.0
 
 [node name="HappinessScoreValue" type="Label" parent="DebugContainer/HBoxContainer2/VBoxValues"]
-margin_right = 34.0
-margin_bottom = 14.0
+offset_right = 34.0
+offset_bottom = 14.0
 text = "None"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="WealthScoreValue" type="Label" parent="DebugContainer/HBoxContainer2/VBoxValues"]
-margin_top = 18.0
-margin_right = 34.0
-margin_bottom = 32.0
+offset_top = 18.0
+offset_right = 34.0
+offset_bottom = 32.0
 text = "None"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="JobScoreValue" type="Label" parent="DebugContainer/HBoxContainer2/VBoxValues"]
-margin_top = 36.0
-margin_right = 34.0
-margin_bottom = 50.0
+offset_top = 36.0
+offset_right = 34.0
+offset_bottom = 50.0
 text = "None"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="EducationScoreValue" type="Label" parent="DebugContainer/HBoxContainer2/VBoxValues"]
-margin_top = 54.0
-margin_right = 34.0
-margin_bottom = 68.0
+offset_top = 54.0
+offset_right = 34.0
+offset_bottom = 68.0
 text = "None"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CurrentPlayerValue" type="Label" parent="DebugContainer/HBoxContainer2/VBoxValues"]
-margin_top = 72.0
-margin_right = 34.0
-margin_bottom = 86.0
+offset_top = 72.0
+offset_right = 34.0
+offset_bottom = 86.0
 text = "None"
 
 [node name="TotalPlayersValue" type="Label" parent="DebugContainer/HBoxContainer2/VBoxValues"]
-margin_top = 90.0
-margin_right = 34.0
-margin_bottom = 104.0
+offset_top = 90.0
+offset_right = 34.0
+offset_bottom = 104.0
 text = "None"
 
 [node name="WorkExpValue" type="Label" parent="DebugContainer/HBoxContainer2/VBoxValues"]
-margin_top = 108.0
-margin_right = 34.0
-margin_bottom = 122.0
+offset_top = 108.0
+offset_right = 34.0
+offset_bottom = 122.0
 text = "None"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="DebugContainer"]
-margin_left = 291.0
-margin_right = 465.0
-margin_bottom = 248.0
+offset_left = 291.0
+offset_right = 465.0
+offset_bottom = 248.0
 
 [node name="VBoxLabels" type="VBoxContainer" parent="DebugContainer/HBoxContainer3"]
-margin_right = 136.0
-margin_bottom = 248.0
+offset_right = 136.0
+offset_bottom = 248.0
 
 [node name="MaxHappinessScoreLabel" type="Label" parent="DebugContainer/HBoxContainer3/VBoxLabels"]
-margin_right = 136.0
-margin_bottom = 14.0
+offset_right = 136.0
+offset_bottom = 14.0
 text = "Max Happiness Score"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MaxWealthScoreLabel" type="Label" parent="DebugContainer/HBoxContainer3/VBoxLabels"]
-margin_top = 18.0
-margin_right = 136.0
-margin_bottom = 32.0
+offset_top = 18.0
+offset_right = 136.0
+offset_bottom = 32.0
 text = "Max Wealth Score"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MaxJobScoreLabel" type="Label" parent="DebugContainer/HBoxContainer3/VBoxLabels"]
-margin_top = 36.0
-margin_right = 136.0
-margin_bottom = 50.0
+offset_top = 36.0
+offset_right = 136.0
+offset_bottom = 50.0
 text = "Max Job Score"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MaxEducationScoreLabel" type="Label" parent="DebugContainer/HBoxContainer3/VBoxLabels"]
-margin_top = 54.0
-margin_right = 136.0
-margin_bottom = 68.0
+offset_top = 54.0
+offset_right = 136.0
+offset_bottom = 68.0
 text = "Max Education Score"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxValues" type="VBoxContainer" parent="DebugContainer/HBoxContainer3"]
-margin_left = 140.0
-margin_right = 174.0
-margin_bottom = 248.0
+offset_left = 140.0
+offset_right = 174.0
+offset_bottom = 248.0
 
 [node name="MaxHappinessScoreValue" type="Label" parent="DebugContainer/HBoxContainer3/VBoxValues"]
-margin_right = 34.0
-margin_bottom = 14.0
+offset_right = 34.0
+offset_bottom = 14.0
 text = "None"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MaxWealthScoreValue" type="Label" parent="DebugContainer/HBoxContainer3/VBoxValues"]
-margin_top = 18.0
-margin_right = 34.0
-margin_bottom = 32.0
+offset_top = 18.0
+offset_right = 34.0
+offset_bottom = 32.0
 text = "None"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MaxJobScoreValue" type="Label" parent="DebugContainer/HBoxContainer3/VBoxValues"]
-margin_top = 36.0
-margin_right = 34.0
-margin_bottom = 50.0
+offset_top = 36.0
+offset_right = 34.0
+offset_bottom = 50.0
 text = "None"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MaxEducationScoreValue" type="Label" parent="DebugContainer/HBoxContainer3/VBoxValues"]
-margin_top = 54.0
-margin_right = 34.0
-margin_bottom = 68.0
+offset_top = 54.0
+offset_right = 34.0
+offset_bottom = 68.0
 text = "None"
 __meta__ = {
 "_edit_use_anchors_": false
